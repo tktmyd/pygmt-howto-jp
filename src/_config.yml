@@ -3,7 +3,8 @@
 
 title: pygmt-tutor
 author: Takuto Maeda
-logo: logo.png
+#logo: logo.png
+copyright: '2021. All Rights Reserved. '
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -36,3 +37,10 @@ sphinx:
 html:
   use_issues_button: false
   use_repository_button: false
+
+parse:
+  myst_enable_extensions:
+    - dollarmath
+    - amsmath
+    - html_image
+    - colon_fence
