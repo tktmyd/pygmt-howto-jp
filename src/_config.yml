@@ -22,7 +22,7 @@ execute:
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/tktmyd/pygmt-tutor  # Online location of your book
+  url: https://github.com/tktmyd/pygmt-howto-jp  # Online location of your book
   path_to_book: docs  # Optional path to your book, relative to the repository root
   branch: master  # Which branch of the repository should be used when creating links (optional)
 
@@ -31,6 +31,9 @@ sphinx:
   config:
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     language: en
+    html_baseurl: 'https://tktmyd.github.io/pygmt-howto-jp'
+  extra_extensions:
+    - sphinx_sitemap    
 
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
