@@ -1,7 +1,7 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: pygmt-tutor
+title: pygmt-howto
 author: Takuto Maeda
 #logo: logo.png
 copyright: '2021. All Rights Reserved. '
