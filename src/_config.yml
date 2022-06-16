@@ -4,7 +4,7 @@
 title: pygmt-howto
 author: Takuto Maeda
 #logo: logo.png
-copyright: '2021. All Rights Reserved. '
+copyright: '2021-2022. All Rights Reserved. '
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
