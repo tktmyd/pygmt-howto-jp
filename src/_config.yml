@@ -2,9 +2,10 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: pygmt-howto
-author: Takuto Maeda
+author: <a href="https://tktmyd.github.io">Takuto Maeda</a>
 #logo: logo.png
-copyright: '2021-2022. All Rights Reserved. '
+copyright: '2021-2022. All Rights Reserved'
+description: A tutorial of PyGMT for seismologists
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -39,7 +40,10 @@ sphinx:
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
   use_issues_button: false
-  use_repository_button: false
+  use_repository_button: true
+  home_page_in_navbar: true
+  use_edit_page_button: false
+  baseurl: https://tktmyd.github.io/pygmt-howto-jp
 
 parse:
   myst_enable_extensions:

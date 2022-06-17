@@ -1,24 +1,48 @@
-# PyGMT HowTo for Seismology
+# PyGMT-HOWTO
 
-本ページは美麗な地図やグラフを作成できるツール[Generic Mapping Tools (GMT)](https://github.com/GenericMappingTools/gmt)のPython インターフェースである[PyGMT](https://www.pygmt.org/)の地震学における利用を主な対象としたチュートリアルです．
+## このWebサイトについて
 
-## License
+本Webサイトは，美麗な地図やグラフを作成できるツール[Generic Mapping Tools (GMT)](https://github.com/GenericMappingTools/gmt)のPython インターフェースである[PyGMT](https://www.pygmt.org/)の地震学における利用を主な対象としたチュートリアルです．
 
-Copyright (C) 2021-2022 Takuto Maeda
+## GMTとPyGMT
 
-Webサイトで公開されるコンテンツは[クリエイティブ・コモンズ4.0表示（CC-BY 4.0)](https://creativecommons.org/licenses/by/4.0/)で提供します．また，本Webサイトを生成するためのソースコードおよびWebサイト中に含まれる[ソースコード](https://github.com/tktmyd/pygmt-howto-jp)は[MITライセンス](https://opensource.org/licenses/MIT)で提供します．
+現在のPyGMTやGMTでどのような図が作成できるかを知るには，公式のギャラリーを見てみるのが良いでしょう．
 
-The web contents are distributed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/). The source codes to build this web contents, and codes appered inside the web contents are distributed under [MIT license](https://opensource.org/licenses/MIT). 
+- [GMT Example Gallery](https://docs.generic-mapping-tools.org/latest/gallery.html)
+- [PyGMT Gallery](https://www.pygmt.org/latest/gallery/)
 
-## どのようなツールか
+````{margin}
+とはいえ最新版のGMTでは，[modern mode](https://docs.generic-mapping-tools.org/latest/cookbook/one-liner.html) の導入により従来よりすっきりとした表現をすることができるようになりました．
+````
+もともと，GMTはUn*x用のコマンドラインツール群として開発されました．単独Postscriptという形式の画像データを生成する多数のコマンド群からなり，シェルスクリプト等によりそれらのコマンドを組み合わせる必要がありました．シェルスクリプトの特性上，どうしても可視化のコードが煩雑になりがちで，再利用性も低くなりがちでした．
 
-現在のPyGMTやGMTでどのような図が作成できるかは，公式のギャラリーを見てみるのが良いでしょう．
 
-- [GMT](https://docs.generic-mapping-tools.org/latest/gallery.html)
-- [PyGMT](https://www.pygmt.org/latest/gallery/)
+PyGMTは，そんなGMTのPythonインターフェースです．Python上のデータから（原則としては中間ファイルやシェルスクリプトを介することなく）直接GMTによる可視化を行うことができます．さらに[NumPy](https://numpy.org)や[pandas](https://pandas.pydata.org)といったPython上の科学技術計算でよく使われるライブラリのデータ型と互換性があるため，研究成果の可視化ツールとしてとても使いやすいと思います．
 
-もともと，GMTはUn*xのコマンドラインツール群として開発されました．単独Postscriptという形式の画像データを生成する多数のコマンド群からなり，シェルスクリプト等によりそれらのコマンドを組み合わせる必要がありました．シェルスクリプトの特性上，どうしても可視化のコードが煩雑になりがちで，再利用性も低くなりがちでした．
+Python上の可視化というと，通常のグラフでは[matplotlib](https://matplotlib.org)が，地図では[cartopy](https://scitools.org.uk/cartopy)が広く使われていると思います．PyGMTとどちらを使うかは好みの問題だと思いますが，筆者の意見ではPyGMTのほうが美麗なグラフを生成しやすいと思います．また，GMTの地図投影やグリッドデータ（2次元等間隔のメッシュに対して値が割り当てられたデータ）を扱う機能の豊富さは，大変魅力的です．一方，処理はやや遅めのようです．特に地震学分野ではこれまでGMTが広く使われていたという経緯もあるため，これまでと同じようなやり方で可視化ができるという継続性に魅力を感じる人もいるかもしれません．
 
-```{tip}
-とはいえ，最新版のGMTでは，[modern mode](https://docs.generic-mapping-tools.org/latest/cookbook/one-liner.html)の導入により
+## このページの目指すもの・目指さないもの
+
+本Webサイトでは，基本的な地図の作り方から震源分布や地震波形など，地震学における応用に目的を限定した作図を取り扱います．また，地震学解析で広く使われているライブラリである[ObsPy](https://docs.obspy.org)との連携も紹介します．可視化は[Jupyter Notebook](https://jupyter.org)上で行うことを前提としますが，紹介するスクリプトはほとんどそのままPythonスクリプトとして転用できるはずです．
+
+```{margin}
+ただし，Version 0.5.0くらいから，地震学における標準的な可視化を行うためのツールは概ね出揃ったのでは，という印象です．
 ```
+また，2022年現在PyGMTはいまだ活発な開発下にあり，GMTのあらゆる機能がPythonで使えて，かつそれがドキュメント化されているとは言い切れない状態にあります．そこで，（ごく一部ではありますが）公式にはドキュメント化されてないものの，筆者が試行錯誤的に見つけた使い方のTipsなどもこの場で共有します．
+
+逆に，本Webサイトでは，PyGMTやGMTのあらゆる機能を網羅するような解説は行いません．説明の一部で従来型のGMTのスクリプトも現れますが，それらについての詳しい説明も行いません．必要に応じて本家のマニュアルや多数ある解説サイトをご覧ください．また，特にインストール時などでは，Un*xコマンドラインの利用については既知であることを前提として説明しています．
+
+本WebサイトのコードはmacOS Monterey (Intel/M1 CPUs)とUbuntu 22.04 LTSのマシン上でMinicondaによって[構築](./install.md)したJupyter Notebookにより動作確認しています．検証にもちいたPyGMTとGMTのバージョンはそれぞれ0.6.1と6.3です．
+
+## 筆者について
+
+筆者はそのへんに転がっている地震学研究者（大学教員）です．Pythonをはじめて触ったのはAI研究による流行が始まるよりだいぶ前の2007年ごろですが，それから10年以上のブランクを経て2021年頃から再びPythonを研究および業務に使い始めました．コンピュータ上の母国語はModern Fortranであり，Python巧者とはとても言えません．本ページを見て「もっと良い書き方がある」と思われたら，ぜひ[github](https://github.com/tktmyd/pygmt-howto-jp)のIssueやPull Requestでご教示ください．本ページ上部のGitHubのアイコンからもたどれます．
+
+
+## 改版履歴
+
+| 日付 | 内容 | 
+| --- | --- |
+| 2021-12-20 | 初版公開 |
+| 2022-01-09 | 軽微な修正 |
+| 2022-06-17 | 内容を複数ページに分割．前書きとインストール解説の詳細化 |
