@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="License" href="license.html" />
-    <link rel="prev" title="PyGMT の基本" href="basic.html" />
+    <link rel="prev" title="地形段彩図の描画" href="topo_map.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -106,7 +106,7 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="intro.html">
+                <a class="reference internal" href="pygmt.html">
                     PyGMT-HOWTO
                 </a>
             </li>
@@ -118,8 +118,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="basic.html">
+  <a class="reference internal" href="basic_map.html">
    PyGMT の基本
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="topo_map.html">
+   地形段彩図の描画
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -312,61 +317,56 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   地形段彩図の描画
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#xy">
    XYグラフ
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
+    <a class="reference internal nav-link" href="#id3">
      シンボルのプロット
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
+  <a class="reference internal nav-link" href="#id4">
    地図上への情報描画
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
+    <a class="reference internal nav-link" href="#id5">
      データの準備
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
+    <a class="reference internal nav-link" href="#id6">
      固定サイズ単一色のプロット
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
+    <a class="reference internal nav-link" href="#id7">
      可変サイズ・可変色プロット
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
+    <a class="reference internal nav-link" href="#id8">
      カラーパレットの扱い
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id10">
+  <a class="reference internal nav-link" href="#id9">
    時系列の扱い
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id11">
+  <a class="reference internal nav-link" href="#id10">
    等間隔メッシュデータ
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id12">
+  <a class="reference internal nav-link" href="#id11">
    2次元データの補間と可視化
   </a>
  </li>
@@ -381,7 +381,7 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id13">
+  <a class="reference internal nav-link" href="#id12">
    メカニズム解の表現
   </a>
  </li>
@@ -410,61 +410,56 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   地形段彩図の描画
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#xy">
    XYグラフ
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
+    <a class="reference internal nav-link" href="#id3">
      シンボルのプロット
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
+  <a class="reference internal nav-link" href="#id4">
    地図上への情報描画
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
+    <a class="reference internal nav-link" href="#id5">
      データの準備
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
+    <a class="reference internal nav-link" href="#id6">
      固定サイズ単一色のプロット
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
+    <a class="reference internal nav-link" href="#id7">
      可変サイズ・可変色プロット
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
+    <a class="reference internal nav-link" href="#id8">
      カラーパレットの扱い
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id10">
+  <a class="reference internal nav-link" href="#id9">
    時系列の扱い
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id11">
+  <a class="reference internal nav-link" href="#id10">
    等間隔メッシュデータ
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id12">
+  <a class="reference internal nav-link" href="#id11">
    2次元データの補間と可視化
   </a>
  </li>
@@ -479,7 +474,7 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id13">
+  <a class="reference internal nav-link" href="#id12">
    メカニズム解の表現
   </a>
  </li>
@@ -518,91 +513,11 @@ title="Print to PDF"
 </div>
 </div>
 </section>
-<section id="id3">
-<h2>地形段彩図の描画<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
-<p>手持ちのNetCDF（<code class="docutils literal notranslate"><span class="pre">grd</span></code> or <code class="docutils literal notranslate"><span class="pre">nc</span></code>）ファイルを描画するのはもちろん，GMT6からはネットワーク越しにグローバルな地形データを取得するコマンドが提供されています．そこで，ここではその <code class="docutils literal notranslate"><span class="pre">pygmt</span></code> 版を用いて，地形図の描画を行います．</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_data</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_earth_relief</span><span class="p">(</span>
-    <span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;01m&#39;</span><span class="p">,</span>
-    <span class="n">region</span> <span class="o">=</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>上記のコマンドで，<code class="docutils literal notranslate"><span class="pre">region</span></code> で指定した地域の地形を <code class="docutils literal notranslate"><span class="pre">resolution</span></code> の解像度で読み込み，左辺の変数（<code class="docutils literal notranslate"><span class="pre">grid_data</span></code>）に格納します．この変数を用いてあとで地形図を作成します．</p>
-<p><code class="docutils literal notranslate"><span class="pre">region</span></code>の指定方法はこれまでと同じです．省略した場合にはグローバルデータが読み込まれます．</p>
-<p><code class="docutils literal notranslate"><span class="pre">resolution</span></code>は <code class="docutils literal notranslate"><span class="pre">01d</span></code>, <code class="docutils literal notranslate"><span class="pre">30m</span></code>, <code class="docutils literal notranslate"><span class="pre">20m</span></code>, <code class="docutils literal notranslate"><span class="pre">15m</span></code>, <code class="docutils literal notranslate"><span class="pre">10m</span></code>, <code class="docutils literal notranslate"><span class="pre">06m</span></code>, <code class="docutils literal notranslate"><span class="pre">05m</span></code>, <code class="docutils literal notranslate"><span class="pre">04m</span></code>, <code class="docutils literal notranslate"><span class="pre">03m</span></code>, <code class="docutils literal notranslate"><span class="pre">02m</span></code>, <code class="docutils literal notranslate"><span class="pre">01m</span></code>, <code class="docutils literal notranslate"><span class="pre">30s</span></code>, <code class="docutils literal notranslate"><span class="pre">15s</span></code>, <code class="docutils literal notranslate"><span class="pre">03s</span></code>, <code class="docutils literal notranslate"><span class="pre">01s</span></code> から，つまり1秒角から1度までのうちからどれか一つを選びます．</p>
-<p>ダウンロードされるデータはSRTM（Shuttle Rader Topography Mission）で，解像度によりデータソース（提供年）が異なるようです．また，1秒と3秒グリッドには海底地形データが存在しないため，15秒データから補間されます．ダウンロードしたデータは <code class="docutils literal notranslate"><span class="pre">~/.gmt/</span></code> 以下にキャッシュされます．あまり細かいグリッドで広域のデータを読み込むと，ダウンロードにもプロットにも時間がかかるので，注意してください．</p>
-<p>段彩図をより見栄え良くするには，<code class="docutils literal notranslate"><span class="pre">grdgradient</span></code>による傾斜データの作成と利用が有効です．</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gradient_data</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">grdgradient</span><span class="p">(</span>
-    <span class="n">grid</span>      <span class="o">=</span> <span class="n">grid_data</span><span class="p">,</span>
-    <span class="n">azimuth</span>   <span class="o">=</span> <span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="mi">135</span><span class="p">],</span> 
-    <span class="n">normalize</span> <span class="o">=</span> <span class="s1">&#39;e0.7&#39;</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>GMTの <code class="docutils literal notranslate"><span class="pre">grdgradient</span></code> と同じですが，地形の可視化に用いる場合には方角 <code class="docutils literal notranslate"><span class="pre">azimuth</span></code> を複数方向の組み合わせにし，かつ <code class="docutils literal notranslate"><span class="pre">normalize</span></code> を上記の例程度の値にしておくのが良いようです．</p>
-<div class="admonition-todo admonition">
-<p class="admonition-title">ToDo</p>
-<p><a class="reference external" href="https://www.pygmt.org/dev/gallery/images/grdgradient.html#sphx-glr-gallery-images-grdgradient-py">Demo</a>を見ると，<code class="docutils literal notranslate"><span class="pre">radiance</span></code>パラメータにより計算した<code class="docutils literal notranslate"><span class="pre">grd</span></code>データで地形可視化を行っている．要調査．</p>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
-
-<span class="c1"># カラーマップ作成．以降ではこのCPTが自動的に使われる．</span>
-<span class="n">pygmt</span><span class="o">.</span><span class="n">makecpt</span><span class="p">(</span>
-    <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;earth&#39;</span><span class="p">,</span> 
-<span class="p">)</span>
-
-<span class="c1"># 標高と斜度データを可視化</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span>
-    <span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;N138/12c&#39;</span><span class="p">,</span> 
-    <span class="n">region</span>     <span class="o">=</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">146</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">46</span><span class="p">],</span> 
-    <span class="n">grid</span>       <span class="o">=</span> <span class="n">grid_data</span><span class="p">,</span> 
-    <span class="n">shading</span>    <span class="o">=</span> <span class="n">gradient_data</span>
-<span class="p">)</span>
-
-<span class="c1"># 距離スケールの背景のための領域</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">139</span><span class="p">,</span> <span class="mi">31</span><span class="p">],</span> <span class="p">[</span><span class="mi">145</span><span class="p">,</span><span class="mi">31</span><span class="p">],</span> <span class="p">[</span><span class="mi">145</span><span class="p">,</span><span class="mf">32.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">139</span><span class="p">,</span><span class="mf">32.5</span><span class="p">]],</span> 
-    <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span>
-    <span class="n">transparency</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
-    <span class="n">straight_line</span> <span class="o">=</span> <span class="kc">True</span>    
-<span class="p">)</span>
-
-<span class="c1"># 海岸線描画と海域を半透明シェーディング</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">coast</span><span class="p">(</span>
-    <span class="n">area_thresh</span> <span class="o">=</span> <span class="s1">&#39;100&#39;</span><span class="p">,</span> 
-    <span class="n">map_scale</span>   <span class="o">=</span> <span class="s1">&#39;142/32/32/500&#39;</span><span class="p">,</span>
-    <span class="n">shorelines</span>  <span class="o">=</span> <span class="s1">&#39;faint,black&#39;</span><span class="p">,</span>
-    <span class="n">water</span>       <span class="o">=</span> <span class="s1">&#39;black@80&#39;</span><span class="p">,</span>
-    <span class="n">frame</span>       <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen&#39;</span><span class="p">,</span> <span class="s1">&#39;xaf&#39;</span><span class="p">,</span> <span class="s1">&#39;yaf&#39;</span><span class="p">]</span>
-<span class="p">)</span>
-
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/advanced_12_0.png" src="_images/advanced_12_0.png" />
-</div>
-</div>
-<p>ここでは，見た目を向上させるテクニックを2つほど使っています．どちらもPyGMT以外の話題も含みますが，すこし詳しく解説しておきましょう．</p>
-<p>まず，単に <code class="docutils literal notranslate"><span class="pre">fig.grdimage</span></code> で色を塗るだけでなく，その上に海岸線を描画しています．さらに，この例で用いた <code class="docutils literal notranslate"><span class="pre">earth</span></code> カラーパレットは陸域と海域の差が目立たなかったため，<code class="docutils literal notranslate"><span class="pre">fig.coast</span></code> の <code class="docutils literal notranslate"><span class="pre">water</span></code> で透明度80%の黒色（<code class="docutils literal notranslate"><span class="pre">black&#64;80</span></code>）で海域を塗りつぶすことで，相対的に陸域が浮かび上がって見えるように工夫しています．色名のあとの<code class="docutils literal notranslate"><span class="pre">&#64;</span></code>は透明度指定で，100に近いほど透明度が高くなります．<code class="docutils literal notranslate"><span class="pre">water</span> <span class="pre">=</span> <span class="pre">'black&#64;80</span></code> の行をコメントアウトして実行してみると，その差が実感できるでしょう．ただし，このテクニックを使うともとの色を改変することになりますので，カラースケールを表示してもその色が正確ではなくなりますので，注意が必要です．</p>
-<p>一方，地図の距離スケール（<code class="docutils literal notranslate"><span class="pre">fig.pscoast</span></code>の<code class="docutils literal notranslate"><span class="pre">map-scale</span></code>オプション）をカラフルなカラーマップ上に描画すると，視認性がとても低くなってしまいます．そこで，<code class="docutils literal notranslate"><span class="pre">fig.plot()</span></code> で四角形の頂点を与え，半透明の白い「箱」を先に描画しています．これは順番が大事で，<code class="docutils literal notranslate"><span class="pre">fig.coast()</span></code>の<strong>前</strong>に予め箱を描画しておかないと，せっかくの地図スケールを塗りつぶしてしまうことになりかねません．<code class="docutils literal notranslate"><span class="pre">fig.plot()</span></code> には四隅の頂点を2次元配列として <code class="docutils literal notranslate"><span class="pre">data=</span></code> オプションに与えていますが，x軸とy軸の1次元配列を個別に <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> </code>, <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> </code> として与えることもできます．なお，地図上に頂点を指定してポリゴンを描画すると，デフォルトではその辺が地図上の大円経路に沿った線として描画されます．結果として，地図投影上は曲がった線に見えてしまいます．これを避けているのが<code class="docutils literal notranslate"> <span class="pre">straight_line</span> <span class="pre">=</span> <span class="pre">True</span></code> オプションです．</p>
-</section>
 <section id="xy">
 <h2>XYグラフ<a class="headerlink" href="#xy" title="Permalink to this headline">#</a></h2>
 <p>本家GMTと同じく，投影法（<code class="docutils literal notranslate"><span class="pre">projection</span></code>）に <code class="docutils literal notranslate"><span class="pre">X</span></code> を選ぶことで，直交座標系のXYグラフを作成することができます．</p>
-<section id="id4">
-<h3>シンボルのプロット<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<section id="id3">
+<h3>シンボルのプロット<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">50</span>
@@ -636,7 +551,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/advanced_15_0.png" src="_images/advanced_15_0.png" />
+<img alt="_images/advanced_6_0.png" src="_images/advanced_6_0.png" />
 </div>
 </div>
 <p>新しいコマンド <code class="docutils literal notranslate"><span class="pre">fig.plot()</span></code> では <code class="docutils literal notranslate"><span class="pre">style</span></code> でシンボルや（固定サイズの場合は）サイズの指定を行います．</p>
@@ -645,10 +560,10 @@ title="Print to PDF"
 <p>上記の例は，変数 <code class="docutils literal notranslate"><span class="pre">symb</span></code> にシンボル種類を格納し，ループ内で <code class="docutils literal notranslate"><span class="pre">x</span></code> <code class="docutils literal notranslate"><span class="pre">y</span></code> 座標を乱数（<code class="docutils literal notranslate"><span class="pre">np.random.rand</span></code>）によって生成してプロットを行っています．</p>
 </section>
 </section>
+<section id="id4">
+<h2>地図上への情報描画<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
 <section id="id5">
-<h2>地図上への情報描画<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
-<section id="id6">
-<h3>データの準備<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<h3>データの準備<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
 <p>pygmtが用意しているexampleデータに日本列島周辺の地震情報がありますので，それを題材にしてプロットしてみましょう．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -690,10 +605,25 @@ title="Print to PDF"
 </div>
 <p>のように <code class="docutils literal notranslate"><span class="pre">変数名.列名</span></code> とします．</p>
 </section>
-<section id="id7">
-<h3>固定サイズ単一色のプロット<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<section id="id6">
+<h3>固定サイズ単一色のプロット<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
 <p>まずは単純シンボルプロットから行いましょう．
 <code class="docutils literal notranslate"><span class="pre">fig.plot</span></code> で x軸（経度方向）とy軸（緯度方向）のデータ配列を個別に指定します．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_data</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_earth_relief</span><span class="p">(</span>
+    <span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;01m&#39;</span><span class="p">,</span>
+    <span class="n">region</span> <span class="o">=</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">gradient_data</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">grdgradient</span><span class="p">(</span>
+    <span class="n">grid</span>      <span class="o">=</span> <span class="n">grid_data</span><span class="p">,</span>
+    <span class="n">azimuth</span>   <span class="o">=</span> <span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="mi">135</span><span class="p">],</span> 
+    <span class="n">normalize</span> <span class="o">=</span> <span class="s1">&#39;e0.7&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
@@ -733,7 +663,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/advanced_23_0.png" src="_images/advanced_23_0.png" />
+<img alt="_images/advanced_15_0.png" src="_images/advanced_15_0.png" />
 </div>
 </div>
 <p>この図では，<code class="docutils literal notranslate"><span class="pre">tranparency</span></code> オプションでプロットするデータの透明度を指定しています．数値が100に近いほど透明に近くなっていきます．<code class="docutils literal notranslate"><span class="pre">tranparency</span></code>オプションの代わりに，色名やRGB値に</p>
@@ -746,8 +676,8 @@ title="Print to PDF"
 <p><code class="docutils literal notranslate"><span class="pre">transparency</span></code> オプションを <code class="docutils literal notranslate"><span class="pre">frame</span></code> を指定しているコマンドに付与すると，図の枠やラベルが半透明になってしまいます．半透明オプションの使い所には注意が必要です．</p>
 </div>
 </section>
-<section id="id8">
-<h3>可変サイズ・可変色プロット<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<section id="id7">
+<h3>可変サイズ・可変色プロット<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
 <p>次に，マグニチュードと深さを用いてシンボルの色と大きさを変化させてみましょう．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -802,12 +732,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/advanced_27_0.png" src="_images/advanced_27_0.png" />
+<img alt="_images/advanced_19_0.png" src="_images/advanced_19_0.png" />
 </div>
 </div>
 </section>
-<section id="id9">
-<h3>カラーパレットの扱い<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<section id="id8">
+<h3>カラーパレットの扱い<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">pygmt.makecpt</span></code> でカラーパレットファイルを作成できます．
 デフォルトでは，作成したカラーパレットがそのセッションの標準として登録され，それ以降のコマンドでのカラーパレットとして自動的に利用されます．</p>
 <p>複数のカラーパレットを同時に使い分けたいなど，明示的にカラーパレットを指示したいときには，<code class="docutils literal notranslate"><span class="pre">pygmt.makecpt</span></code>  の <code class="docutils literal notranslate"><span class="pre">output</span></code> オプションでファイル名を指定して <code class="docutils literal notranslate"><span class="pre">.cpt</span></code> ファイルを作成することもできます．その場合には，<code class="docutils literal notranslate"><span class="pre">plot</span></code> コマンドの <code class="docutils literal notranslate"><span class="pre">cmap</span></code> オプションにはその <code class="docutils literal notranslate"><span class="pre">.cpt</span></code> ファイル名を指定します．</p>
@@ -821,8 +751,8 @@ title="Print to PDF"
 </div>
 </section>
 </section>
-<section id="id10">
-<h2>時系列の扱い<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h2>
+<section id="id9">
+<h2>時系列の扱い<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h2>
 <p>震源分布に用いたデータから，地震発生日とマグにチュードからなる M-T 図を作成してみましょう．まずは<code class="docutils literal notranslate"><span class="pre">datetime</span></code>モジュールを用いて，震源カタログの年・月・日のデータをまとめて日付オブジェクトのリストにします．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -872,11 +802,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/advanced_33_0.png" src="_images/advanced_33_0.png" />
+<img alt="_images/advanced_25_0.png" src="_images/advanced_25_0.png" />
 </div>
 </div>
-<p>まず <code class="docutils literal notranslate"><span class="pre">fig.basemap</span></code> で枠を描画している．領域の横軸は <code class="docutils literal notranslate"><span class="pre">YYYY-MM-DD</span></code> の日付ISOフォーマットで指定している．<code class="docutils literal notranslate"><span class="pre">frame</span></code> については，横軸は軸のすぐそば（primary）に月名（<code class="docutils literal notranslate"><span class="pre">o</span></code>）を，少し離れて（secondary）年（<code class="docutils literal notranslate"><span class="pre">Y</span></code>）を描画している．このように二種類の軸情報を描画するには，<code class="docutils literal notranslate"><span class="pre">px</span></code> (primary) と <code class="docutils literal notranslate"><span class="pre">sx</span></code> (secondary) をそれぞれ指定する．</p>
-<p>次のforループでは，準備してあった <code class="docutils literal notranslate"><span class="pre">datetime</span></code> 型の日付とマグニチュードから<code class="docutils literal notranslate"><span class="pre">zip</span></code>関数を用いてそれぞれ一つづつ抜き出し，縦棒を描画している．シェルスクリプトの場合は，区切り行（デフォルトは <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> が1文字目にある行）を用いて</p>
+<p>まず <code class="docutils literal notranslate"><span class="pre">fig.basemap</span></code> で枠を描画しています．領域の横軸は <code class="docutils literal notranslate"><span class="pre">YYYY-MM-DD</span></code> の日付ISOフォーマットで指定しています．<code class="docutils literal notranslate"><span class="pre">frame</span></code> については，横軸は軸のすぐそば（primary）に月名（<code class="docutils literal notranslate"><span class="pre">o</span></code>）を，少し離れて（secondary）年（<code class="docutils literal notranslate"><span class="pre">Y</span></code>）を描画しています．このように二種類の軸情報を描画するには，<code class="docutils literal notranslate"><span class="pre">px</span></code> (primary) と <code class="docutils literal notranslate"><span class="pre">sx</span></code> (secondary) をそれぞれ指定すればよいです．</p>
+<p>次のforループでは，準備してあった <code class="docutils literal notranslate"><span class="pre">datetime</span></code> 型の日付とマグニチュードから<code class="docutils literal notranslate"><span class="pre">zip</span></code>関数を用いてそれぞれ一つづつ抜き出し，縦棒を描画しています．シェルスクリプトの場合は，区切り行（デフォルトは <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> が1文字目にある行）を用いて</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&gt; 
 1987-01-01 0
 1987-01-01 5
@@ -887,10 +817,12 @@ title="Print to PDF"
 ...
 </pre></div>
 </div>
-<p>のようなマルチセグメントデータを作って一斉にプロットできる．しかし，PyGMTにおいて変数受け渡しでマルチセグメントデータを<code class="docutils literal notranslate"><span class="pre">fig.plot</span></code>に渡す方法が今のところ不明なため，<code class="docutils literal notranslate"><span class="pre">for</span></code> 分で地震の個数回 <code class="docutils literal notranslate"><span class="pre">plot</span></code> 命令を発行するという力技で解決している．</p>
+<p>のようなマルチセグメントデータを作って一斉にプロットできます．
+しかし，PyGMTにおいて変数受け渡しでマルチセグメントデータを<code class="docutils literal notranslate"><span class="pre">fig.plot</span></code>に渡す方法が今のところ不明です．
+そこで，<code class="docutils literal notranslate"><span class="pre">for</span></code> 分で地震の個数回 <code class="docutils literal notranslate"><span class="pre">plot</span></code> 命令を発行するという力技で解決している．一旦ファイルに落としてから読み込むほうが素直かもしれません．</p>
 </section>
-<section id="id11">
-<h2>等間隔メッシュデータ<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h2>
+<section id="id10">
+<h2>等間隔メッシュデータ<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h2>
 <p>次に，<span class="math notranslate nohighlight">\(z(x,y)\)</span> のような形式で，<span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>が等間隔のメッシュで与えられているデータを可視化してみましょう．</p>
 <p>まず，サンプルとして NumPy で適当な等間隔データを作成してみます．</p>
 <div class="admonition attention">
@@ -931,7 +863,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/advanced_40_0.png" src="_images/advanced_40_0.png" />
+<img alt="_images/advanced_32_0.png" src="_images/advanced_32_0.png" />
 </div>
 </div>
 <p>このデータを pygmt の <code class="docutils literal notranslate"><span class="pre">xyz2grd</span></code> を用いて grdデータにしてプロットしてみます．</p>
@@ -988,12 +920,13 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/advanced_43_0.png" src="_images/advanced_43_0.png" />
+<img alt="_images/advanced_35_0.png" src="_images/advanced_35_0.png" />
 </div>
 </div>
+<p>ここでは，<code class="docutils literal notranslate"><span class="pre">grdimage</span></code>のほかに<code class="docutils literal notranslate"><span class="pre">grdcontour</span></code>も用いて等値線も描画してみました．使い方は上記の例を見ればほとんど明らかだと思います．m</p>
 </section>
-<section id="id12">
-<h2>2次元データの補間と可視化<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h2>
+<section id="id11">
+<h2>2次元データの補間と可視化<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h2>
 <p>続いて，粗いデータを補間しつつプロットしてみましょう．</p>
 <p>サンプルデータとして，Wikipediaの<a class="reference external" href="https://en.wikipedia.org/wiki/Bicubic_interpolation">双3次補間</a>の解説にある例を採用します．<a class="reference external" href="https://commons.wikimedia.org/wiki/File:Interpolation-bicubic.svg">ここ</a>からコードをお借りして（Creditはリンク先参照；CC-BY），以下のようなデータを使います．まずはデータ生成とmatplolibでの標準的可視化の例を示します．</p>
 <div class="cell docutils container">
@@ -1028,8 +961,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/advanced_46_0.png" src="_images/advanced_46_0.png" />
-<img alt="_images/advanced_46_1.png" src="_images/advanced_46_1.png" />
+<img alt="_images/advanced_38_0.png" src="_images/advanced_38_0.png" />
+<img alt="_images/advanced_38_1.png" src="_images/advanced_38_1.png" />
 </div>
 </div>
 <p>ここで作られたデータを <code class="docutils literal notranslate"><span class="pre">ravel()</span></code>メソッド1次元化し，<code class="docutils literal notranslate"><span class="pre">pygmt.surface</span></code>で補間をしてみます．比較のため <code class="docutils literal notranslate"><span class="pre">pygmt.xyz2grd</span></code> で粗い間隔のままのプロットも作成します．</p>
@@ -1106,7 +1039,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/advanced_48_0.png" src="_images/advanced_48_0.png" />
+<img alt="_images/advanced_40_0.png" src="_images/advanced_40_0.png" />
 </div>
 </div>
 <div class="admonition note">
@@ -1171,7 +1104,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/advanced_51_0.png" src="_images/advanced_51_0.png" />
+<img alt="_images/advanced_43_0.png" src="_images/advanced_43_0.png" />
 </div>
 </div>
 <p>まったく同じ領域の地図を（タイトル以外）全く同じオプションでプロットしていますが，緯度経度の書式（時分秒か度か），それに伴い自動で設定されるラベルの間隔，フレームの種類，ラベルやタイトルのフォントやフォントサイズなどが異なっていることがわかるでしょう．</p>
@@ -1210,6 +1143,9 @@ SAC&gt; quit
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/advanced_50_0.png" src="_images/advanced_50_0.png" />
+</div>
 </div>
 <p>ObsPyで読み込んだ波形には，</p>
 <ul class="simple">
@@ -1246,6 +1182,9 @@ SAC&gt; quit
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/advanced_52_0.png" src="_images/advanced_52_0.png" />
+</div>
 </div>
 <p>基本的にこれまでに出てきたコマンドの組み合わせで実現できます．</p>
 <p>特記すべきは<code class="docutils literal notranslate"><span class="pre">region</span></code> の横軸で，ObsPyのヘッダ（<code class="docutils literal notranslate"><span class="pre">stats</span></code>）に含まれる開始時間 <code class="docutils literal notranslate"><span class="pre">starttime</span></code> と 終了時間 <code class="docutils literal notranslate"><span class="pre">endtime</span></code> がそのまま <code class="docutils literal notranslate"><span class="pre">pygmt</span></code> の範囲指定に使えるのです．また，<code class="docutils literal notranslate"><span class="pre">fig.plot</span></code> に与える x軸データも，ObsPyの波形の時間情報 <code class="docutils literal notranslate"><span class="pre">trace0.times()</span></code> をそのまま与えることができます．</p>
@@ -1276,10 +1215,13 @@ SAC&gt; quit
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/advanced_54_0.png" src="_images/advanced_54_0.png" />
+</div>
 </div>
 </section>
-<section id="id13">
-<h2>メカニズム解の表現<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h2>
+<section id="id12">
+<h2>メカニズム解の表現<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h2>
 <p>メカニズムは辞書形式でデータを渡すのがわかりやすそうです．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1367,6 +1309,9 @@ SAC&gt; quit
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/advanced_60_0.png" src="_images/advanced_60_0.png" />
+</div>
 </div>
 </section>
 </section>
@@ -1398,11 +1343,11 @@ SAC&gt; quit
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="basic.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="topo_map.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">PyGMT の基本</p>
+            <p class="prev-next-title">地形段彩図の描画</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="license.html" title="next page">

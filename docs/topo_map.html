@@ -1,0 +1,548 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>地形段彩図の描画 &#8212; pygmt-howto</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://tktmyd.github.io/pygmt-howto-jp/topo_map.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="応用編" href="advanced.html" />
+    <link rel="prev" title="PyGMT の基本" href="basic_map.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">pygmt-howto</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="pygmt.html">
+                    PyGMT-HOWTO
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="install.html">
+   環境構築
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="basic_map.html">
+   PyGMT の基本
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   地形段彩図の描画
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="advanced.html">
+   応用編
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="license.html">
+   License
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/tktmyd/pygmt-howto-jp/master?urlpath=tree/docs/topo_map.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/tktmyd/pygmt-howto-jp"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/topo_map.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   より凝った段彩図の描画
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>地形段彩図の描画</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   より凝った段彩図の描画
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>地形段彩図の描画<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<p>GMTは<code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y,</span> <span class="pre">z)</span></code> あるいは <code class="docutils literal notranslate"><span class="pre">(lon,</span> <span class="pre">lat,</span> <span class="pre">z)</span></code> のような3次元データとしてNetCDF形式のデータ（通称グリッドデータ）を読むことができ，<code class="docutils literal notranslate"><span class="pre">z</span></code>軸の値に応じて色を割り当てることができます．ここでは特に地図としてよく用いられる地形段彩図の描画とその応用を扱います．</p>
+<p>まずは<code class="docutils literal notranslate"><span class="pre">pygmt</span></code>モジュールを読み込んでおきましょう．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>GMTでは手持ちのNetCDF（<code class="docutils literal notranslate"><span class="pre">grd</span></code> or <code class="docutils literal notranslate"><span class="pre">nc</span></code>）ファイルを描画するのはもちろん，GMT6以降ではネットワーク越しにグローバルな地形データを取得するコマンドが提供されています．そこで，ここではその <code class="docutils literal notranslate"><span class="pre">pygmt</span></code> 版を用いて，地形図の描画を行ってましょう．</p>
+<p>地形データを読み込むには以下のようにします．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_data</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_earth_relief</span><span class="p">(</span>
+    <span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;01m&#39;</span><span class="p">,</span>
+    <span class="n">region</span> <span class="o">=</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>上記のコマンドで，<code class="docutils literal notranslate"><span class="pre">region</span></code> で指定した地域の地形を <code class="docutils literal notranslate"><span class="pre">resolution</span></code> の解像度で読み込み，左辺の変数（<code class="docutils literal notranslate"><span class="pre">grid_data</span></code>）に格納します．この変数を用いてあとで地形図を作成します．</p>
+<p><code class="docutils literal notranslate"><span class="pre">region</span></code>の指定方法は地図と同じです．省略した場合には全世界のグローバルデータが読み込まれます．</p>
+<p><code class="docutils literal notranslate"><span class="pre">resolution</span></code>は <code class="docutils literal notranslate"><span class="pre">01d</span></code>, <code class="docutils literal notranslate"><span class="pre">30m</span></code>, <code class="docutils literal notranslate"><span class="pre">20m</span></code>, <code class="docutils literal notranslate"><span class="pre">15m</span></code>, <code class="docutils literal notranslate"><span class="pre">10m</span></code>, <code class="docutils literal notranslate"><span class="pre">06m</span></code>, <code class="docutils literal notranslate"><span class="pre">05m</span></code>, <code class="docutils literal notranslate"><span class="pre">04m</span></code>, <code class="docutils literal notranslate"><span class="pre">03m</span></code>, <code class="docutils literal notranslate"><span class="pre">02m</span></code>, <code class="docutils literal notranslate"><span class="pre">01m</span></code>, <code class="docutils literal notranslate"><span class="pre">30s</span></code>, <code class="docutils literal notranslate"><span class="pre">15s</span></code>, <code class="docutils literal notranslate"><span class="pre">03s</span></code>, <code class="docutils literal notranslate"><span class="pre">01s</span></code> から，つまり1秒角から1度までのうちからどれか一つを選びます．</p>
+<p>ダウンロードされるデータはSRTM（Shuttle Rader Topography Mission）で，解像度によりデータソース（提供年）が異なるようです．また，1秒と3秒グリッドには海底地形データが存在しないため，15秒データから補間されます．ダウンロードしたデータは <code class="docutils literal notranslate"><span class="pre">~/.gmt/</span></code> 以下にキャッシュされます．あまり細かいグリッドで広域のデータを読み込むと，ダウンロードにもプロットにも時間がかかりますし，ディスクスペースも消費しますので，注意してください．</p>
+<p>まずはこの地形図をほとんどそのまま可視化してみましょう．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="c1"># カラーマップ作成．以降ではこのCPTが自動的に使われる．</span>
+<span class="n">pygmt</span><span class="o">.</span><span class="n">makecpt</span><span class="p">(</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;geo&#39;</span><span class="p">,</span> 
+<span class="p">)</span>
+
+<span class="c1"># 標高と斜度データを可視化</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span>
+    <span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;N138/12c&#39;</span><span class="p">,</span> 
+    <span class="n">region</span>     <span class="o">=</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">146</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">46</span><span class="p">],</span> 
+    <span class="n">grid</span>       <span class="o">=</span> <span class="n">grid_data</span><span class="p">,</span>             <span class="c1"># さきほど作成したデータを変数として渡す</span>
+    <span class="n">frame</span>      <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen&#39;</span><span class="p">,</span> <span class="s1">&#39;xaf&#39;</span><span class="p">,</span> <span class="s1">&#39;yaf&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/topo_map_7_0.png" src="_images/topo_map_7_0.png" />
+</div>
+</div>
+<p>これで色が付きました．海岸線を描画した代わりに <code class="docutils literal notranslate"><span class="pre">fig.grdimage</span></code> でさきほど作成した <code class="docutils literal notranslate"><span class="pre">grid_data</span></code> の値に応じて色を割り当てています．その値と色の対応テーブルを作成するのが <code class="docutils literal notranslate"><span class="pre">pygmt.makecpt</span></code> コマンドです．このコマンドではカラーマップのほか，値の範囲なども指定できます．ここでは，<code class="docutils literal notranslate"><span class="pre">geo</span></code>というカラーマップだけを指定し，値の範囲は省略してデフォルトの状態に任せています．</p>
+<p>カラーマップの種類は<a class="reference external" href="https://docs.generic-mapping-tools.org/latest/cookbook/cpts.html#built-in-color-palette-tables-cpt">GMTのcookbook</a>に記載されています．とても種類が多いですが，地形の描画に向いているのは<code class="docutils literal notranslate"><span class="pre">earth</span></code>, <code class="docutils literal notranslate"><span class="pre">geo</span></code>, <code class="docutils literal notranslate"><span class="pre">etopo1</span></code>, <code class="docutils literal notranslate"><span class="pre">globe</span></code>, <code class="docutils literal notranslate"><span class="pre">relief</span></code>, <code class="docutils literal notranslate"><span class="pre">terra</span></code>, <code class="docutils literal notranslate"><span class="pre">world</span></code>あたりです．ただし，このうち<code class="docutils literal notranslate"><span class="pre">terra</span></code>と<code class="docutils literal notranslate"><span class="pre">world</span></code>はデフォルトのカラーパレットの範囲が日本海溝の最も深い部分をうまく表現できないようで，範囲の調整が必要になりそうです．</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>GMTでは，cptファイルや地形のグリッドデータは，一旦ファイルに保存し，そのファイル名を <code class="docutils literal notranslate"><span class="pre">gmt</span> <span class="pre">grdimage</span></code> のオプションとして指定していました．それがPyGMTではグリッドデータについては変数で，cptファイルについては直前に生成したものが自動で，それぞれ読み込まれます．</p>
+<p>これは単純な作図では記述量が減って便利ですが，特に複数のcptファイルを使う複雑な絵ではかえってやっかいかもしれません．ですが，引数<code class="docutils literal notranslate"><span class="pre">cmap</span></code>にはあらかじめ作成しておいたcptファイルの名前を指定することでも実行可能です．<code class="docutils literal notranslate"><span class="pre">grid</span></code>についても同様で，Python以外の環境で作成した既存のNetCDFファイル名を指定してそれを直接読み込み，可視化することができます．</p>
+</div>
+<section id="id2">
+<h2>より凝った段彩図の描画<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p>段彩図をより見栄え良くするには，<code class="docutils literal notranslate"><span class="pre">grdgradient</span></code>による傾斜データの作成と利用が有効です．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gradient_data</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">grdgradient</span><span class="p">(</span>
+    <span class="n">grid</span>      <span class="o">=</span> <span class="n">grid_data</span><span class="p">,</span>
+    <span class="n">azimuth</span>   <span class="o">=</span> <span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="mi">135</span><span class="p">],</span> 
+    <span class="n">normalize</span> <span class="o">=</span> <span class="s1">&#39;e0.7&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>GMTの <code class="docutils literal notranslate"><span class="pre">grdgradient</span></code> と同じですが，地形の可視化に用いる場合には方角 <code class="docutils literal notranslate"><span class="pre">azimuth</span></code> を複数方向の組み合わせにし，かつ <code class="docutils literal notranslate"><span class="pre">normalize</span></code> を上記の例程度の値にしておくのが良いようです．</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">ToDo</p>
+<p><a class="reference external" href="https://www.pygmt.org/dev/gallery/images/grdgradient.html#sphx-glr-gallery-images-grdgradient-py">Demo</a>を見ると，<code class="docutils literal notranslate"><span class="pre">radiance</span></code>パラメータにより計算した<code class="docutils literal notranslate"><span class="pre">grd</span></code>データで地形可視化を行っている．要調査．</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="c1"># カラーマップ作成．以降ではこのCPTが自動的に使われる．</span>
+<span class="n">pygmt</span><span class="o">.</span><span class="n">makecpt</span><span class="p">(</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;geo&#39;</span><span class="p">,</span> 
+<span class="p">)</span>
+
+<span class="c1"># 標高と斜度データを可視化</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span>
+    <span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;N138/12c&#39;</span><span class="p">,</span> 
+    <span class="n">region</span>     <span class="o">=</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">146</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">46</span><span class="p">],</span> 
+    <span class="n">grid</span>       <span class="o">=</span> <span class="n">grid_data</span><span class="p">,</span> 
+    <span class="n">shading</span>    <span class="o">=</span> <span class="n">gradient_data</span>
+<span class="p">)</span>
+
+<span class="c1"># 海岸線描画と海域を半透明シェーディング</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">coast</span><span class="p">(</span>
+    <span class="n">area_thresh</span> <span class="o">=</span> <span class="s1">&#39;100&#39;</span><span class="p">,</span> 
+    <span class="n">water</span>       <span class="o">=</span> <span class="s1">&#39;black@80&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># 距離スケールの背景のための領域</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">139</span><span class="p">,</span> <span class="mi">31</span><span class="p">],</span> <span class="p">[</span><span class="mi">145</span><span class="p">,</span><span class="mi">31</span><span class="p">],</span> <span class="p">[</span><span class="mi">145</span><span class="p">,</span><span class="mf">32.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">139</span><span class="p">,</span><span class="mf">32.5</span><span class="p">]],</span> 
+    <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span>
+    <span class="n">transparency</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="n">straight_line</span> <span class="o">=</span> <span class="kc">True</span>    
+<span class="p">)</span>
+
+<span class="c1"># もう一度海岸線</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">coast</span><span class="p">(</span>
+    <span class="n">area_thresh</span> <span class="o">=</span> <span class="s1">&#39;100&#39;</span><span class="p">,</span> 
+    <span class="n">map_scale</span>   <span class="o">=</span> <span class="s1">&#39;142/32/32/500&#39;</span><span class="p">,</span>
+    <span class="n">shorelines</span>  <span class="o">=</span> <span class="s1">&#39;faint,black&#39;</span><span class="p">,</span>
+    <span class="n">frame</span>       <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen&#39;</span><span class="p">,</span> <span class="s1">&#39;xaf&#39;</span><span class="p">,</span> <span class="s1">&#39;yaf&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/topo_map_14_0.png" src="_images/topo_map_14_0.png" />
+</div>
+</div>
+<p>ここでは，見た目を向上させるテクニックを2つほど使っています．どちらもPyGMT以外の話題も含みますが，すこし詳しく解説しておきましょう．</p>
+<p>まず，単に <code class="docutils literal notranslate"><span class="pre">fig.grdimage</span></code> で色を塗るだけでなく，その上に海岸線を描画しています．さらに，この例で用いた <code class="docutils literal notranslate"><span class="pre">earth</span></code> カラーパレットは陸域と海域の差が目立たなかったため，<code class="docutils literal notranslate"><span class="pre">fig.coast</span></code> の <code class="docutils literal notranslate"><span class="pre">water</span></code> で透明度80%の黒色（<code class="docutils literal notranslate"><span class="pre">black&#64;80</span></code>）で海域を塗りつぶすことで，相対的に陸域が浮かび上がって見えるように工夫しています．色名のあとの<code class="docutils literal notranslate"><span class="pre">&#64;</span></code>は透明度指定で，100に近いほど透明度が高くなります．<code class="docutils literal notranslate"><span class="pre">water</span> <span class="pre">=</span> <span class="pre">'black&#64;80</span></code> の行をコメントアウトして実行してみると，その差が実感できるでしょう．ただし，このテクニックを使うともとの色を改変することになりますので，カラースケールを表示してもその色が正確ではなくなりますので，注意が必要です．</p>
+<p>一方，地図の距離スケール（<code class="docutils literal notranslate"><span class="pre">fig.pscoast</span></code>の<code class="docutils literal notranslate"><span class="pre">map-scale</span></code>オプション）をカラフルなカラーマップ上に描画すると，視認性がとても低くなってしまいます．そこで，<code class="docutils literal notranslate"><span class="pre">fig.plot()</span></code> で四角形の頂点を与え，半透明の白い「箱」を先に描画しています．これは順番が大事で，<code class="docutils literal notranslate"><span class="pre">fig.coast()</span></code>の<strong>前</strong>に予め箱を描画しておかないと，せっかくの地図スケールを塗りつぶしてしまうことになりかねません．<code class="docutils literal notranslate"><span class="pre">fig.plot()</span></code> には四隅の頂点を2次元配列として <code class="docutils literal notranslate"><span class="pre">data=</span></code> オプションに与えていますが，x軸とy軸の1次元配列を個別に <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> </code>, <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> </code> として与えることもできます．なお，地図上に頂点を指定してポリゴンを描画すると，デフォルトではその辺が地図上の大円経路に沿った線として描画されます．結果として，地図投影上は曲がった線に見えてしまいます．これを避けているのが<code class="docutils literal notranslate"> <span class="pre">straight_line</span> <span class="pre">=</span> <span class="pre">True</span></code> オプションです．</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="basic_map.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">PyGMT の基本</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="advanced.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">応用編</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By <a href="https://tktmyd.github.io">Takuto Maeda</a><br/>
+  
+      &copy; Copyright 2021-2022. All Rights Reserved.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
