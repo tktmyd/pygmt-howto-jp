@@ -148,8 +148,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="advanced.html">
-   応用編
+  <a class="reference internal" href="timeseries.html">
+   時系列の扱い
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="obspy.html">
+   Obspyとの連携
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mech.html">
+   メカニズム解の表現
   </a>
  </li>
  <li class="toctree-l1">
@@ -386,6 +396,7 @@ title="Print to PDF"
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -492,7 +503,7 @@ title="Print to PDF"
 <img alt="_images/mesh_10_0.png" src="_images/mesh_10_0.png" />
 </div>
 </div>
-<p>ここでは，<code class="docutils literal notranslate"><span class="pre">grdimage</span></code>のほかに<code class="docutils literal notranslate"><span class="pre">grdcontour</span></code>も用いて等値線も描画してみました．使い方は上記の例を見ればほとんど明らかだと思います．m</p>
+<p>ここでは，<code class="docutils literal notranslate"><span class="pre">grdimage</span></code>のほかに<code class="docutils literal notranslate"><span class="pre">grdcontour</span></code>も用いて等値線も描画してみました．使い方は上記の例を見ればほとんど明らかだと思います．</p>
 </section>
 <section id="id3">
 <h2>2次元データの補間と可視化<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
