@@ -125,8 +125,38 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="advanced.html">
-   応用編
+  <a class="reference internal" href="xy.html">
+   xyグラフの描画
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inf_on_map.html">
+   地図上への情報描画
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mesh.html">
+   メッシュデータの扱い
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="config.html">
+   GMTの微調整
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="timeseries.html">
+   時系列の扱い
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="obspy.html">
+   Obspyとの連携
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mech.html">
+   メカニズム解の表現
   </a>
  </li>
  <li class="toctree-l1">
@@ -386,13 +416,13 @@ title="Print to PDF"
 <p class="sidebar-title"></p>
 <p>ただし，Version 0.5.0くらいから，地震学における標準的な可視化を行うためのツールは概ね出揃ったのでは，という印象です．</p>
 </aside>
-<p>また，2022年現在PyGMTはいまだ活発な開発下にあり，GMTのあらゆる機能がPythonで使えて，かつそれがドキュメント化されているとは言い切れない状態にあります．そこで，（ごく一部ではありますが）公式にはドキュメント化されてないものの，筆者が試行錯誤的に見つけた使い方のTipsなどもこの場で共有します．</p>
+<p>また，2022年現在PyGMTはいまだ活発な開発下にあり，GMTのあらゆる機能がPythonで使えて，かつそれがドキュメント化されているとは言い切れない状態にあります．そこで，（ごく一部ではありますが）公式にはドキュメント化されてないものの，筆者が試行錯誤的に見つけた使い方のTipsなどもこの場で紹介します．</p>
 <p>逆に，本Webサイトでは，PyGMTやGMTのあらゆる機能を網羅するような解説は行いません．説明の一部で従来型のGMTのスクリプトも現れますが，それらについての詳しい説明も行いません．必要に応じて本家のマニュアルや多数ある解説サイトをご覧ください．また，特にインストール時などでは，Un*xコマンドラインの利用については既知であることを前提として説明しています．</p>
 <p>本WebサイトのコードはmacOS Monterey (Intel/M1 CPUs)とUbuntu 22.04 LTSのマシン上でMinicondaによって<a class="reference internal" href="install.html"><span class="doc std std-doc">構築</span></a>したJupyter Notebookにより動作確認しています．検証にもちいたPyGMTとGMTのバージョンはそれぞれ0.6.1と6.3です．</p>
 </section>
 <section id="id2">
 <h2>筆者について<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
-<p>筆者はそのへんに転がっている地震学研究者（大学教員）です．Pythonをはじめて触ったのはAI研究による流行が始まるよりだいぶ前の2007年ごろですが，それから10年以上のブランクを経て2021年頃から再びPythonを研究および業務に使い始めました．コンピュータ上の母国語はModern Fortranであり，Python巧者とはとても言えません．本ページを見て「もっと良い書き方がある」と思われたら，ぜひ<a class="reference external" href="https://github.com/tktmyd/pygmt-howto-jp">github</a>のIssueやPull Requestでご教示ください．本ページ上部のGitHubのアイコンからもたどれます．</p>
+<p>筆者はそのへんの地震学研究者（大学教員）です．Pythonをはじめて触ったのはAI研究による流行が始まるより前の2007年ごろですが，それから10年以上のブランクを経て2021年頃から再びPythonを研究および業務に使い始めました．とはいえ，コンピュータ上の母国語はModern Fortranであり，Python巧者とはとても言えません．本ページを見て「もっと良い書き方がある」と思われたら，ぜひ<a class="reference external" href="https://github.com/tktmyd/pygmt-howto-jp">github</a>のIssueやPull Requestでご教示ください．本ページ上部のGitHubのアイコンからもたどれます．</p>
 </section>
 <section id="id3">
 <h2>改版履歴<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
@@ -414,6 +444,9 @@ title="Print to PDF"
 </tr>
 <tr class="row-odd"><td><p>2022-06-17</p></td>
 <td><p>地形断彩図の分割と説明の追加</p></td>
+</tr>
+<tr class="row-even"><td><p>2022-06-28</p></td>
+<td><p>内容のさらなる分割，xyデータプロットの説明追加．</p></td>
 </tr>
 </tbody>
 </table>

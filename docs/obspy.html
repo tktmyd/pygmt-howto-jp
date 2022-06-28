@@ -1,0 +1,526 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Obspyとの連携 &#8212; pygmt-howto</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://tktmyd.github.io/pygmt-howto-jp/obspy.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="メカニズム解の表現" href="mech.html" />
+    <link rel="prev" title="時系列の扱い" href="timeseries.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">pygmt-howto</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="pygmt.html">
+                    PyGMT-HOWTO
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="install.html">
+   環境構築
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="basic_map.html">
+   PyGMT の基本
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="topo_map.html">
+   地形段彩図の描画
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="xy.html">
+   xyグラフの描画
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inf_on_map.html">
+   地図上への情報描画
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mesh.html">
+   メッシュデータの扱い
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="config.html">
+   GMTの微調整
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="timeseries.html">
+   時系列の扱い
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Obspyとの連携
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mech.html">
+   メカニズム解の表現
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="license.html">
+   License
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/tktmyd/pygmt-howto-jp/master?urlpath=tree/docs/obspy.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/tktmyd/pygmt-howto-jp"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/obspy.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Obspyとの連携</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="obspy">
+<h1>Obspyとの連携<a class="headerlink" href="#obspy" title="Permalink to this headline">#</a></h1>
+<p>ObsPyは地震学で広く使われているパッケージです．様々な機能がありますが，広範な種類の波形フォーマットに対応しているため，自作のプログラムでも波形の読み書き部分だけはObsPyで，といった使い方ができます．ここではこの機能を使って地震波形ファイルを読み込み，それをPyGMTで描画してみます．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
+<span class="kn">import</span> <span class="nn">obspy</span>
+<span class="kn">from</span> <span class="nn">obspy</span> <span class="kn">import</span> <span class="n">UTCDateTime</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>SAC (Seismic Analysis Code) に含まれている地震波形例をファイルとして保存し，それをObsPyから読み込んでみ ましょう．SACでは以下のようなコマンドを実行することでサンプルファイルを作ります．</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sac
+ SEISMIC ANALYSIS CODE <span class="o">[</span><span class="m">10</span>/13/2020 <span class="o">(</span>Version <span class="m">101</span>.6a<span class="o">)]</span>
+ Copyright <span class="m">1995</span> Regents of the University of California
+
+SAC&gt; funcgen seismogram
+SAC&gt; w dat/example.sac
+SAC&gt; quit
+</pre></div>
+</div>
+<p>ObsPy で読み込むには <code class="docutils literal notranslate"><span class="pre">obspy.core.read</span></code> を使います．このコマンドは任意個数の地震波形を stream 形式という専用の型のリストに読み込みます．今回読み込むのは1波形だけなので，その最初の成分を <code class="docutils literal notranslate"><span class="pre">trace0</span></code> として抽出しましょう．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trace</span> <span class="o">=</span> <span class="n">obspy</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;./dat/example.sac&#39;</span><span class="p">)</span>
+<span class="n">trace0</span> <span class="o">=</span> <span class="n">trace</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>ObsPyは内部でmatplotlibと連携していて，波形に付随するメソッドの <code class="docutils literal notranslate"><span class="pre">plot</span></code> を使うだけで，波形を適当にプロットしてくれます．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">trace0</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/obspy_6_0.png" src="_images/obspy_6_0.png" />
+</div>
+</div>
+<p>ObsPyで読み込んだ波形には，</p>
+<ul class="simple">
+<li><p>波形振幅データ <code class="docutils literal notranslate"><span class="pre">trace0.data</span></code></p></li>
+<li><p>波形時刻情報 <code class="docutils literal notranslate"><span class="pre">trace0.times()</span></code></p></li>
+<li><p>その他ヘッダ情報 <code class="docutils literal notranslate"><span class="pre">trace0.stats</span></code></p></li>
+</ul>
+<p>といった情報が含まれます．ObsPyは様々な波形データ形式に対応するなかで，今回はSAC形式の波形を読み込んでいるので，<code class="docutils literal notranslate"><span class="pre">trace0.stats.sac</span></code>という辞書に，SAC形式のヘッダが格納されています．</p>
+<p>では，これを PyGMT で同じようにプロットしてみましょう．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;X20c/5c&#39;</span><span class="p">,</span>
+    <span class="n">region</span> <span class="o">=</span> <span class="p">[</span><span class="n">trace0</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">starttime</span><span class="p">,</span> <span class="n">trace0</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">endtime</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">trace0</span><span class="o">.</span><span class="n">times</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">),</span> 
+    <span class="n">y</span> <span class="o">=</span> <span class="n">trace0</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">pen</span> <span class="o">=</span> <span class="s1">&#39;thick,50/50/150&#39;</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Station &quot;</span> <span class="o">+</span> <span class="n">trace0</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">station</span><span class="p">,</span> 
+    <span class="n">position</span> <span class="o">=</span> <span class="s1">&#39;RT&#39;</span><span class="p">,</span> 
+    <span class="n">offset</span> <span class="o">=</span> <span class="s1">&#39;j0.5c/0.5c&#39;</span><span class="p">,</span>
+    <span class="n">font</span> <span class="o">=</span> <span class="s1">&#39;12p,Helvetica-Bold,Black&#39;</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">basemap</span><span class="p">(</span>
+    <span class="n">frame</span>  <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen&#39;</span><span class="p">,</span> <span class="s1">&#39;xaf+l&quot;time&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;yaf+l&quot;ampltude&quot;&#39;</span> <span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/obspy_8_0.png" src="_images/obspy_8_0.png" />
+</div>
+</div>
+<p>基本的にこれまでに出てきたコマンドの組み合わせで実現できます．</p>
+<p>特記すべきは<code class="docutils literal notranslate"><span class="pre">region</span></code> の横軸で，ObsPyのヘッダ（<code class="docutils literal notranslate"><span class="pre">stats</span></code>）に含まれる開始時間 <code class="docutils literal notranslate"><span class="pre">starttime</span></code> と 終了時間 <code class="docutils literal notranslate"><span class="pre">endtime</span></code> がそのまま <code class="docutils literal notranslate"><span class="pre">pygmt</span></code> の範囲指定に使えるのです．また，<code class="docutils literal notranslate"><span class="pre">fig.plot</span></code> に与える x軸データも，ObsPyの波形の時間情報 <code class="docutils literal notranslate"><span class="pre">trace0.times()</span></code> をそのまま与えることができます．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;X20c/5c&#39;</span><span class="p">,</span>
+    <span class="n">region</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">trace0</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">delta</span> <span class="o">*</span> <span class="n">trace0</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">npts</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">trace0</span><span class="o">.</span><span class="n">times</span><span class="p">(),</span> 
+    <span class="n">y</span> <span class="o">=</span> <span class="n">trace0</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">pen</span> <span class="o">=</span> <span class="s1">&#39;thick,50/50/150&#39;</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Station &quot;</span> <span class="o">+</span> <span class="n">trace0</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">station</span><span class="p">,</span> 
+    <span class="n">position</span> <span class="o">=</span> <span class="s1">&#39;RT&#39;</span><span class="p">,</span> 
+    <span class="n">offset</span> <span class="o">=</span> <span class="s1">&#39;j0.5c/0.5c&#39;</span><span class="p">,</span>
+    <span class="n">font</span> <span class="o">=</span> <span class="s1">&#39;12p,Helvetica-Bold,Black&#39;</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">basemap</span><span class="p">(</span>
+    <span class="n">frame</span>  <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen&#39;</span><span class="p">,</span> <span class="s1">&#39;xaf+l&quot;time [s]&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;yaf+l&quot;ampltude&quot;&#39;</span> <span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/obspy_10_0.png" src="_images/obspy_10_0.png" />
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="timeseries.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">時系列の扱い</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="mech.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">メカニズム解の表現</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By <a href="https://tktmyd.github.io">Takuto Maeda</a><br/>
+  
+      &copy; Copyright 2021-2022. All Rights Reserved.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

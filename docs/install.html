@@ -126,6 +126,26 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="xy.html">
+   xyグラフの描画
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inf_on_map.html">
+   地図上への情報描画
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mesh.html">
+   メッシュデータの扱い
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="config.html">
+   GMTの微調整
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="advanced.html">
    応用編
   </a>
@@ -396,11 +416,6 @@ title="Print to PDF"
 <p class="admonition-title">Note</p>
 <p>コマンドが長いため <code class="docutils literal notranslate"><span class="pre">\</span></code>で適宜改行しています．仮想環境の名前 <code class="docutils literal notranslate"><span class="pre">pygmt-howto</span></code> はお好みで適宜変更するとよいでしょう．</p>
 </div>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>2022-06-17時点でのPyGMTとGMTの最新版はそれぞれ0.6.1と6.3.0ですが，GMT 6.3.0とPyGMTの組み合わせで，時間軸を横軸とするプロットがうまく生成できない，というトラブルが発生しています．さらにPyGMTは0.6.0以降ではGMTの最低限のバージョンとして6.3.0の最新版を要求しているため，どちらも最新版は使わず，PyGMT 0.5.0とGMT 6.2.0を利用しています．</p>
-<p>どちらも2022年内にアップデートがあるでしょうから，状況は近日中に変わると期待されます．</p>
-</div>
 <p>上記のコマンドでは，まず <code class="docutils literal notranslate"><span class="pre">--name</span></code> オプションで仮想環境の名前を，<code class="docutils literal notranslate"><span class="pre">--channel</span></code> オプションでパッケージのリポジトリとして <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> の利用をそれぞれ宣言し，そのあとでインストールする各種パッケージとそのバージョンを <code class="docutils literal notranslate"><span class="pre">==</span></code> でつないで表現しています．PyGMTのほか，科学技術計算に必要なNumPyやSciPy，地震学データ解析に用いるObsPy，実行環境としてJupyter Notebook(<code class="docutils literal notranslate"><span class="pre">notebook</span></code>がそれにあたります）などをインストールしています．</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -425,6 +440,17 @@ title="Print to PDF"
 </pre></div>
 </div>
 <p>とします．</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>GMTの6.3.0の利用には注意が必要で，PyGMTとの組み合わせにおいて，時間軸を横軸とするプロットがうまく生成できない，というトラブルが発生しています．
+さらにPyGMTは0.6.0以降ではGMTの最低限のバージョンとして6.3.0の最新版を要求しているため，最新版のPyGMTを用いるなら，2022年6月にリリースされたばかりのGMT6.4.0の利用が必要です．</p>
+<p>上記の例ではどちらも最新版は使わず，PyGMT 0.5.0とGMT 6.2.0を利用していますが，もし最新版を使いたいなら以下の<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span></code>で作成するのが良いでしょう．</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name pygmt-howto2 --channel conda-forge <span class="se">\</span>
+<span class="nv">python</span><span class="o">==</span><span class="m">3</span>.10.5 <span class="nv">pygmt</span><span class="o">==</span><span class="m">0</span>.6.1 <span class="nv">gmt</span><span class="o">==</span><span class="m">6</span>.4.0 <span class="nv">numpy</span><span class="o">==</span><span class="m">1</span>.22.4 <span class="nv">scipy</span><span class="o">==</span><span class="m">1</span>.8.1 <span class="se">\</span>
+<span class="nv">obspy</span><span class="o">==</span><span class="m">1</span>.3.0 <span class="nv">notebook</span><span class="o">==</span><span class="m">6</span>.4.11 <span class="nv">netcdf4</span><span class="o">==</span><span class="m">1</span>.5.8 <span class="nv">matplotlib</span><span class="o">==</span><span class="m">3</span>.5.1
+</pre></div>
+</div>
+</div>
 </section>
 </section>
 <section id="pip">

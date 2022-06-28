@@ -7,5 +7,11 @@ chapters:
 - file: install
 - file: basic_map
 - file: topo_map
-- file: advanced
+- file: xy
+- file: inf_on_map
+- file: mesh
+- file: config
+- file: timeseries
+- file: obspy
+- file: mech
 - file: license

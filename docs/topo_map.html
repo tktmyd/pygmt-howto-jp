@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://tktmyd.github.io/pygmt-howto-jp/topo_map.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="応用編" href="advanced.html" />
+    <link rel="next" title="xyグラフの描画" href="xy.html" />
     <link rel="prev" title="PyGMT の基本" href="basic_map.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
@@ -123,6 +123,26 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    地形段彩図の描画
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="xy.html">
+   xyグラフの描画
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inf_on_map.html">
+   地図上への情報描画
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mesh.html">
+   メッシュデータの扱い
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="config.html">
+   GMTの微調整
   </a>
  </li>
  <li class="toctree-l1">
@@ -370,6 +390,11 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pygmt-session [WARNING]: Remote dataset given to a data processing module but no registration was specified - default to gridline registration (if available)
+</pre></div>
+</div>
+</div>
 </div>
 <p>上記のコマンドで，<code class="docutils literal notranslate"><span class="pre">region</span></code> で指定した地域の地形を <code class="docutils literal notranslate"><span class="pre">resolution</span></code> の解像度で読み込み，左辺の変数（<code class="docutils literal notranslate"><span class="pre">grid_data</span></code>）に格納します．この変数を用いてあとで地形図を作成します．</p>
 <p><code class="docutils literal notranslate"><span class="pre">region</span></code>の指定方法は地図と同じです．省略した場合には全世界のグローバルデータが読み込まれます．</p>
@@ -513,10 +538,10 @@ title="Print to PDF"
             <p class="prev-next-title">PyGMT の基本</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="advanced.html" title="next page">
+    <a class='right-next' id="next-link" href="xy.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">応用編</p>
+        <p class="prev-next-title">xyグラフの描画</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
