@@ -6,6 +6,7 @@ root:  pygmt
 chapters:
 - file: install
 - file: basic_map
+- file: savefig
 - file: topo_map
 - file: xy
 - file: inf_on_map
@@ -14,5 +15,4 @@ chapters:
 - file: timeseries
 - file: obspy
 - file: mech
-- file: savefig
 - file: license

@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://tktmyd.github.io/pygmt-howto-jp/basic_map.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="地形段彩図の描画" href="topo_map.html" />
+    <link rel="next" title="画像の保存" href="savefig.html" />
     <link rel="prev" title="PyGMTの環境構築" href="install.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
@@ -123,6 +123,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="savefig.html">
+   画像の保存
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="topo_map.html">
    地形段彩図の描画
   </a>
@@ -160,11 +165,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="mech.html">
    震源メカニズム解の表現
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="savefig.html">
-   画像の保存
   </a>
  </li>
  <li class="toctree-l1">
@@ -853,8 +853,8 @@ GMT library information:
 <h3>pygmtとシェルスクリプトの比較<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
 <p>これまでに紹介した PyGMTのスクリプトと，それらと（ほとんど）同じ図を出力するbashによる従来型のGMTスクリプトを比較してみます．以下のタブをクリックするとコードが表示されます．なお，比較しやすいようできるだけ改行を多めに書いています．</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="e480f856-34ab-456f-af44-0b72ba44417f" name="90d5be43-345e-4457-acae-28451e9295c7" type="radio">
-</input><label class="sd-tab-label" for="e480f856-34ab-456f-af44-0b72ba44417f">
+<input checked="checked" id="5a2021dd-c784-4eae-b92c-5a5799d3a730" name="a76af346-9496-49bf-90de-2a9e6ab328e1" type="radio">
+</input><label class="sd-tab-label" for="5a2021dd-c784-4eae-b92c-5a5799d3a730">
 pygmt long</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 
@@ -872,8 +872,8 @@ pygmt long</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="2189d3be-3da6-42bd-92b8-f694ebf56e72" name="90d5be43-345e-4457-acae-28451e9295c7" type="radio">
-</input><label class="sd-tab-label" for="2189d3be-3da6-42bd-92b8-f694ebf56e72">
+<input id="cd73a3c0-91b8-4344-8fd2-2326ba1578c8" name="a76af346-9496-49bf-90de-2a9e6ab328e1" type="radio">
+</input><label class="sd-tab-label" for="cd73a3c0-91b8-4344-8fd2-2326ba1578c8">
 pygmt short</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 
@@ -891,8 +891,8 @@ pygmt short</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="16841064-bcd8-42c5-b27a-9a9cbd9718c3" name="90d5be43-345e-4457-acae-28451e9295c7" type="radio">
-</input><label class="sd-tab-label" for="16841064-bcd8-42c5-b27a-9a9cbd9718c3">
+<input id="4b24e66b-8df0-47dc-b930-25d32ac3fae7" name="a76af346-9496-49bf-90de-2a9e6ab328e1" type="radio">
+</input><label class="sd-tab-label" for="4b24e66b-8df0-47dc-b930-25d32ac3fae7">
 bash classic</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
@@ -916,8 +916,8 @@ rm -f fig/classic-coastline.ps
 </pre></div>
 </div>
 </div>
-<input id="3672a8c9-61b8-42f4-a020-019c5de84c5e" name="90d5be43-345e-4457-acae-28451e9295c7" type="radio">
-</input><label class="sd-tab-label" for="3672a8c9-61b8-42f4-a020-019c5de84c5e">
+<input id="3c411ba7-4d08-434d-bd7a-0403afc555ab" name="a76af346-9496-49bf-90de-2a9e6ab328e1" type="radio">
+</input><label class="sd-tab-label" for="3c411ba7-4d08-434d-bd7a-0403afc555ab">
 bash modern</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
@@ -979,10 +979,10 @@ gmt end
             <p class="prev-next-title">PyGMTの環境構築</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="topo_map.html" title="next page">
+    <a class='right-next' id="next-link" href="savefig.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">地形段彩図の描画</p>
+        <p class="prev-next-title">画像の保存</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
