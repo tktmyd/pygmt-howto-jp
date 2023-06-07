@@ -6,7 +6,7 @@ Webコンテンツはこちら：https://tktmyd.github.io/pygmt-howto-jp
 
 ## License
 
-Copyright (C) 2021 Takuto Maeda
+Copyright (C) 2021-2023 Takuto Maeda
 
 Webサイトで公開されるコンテンツは[クリエイティブ・コモンズ4.0表示（CC-BY 4.0)](https://creativecommons.org/licenses/by/4.0/)で提供します．また，本リポジトリに含まれるソースコードは[MITライセンス](https://opensource.org/licenses/MIT)で提供します．
 
