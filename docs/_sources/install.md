@@ -1,7 +1,8 @@
-# 環境構築
+# PyGMTの環境構築
+
 
 ```{warning}
-本セクションの記述は[macOS Monterey](https://www.apple.com/jp/macos/monterey/)およびLinuxディストリビューションの一種である[Ubuntu](https://jp.ubuntu.com) 22.04LTSで動作確認しています．Windows OSへの直接インストールは，筆者がWindowsの使い方をほとんど知らないため記載していません．ただし，Windowsにおいても[WSL2](https://docs.microsoft.com/ja-jp/windows/wsl/install)を用いることでUbuntuをはじめとしたLinuxディストリビューションを容易に利用可能なはずです．
+本セクションの記述は[macOS Ventura](https://www.apple.com/jp/macos/ventura/)およびLinuxディストリビューションの一種である[Ubuntu](https://jp.ubuntu.com) 22.04LTSで動作確認しています．Windows OSへの直接インストールは，筆者がWindowsの使い方を知らないため記載していません．ただし，Windowsにおいても[WSL2](https://docs.microsoft.com/ja-jp/windows/wsl/install)を用いることでUbuntuをはじめとしたLinuxディストリビューションを容易に利用可能なはずです．
 ```
 
 PyGMTを使うための環境構築には，Pythonのパッケージ管理システムである
@@ -15,7 +16,7 @@ pipはPythonに付属したツールで，Python上で用いるライブラリ�
 
 どちらを使うかは好みの問題だと思いますが，Anaconda（Miniconda）のほうが容易に環境が構築できるようです．一方，Anacondaはライセンスの扱いにやや注意が必要です．
 
-## Anaconda（Miniconda）によるインストール
+## Anaconda （Miniconda）によるインストール
 
 Anacondaは科学技術計算に必要なライブラリが多く含まれたPython実行環境とそのパッケージ管理システムからなるソフトウェアです．Anacondaをインストールするだけで一通りの計算環境が揃うため便利なものだったのですが，2020年4月より利用規約が[改定](https://www.anaconda.com/blog/sustaining-our-stewardship-of-the-open-source-data-science-community)となり，大規模な商用利用は有償になりました．ただし，[FAQ](https://www.anaconda.com/blog/anaconda-commercial-edition-faq)によると大学関係者や非商用利用に関してはこの条件が適用されないと明記されています．さらに，有償になるのはパッケージ管理の`default`のリポジトリであり，コミュニティで作成されているリポジトリであるconda-forgeの利用については制限がなことが[明言](https://conda-forge.org/blog/posts/2020-11-20-anaconda-tos/)されているようです．
 
@@ -39,13 +40,14 @@ conda update conda
 
 ### 仮想環境の作成とPyGMTのインストール
 
-このままデフォルトの環境にパッケージを追加していってもよいのですが，ここではPyGMT用の**仮想環境**を作成します．このようにすると，パッケージ間のバージョン不整合などのトラブルがあったときに，仮想環境ごと切り替えるということが可能になります．ここでは，本Webサイトで利用するパッケージをまるごと導入する仮想環境`pygmt`を作ってみましょう．
+このままデフォルトの環境にパッケージを追加していってもよいのですが，ここではPyGMT用の**仮想環境**を作成します．このようにすると，パッケージ間のバージョン不整合などのトラブルがあったときに，仮想環境ごと切り替えるということが可能になります．ここでは，本Webサイトで利用するパッケージをまるごと導入する仮想環境`pygmt`を作ってみましょう．ここでは，2023年6月時点で最新となるPyGMT v0.9.0と，GMT v6.4.0 を導入します．
 
 ```bash
-conda create --name pygmt-howto --channel conda-forge \
-python==3.10.5 pygmt==0.5.0 gmt==6.2.0 numpy==1.22.4 scipy==1.8.1 \
-obspy==1.3.0 notebook==6.4.11 netcdf4==1.5.8 matplotlib==3.5.1
+conda create --name pygmt-howto-v0.9 --channel conda-forge \
+pygmt==0.9.0 gmt==6.4.0 numpy==1.24.3 scipy==1.10.1 \
+obspy==1.4.0 notebook==6.5.4 matplotlib==3.7.1
 ```
+
 ```{note}
 コマンドが長いため `\`で適宜改行しています．仮想環境の名前 `pygmt-howto` はお好みで適宜変更するとよいでしょう．
 ```
@@ -63,7 +65,7 @@ obspy==1.3.0 notebook==6.4.11 netcdf4==1.5.8 matplotlib==3.5.1
 
 インストールが完了したら
 ```bash
-conda activate pygmt-howto
+conda activate pygmt-howto-v0.9
 ```
 により仮想環境を有効化します．すると，プロンプトの左側の `(base)` が仮想環境の名前 `(pygmt-howto)` に変わります．もしいつでもこの環境を使いたいならば，シェルの初期設定ファイル（`.bashrc` あるいは `.zshrc` など）に上記の `activate` コマンドを記載しておくとよいでしょう．
 
@@ -73,12 +75,26 @@ conda deactivate
 ```
 です．もしこの仮想環境が不要になって削除したいときは，仮想環境から`conda deactivate` した状態で
 ```bash
-conda remove -n pygmt-howto --all
+conda remove -n pygmt-howto-v0.9 --all
 ```
 とします．
 
-````{important}
-GMTの6.3.0の利用には注意が必要で，PyGMTとの組み合わせにおいて，時間軸を横軸とするプロットがうまく生成できない，というトラブルが発生しています．
+
+### 過去のバージョンのインストールスクリプト
+
+PyGMTはかなり活発に開発が続いており，頻繁なバージョンアップがあります．参考のため，このPyGMT-HowToページた以前紹介していた過去バージョンのインストール法もアーカイブとして残しておきます．これから新たにインストールするのであれば，前節のインストールスクリプトを参考にしてください．
+
+
+#### PyGMT v0.5.0 と GMT 6.2.0
+
+```bash
+conda create --name pygmt-howto --channel conda-forge \
+python==3.10.5 pygmt==0.5.0 gmt==6.2.0 numpy==1.22.4 scipy==1.8.1 \
+obspy==1.3.0 notebook==6.4.11 netcdf4==1.5.8 matplotlib==3.5.1
+```
+
+````{warning}
+GMTの6.3.0の利用には注意が必要で，PyGMTの過去バージョンとの組み合わせにおいて，時間軸を横軸とするプロットがうまく生成できない，というトラブルが発生していました．
 さらにPyGMTは0.6.0以降ではGMTの最低限のバージョンとして6.3.0の最新版を要求しているため，最新版のPyGMTを用いるなら，2022年6月にリリースされたばかりのGMT6.4.0の利用が必要です．
 
 上記の例ではどちらも最新版は使わず，PyGMT 0.5.0とGMT 6.2.0を利用していますが，もし最新版を使いたいなら以下の`conda create`で作成するのが良いでしょう．
@@ -89,7 +105,8 @@ obspy==1.3.0 notebook==6.4.11 netcdf4==1.5.8 matplotlib==3.5.1
 ```
 ````
 
-## pip によるインストール
+
+## （参考）pip によるインストール
 
 `pip` はPythonに付属しているパッケージ管理コマンドです．
 `conda`で行ったように，Python本体を仮想化して目的別のパッケージ管理を行う方法も（多数）ありますが，本筋からそれるためここでは割愛します．

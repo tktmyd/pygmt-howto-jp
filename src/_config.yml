@@ -10,7 +10,7 @@ description: A tutorial of PyGMT for seismologists
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-  execute_notebooks: cache
+  execute_notebooks: 'off'
 
 # Define the name of the latex output file for PDF builds
 #latex:

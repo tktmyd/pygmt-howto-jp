@@ -112,7 +112,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="install.html">
-   環境構築
+   PyGMTの環境構築
   </a>
  </li>
  <li class="toctree-l1">
@@ -157,7 +157,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mech.html">
-   メカニズム解の表現
+   震源メカニズム解の表現
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="savefig.html">
+   画像の保存
   </a>
  </li>
  <li class="toctree-l1">
@@ -348,6 +353,13 @@ title="Print to PDF"
 <p>そこで，PyGMTではPythonの<code class="docutils literal notranslate"><span class="pre">with</span></code>構文を用いる方法が提案されています．以下の例は全く同じ図を<code class="docutils literal notranslate"><span class="pre">config</span></code>だけを変えてプロットしたものです．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 
 
@@ -397,14 +409,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/config_1_0.png" src="_images/config_1_0.png" />
+<img alt="_images/config_2_0.png" src="_images/config_2_0.png" />
 </div>
 </div>
 <p>まったく同じ領域の地図を（タイトル以外）全く同じオプションでプロットしていますが，緯度経度の書式（時分秒か度か），それに伴い自動で設定されるラベルの間隔，フレームの種類，ラベルやタイトルのフォントやフォントサイズなどが異なっていることがわかるでしょう．</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>上記の地図のプロット順を逆にする（<code class="docutils literal notranslate"><span class="pre">with</span></code>でオプションありを先に描画）実験をしてみたところ，
-ほとんどはうまく行ったが，グリッド線の線種（点線）だけは<code class="docutils literal notranslate"><span class="pre">config</span></code>なしの図にも反映されてしまいました．
+ほとんどはうまく行くのですが，グリッド線の線種（点線）だけは<code class="docutils literal notranslate"><span class="pre">config</span></code>なしの図にも反映されてしまいました．
 もしかしたらこれはバグかもしれません．</p>
 </div>
 </section>

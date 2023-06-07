@@ -112,7 +112,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="install.html">
-   環境構築
+   PyGMTの環境構築
   </a>
  </li>
  <li class="toctree-l1">
@@ -157,7 +157,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mech.html">
-   メカニズム解の表現
+   震源メカニズム解の表現
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="savefig.html">
+   画像の保存
   </a>
  </li>
  <li class="toctree-l1">
@@ -354,15 +359,10 @@ title="Print to PDF"
 <p>震源分布に用いたデータから，地震発生日とマグにチュードからなる M-T 図を作成してみましょう．まずは<code class="docutils literal notranslate"><span class="pre">datetime</span></code>モジュールを用いて，震源カタログの年・月・日のデータをまとめて日付オブジェクトのリストにします．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hypdata</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_japan_quakes</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 昔のバージョンは pygmt.datasets.load_japan_quakes() でした</span>
+<span class="n">hypdata</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_sample_data</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;japan_quakes&#39;</span><span class="p">)</span>
 <span class="n">hyptim</span> <span class="o">=</span> <span class="p">[</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="n">yr</span><span class="p">,</span> <span class="n">mo</span><span class="p">,</span> <span class="n">dy</span><span class="p">)</span> <span class="k">for</span> <span class="n">yr</span><span class="p">,</span> <span class="n">mo</span><span class="p">,</span> <span class="n">dy</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">hypdata</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">hypdata</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">hypdata</span><span class="o">.</span><span class="n">day</span><span class="p">)]</span>
 <span class="n">hypmag</span> <span class="o">=</span> <span class="n">hypdata</span><span class="o">.</span><span class="n">magnitude</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/qw/cvrqp2fd6171t6js_gytd9_h0009rj/T/ipykernel_32040/1909485115.py:1: FutureWarning: This function has been deprecated since v0.6.0 and will be removed in v0.9.0. Please use load_sample_data(name=&#39;japan_quakes&#39;) instead.
-  hypdata = pygmt.datasets.load_japan_quakes()
 </pre></div>
 </div>
 </div>
@@ -398,7 +398,7 @@ title="Print to PDF"
     <span class="n">x</span>     <span class="o">=</span> <span class="n">hyptim</span><span class="p">,</span> 
     <span class="n">y</span>     <span class="o">=</span> <span class="n">hypmag</span><span class="p">,</span> 
     <span class="n">style</span> <span class="o">=</span> <span class="s1">&#39;c0.2c&#39;</span><span class="p">,</span> 
-    <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;100/100/255@30&#39;</span><span class="p">,</span> 
+    <span class="n">fill</span>  <span class="o">=</span> <span class="s1">&#39;100/100/255@30&#39;</span><span class="p">,</span> 
     <span class="n">pen</span>   <span class="o">=</span> <span class="s1">&#39;default,black&#39;</span>
 <span class="p">)</span>
 

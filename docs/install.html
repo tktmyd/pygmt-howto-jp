@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>環境構築 &#8212; pygmt-howto</title>
+    <title>PyGMTの環境構築 &#8212; pygmt-howto</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -112,7 +112,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   環境構築
+   PyGMTの環境構築
   </a>
  </li>
  <li class="toctree-l1">
@@ -157,7 +157,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mech.html">
-   メカニズム解の表現
+   震源メカニズム解の表現
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="savefig.html">
+   画像の保存
   </a>
  </li>
  <li class="toctree-l1">
@@ -312,7 +317,7 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#anaconda-miniconda">
-   Anaconda（Miniconda）によるインストール
+   Anaconda （Miniconda）によるインストール
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -321,15 +326,27 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pygmt">
+    <a class="reference internal nav-link" href="#id1">
      仮想環境の作成とPyGMTのインストール
     </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     過去のバージョンのインストールスクリプト
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pygmt-v0-5-0-gmt-6-2-0">
+       PyGMT v0.5.0 と GMT 6.2.0
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#pip">
-   pip によるインストール
+   （参考）pip によるインストール
   </a>
  </li>
 </ul>
@@ -341,7 +358,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>環境構築</h1>
+                <h1>PyGMTの環境構築</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -353,7 +370,7 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#anaconda-miniconda">
-   Anaconda（Miniconda）によるインストール
+   Anaconda （Miniconda）によるインストール
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -362,15 +379,27 @@ title="Print to PDF"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#pygmt">
+    <a class="reference internal nav-link" href="#id1">
      仮想環境の作成とPyGMTのインストール
     </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     過去のバージョンのインストールスクリプト
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pygmt-v0-5-0-gmt-6-2-0">
+       PyGMT v0.5.0 と GMT 6.2.0
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#pip">
-   pip によるインストール
+   （参考）pip によるインストール
   </a>
  </li>
 </ul>
@@ -383,11 +412,11 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>環境構築<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="pygmt">
+<h1>PyGMTの環境構築<a class="headerlink" href="#pygmt" title="Permalink to this headline">#</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>本セクションの記述は<a class="reference external" href="https://www.apple.com/jp/macos/monterey/">macOS Monterey</a>およびLinuxディストリビューションの一種である<a class="reference external" href="https://jp.ubuntu.com">Ubuntu</a> 22.04LTSで動作確認しています．Windows OSへの直接インストールは，筆者がWindowsの使い方をほとんど知らないため記載していません．ただし，Windowsにおいても<a class="reference external" href="https://docs.microsoft.com/ja-jp/windows/wsl/install">WSL2</a>を用いることでUbuntuをはじめとしたLinuxディストリビューションを容易に利用可能なはずです．</p>
+<p>本セクションの記述は<a class="reference external" href="https://www.apple.com/jp/macos/ventura/">macOS Ventura</a>およびLinuxディストリビューションの一種である<a class="reference external" href="https://jp.ubuntu.com">Ubuntu</a> 22.04LTSで動作確認しています．Windows OSへの直接インストールは，筆者がWindowsの使い方を知らないため記載していません．ただし，Windowsにおいても<a class="reference external" href="https://docs.microsoft.com/ja-jp/windows/wsl/install">WSL2</a>を用いることでUbuntuをはじめとしたLinuxディストリビューションを容易に利用可能なはずです．</p>
 </div>
 <p>PyGMTを使うための環境構築には，Pythonのパッケージ管理システムである</p>
 <ul class="simple">
@@ -398,7 +427,7 @@ title="Print to PDF"
 <p>pipはPythonに付属したツールで，Python上で用いるライブラリの管理を行うものである一方，AnacondaはPythonの処理系自体を含むパッケージで，Pythonのみならずそれに（広い意味で）関連した様々なツールのインストールができます．</p>
 <p>どちらを使うかは好みの問題だと思いますが，Anaconda（Miniconda）のほうが容易に環境が構築できるようです．一方，Anacondaはライセンスの扱いにやや注意が必要です．</p>
 <section id="anaconda-miniconda">
-<h2>Anaconda（Miniconda）によるインストール<a class="headerlink" href="#anaconda-miniconda" title="Permalink to this headline">#</a></h2>
+<h2>Anaconda （Miniconda）によるインストール<a class="headerlink" href="#anaconda-miniconda" title="Permalink to this headline">#</a></h2>
 <p>Anacondaは科学技術計算に必要なライブラリが多く含まれたPython実行環境とそのパッケージ管理システムからなるソフトウェアです．Anacondaをインストールするだけで一通りの計算環境が揃うため便利なものだったのですが，2020年4月より利用規約が<a class="reference external" href="https://www.anaconda.com/blog/sustaining-our-stewardship-of-the-open-source-data-science-community">改定</a>となり，大規模な商用利用は有償になりました．ただし，<a class="reference external" href="https://www.anaconda.com/blog/anaconda-commercial-edition-faq">FAQ</a>によると大学関係者や非商用利用に関してはこの条件が適用されないと明記されています．さらに，有償になるのはパッケージ管理の<code class="docutils literal notranslate"><span class="pre">default</span></code>のリポジトリであり，コミュニティで作成されているリポジトリであるconda-forgeの利用については制限がなことが<a class="reference external" href="https://conda-forge.org/blog/posts/2020-11-20-anaconda-tos/">明言</a>されているようです．</p>
 <p>そこで，ここではPythonおよびパッケージ管理コマンドの<code class="docutils literal notranslate"><span class="pre">conda</span></code>を含む最小限のパッケージであるMinicondaを導入し，そこから<code class="docutils literal notranslate"><span class="pre">conda-forge</span></code>のリポジトリを使って環境の構築をする方法を紹介します．Minicondaは<a class="reference external" href="https://www.anaconda.com/end-user-license-agreement-miniconda">有償ではない</a>ため，この方法ならどなたでも自由に使えるはずです（と，筆者は理解しています）．</p>
 <section id="miniconda">
@@ -414,12 +443,12 @@ title="Print to PDF"
 </pre></div>
 </div>
 </section>
-<section id="pygmt">
-<h3>仮想環境の作成とPyGMTのインストール<a class="headerlink" href="#pygmt" title="Permalink to this headline">#</a></h3>
-<p>このままデフォルトの環境にパッケージを追加していってもよいのですが，ここではPyGMT用の<strong>仮想環境</strong>を作成します．このようにすると，パッケージ間のバージョン不整合などのトラブルがあったときに，仮想環境ごと切り替えるということが可能になります．ここでは，本Webサイトで利用するパッケージをまるごと導入する仮想環境<code class="docutils literal notranslate"><span class="pre">pygmt</span></code>を作ってみましょう．</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name pygmt-howto --channel conda-forge <span class="se">\</span>
-<span class="nv">python</span><span class="o">==</span><span class="m">3</span>.10.5 <span class="nv">pygmt</span><span class="o">==</span><span class="m">0</span>.5.0 <span class="nv">gmt</span><span class="o">==</span><span class="m">6</span>.2.0 <span class="nv">numpy</span><span class="o">==</span><span class="m">1</span>.22.4 <span class="nv">scipy</span><span class="o">==</span><span class="m">1</span>.8.1 <span class="se">\</span>
-<span class="nv">obspy</span><span class="o">==</span><span class="m">1</span>.3.0 <span class="nv">notebook</span><span class="o">==</span><span class="m">6</span>.4.11 <span class="nv">netcdf4</span><span class="o">==</span><span class="m">1</span>.5.8 <span class="nv">matplotlib</span><span class="o">==</span><span class="m">3</span>.5.1
+<section id="id1">
+<h3>仮想環境の作成とPyGMTのインストール<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p>このままデフォルトの環境にパッケージを追加していってもよいのですが，ここではPyGMT用の<strong>仮想環境</strong>を作成します．このようにすると，パッケージ間のバージョン不整合などのトラブルがあったときに，仮想環境ごと切り替えるということが可能になります．ここでは，本Webサイトで利用するパッケージをまるごと導入する仮想環境<code class="docutils literal notranslate"><span class="pre">pygmt</span></code>を作ってみましょう．ここでは，2023年6月時点で最新となるPyGMT v0.9.0と，GMT v6.4.0 を導入します．</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name pygmt-howto-v0.9 --channel conda-forge <span class="se">\</span>
+<span class="nv">pygmt</span><span class="o">==</span><span class="m">0</span>.9.0 <span class="nv">gmt</span><span class="o">==</span><span class="m">6</span>.4.0 <span class="nv">numpy</span><span class="o">==</span><span class="m">1</span>.24.3 <span class="nv">scipy</span><span class="o">==</span><span class="m">1</span>.10.1 <span class="se">\</span>
+<span class="nv">obspy</span><span class="o">==</span><span class="m">1</span>.4.0 <span class="nv">notebook</span><span class="o">==</span><span class="m">6</span>.5.4 <span class="nv">matplotlib</span><span class="o">==</span><span class="m">3</span>.7.1
 </pre></div>
 </div>
 <div class="admonition note">
@@ -437,7 +466,7 @@ title="Print to PDF"
 <p>これらのライブラリや実行バイナリは，<code class="docutils literal notranslate"><span class="pre">miniconda</span></code> のインストールディレクトリ下の <code class="docutils literal notranslate"><span class="pre">envs</span></code> ディレクトリに格納されます<code class="docutils literal notranslate"><span class="pre">miniconda</span></code>をデフォルトでホームディレクトリにインストールしている場合，容量の増大にはご注意ください．</p>
 </div>
 <p>インストールが完了したら</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate pygmt-howto
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate pygmt-howto-v0.9
 </pre></div>
 </div>
 <p>により仮想環境を有効化します．すると，プロンプトの左側の <code class="docutils literal notranslate"><span class="pre">(base)</span></code> が仮想環境の名前 <code class="docutils literal notranslate"><span class="pre">(pygmt-howto)</span></code> に変わります．もしいつでもこの環境を使いたいならば，シェルの初期設定ファイル（<code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> あるいは <code class="docutils literal notranslate"><span class="pre">.zshrc</span></code> など）に上記の <code class="docutils literal notranslate"><span class="pre">activate</span></code> コマンドを記載しておくとよいでしょう．</p>
@@ -446,13 +475,24 @@ title="Print to PDF"
 </pre></div>
 </div>
 <p>です．もしこの仮想環境が不要になって削除したいときは，仮想環境から<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">deactivate</span></code> した状態で</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda remove -n pygmt-howto --all
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda remove -n pygmt-howto-v0.9 --all
 </pre></div>
 </div>
 <p>とします．</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>GMTの6.3.0の利用には注意が必要で，PyGMTとの組み合わせにおいて，時間軸を横軸とするプロットがうまく生成できない，というトラブルが発生しています．
+</section>
+<section id="id2">
+<h3>過去のバージョンのインストールスクリプト<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>PyGMTはかなり活発に開発が続いており，頻繁なバージョンアップがあります．参考のため，このPyGMT-HowToページた以前紹介していた過去バージョンのインストール法もアーカイブとして残しておきます．これから新たにインストールするのであれば，前節のインストールスクリプトを参考にしてください．</p>
+<section id="pygmt-v0-5-0-gmt-6-2-0">
+<h4>PyGMT v0.5.0 と GMT 6.2.0<a class="headerlink" href="#pygmt-v0-5-0-gmt-6-2-0" title="Permalink to this headline">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name pygmt-howto --channel conda-forge <span class="se">\</span>
+<span class="nv">python</span><span class="o">==</span><span class="m">3</span>.10.5 <span class="nv">pygmt</span><span class="o">==</span><span class="m">0</span>.5.0 <span class="nv">gmt</span><span class="o">==</span><span class="m">6</span>.2.0 <span class="nv">numpy</span><span class="o">==</span><span class="m">1</span>.22.4 <span class="nv">scipy</span><span class="o">==</span><span class="m">1</span>.8.1 <span class="se">\</span>
+<span class="nv">obspy</span><span class="o">==</span><span class="m">1</span>.3.0 <span class="nv">notebook</span><span class="o">==</span><span class="m">6</span>.4.11 <span class="nv">netcdf4</span><span class="o">==</span><span class="m">1</span>.5.8 <span class="nv">matplotlib</span><span class="o">==</span><span class="m">3</span>.5.1
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>GMTの6.3.0の利用には注意が必要で，PyGMTの過去バージョンとの組み合わせにおいて，時間軸を横軸とするプロットがうまく生成できない，というトラブルが発生していました．
 さらにPyGMTは0.6.0以降ではGMTの最低限のバージョンとして6.3.0の最新版を要求しているため，最新版のPyGMTを用いるなら，2022年6月にリリースされたばかりのGMT6.4.0の利用が必要です．</p>
 <p>上記の例ではどちらも最新版は使わず，PyGMT 0.5.0とGMT 6.2.0を利用していますが，もし最新版を使いたいなら以下の<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span></code>で作成するのが良いでしょう．</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name pygmt-howto2 --channel conda-forge <span class="se">\</span>
@@ -463,8 +503,9 @@ title="Print to PDF"
 </div>
 </section>
 </section>
+</section>
 <section id="pip">
-<h2>pip によるインストール<a class="headerlink" href="#pip" title="Permalink to this headline">#</a></h2>
+<h2>（参考）pip によるインストール<a class="headerlink" href="#pip" title="Permalink to this headline">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">pip</span></code> はPythonに付属しているパッケージ管理コマンドです．
 <code class="docutils literal notranslate"><span class="pre">conda</span></code>で行ったように，Python本体を仮想化して目的別のパッケージ管理を行う方法も（多数）ありますが，本筋からそれるためここでは割愛します．</p>
 <p>PyGMTは<code class="docutils literal notranslate"><span class="pre">pip</span></code>コマンドに対応しており，インストールは</p>

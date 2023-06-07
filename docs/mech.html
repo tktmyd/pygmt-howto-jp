@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>メカニズム解の表現 &#8212; pygmt-howto</title>
+    <title>震源メカニズム解の表現 &#8212; pygmt-howto</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://tktmyd.github.io/pygmt-howto-jp/mech.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="License" href="license.html" />
+    <link rel="next" title="画像の保存" href="savefig.html" />
     <link rel="prev" title="Obspyとの連携" href="obspy.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
@@ -112,7 +112,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="install.html">
-   環境構築
+   PyGMTの環境構築
   </a>
  </li>
  <li class="toctree-l1">
@@ -157,7 +157,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   メカニズム解の表現
+   震源メカニズム解の表現
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="savefig.html">
+   画像の保存
   </a>
  </li>
  <li class="toctree-l1">
@@ -329,7 +334,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>メカニズム解の表現</h1>
+                <h1>震源メカニズム解の表現</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -342,7 +347,7 @@ title="Print to PDF"
               <div>
                 
   <section id="id1">
-<h1>メカニズム解の表現<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<h1>震源メカニズム解の表現<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
@@ -350,7 +355,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p>メカニズムは辞書形式でデータを渡すのがわかりやすそうです．</p>
+<p>震源メカニズムは辞書形式でデータを渡すのがわかりやすそうです．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meca</span> <span class="o">=</span><span class="p">{</span>
@@ -392,10 +397,6 @@ title="Print to PDF"
 </tbody>
 </table>
 <p>複数のメカニズム解を表現したい場合は，辞書のそれぞれのキーに対応する値をリストやタプルにします．同じ構造を持つ辞書全体のリストを一括で処理することはできないようです．（とはいえ，Pythonの <code class="docutils literal notranslate"><span class="pre">for</span></code> 構文と組み合わせればそれは容易に実現できます）</p>
-<p>残念ながら，辞書型での入力部分を除いて，PyGMTの <code class="docutils literal notranslate"><span class="pre">gmt</span> <span class="pre">meca</span></code> コマンドの実装はまだ十分とは言えない状況にあるようです（2021年12月現在）．
-公式にサポートしているオプションはまだ全体のごく一部で，たとえば深さに応じて色を塗ることもできないように見えます．</p>
-<p>しかし，実際には生の<code class="docutils literal notranslate"><span class="pre">gmt</span> <span class="pre">meca</span></code>オプションをほとんどそのまま指定できます．以下の例では<code class="docutils literal notranslate"><span class="pre">pygmt.makecpt</span></code>でカラーパレットを作成し，<code class="docutils literal notranslate"><span class="pre">fig.meca</span></code>には（マニュアルにはない）<code class="docutils literal notranslate"><span class="pre">C</span></code>オプションを引数空文字<code class="docutils literal notranslate"><span class="pre">''</span></code>で呼ぶことで，深さに応じた色を実現しています．</p>
-<p>同じことは，<code class="docutils literal notranslate"><span class="pre">pygmt.makecpt</span></code> の <code class="docutils literal notranslate"><span class="pre">output</span></code>オプションで cpt ファイルを名前をつけて明示的に保存し，<code class="docutils literal notranslate"><span class="pre">fig.meca</span></code> の <code class="docutils literal notranslate"><span class="pre">C</span></code> オプションでそのファイル名を指定しても実現できます．ただし，そのcptファイルがカレントディレクトリに残骸として残ってしまいます．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
@@ -422,14 +423,14 @@ title="Print to PDF"
 
 <span class="n">fig</span><span class="o">.</span><span class="n">meca</span><span class="p">(</span><span class="n">spec</span>  <span class="o">=</span> <span class="n">meca</span><span class="p">,</span> 
          <span class="n">scale</span> <span class="o">=</span> <span class="s1">&#39;1c&#39;</span><span class="p">,</span> 
-         <span class="n">C</span>     <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>              <span class="c1"># 従前に作ったカラーパレットを使う</span>
+         <span class="n">cmap</span>  <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
 <span class="p">)</span>
 
 <span class="c1"># 節面を描画するにはもういちど fig.meca を `T` オプションをつけて呼ぶ</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">meca</span><span class="p">(</span>
     <span class="n">spec</span>  <span class="o">=</span> <span class="n">meca</span><span class="p">,</span> 
     <span class="n">scale</span> <span class="o">=</span> <span class="s1">&#39;1c&#39;</span><span class="p">,</span> 
-    <span class="n">W</span> <span class="o">=</span> <span class="s1">&#39;default,black&#39;</span><span class="p">,</span> 
+    <span class="n">pen</span>   <span class="o">=</span> <span class="s1">&#39;default,black&#39;</span><span class="p">,</span> 
     <span class="n">T</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
 <span class="p">)</span>
 
@@ -438,9 +439,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/mech_6_0.png" src="_images/mech_6_0.png" />
+<img alt="_images/mech_5_0.png" src="_images/mech_5_0.png" />
 </div>
 </div>
+<p>残念ながら，辞書型での入力部分を除いて，PyGMTの <code class="docutils literal notranslate"><span class="pre">gmt</span> <span class="pre">meca</span></code> コマンドの実装はまだ完璧とはいえない状況にあるようです（2023年6月現在）．
+節面を描画するためのオプション（GMTの<code class="docutils literal notranslate"><span class="pre">T</span></code>）のPyGMT版が用意されていないため，<code class="docutils literal notranslate"><span class="pre">T=0</span></code> とした<code class="docutils literal notranslate"><span class="pre">meca</span></code>を別途呼び出しています．</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -477,10 +480,10 @@ title="Print to PDF"
             <p class="prev-next-title">Obspyとの連携</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="license.html" title="next page">
+    <a class='right-next' id="next-link" href="savefig.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">License</p>
+        <p class="prev-next-title">画像の保存</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

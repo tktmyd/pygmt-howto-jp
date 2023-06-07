@@ -114,7 +114,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="install.html">
-   環境構築
+   PyGMTの環境構築
   </a>
  </li>
  <li class="toctree-l1">
@@ -159,7 +159,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mech.html">
-   メカニズム解の表現
+   震源メカニズム解の表現
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="savefig.html">
+   画像の保存
   </a>
  </li>
  <li class="toctree-l1">
@@ -405,11 +410,6 @@ title="Print to PDF"
 <h2>等間隔メッシュデータ<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
 <p><span class="math notranslate nohighlight">\(z(x,y)\)</span> のような形式で，<span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>が等間隔のメッシュで与えられているデータを可視化してみましょう．</p>
 <p>まず，サンプルとして NumPy で適当な等間隔データを作成してみます．</p>
-<div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p>筆者がNumpyに詳しくないので，コンパイラ言語的な効率の悪い計算をしている気がします．
-もっと効率の良い計算方法があったらぜひgithubのIssueなどを通じて教えて下さい．</p>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span> <span class="o">=</span> <span class="mi">500</span>
@@ -449,7 +449,7 @@ title="Print to PDF"
 <p>このデータを pygmt の <code class="docutils literal notranslate"><span class="pre">xyz2grd</span></code> を用いて grdデータにしてプロットしてみます．</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>2021年12月現在，<code class="docutils literal notranslate"><span class="pre">xyz2grd</span></code> はx, y, zそれぞれ1次元配列にしないと渡せません．そのため，<code class="docutils literal notranslate"><span class="pre">np.meshgrid()</span></code>と <code class="docutils literal notranslate"><span class="pre">ravel()</span></code> メソッドを通じて <code class="docutils literal notranslate"><span class="pre">nx</span> <span class="pre">*</span> <span class="pre">ny</span></code> サイズの1次元配列を作っています．</p>
+<p>2023年6月現在，<code class="docutils literal notranslate"><span class="pre">xyz2grd</span></code> はx, y, zそれぞれ1次元配列にしないと渡せません．そのため，<code class="docutils literal notranslate"><span class="pre">np.meshgrid()</span></code>と <code class="docutils literal notranslate"><span class="pre">ravel()</span></code> メソッドを通じて <code class="docutils literal notranslate"><span class="pre">nx</span> <span class="pre">*</span> <span class="pre">ny</span></code> サイズの1次元配列を作っています．</p>
 <p>もうすこしスッキリした書き方としては，<code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">z</span></code>の代わりにそれらがパッキングされた<code class="docutils literal notranslate"><span class="pre">data</span></code>リストを内包表記を用いて以下のように与える方法もあります．</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pygmt</span><span class="o">.</span><span class="n">xyz2grd</span><span class="p">(</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))]</span>
@@ -457,7 +457,6 @@ title="Print to PDF"
     <span class="p">)</span>
 </pre></div>
 </div>
-<p>ただし，この<a class="reference external" href="https://github.com/GenericMappingTools/pygmt/pull/1566">Issue</a>を見る限り，おそらく近い将来にもとの <code class="docutils literal notranslate"><span class="pre">x[1:nx]</span></code>, <code class="docutils literal notranslate"><span class="pre">y[1:ny]</span></code>, <code class="docutils literal notranslate"><span class="pre">z[1:nx,</span> <span class="pre">1:ny]</span></code> のデータを直接渡す事ができるようになりそう．そうすればもっと簡単にコードが書けるようになると思われます．</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -556,7 +555,7 @@ title="Print to PDF"
     <span class="n">z</span>       <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> 
     <span class="n">region</span>  <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">],</span> 
     <span class="n">spacing</span> <span class="o">=</span> <span class="s1">&#39;0.02/0.02&#39;</span><span class="p">,</span>
-    <span class="n">T</span>       <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># tension 値．マニュアルにはまだないが動く．無指定は0</span>
+    <span class="n">tension</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># 無指定は0</span>
 <span class="p">)</span>
 
 <span class="n">griddata_x</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">xyz2grd</span><span class="p">(</span>
@@ -585,7 +584,7 @@ title="Print to PDF"
     <span class="n">x</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> 
     <span class="n">y</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> 
     <span class="n">style</span> <span class="o">=</span> <span class="s1">&#39;c0.2c&#39;</span><span class="p">,</span> 
-    <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> 
+    <span class="n">fill</span>  <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> 
 <span class="p">)</span>
 
 <span class="c1"># 右にずれる</span>
@@ -607,7 +606,7 @@ title="Print to PDF"
     <span class="n">x</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> 
     <span class="n">y</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> 
     <span class="n">style</span> <span class="o">=</span> <span class="s1">&#39;c0.2c&#39;</span><span class="p">,</span> 
-    <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> 
+    <span class="n">fill</span>  <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> 
 <span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span>
@@ -624,8 +623,8 @@ title="Print to PDF"
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><code class="docutils literal notranslate"><span class="pre">pygmt.surface</span></code> は tension factor <span class="math notranslate nohighlight">\(t\)</span> という量で補間の状況をコントロールします．しかし，その値を指定するオリジナルのGMTの <code class="docutils literal notranslate"><span class="pre">-T</span></code> オプションが，まだ PyGMTの公式マニュアルには記載されていません．
-しかし，試みに <code class="docutils literal notranslate"><span class="pre">pygmt.surface{T</span> <span class="pre">=</span> <span class="pre">}</span></code> を実行したところ動作はするようです．</p>
+<p><code class="docutils literal notranslate"><span class="pre">pygmt.surface</span></code> は tension factor <span class="math notranslate nohighlight">\(t\)</span> という量で補間の状況をコントロールします．その値を指定するオリジナルのGMTの <code class="docutils literal notranslate"><span class="pre">-T</span></code> オプションは，v0.8.0までが正式には実装されていませんでしたが， <code class="docutils literal notranslate"><span class="pre">pygmt.surface{T</span> <span class="pre">=</span> <span class="pre">}</span></code> とすると動作する状態でした．この <code class="docutils literal notranslate"><span class="pre">T</span></code> はオリジナルのGMTの<code class="docutils literal notranslate"><span class="pre">surface</span></code>モジュールのオプション名です．</p>
+<p>v0.9.0から公式に <code class="docutils literal notranslate"><span class="pre">pygmt.surface</span></code> に GMTの<code class="docutils literal notranslate"><span class="pre">T</span></code>オプションに相当する<code class="docutils literal notranslate"><span class="pre">tension</span></code>オプションが実装されたようです．</p>
 </div>
 </section>
 </section>

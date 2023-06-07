@@ -112,7 +112,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="install.html">
-   環境構築
+   PyGMTの環境構築
   </a>
  </li>
  <li class="toctree-l1">
@@ -157,7 +157,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mech.html">
-   メカニズム解の表現
+   震源メカニズム解の表現
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="savefig.html">
+   画像の保存
   </a>
  </li>
  <li class="toctree-l1">
@@ -422,23 +427,21 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hypdata</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_japan_quakes</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/qw/cvrqp2fd6171t6js_gytd9_h0009rj/T/ipykernel_34275/3690005900.py:1: FutureWarning: This function has been deprecated since v0.6.0 and will be removed in v0.9.0. Please use load_sample_data(name=&#39;japan_quakes&#39;) instead.
-  hypdata = pygmt.datasets.load_japan_quakes()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hypdata</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_sample_data</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;japan_quakes&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>上記コマンドはデモンストレーション用のデータセットの読み込みの専用コマンドです．オンラインからデータを読み込むので多少時間がかかります．</p>
-<p>震源情報は，pandasのデータフレームとして変数 <code class="docutils literal notranslate"><span class="pre">data</span></code> に格納されます．ただしここではpandasの細かい利用法を意識する必要はありません．<code class="docutils literal notranslate"><span class="pre">print</span></code>してみると，ほどよく途中を省略してデータフレームの概略を表示してくれます．</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>PyGMTの0.6以上のバージョンでは，上記コマンドは<code class="docutils literal notranslate"><span class="pre">pygmt.datasets.load_sample_data(name='japan_quakes')</span></code>に置き換わっています．</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>このコマンドは PyGMT v0.5.0 までは</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">hypdata</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_japan_quakes</span><span class="p">()</span>
+</pre></div>
 </div>
+<p>でした．</p>
+</div>
+<p>震源情報は，pandasのデータフレームとして変数 <code class="docutils literal notranslate"><span class="pre">data</span></code> に格納されます．ただしここではpandasの細かい利用法を意識する必要はありません．<code class="docutils literal notranslate"><span class="pre">print</span></code>してみると，ほどよく途中を省略してデータフレームの概略を表示してくれます．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hypdata</span><span class="p">)</span>
@@ -489,7 +492,9 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pygmt-session [WARNING]: Remote dataset given to a data processing module but no registration was specified - default to gridline registration (if available)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>grdblend [NOTICE]: Remote data courtesy of GMT data server oceania [http://oceania.generic-mapping-tools.org]
+grdblend [NOTICE]: SRTM15 Earth Relief at 01x01 arc minutes reduced by Gaussian Cartesian filtering (1.9 km fullwidth) [Tozer et al., 2019].
+grdblend [NOTICE]:   -&gt; Download 30x30 degree grid tile (earth_relief_01m_g): N00E120
 </pre></div>
 </div>
 </div>
@@ -522,7 +527,7 @@ title="Print to PDF"
 <span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
     <span class="n">x</span>            <span class="o">=</span> <span class="n">hypdata</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>   <span class="c1"># 横軸データ</span>
     <span class="n">y</span>            <span class="o">=</span> <span class="n">hypdata</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span>    <span class="c1"># 縦軸データ</span>
-    <span class="n">color</span>        <span class="o">=</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span>               <span class="c1"># 塗りつぶし色の指定</span>
+    <span class="n">fill</span>         <span class="o">=</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span>            <span class="c1"># 塗りつぶし色の指定</span>
     <span class="n">style</span>        <span class="o">=</span> <span class="s1">&#39;c0.3c&#39;</span><span class="p">,</span>             <span class="c1"># 固定サイズの場合は (symbol)(size) 指定</span>
     <span class="n">pen</span>          <span class="o">=</span> <span class="s1">&#39;thinner,black&#39;</span><span class="p">,</span>     <span class="c1"># 縁取りのペン</span>
     <span class="n">transparency</span> <span class="o">=</span> <span class="mi">40</span>                   <span class="c1"># コマンド全体に影響する透明度設定</span>
@@ -533,7 +538,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/inf_on_map_9_0.png" src="_images/inf_on_map_9_0.png" />
+<img alt="_images/inf_on_map_8_0.png" src="_images/inf_on_map_8_0.png" />
 </div>
 </div>
 <p>この図では，<code class="docutils literal notranslate"><span class="pre">tranparency</span></code> オプションでプロットするデータの透明度を指定しています．数値が100に近いほど透明に近くなっていきます．<code class="docutils literal notranslate"><span class="pre">tranparency</span></code>オプションの代わりに，色名やRGB値に</p>
@@ -544,6 +549,10 @@ title="Print to PDF"
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p><code class="docutils literal notranslate"><span class="pre">transparency</span></code> オプションを <code class="docutils literal notranslate"><span class="pre">frame</span></code> を指定しているコマンドに付与すると，図の枠やラベルが半透明になってしまいます．半透明オプションの使い所には注意が必要です．</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><a class="reference internal" href="topo_map.html"><span class="doc std std-doc">地形段彩図の描画</span></a>ページでも紹介しましたが，最新のPyGMTでは <code class="docutils literal notranslate"><span class="pre">plot</span></code> 関数の色の塗りつぶしオプションが <code class="docutils literal notranslate"><span class="pre">color</span></code> から <code class="docutils literal notranslate"><span class="pre">fill</span></code> に変更となりました．</p>
 </div>
 </section>
 <section id="id4">
@@ -588,7 +597,7 @@ title="Print to PDF"
     <span class="n">pen</span>   <span class="o">=</span> <span class="s1">&#39;thinner,black&#39;</span><span class="p">,</span> 
     <span class="n">size</span>  <span class="o">=</span> <span class="mf">0.05</span> <span class="o">+</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">hypdata</span><span class="o">.</span><span class="n">magnitude</span><span class="p">),</span>  <span class="c1"># サイズ指定（cm）    </span>
     <span class="n">cmap</span>  <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>                                  <span class="c1"># カラーマップ利用</span>
-    <span class="n">color</span> <span class="o">=</span> <span class="n">hypdata</span><span class="o">.</span><span class="n">depth_km</span><span class="p">,</span>                      <span class="c1"># 深さデータに基づき色を判断</span>
+    <span class="n">fill</span>  <span class="o">=</span> <span class="n">hypdata</span><span class="o">.</span><span class="n">depth_km</span><span class="p">,</span>                      <span class="c1"># 深さデータに基づき色を判断</span>
 <span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span>
@@ -602,7 +611,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/inf_on_map_13_0.png" src="_images/inf_on_map_13_0.png" />
+<img alt="_images/inf_on_map_12_0.png" src="_images/inf_on_map_12_0.png" />
 </div>
 </div>
 </section>

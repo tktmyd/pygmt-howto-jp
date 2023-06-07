@@ -112,7 +112,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="install.html">
-   環境構築
+   PyGMTの環境構築
   </a>
  </li>
  <li class="toctree-l1">
@@ -157,7 +157,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mech.html">
-   メカニズム解の表現
+   震源メカニズム解の表現
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="savefig.html">
+   画像の保存
   </a>
  </li>
  <li class="toctree-l1">
@@ -400,11 +405,6 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pygmt-session [WARNING]: Remote dataset given to a data processing module but no registration was specified - default to gridline registration (if available)
-</pre></div>
-</div>
-</div>
 </div>
 <p>上記のコマンドで，<code class="docutils literal notranslate"><span class="pre">region</span></code> で指定した地域の地形を <code class="docutils literal notranslate"><span class="pre">resolution</span></code> の解像度で読み込み，左辺の変数（<code class="docutils literal notranslate"><span class="pre">grid_data</span></code>）に格納します．この変数を用いてあとで地形図を作成します．</p>
 <p><code class="docutils literal notranslate"><span class="pre">region</span></code>の指定方法は地図と同じです．省略した場合には全世界のグローバルデータが読み込まれます．</p>
@@ -488,7 +488,7 @@ title="Print to PDF"
 <span class="c1"># 距離スケールの背景のための領域</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">139</span><span class="p">,</span> <span class="mi">31</span><span class="p">],</span> <span class="p">[</span><span class="mi">145</span><span class="p">,</span><span class="mi">31</span><span class="p">],</span> <span class="p">[</span><span class="mi">145</span><span class="p">,</span><span class="mf">32.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">139</span><span class="p">,</span><span class="mf">32.5</span><span class="p">]],</span> 
-    <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span>
     <span class="n">transparency</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
     <span class="n">straight_line</span> <span class="o">=</span> <span class="kc">True</span>    
 <span class="p">)</span>
@@ -511,6 +511,10 @@ title="Print to PDF"
 <p>ここでは，見た目を向上させるテクニックを2つほど使っています．どちらもPyGMT以外の話題も含みますが，すこし詳しく解説しておきましょう．</p>
 <p>まず，単に <code class="docutils literal notranslate"><span class="pre">fig.grdimage</span></code> で色を塗るだけでなく，その上に海岸線を描画しています．さらに，この例で用いた <code class="docutils literal notranslate"><span class="pre">earth</span></code> カラーパレットは陸域と海域の差が目立たなかったため，<code class="docutils literal notranslate"><span class="pre">fig.coast</span></code> の <code class="docutils literal notranslate"><span class="pre">water</span></code> で透明度80%の黒色（<code class="docutils literal notranslate"><span class="pre">black&#64;80</span></code>）で海域を塗りつぶすことで，相対的に陸域が浮かび上がって見えるように工夫しています．色名のあとの<code class="docutils literal notranslate"><span class="pre">&#64;</span></code>は透明度指定で，100に近いほど透明度が高くなります．<code class="docutils literal notranslate"><span class="pre">water</span> <span class="pre">=</span> <span class="pre">'black&#64;80</span></code> の行をコメントアウトして実行してみると，その差が実感できるでしょう．ただし，このテクニックを使うともとの色を改変することになりますので，カラースケールを表示してもその色が正確ではなくなりますので，注意が必要です．</p>
 <p>一方，地図の距離スケール（<code class="docutils literal notranslate"><span class="pre">fig.pscoast</span></code>の<code class="docutils literal notranslate"><span class="pre">map-scale</span></code>オプション）をカラフルなカラーマップ上に描画すると，視認性がとても低くなってしまいます．そこで，<code class="docutils literal notranslate"><span class="pre">fig.plot()</span></code> で四角形の頂点を与え，半透明の白い「箱」を先に描画しています．これは順番が大事で，<code class="docutils literal notranslate"><span class="pre">fig.coast()</span></code>の<strong>前</strong>に予め箱を描画しておかないと，せっかくの地図スケールを塗りつぶしてしまうことになりかねません．<code class="docutils literal notranslate"><span class="pre">fig.plot()</span></code> には四隅の頂点を2次元配列として <code class="docutils literal notranslate"><span class="pre">data=</span></code> オプションに与えていますが，x軸とy軸の1次元配列を個別に <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> </code>, <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> </code> として与えることもできます．なお，地図上に頂点を指定してポリゴンを描画すると，デフォルトではその辺が地図上の大円経路に沿った線として描画されます．結果として，地図投影上は曲がった線に見えてしまいます．これを避けているのが<code class="docutils literal notranslate"> <span class="pre">straight_line</span> <span class="pre">=</span> <span class="pre">True</span></code> オプションです．</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><code class="docutils literal notranslate"><span class="pre">fig.plot()</span></code>のオプション <code class="docutils literal notranslate"><span class="pre">fill=</span></code> はその名のとおり塗りつぶしの色を指定するオプションですが，PyGMT v0.8.0 までは，このオプションは <code class="docutils literal notranslate"><span class="pre">color=</span></code> であったものが，オプション名の変更がなされたようです．ドキュメントによると，PyGMT v0.9.0 時点では <code class="docutils literal notranslate"><span class="pre">fill</span></code> でも <code class="docutils literal notranslate"><span class="pre">color</span></code> でも動作しますが，v0.12.0 以降では<code class="docutils literal notranslate"><span class="pre">color</span></code>オプションは動作しなくなる，と警告がでています．ご利用のバージョンに応じて読み替えてください．</p>
+</div>
 </section>
 </section>
 

@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://tktmyd.github.io/pygmt-howto-jp/pygmt.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="環境構築" href="install.html" />
+    <link rel="next" title="PyGMTの環境構築" href="install.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -111,7 +111,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="install.html">
-   環境構築
+   PyGMTの環境構築
   </a>
  </li>
  <li class="toctree-l1">
@@ -156,7 +156,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="mech.html">
-   メカニズム解の表現
+   震源メカニズム解の表現
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="savefig.html">
+   画像の保存
   </a>
  </li>
  <li class="toctree-l1">
@@ -422,7 +427,7 @@ title="Print to PDF"
 </section>
 <section id="id2">
 <h2>筆者について<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
-<p>筆者はそのへんの地震学研究者（大学教員）です．Pythonをはじめて触ったのはAI研究による流行が始まるより前の2007年ごろですが，それから10年以上のブランクを経て2021年頃から再びPythonを研究および業務に使い始めました．とはいえ，コンピュータ上の母国語はModern Fortranであり，Python巧者とはとても言えません．本ページを見て「もっと良い書き方がある」と思われたら，ぜひ<a class="reference external" href="https://github.com/tktmyd/pygmt-howto-jp">github</a>のIssueやPull Requestでご教示ください．本ページ上部のGitHubのアイコンからもたどれます．</p>
+<p>筆者は地震学研究者（大学教員）です．Pythonをはじめて触ったのはAI研究による流行が始まるより前の2007年ごろですが，それから10年以上のブランクを経て2021年頃から再びPythonを研究および業務に使い始めました．とはいえ，コンピュータ上の母国語はModern Fortranであり，Python巧者とはとても言えません．本ページを見て「もっと良い書き方がある」と思われたら，ぜひ<a class="reference external" href="https://github.com/tktmyd/pygmt-howto-jp">github</a>のIssueやPull Requestでご教示ください．本ページ上部のGitHubのアイコンからもたどれます．</p>
 </section>
 <section id="id3">
 <h2>改版履歴<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
@@ -447,6 +452,9 @@ title="Print to PDF"
 </tr>
 <tr class="row-even"><td><p>2022-06-28</p></td>
 <td><p>内容のさらなる分割，xyデータプロットの説明追加．</p></td>
+</tr>
+<tr class="row-odd"><td><p>2023-06-07</p></td>
+<td><p>PyGMT Version 0.9.0 に対応，ps2rasterの記載追加</p></td>
 </tr>
 </tbody>
 </table>
@@ -485,7 +493,7 @@ title="Print to PDF"
     <a class='right-next' id="next-link" href="install.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">環境構築</p>
+        <p class="prev-next-title">PyGMTの環境構築</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
