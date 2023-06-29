@@ -1,0 +1,600 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>アニメーション動画の作成 &#8212; pygmt-howto</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://tktmyd.github.io/pygmt-howto-jp/animation.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="License" href="license.html" />
+    <link rel="prev" title="震源メカニズム解の表現" href="mech.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">pygmt-howto</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="pygmt.html">
+                    PyGMT-HOWTO
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="install.html">
+   PyGMTの環境構築
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="basic_map.html">
+   PyGMT の基本
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="savefig.html">
+   画像の保存
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="topo_map.html">
+   地形段彩図の描画
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="xy.html">
+   xyグラフの描画
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inf_on_map.html">
+   地図上への情報描画
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mesh.html">
+   メッシュデータの扱い
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="config.html">
+   GMTの微調整
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="timeseries.html">
+   時系列の扱い
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="obspy.html">
+   Obspyとの連携
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mech.html">
+   震源メカニズム解の表現
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   アニメーション動画の作成
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="license.html">
+   License
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/tktmyd/pygmt-howto-jp/master?urlpath=tree/docs/animation.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/tktmyd/pygmt-howto-jp"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/animation.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>アニメーション動画の作成</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>アニメーション動画の作成<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<p>連番の画像を作ることで，それらを結合した動画を作成することができます．本家GMTではシェルスクリプトによるループを自力で作成するほか，<code class="docutils literal notranslate"><span class="pre">gmt</span> <span class="pre">movie</span></code> という<a class="reference external" href="https://docs.generic-mapping-tools.org/latest/movie.html">モジュール</a> があります．PyGMTへの<code class="docutils literal notranslate"><span class="pre">gmt</span> <span class="pre">movie</span></code>モジュールの移植はv0.9.0時点でまだ実現していないようでが，Pythonのループを使えば，簡単に連番画像を作成することができます．</p>
+<p>ここでは，1枚の画像を作る関数を <code class="docutils literal notranslate"><span class="pre">for</span></code> ループでパラメタを変えながら実行して画像保存する方法を一例として紹介します．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>まず，画像の作成です．ここでは簡単な三角関数のグラフを，波が伝播しているかのように横に平行移動させていくことにしましょう．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_fig</span><span class="p">(</span><span class="n">phi</span><span class="p">):</span>
+    
+    <span class="sd">&quot;&quot;&quot; 初期位相 `phi` の sin カーブを描画する．&quot;&quot;&quot;</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">201</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">phi</span><span class="p">)</span>
+    
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+    
+    <span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">region</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">],</span> <span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;X10c/4c&#39;</span><span class="p">,</span> 
+             <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> 
+             <span class="n">pen</span> <span class="o">=</span> <span class="s1">&#39;thick,200/110/30&#39;</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WS&#39;</span><span class="p">,</span> <span class="s1">&#39;xaf&#39;</span><span class="p">,</span> <span class="s1">&#39;yaf&#39;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>これを単独で実行すると，以下のようになります．<code class="docutils literal notranslate"><span class="pre">plot_fig()</span></code>関数はPyGMTの<code class="docutils literal notranslate"><span class="pre">fig</span></code>オブジェクトを返すため，<code class="docutils literal notranslate"><span class="pre">.show()</span></code>メソッドにより画像を表示させています．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_fig</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> <span class="c1">#  0.0の場合</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/animation_6_0.png" src="_images/animation_6_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_fig</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> <span class="c1"># π/2の場合</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/animation_7_0.png" src="_images/animation_7_0.png" />
+</div>
+</div>
+<p>たしかに引数の初期位相を変えるとグラフが平行移動している様子がわかります．
+それでは，これをループにして少しずつ初期位相を変えつつ，連番のファイルにしていきます．</p>
+<p>動画化には <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code> というツールを使います．このツールで連番ファイルから動画を作る際には，連番の桁数を揃えなければなりません．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 初期位相のリスト</span>
+<span class="n">phi0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># 画像保存先の一時ディレクトリ作成</span>
+<span class="n">tmpdir</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">()</span>
+
+<span class="c1"># enumerateを使って，初期位相の値＋0からの連番を取り出す．</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">phi</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">phi0</span><span class="p">):</span>
+    
+    <span class="n">f</span> <span class="o">=</span> <span class="n">plot_fig</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span> <span class="c1">#画像プロット</span>
+
+    <span class="c1"># f文字列を使って連番を3桁整数の文字列に</span>
+    <span class="n">figname</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;plot_</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s1">03d</span><span class="si">}</span><span class="s1">.png&#39;</span> 
+    <span class="n">f</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tmpdir</span><span class="p">,</span> <span class="n">figname</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>説明はほぼコメントに書いてあるとおりですが，まず画像を動かすパラメタである初期位相のリストを作り，また同時に画像保存先の一時ディレクトリを作成しておきます．手動でディレクトリ名を指定してもよいのですが，ここでは<code class="docutils literal notranslate"><span class="pre">tmpfile.mkdtemp()</span></code>関数を使いました．この関数は，乱数を使った名前の適当なディレクトリを作成し，そのディレクトリ名を返してくれます．確認してみましょう．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">tmpdir</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/qw/cvrqp2fd6171t6js_gytd9_h0009rj/T/tmplof855wg
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> ls <span class="nv">$tmpdir</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plot_000.png plot_017.png plot_034.png plot_051.png plot_068.png plot_085.png
+plot_001.png plot_018.png plot_035.png plot_052.png plot_069.png plot_086.png
+plot_002.png plot_019.png plot_036.png plot_053.png plot_070.png plot_087.png
+plot_003.png plot_020.png plot_037.png plot_054.png plot_071.png plot_088.png
+plot_004.png plot_021.png plot_038.png plot_055.png plot_072.png plot_089.png
+plot_005.png plot_022.png plot_039.png plot_056.png plot_073.png plot_090.png
+plot_006.png plot_023.png plot_040.png plot_057.png plot_074.png plot_091.png
+plot_007.png plot_024.png plot_041.png plot_058.png plot_075.png plot_092.png
+plot_008.png plot_025.png plot_042.png plot_059.png plot_076.png plot_093.png
+plot_009.png plot_026.png plot_043.png plot_060.png plot_077.png plot_094.png
+plot_010.png plot_027.png plot_044.png plot_061.png plot_078.png plot_095.png
+plot_011.png plot_028.png plot_045.png plot_062.png plot_079.png plot_096.png
+plot_012.png plot_029.png plot_046.png plot_063.png plot_080.png plot_097.png
+plot_013.png plot_030.png plot_047.png plot_064.png plot_081.png plot_098.png
+plot_014.png plot_031.png plot_048.png plot_065.png plot_082.png plot_099.png
+plot_015.png plot_032.png plot_049.png plot_066.png plot_083.png
+plot_016.png plot_033.png plot_050.png plot_067.png plot_084.png
+</pre></div>
+</div>
+</div>
+</div>
+<p>たしかにディレクトリが作られ，その中に画像が100枚できています．</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">mkdtemp()</span></code>が返すディレクトリの場所は，Pythonやそれを動かすOSによって異なります．自分で設定することもできます．</p>
+</div>
+<p>作成された画像から動画を作成するには，コマンドラインから <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code>を使います．ここでは <code class="docutils literal notranslate"><span class="pre">gif</span></code> アニメーションと<code class="docutils literal notranslate"><span class="pre">mp4</span></code> 形式の動画を作成してみましょう．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span> -s &quot;$tmpdir&quot; 
+ffmpeg -i &quot;$1/plot_%3d.png&quot; \
+  -vf &quot;scale=800:-1,split [a][b];[a] palettegen [p];[b][p] paletteuse&quot; \
+  -y out.gif \
+  &gt; /dev/null 2&gt;&amp;1 
+</pre></div>
+</div>
+</div>
+</div>
+<p>ここでは，いくつかのテクニックを使っています．</p>
+<p>まず，Jupyter Notebookの cell magic で，<code class="docutils literal notranslate"><span class="pre">%%bash</span></code>を Pythonセルの最初に記載しておくと，そのセル内は bashのコマンドとして実行される，という機能を使っています．そこに <code class="docutils literal notranslate"><span class="pre">-s</span></code> オプションで，Pythonの <code class="docutils literal notranslate"><span class="pre">tmpdir</span></code> 変数を <code class="docutils literal notranslate"><span class="pre">&quot;$tmpdir&quot;</span></code> として与えました．すると，あたかもこの変数の中身（一時ディレクトリの名前）が，シェルスクリプトの実行時第一引数のように扱われます．つまり，<code class="docutils literal notranslate"><span class="pre">$1</span></code> というシェル変数で利用できるのです．</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>そんな面倒なことをするくらいならUnixコマンドラインで直接ffmpegを実行する，というやりかたもあるでしょう．</p>
+</div>
+<p>ffmpeg は <code class="docutils literal notranslate"><span class="pre">-i</span></code> オプションで入力ファイルを，コマンドラインの最後に出力ファイル名を書きます．動画形式は出力ファイル名の拡張子からある程度判断されます．その直前にある<code class="docutils literal notranslate"><span class="pre">-y</span></code>は，出力ファイルがすでにあるときに確認をせずに上書きするためのオプションです．Jupyter Notebook上でbashコマンドを扱うときには，対話的な実行は難しいようなので，このオプションを使っています．</p>
+<p>入力と出力の間にある <code class="docutils literal notranslate"><span class="pre">-vf</span></code> からなる行は，出力される画像サイズを指定（<code class="docutils literal notranslate"><span class="pre">scale=800:-1</span></code> で横幅を800pxにしつつ縦横比を維持）するほか，256色しか使えないgifアニメーションを綺麗に出力するためのカラーパレットという機能を用いています．</p>
+<p>最終行は<code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code>からの標準エラー出力が大量に出てくるため，それらを捨てるリダイレクションです．</p>
+<p>この結果，以下のような動画が作成できました．ちょうどループするように調整して作成したので，延々と波が動いているように見えます．</p>
+<p><img alt="" src="_images/out.gif" /></p>
+<p>一方，<code class="docutils literal notranslate"><span class="pre">mp4</span></code>形式の動画を作成するには，たとえば以下のようにします．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span> -s &quot;$tmpdir&quot; 
+ffmpeg -i &quot;$1/plot_%3d.png&quot; \
+  -vf scale=800:-1 -qscale 0 -pix_fmt yuv420p \
+  -y out.mp4 \
+  &gt; /dev/null 2&gt;&amp;1
+</pre></div>
+</div>
+</div>
+</div>
+<p>すると，以下のような動画が作成されるはずです．mp4の場合には<code class="docutils literal notranslate"><span class="pre">-qscale</span> <span class="pre">0</span></code> オプションを付けておくとクオリティを劣化させずに動画にできます．</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="800"
+    height="400"
+    src="https://www.youtube.com/embed/rlLIwSc3_YI"
+    frameborder="0"
+    allowfullscreen
+
+></iframe>
+</div></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>ここでは，<code class="docutils literal notranslate"><span class="pre">tempdir</span></code>は作成しっぱなしで，その中身のファイルは削除されません．実際には，このようにシステムの一時ディレクトリ置き場に作られたものは，OSのシステムによって一定期間経つと自動的に削除されるようです．</p>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="mech.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">震源メカニズム解の表現</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="license.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">License</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By <a href="https://tktmyd.github.io">Takuto Maeda</a><br/>
+  
+      &copy; Copyright 2021-2022. All Rights Reserved.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

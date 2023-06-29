@@ -15,4 +15,5 @@ chapters:
 - file: timeseries
 - file: obspy
 - file: mech
+- file: animation
 - file: license
