@@ -45,7 +45,7 @@ conda update conda
 ```bash
 conda create --name pygmt-howto-v0.9 --channel conda-forge \
 pygmt==0.9.0 gmt==6.4.0 numpy==1.24.3 scipy==1.10.1 \
-obspy==1.4.0 notebook==6.5.4 matplotlib==3.7.1
+obspy==1.4.0 notebook==6.5.4 matplotlib==3.7.1 ffmpeg==4.4.2
 ```
 
 ```{note}

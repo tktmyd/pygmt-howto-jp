@@ -453,7 +453,7 @@ title="Print to PDF"
 <p>このままデフォルトの環境にパッケージを追加していってもよいのですが，ここではPyGMT用の<strong>仮想環境</strong>を作成します．このようにすると，パッケージ間のバージョン不整合などのトラブルがあったときに，仮想環境ごと切り替えるということが可能になります．ここでは，本Webサイトで利用するパッケージをまるごと導入する仮想環境<code class="docutils literal notranslate"><span class="pre">pygmt</span></code>を作ってみましょう．ここでは，2023年6月時点で最新となるPyGMT v0.9.0と，GMT v6.4.0 を導入します．</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name pygmt-howto-v0.9 --channel conda-forge <span class="se">\</span>
 <span class="nv">pygmt</span><span class="o">==</span><span class="m">0</span>.9.0 <span class="nv">gmt</span><span class="o">==</span><span class="m">6</span>.4.0 <span class="nv">numpy</span><span class="o">==</span><span class="m">1</span>.24.3 <span class="nv">scipy</span><span class="o">==</span><span class="m">1</span>.10.1 <span class="se">\</span>
-<span class="nv">obspy</span><span class="o">==</span><span class="m">1</span>.4.0 <span class="nv">notebook</span><span class="o">==</span><span class="m">6</span>.5.4 <span class="nv">matplotlib</span><span class="o">==</span><span class="m">3</span>.7.1
+<span class="nv">obspy</span><span class="o">==</span><span class="m">1</span>.4.0 <span class="nv">notebook</span><span class="o">==</span><span class="m">6</span>.5.4 <span class="nv">matplotlib</span><span class="o">==</span><span class="m">3</span>.7.1 <span class="nv">ffmpeg</span><span class="o">==</span><span class="m">4</span>.4.2
 </pre></div>
 </div>
 <div class="admonition note">
