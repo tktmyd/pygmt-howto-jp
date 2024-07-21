@@ -1,106 +1,171 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+
+<html lang="en" data-content_root="./" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>PyGMTの環境構築 &#8212; pygmt-howto</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'install';</script>
     <link rel="canonical" href="https://tktmyd.github.io/pygmt-howto-jp/install.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="PyGMT の基本" href="basic_map.html" />
     <link rel="prev" title="PyGMT-HOWTO" href="pygmt.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">pygmt-howto</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+  
+    
+  
+
+<a class="navbar-brand logo" href="pygmt.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pygmt-howto</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -110,428 +175,272 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   PyGMTの環境構築
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="basic_map.html">
-   PyGMT の基本
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="savefig.html">
-   画像の保存
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="topo_map.html">
-   地形段彩図の描画
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="xy.html">
-   xyグラフの描画
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="inf_on_map.html">
-   地図上への情報描画
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="mesh.html">
-   メッシュデータの扱い
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="config.html">
-   GMTの微調整
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="timeseries.html">
-   時系列の扱い
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="obspy.html">
-   Obspyとの連携
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="mech.html">
-   震源メカニズム解の表現
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="animation.html">
-   アニメーション動画の作成
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="license.html">
-   License
-  </a>
- </li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">PyGMTの環境構築</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_map.html">PyGMT の基本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="savefig.html">画像の保存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topo_map.html">地形段彩図の描画</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xy.html">xyグラフの描画</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inf_on_map.html">地図上への情報描画</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mesh.html">メッシュデータの扱い</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">GMTの微調整</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timeseries.html">時系列の扱い</a></li>
+<li class="toctree-l1"><a class="reference internal" href="obspy.html">Obspyとの連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mech.html">震源メカニズム解の表現</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animation.html">アニメーション動画の作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
-          
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
 
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
 <div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
     </div>
-    <div class="header-article__right">
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/tktmyd/pygmt-howto-jp" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-<a href="https://github.com/tktmyd/pygmt-howto-jp"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="bottom"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fab fa-github"></i>
   </span>
 
 </a>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/install.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/install.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="btn__text-container">.md</span>
 </a>
-
-      </li>
+</li>
+      
+      
+      
       
       <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
   </span>
-<span class="headerbtn__text-container">.pdf</span>
+<span class="btn__text-container">.pdf</span>
 </button>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
   </span>
 
-</label>
+</button>
 
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#anaconda-miniconda">
-   Anaconda （Miniconda）によるインストール
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#miniconda">
-     Minicondaのインストール
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     仮想環境の作成とPyGMTのインストール
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     過去のバージョンのインストールスクリプト
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#pygmt-v0-5-0-gmt-6-2-0">
-       PyGMT v0.5.0 と GMT 6.2.0
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pip">
-   （参考）pip によるインストール
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>PyGMTの環境構築</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#anaconda-miniconda">
-   Anaconda （Miniconda）によるインストール
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#miniconda">
-     Minicondaのインストール
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     仮想環境の作成とPyGMTのインストール
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     過去のバージョンのインストールスクリプト
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#pygmt-v0-5-0-gmt-6-2-0">
-       PyGMT v0.5.0 と GMT 6.2.0
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pip">
-   （参考）pip によるインストール
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>PyGMTの環境構築</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anacondaminiforge">Anacondaライセンス問題とMiniforgeの利用</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#miniconda">Minicondaのインストール</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">仮想環境の作成とPyGMTのインストール</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="pygmt">
-<h1>PyGMTの環境構築<a class="headerlink" href="#pygmt" title="Permalink to this headline">#</a></h1>
+<h1>PyGMTの環境構築<a class="headerlink" href="#pygmt" title="Link to this heading">#</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>本セクションの記述は<a class="reference external" href="https://www.apple.com/jp/macos/ventura/">macOS Ventura</a>およびLinuxディストリビューションの一種である<a class="reference external" href="https://jp.ubuntu.com">Ubuntu</a> 22.04LTSで動作確認しています．Windows OSへの直接インストールは，筆者がWindowsの使い方を知らないため記載していません．ただし，Windowsにおいても<a class="reference external" href="https://docs.microsoft.com/ja-jp/windows/wsl/install">WSL2</a>を用いることでUbuntuをはじめとしたLinuxディストリビューションを容易に利用可能なはずです．</p>
+<p>本セクションの記述は<a class="reference external" href="https://www.apple.com/jp/macos/sonoma/">macOS Sonoma</a>およびLinuxディストリビューションの一種である<a class="reference external" href="https://jp.ubuntu.com">Ubuntu</a> 24.04LTSで動作確認しています．Windows OSへの直接インストールは，筆者がWindowsの使い方を知らないため記載していません．ただし，Windowsにおいても<a class="reference external" href="https://docs.microsoft.com/ja-jp/windows/wsl/install">WSL2</a>を用いることでUbuntuをはじめとしたLinuxディストリビューションを容易に利用可能なはずです．</p>
 </div>
 <p>PyGMTを使うための環境構築には，Pythonのパッケージ管理システムである</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.anaconda.com">Anaconda（Miniconda）</a></p></li>
+<li><p><a class="reference external" href="https://www.anaconda.com">conda</a></p></li>
 <li><p><a class="reference external" href="https://www.python.jp/install/windows/pip.html">pip</a></p></li>
 </ul>
 <p>のどちらかを使います．原理的には自分でソースコードから構築することもできるはずですが，PyGMTはそれを動作させるための依存ライブラリが非常に多いため，パッケージ管理システムを使うことを勧めます．</p>
-<p>pipはPythonに付属したツールで，Python上で用いるライブラリの管理を行うものである一方，AnacondaはPythonの処理系自体を含むパッケージで，Pythonのみならずそれに（広い意味で）関連した様々なツールのインストールができます．</p>
-<p>どちらを使うかは好みの問題だと思いますが，Anaconda（Miniconda）のほうが容易に環境が構築できるようです．一方，Anacondaはライセンスの扱いにやや注意が必要です．</p>
-<section id="anaconda-miniconda">
-<h2>Anaconda （Miniconda）によるインストール<a class="headerlink" href="#anaconda-miniconda" title="Permalink to this headline">#</a></h2>
-<p>Anacondaは科学技術計算に必要なライブラリが多く含まれたPython実行環境とそのパッケージ管理システムからなるソフトウェアです．Anacondaをインストールするだけで一通りの計算環境が揃うため便利なものだったのですが，2020年4月より利用規約が<a class="reference external" href="https://www.anaconda.com/blog/sustaining-our-stewardship-of-the-open-source-data-science-community">改定</a>となり，大規模な商用利用は有償になりました．ただし，<a class="reference external" href="https://www.anaconda.com/blog/anaconda-commercial-edition-faq">FAQ</a>によると大学関係者や非商用利用に関してはこの条件が適用されないと明記されています．さらに，有償になるのはパッケージ管理の<code class="docutils literal notranslate"><span class="pre">default</span></code>のリポジトリであり，コミュニティで作成されているリポジトリであるconda-forgeの利用については制限がなことが<a class="reference external" href="https://conda-forge.org/blog/posts/2020-11-20-anaconda-tos/">明言</a>されているようです．</p>
-<p>そこで，ここではPythonおよびパッケージ管理コマンドの<code class="docutils literal notranslate"><span class="pre">conda</span></code>を含む最小限のパッケージであるMinicondaを導入し，そこから<code class="docutils literal notranslate"><span class="pre">conda-forge</span></code>のリポジトリを使って環境の構築をする方法を紹介します．Minicondaは<a class="reference external" href="https://www.anaconda.com/end-user-license-agreement-miniconda">有償ではない</a>ため，この方法ならどなたでも自由に使えるはずです（と，筆者は理解しています）．</p>
+<p>pipはPythonに付属したツールで，Python上で用いるライブラリの管理を行うものである一方，condaはPythonの処理系自体を含むパッケージで，Pythonのみならずそれに（広い意味で）関連した様々なツールのインストールができます．</p>
+<p>どちらを使うかは好みの問題だと思いますが，condaのほうが容易に環境が構築できるようです．ただし，condaはライセンスまわりにやや注意が必要です．</p>
+<section id="anacondaminiforge">
+<h2>Anacondaライセンス問題とMiniforgeの利用<a class="headerlink" href="#anacondaminiforge" title="Link to this heading">#</a></h2>
+<p>Anacondaは科学技術計算に必要なライブラリが多く含まれたPython実行環境とそのパッケージ管理システムからなるソフトウェアです．Anacondaをインストールするだけで一通りの計算環境が揃うため便利なものだったのですが，2020年4月より利用規約が<a class="reference external" href="https://www.anaconda.com/blog/sustaining-our-stewardship-of-the-open-source-data-science-community">改定</a>となり，大規模な商用利用は有償になりました．その時点では大学関係者や非商用利用に関してはこの条件は適用されないと<a class="reference external" href="https://www.anaconda.com/blog/anaconda-commercial-edition-faq">明記されていた</a>のですが，その後さらにライセンス条件が変更され，事実上Anacondaの無償利用は困難な状況になったようです．</p>
+<p>そこで，ここではPythonおよびパッケージ管理コマンドの<code class="docutils literal notranslate"><span class="pre">conda</span></code>を含むコミュニティベースのパッケージ管理システムである<a class="reference external" href="https://github.com/conda-forge/miniforge">miniforge</a>を利用し，PyGMTの環境を構築します．</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>以前，このページでは<a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a>とコミュニティベースのリポジトリである <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> の利用を推奨し，その方法について説明していました．しかしMinicondaはデフォルトの状態ではAnaconda本体のリポジトリを利用する設定となっているため，そのままでは無償利用のライセンスに抵触するおそれがあります．そこで，今後はコミュニティリポジトリの<code class="docutils literal notranslate"><span class="pre">conda-forge</span></code>をデフォルトで使いつつ，従来の<code class="docutils literal notranslate"><span class="pre">conda</span></code>と同じ使い方のできるMiniforgeの利用を推奨します．</p>
+</div>
 <section id="miniconda">
-<h3>Minicondaのインストール<a class="headerlink" href="#miniconda" title="Permalink to this headline">#</a></h3>
-<p><a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">公式ページ</a>で配布されているインストーラを使います．OSとCPUアーキテクチャごとにインストーラが異なります．また，macOSではダブルクリックでGUIインストールができる（と思われる；未確認）pkg形式と，Linuxと同じシェルスクリプトによるインストーラが提供されています．ここではシェルスクリプトを用います．アーキテクチャが色々あって迷うかもしれませんが，macOSのCPUは，Appleメニュー（デスクトップ左上のリンゴマーク）の『このMacについて』を選ぶと，『プロセッサ』の欄に記載されていますので，そこに<code class="docutils literal notranslate"><span class="pre">Intel</span></code>とあるかどうかで判断できるでしょう．Linuxの場合は（ARM製のCPUを用いたスパコンなど以外では）まず間違いなく<code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">64-bit</span></code>でしょう．</p>
-<p>スクリプトをダウンロードしたら，端末（macOSならターミナル.appなど，Linuxならgnome-terminalなど）からそのスクリプトを</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash <span class="k">$(</span>スクリプト名<span class="k">)</span>
+<h3>Minicondaのインストール<a class="headerlink" href="#miniconda" title="Link to this heading">#</a></h3>
+<p>まずは適当なディレクトリで，miniforgeをダウンロードします．ここでは<code class="docutils literal notranslate"><span class="pre">curl</span></code>コマンドを使った例を示します．</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>curl<span class="w"> </span>-L<span class="w"> </span>-O<span class="w"> </span><span class="s2">&quot;https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-</span><span class="k">$(</span>uname<span class="k">)</span><span class="s2">-</span><span class="k">$(</span>uname<span class="w"> </span>-m<span class="k">)</span><span class="s2">.sh&quot;</span>
 </pre></div>
 </div>
-<p>として実行し，対話的にy/nを選んでいくことでインストールできます．その際，インストール先も指定できます．デフォルトは<code class="docutils literal notranslate"><span class="pre">~/miniconda3</span></code>のはずです．ただし<code class="docutils literal notranslate"><span class="pre">~</span></code>は自分のホームディレクトリを意味します．インストール時にnoと答えていなければ，自分のシェル設定ファイル（<code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>あるいは<code class="docutils literal notranslate"><span class="pre">.zshrc</span></code>）に<code class="docutils literal notranslate"><span class="pre">conda</span></code>コマンドを実行するための初期設定が書き込まれます．これにより，次回端末（あるいはシェル）起動時より，ターミナルのプロンプトに <code class="docutils literal notranslate"><span class="pre">(base)</span></code> と記載されるはずです．これはAnacondaの提供する仮想環境のうち，デフォルトの環境であることを意味します．</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>行頭の <code class="docutils literal notranslate"><span class="pre">$</span></code> はシェルのプロンプトです．コマンドそのものには含まれませんのでご注意ください．</p>
+</div>
+<p>ダウンロードしたら，そのスクリプトを <code class="docutils literal notranslate"><span class="pre">bash</span></code> コマンドで実行します．</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>bash<span class="w"> </span>Miniforge3-<span class="k">$(</span>uname<span class="k">)</span>-<span class="k">$(</span>uname<span class="w"> </span>-m<span class="k">)</span>.sh
+</pre></div>
+</div>
+<p>あとは対話的にy/nを選んでいくことでインストールできます．その際，インストール先も指定できます．デフォルトは<code class="docutils literal notranslate"><span class="pre">~/miniforge3</span></code>のはずです．ただし<code class="docutils literal notranslate"><span class="pre">~</span></code>は自分のホームディレクトリを意味します．インストール時にnoと答えていなければ，自分のシェル設定ファイル（<code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>あるいは<code class="docutils literal notranslate"><span class="pre">.zshrc</span></code>）に<code class="docutils literal notranslate"><span class="pre">conda</span></code>コマンドを実行するための初期設定が書き込まれます．これにより，次回端末（あるいはシェル）起動時より，ターミナルのプロンプトに <code class="docutils literal notranslate"><span class="pre">(base)</span></code> と記載されるはずです．</p>
 <p>これでインストール作業は終わりですが，<code class="docutils literal notranslate"><span class="pre">conda</span></code>自体を最新版にアップデートしておきましょう．</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda update conda
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>update<span class="w"> </span>conda
 </pre></div>
 </div>
 </section>
 <section id="id1">
-<h3>仮想環境の作成とPyGMTのインストール<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3>仮想環境の作成とPyGMTのインストール<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>このままデフォルトの環境にパッケージを追加していってもよいのですが，ここではPyGMT用の<strong>仮想環境</strong>を作成します．このようにすると，パッケージ間のバージョン不整合などのトラブルがあったときに，仮想環境ごと切り替えるということが可能になります．ここでは，本Webサイトで利用するパッケージをまるごと導入する仮想環境<code class="docutils literal notranslate"><span class="pre">pygmt</span></code>を作ってみましょう．ここでは，2023年6月時点で最新となるPyGMT v0.9.0と，GMT v6.4.0 を導入します．</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name pygmt-howto-v0.9 --channel conda-forge <span class="se">\</span>
-<span class="nv">pygmt</span><span class="o">==</span><span class="m">0</span>.9.0 <span class="nv">gmt</span><span class="o">==</span><span class="m">6</span>.4.0 <span class="nv">numpy</span><span class="o">==</span><span class="m">1</span>.24.3 <span class="nv">scipy</span><span class="o">==</span><span class="m">1</span>.10.1 <span class="se">\</span>
-<span class="nv">obspy</span><span class="o">==</span><span class="m">1</span>.4.0 <span class="nv">notebook</span><span class="o">==</span><span class="m">6</span>.5.4 <span class="nv">matplotlib</span><span class="o">==</span><span class="m">3</span>.7.1 <span class="nv">ffmpeg</span><span class="o">==</span><span class="m">4</span>.4.2
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>pygmt-howto-v0.12<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="nv">pygmt</span><span class="o">==</span><span class="m">0</span>.12.0<span class="w"> </span>gmt<span class="w"> </span>numpy<span class="w"> </span>scipy<span class="w"> </span><span class="nv">obspy</span><span class="o">==</span><span class="m">1</span>.4.1<span class="w"> </span>notebook<span class="w"> </span>matplotlib<span class="w"> </span>ffmpeg
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>コマンドが長いため <code class="docutils literal notranslate"><span class="pre">\</span></code>で適宜改行しています．仮想環境の名前 <code class="docutils literal notranslate"><span class="pre">pygmt-howto</span></code> はお好みで適宜変更するとよいでしょう．</p>
 </div>
-<p>上記のコマンドでは，まず <code class="docutils literal notranslate"><span class="pre">--name</span></code> オプションで仮想環境の名前を，<code class="docutils literal notranslate"><span class="pre">--channel</span></code> オプションでパッケージのリポジトリとして <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> の利用をそれぞれ宣言し，そのあとでインストールする各種パッケージとそのバージョンを <code class="docutils literal notranslate"><span class="pre">==</span></code> でつないで表現しています．PyGMTのほか，科学技術計算に必要なNumPyやSciPy，地震学データ解析に用いるObsPy，実行環境としてJupyter Notebook(<code class="docutils literal notranslate"><span class="pre">notebook</span></code>がそれにあたります）などをインストールしています．</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>なお，まだ本Webで扱われていないパッケージも一部含まれていますが，今後記事を拡張予定です．</p>
-</div>
+<p>上記のコマンドでは，まず <code class="docutils literal notranslate"><span class="pre">--name</span></code> オプションで仮想環境の名前を宣言し，そのあとでインストールする各種パッケージと必要に応じてそのバージョンを <code class="docutils literal notranslate"><span class="pre">==</span></code> でつないで表現しています．PyGMTのほか，科学技術計算に必要なNumPyやSciPy，地震学データ解析に用いるObsPy，実行環境としてJupyter Notebook(<code class="docutils literal notranslate"><span class="pre">notebook</span></code>がそれにあたります）などをインストールしています．</p>
 <p>上記コマンドからわかるように，<code class="docutils literal notranslate"><span class="pre">conda</span></code>ではPythonのライブラリだけではなく，GMTそのものもインストールされます．ですから，GMTを別途インストールしておく必要はありません．また，Python本体も指定したバージョンのものがインストールされます．ライブラリやPythonのバージョン番号は指定しなければ最新版が入ります．</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>これらのライブラリや実行バイナリは，<code class="docutils literal notranslate"><span class="pre">miniconda</span></code> のインストールディレクトリ下の <code class="docutils literal notranslate"><span class="pre">envs</span></code> ディレクトリに格納されます<code class="docutils literal notranslate"><span class="pre">miniconda</span></code>をデフォルトでホームディレクトリにインストールしている場合，容量の増大にはご注意ください．</p>
+<p>これらのライブラリや実行バイナリは，<code class="docutils literal notranslate"><span class="pre">miniforge</span></code> のインストールディレクトリ下の <code class="docutils literal notranslate"><span class="pre">envs</span></code> ディレクトリに格納されます．<code class="docutils literal notranslate"><span class="pre">miniforge</span></code>をデフォルトでホームディレクトリにインストールしている場合，容量の増大にはご注意ください．</p>
 </div>
 <p>インストールが完了したら</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate pygmt-howto-v0.9
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>pygmt-howto-v0.12
 </pre></div>
 </div>
-<p>により仮想環境を有効化します．すると，プロンプトの左側の <code class="docutils literal notranslate"><span class="pre">(base)</span></code> が仮想環境の名前 <code class="docutils literal notranslate"><span class="pre">(pygmt-howto)</span></code> に変わります．もしいつでもこの環境を使いたいならば，シェルの初期設定ファイル（<code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> あるいは <code class="docutils literal notranslate"><span class="pre">.zshrc</span></code> など）に上記の <code class="docutils literal notranslate"><span class="pre">activate</span></code> コマンドを記載しておくとよいでしょう．</p>
+<p>により仮想環境を有効化します．すると，プロンプトの左側の <code class="docutils literal notranslate"><span class="pre">(base)</span></code> が仮想環境の名前 <code class="docutils literal notranslate"><span class="pre">(pygmt-howto-v0.12)</span></code> に変わります．もしいつでもこの環境を使いたいならば，シェルの初期設定ファイル（<code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> あるいは <code class="docutils literal notranslate"><span class="pre">.zshrc</span></code> など）に上記の <code class="docutils literal notranslate"><span class="pre">activate</span></code> コマンドを記載しておくとよいでしょう．</p>
 <p>一方，仮想環境から抜けるには</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda deactivate
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>deactivate
 </pre></div>
 </div>
 <p>です．もしこの仮想環境が不要になって削除したいときは，仮想環境から<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">deactivate</span></code> した状態で</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda remove -n pygmt-howto-v0.9 --all
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>remove<span class="w"> </span>-n<span class="w"> </span>pygmt-howto-v0.12<span class="w"> </span>--all
 </pre></div>
 </div>
 <p>とします．</p>
 </section>
-<section id="id2">
-<h3>過去のバージョンのインストールスクリプト<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
-<p>PyGMTはかなり活発に開発が続いており，頻繁なバージョンアップがあります．参考のため，このPyGMT-HowToページた以前紹介していた過去バージョンのインストール法もアーカイブとして残しておきます．これから新たにインストールするのであれば，前節のインストールスクリプトを参考にしてください．</p>
-<section id="pygmt-v0-5-0-gmt-6-2-0">
-<h4>PyGMT v0.5.0 と GMT 6.2.0<a class="headerlink" href="#pygmt-v0-5-0-gmt-6-2-0" title="Permalink to this headline">#</a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name pygmt-howto --channel conda-forge <span class="se">\</span>
-<span class="nv">python</span><span class="o">==</span><span class="m">3</span>.10.5 <span class="nv">pygmt</span><span class="o">==</span><span class="m">0</span>.5.0 <span class="nv">gmt</span><span class="o">==</span><span class="m">6</span>.2.0 <span class="nv">numpy</span><span class="o">==</span><span class="m">1</span>.22.4 <span class="nv">scipy</span><span class="o">==</span><span class="m">1</span>.8.1 <span class="se">\</span>
-<span class="nv">obspy</span><span class="o">==</span><span class="m">1</span>.3.0 <span class="nv">notebook</span><span class="o">==</span><span class="m">6</span>.4.11 <span class="nv">netcdf4</span><span class="o">==</span><span class="m">1</span>.5.8 <span class="nv">matplotlib</span><span class="o">==</span><span class="m">3</span>.5.1
-</pre></div>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>GMTの6.3.0の利用には注意が必要で，PyGMTの過去バージョンとの組み合わせにおいて，時間軸を横軸とするプロットがうまく生成できない，というトラブルが発生していました．
-さらにPyGMTは0.6.0以降ではGMTの最低限のバージョンとして6.3.0の最新版を要求しているため，最新版のPyGMTを用いるなら，2022年6月にリリースされたばかりのGMT6.4.0の利用が必要です．</p>
-<p>上記の例ではどちらも最新版は使わず，PyGMT 0.5.0とGMT 6.2.0を利用していますが，もし最新版を使いたいなら以下の<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span></code>で作成するのが良いでしょう．</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name pygmt-howto2 --channel conda-forge <span class="se">\</span>
-<span class="nv">python</span><span class="o">==</span><span class="m">3</span>.10.5 <span class="nv">pygmt</span><span class="o">==</span><span class="m">0</span>.6.1 <span class="nv">gmt</span><span class="o">==</span><span class="m">6</span>.4.0 <span class="nv">numpy</span><span class="o">==</span><span class="m">1</span>.22.4 <span class="nv">scipy</span><span class="o">==</span><span class="m">1</span>.8.1 <span class="se">\</span>
-<span class="nv">obspy</span><span class="o">==</span><span class="m">1</span>.3.0 <span class="nv">notebook</span><span class="o">==</span><span class="m">6</span>.4.11 <span class="nv">netcdf4</span><span class="o">==</span><span class="m">1</span>.5.8 <span class="nv">matplotlib</span><span class="o">==</span><span class="m">3</span>.5.1
-</pre></div>
-</div>
-</div>
-</section>
-</section>
-</section>
-<section id="pip">
-<h2>（参考）pip によるインストール<a class="headerlink" href="#pip" title="Permalink to this headline">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">pip</span></code> はPythonに付属しているパッケージ管理コマンドです．
-<code class="docutils literal notranslate"><span class="pre">conda</span></code>で行ったように，Python本体を仮想化して目的別のパッケージ管理を行う方法も（多数）ありますが，本筋からそれるためここでは割愛します．</p>
-<p>PyGMTは<code class="docutils literal notranslate"><span class="pre">pip</span></code>コマンドに対応しており，インストールは</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install <span class="nv">pygmt</span><span class="o">==</span><span class="m">0</span>.5.0
-</pre></div>
-</div>
-<p>とするだけです．ただし，この場合は<code class="docutils literal notranslate"><span class="pre">conda</span></code>と異なり，GMTはあらかじめ別途インストールが必要です．
-GMTはパッケージ管理ソフト（macOSならhomebrew, Ubuntuならapt, CentOSやらyumなど）を用いてインストールするのが簡単でしょう．ただし，PyGMTは原則として最新版に近いバージョンのGMTを要求する一方，Linuxのパッケージ管理システムが最新版のインストールに対応していない，ということがままあります．また，特にLinuxにおいては，インストールしたGMTのありかをPyGMTが正しく認識できない，というトラブルがしばしば発生しているようで，<a class="reference external" href="https://qiita.com/fujitatsu0520/items/14e2e965f9304ddb996b">環境変数の設定で回避する必要がある</a>ようです．特にこだわりがなければ，minicondaによるほうが確実にインストールできるでしょう．</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Anacondaの節に記載したように，2022年6月時点ではGMT6.3.0とPyGMTを組み合わせることが推奨できません．GMTを独自に導入する場合はご注意ください．</p>
-</div>
-<p>そのほかのライブラリも同様にインストールします．</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install numpy
-pip install scipy
-pip install obspy
-pip install matplotlib
-pip install notebook
-pip install netcdf4
-</pre></div>
-</div>
 </section>
 </section>
 
@@ -547,7 +456,7 @@ pip install netcdf4
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -555,50 +464,107 @@ pip install netcdf4
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="pygmt.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">PyGMT-HOWTO</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="pygmt.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">PyGMT-HOWTO</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="basic_map.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="basic_map.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">PyGMT の基本</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anacondaminiforge">Anacondaライセンス問題とMiniforgeの利用</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#miniconda">Minicondaのインストール</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">仮想環境の作成とPyGMTのインストール</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By <a href="https://tktmyd.github.io">Takuto Maeda</a><br/>
-  
-      &copy; Copyright 2021-2022. All Rights Reserved.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By <a href="https://tktmyd.github.io">Takuto Maeda</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2021-2022. All Rights Reserved.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

@@ -1,108 +1,173 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+
+<html lang="en" data-content_root="./" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>PyGMT の基本 &#8212; pygmt-howto</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'basic_map';</script>
     <link rel="canonical" href="https://tktmyd.github.io/pygmt-howto-jp/basic_map.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="画像の保存" href="savefig.html" />
     <link rel="prev" title="PyGMTの環境構築" href="install.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">pygmt-howto</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+  
+    
+  
+
+<a class="navbar-brand logo" href="pygmt.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pygmt-howto</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -112,467 +177,222 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="install.html">
-   PyGMTの環境構築
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   PyGMT の基本
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="savefig.html">
-   画像の保存
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="topo_map.html">
-   地形段彩図の描画
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="xy.html">
-   xyグラフの描画
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="inf_on_map.html">
-   地図上への情報描画
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="mesh.html">
-   メッシュデータの扱い
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="config.html">
-   GMTの微調整
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="timeseries.html">
-   時系列の扱い
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="obspy.html">
-   Obspyとの連携
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="mech.html">
-   震源メカニズム解の表現
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="animation.html">
-   アニメーション動画の作成
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="license.html">
-   License
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">PyGMTの環境構築</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">PyGMT の基本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="savefig.html">画像の保存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topo_map.html">地形段彩図の描画</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xy.html">xyグラフの描画</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inf_on_map.html">地図上への情報描画</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mesh.html">メッシュデータの扱い</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">GMTの微調整</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timeseries.html">時系列の扱い</a></li>
+<li class="toctree-l1"><a class="reference internal" href="obspy.html">Obspyとの連携</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mech.html">震源メカニズム解の表現</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animation.html">アニメーション動画の作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/tktmyd/pygmt-howto-jp/master?urlpath=tree/docs/basic_map.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
-</div>
+  
+  <div id="rtd-footer-container"></div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/tktmyd/pygmt-howto-jp" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-<a href="https://github.com/tktmyd/pygmt-howto-jp"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="bottom"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fab fa-github"></i>
   </span>
 
 </a>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/basic_map.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/basic_map.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-
-      </li>
+</li>
+      
+      
+      
       
       <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
   </span>
-<span class="headerbtn__text-container">.pdf</span>
+<span class="btn__text-container">.pdf</span>
 </button>
-
-      </li>
+</li>
       
-    </ul>
-  </div>
+  </ul>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
   </span>
 
-</label>
+</button>
 
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   準備
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#jupyter-notebook">
-     Jupyter Notebookの立ち上げ
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#import">
-     モジュールのimport
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   PyGMTによる作図の基本
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   基本の地図
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     Jupyter Notebookにおける画像の表示
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
-     投影法
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
-     ペンと色
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tips-resolution-area-thresh">
-     地図描画 Tips:
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       resolution
-      </span>
-     </code>
-     と
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       area_thresh
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#basemap">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       basemap
-      </span>
-     </code>
-     とパラメタの省略
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gmt">
-   GMTから移行するユーザー向けの話題
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
-     エイリアス
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
-     従来型のGMTスクリプトとの比較
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
-     pygmtとシェルスクリプトの比較
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>PyGMT の基本</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   準備
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#jupyter-notebook">
-     Jupyter Notebookの立ち上げ
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#import">
-     モジュールのimport
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   PyGMTによる作図の基本
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   基本の地図
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     Jupyter Notebookにおける画像の表示
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id5">
-     投影法
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id6">
-     ペンと色
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tips-resolution-area-thresh">
-     地図描画 Tips:
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       resolution
-      </span>
-     </code>
-     と
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       area_thresh
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#basemap">
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       basemap
-      </span>
-     </code>
-     とパラメタの省略
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gmt">
-   GMTから移行するユーザー向けの話題
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
-     エイリアス
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id8">
-     従来型のGMTスクリプトとの比較
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id9">
-     pygmtとシェルスクリプトの比較
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>PyGMT の基本</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">準備</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook">Jupyter Notebookの立ち上げ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import">モジュールのimport</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">PyGMTによる作図の基本</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">基本の地図</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Jupyter Notebookにおける画像の表示</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">投影法</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">ペンと色</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-resolution-area-thresh">地図描画 Tips: <code class="docutils literal notranslate"><span class="pre">resolution</span></code> と <code class="docutils literal notranslate"><span class="pre">area_thresh</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basemap"><code class="docutils literal notranslate"><span class="pre">basemap</span></code> とパラメタの省略</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gmt">GMTから移行するユーザー向けの話題</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">エイリアス</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">従来型のGMTスクリプトとの比較</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">pygmtとシェルスクリプトの比較</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="pygmt">
-<h1>PyGMT の基本<a class="headerlink" href="#pygmt" title="Permalink to this headline">#</a></h1>
+<h1>PyGMT の基本<a class="headerlink" href="#pygmt" title="Link to this heading">#</a></h1>
 <p>ここでは，基本的な地図作成を通じてPyGMTの使い方の基本を学びます．</p>
 <section id="id1">
-<h2>準備<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<h2>準備<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <section id="jupyter-notebook">
-<h3>Jupyter Notebookの立ち上げ<a class="headerlink" href="#jupyter-notebook" title="Permalink to this headline">#</a></h3>
+<h3>Jupyter Notebookの立ち上げ<a class="headerlink" href="#jupyter-notebook" title="Link to this heading">#</a></h3>
 <p>本節以降では，Jupyter NotebookでインタラクティブにPyGMTを実行していくことにします．そこで，（minicondaによるインストールの場合は仮想環境を<code class="docutils literal notranslate"><span class="pre">activate</span></code>したのちに）端末から</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter notebook
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>notebook
 </pre></div>
 </div>
 <p>によりJupyter Notebookを起動します．すると自動的に既定のブラウザが立ち上がります．別のブラウザウィンドウからも，http://localhost:8888 にアクセスするとJupyterにアクセスができるはずです．
@@ -587,7 +407,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="import">
-<h3>モジュールのimport<a class="headerlink" href="#import" title="Permalink to this headline">#</a></h3>
+<h3>モジュールのimport<a class="headerlink" href="#import" title="Link to this heading">#</a></h3>
 <p>PyGMTを使うためには，まず <code class="docutils literal notranslate"><span class="pre">import</span></code> します．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -618,30 +438,32 @@ fi
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PyGMT information:
-  version: v0.9.0
+  version: v0.12.0
 System information:
-  python: 3.11.3 | packaged by conda-forge | (main, Apr  6 2023, 08:58:31) [Clang 14.0.6 ]
-  executable: /opt/homebrew/Caskroom/miniconda/base/envs/pygmt-howto-v0.9/bin/python
-  machine: macOS-13.0-arm64-arm-64bit
+  python: 3.12.4 | packaged by conda-forge | (main, Jun 17 2024, 10:13:44) [Clang 16.0.6 ]
+  executable: /Users/tktmyd/miniforge3/envs/pygmt-howto-v0.12/bin/python
+  machine: macOS-14.3.1-arm64-arm-64bit
 Dependency information:
-  numpy: 1.24.3
-  pandas: 2.0.2
-  xarray: 2023.5.0
-  netCDF4: 1.6.3
-  packaging: 23.1
+  numpy: 1.26.4
+  pandas: 2.2.2
+  xarray: 2024.6.0
+  netCDF4: 1.7.1
+  packaging: 24.1
   contextily: None
   geopandas: None
-  ghostscript: 9.54.0
+  ipython: None
+  rioxarray: None
+  ghostscript: 10.03.1
 GMT library information:
-  binary version: 6.4.0
+  binary version: 6.5.0
   cores: 8
   grid layout: rows
   image layout: 
-  library path: /opt/homebrew/Caskroom/miniconda/base/envs/pygmt-howto-v0.9/lib/libgmt.dylib
+  library path: /Users/tktmyd/miniforge3/envs/pygmt-howto-v0.12/lib/libgmt.dylib
   padding: 2
-  plugin dir: /opt/homebrew/Caskroom/miniconda/base/envs/pygmt-howto-v0.9/lib/gmt/plugins
-  share dir: /opt/homebrew/Caskroom/miniconda/base/envs/pygmt-howto-v0.9/share/gmt
-  version: 6.4.0
+  plugin dir: /Users/tktmyd/miniforge3/envs/pygmt-howto-v0.12/lib/gmt/plugins
+  share dir: /Users/tktmyd/miniforge3/envs/pygmt-howto-v0.12/share/gmt
+  version: 6.5.0
 </pre></div>
 </div>
 </div>
@@ -654,7 +476,7 @@ GMT library information:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v0.9.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v0.12.0
 </pre></div>
 </div>
 </div>
@@ -663,7 +485,7 @@ GMT library information:
 </section>
 </section>
 <section id="id2">
-<h2>PyGMTによる作図の基本<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<h2>PyGMTによる作図の基本<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">pygmt</span></code>では，まず</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 </pre></div>
@@ -680,10 +502,10 @@ GMT library information:
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>とすると<code class="docutils literal notranslate"><span class="pre">filename</span></code>の拡張子に応じて画像ファイルとして保存できます．もうすこし融通の効く（その代わりにやや複雑な）画像保存の方法は <a class="reference internal" href="savefig.html"><span class="doc std std-doc">こちら</span></a> で説明します．</p>
+<p>とすると<code class="docutils literal notranslate"><span class="pre">filename</span></code>の拡張子に応じて画像ファイルとして保存できます．もうすこし融通の効く（その代わりにやや複雑な）画像保存の方法は <a class="reference internal" href="savefig.html"><span class="std std-doc">こちら</span></a> で説明します．</p>
 </section>
 <section id="id3">
-<h2>基本の地図<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<h2>基本の地図<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <p>まずは単純な，従来のGMTでの <code class="docutils literal notranslate"><span class="pre">gmt</span> <span class="pre">pscoast</span></code> コマンドに相当する地図を作図してみましょう．各オプションの意味はコード内コメントを参照してください．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -698,7 +520,7 @@ GMT library information:
     <span class="n">land</span>        <span class="o">=</span> <span class="s1">&#39;249/243/202&#39;</span><span class="p">,</span>                      <span class="c1"># 陸地の色を 0-255の値の R/G/B で指定</span>
     <span class="n">water</span>       <span class="o">=</span> <span class="s1">&#39;190/220/250&#39;</span><span class="p">,</span>                      <span class="c1"># 水の色を 0-255の値の R/G/B で指定</span>
     <span class="n">map_scale</span>   <span class="o">=</span> <span class="s1">&#39;142.5/32/32/400&#39;</span><span class="p">,</span>                  <span class="c1"># 距離スケールの水平・縦位置と距離サイズ</span>
-    <span class="n">frame</span>       <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+t&quot;Figure&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;xafg&#39;</span><span class="p">,</span> <span class="s1">&#39;yafg&#39;</span><span class="p">]</span>  <span class="c1"># 南西に軸名・タイトル指定（+t) およびXY方向それぞれの軸情報</span>
+    <span class="n">frame</span>       <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+tFigure&#39;</span><span class="p">,</span> <span class="s1">&#39;xafg&#39;</span><span class="p">,</span> <span class="s1">&#39;yafg&#39;</span><span class="p">]</span>    <span class="c1"># 南西に軸名・タイトル指定（+t) およびXY方向それぞれの軸情報</span>
 <span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -707,22 +529,22 @@ GMT library information:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/basic_map_18_0.png" src="_images/basic_map_18_0.png" />
+<a class="reference internal image-reference" href="_images/0147abbc883cca0dded852d8f918da3240869a80b93424ac78b8fe4d1db12a31.png"><img alt="_images/0147abbc883cca0dded852d8f918da3240869a80b93424ac78b8fe4d1db12a31.png" src="_images/0147abbc883cca0dded852d8f918da3240869a80b93424ac78b8fe4d1db12a31.png" style="width: 500px;" /></a>
 </div>
 </div>
 <section id="id4">
-<h3>Jupyter Notebookにおける画像の表示<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<h3>Jupyter Notebookにおける画像の表示<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p>結果をJupyter Notebook内で見るだけならば <code class="docutils literal notranslate"><span class="pre">fig.show()</span></code>を指定します．画像として保存するなら <code class="docutils literal notranslate"><span class="pre">fig.savefig</span></code> ですが，<code class="docutils literal notranslate"><span class="pre">png</span></code>のほか <code class="docutils literal notranslate"><span class="pre">pdf</span></code>なども指定可能です．また，<code class="docutils literal notranslate"><span class="pre">show=True</span></code>オプションをつけると，その環境で標準のビューワ（たとえばmacOSならPreview.app）が起動します．</p>
 <p>また，<code class="docutils literal notranslate"><span class="pre">fig.show()</span></code> に <code class="docutils literal notranslate"><span class="pre">width=</span></code>オプションで数字を指定すると，表示される図の大きさを指定できます．</p>
 </section>
 <section id="id5">
-<h3>投影法<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<h3>投影法<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">fig.coast</span></code>の<code class="docutils literal notranslate"><span class="pre">projection</span></code>オプションで地図投影法を指定しています．ここではロビソン図法（<code class="docutils literal notranslate"><span class="pre">-JN</span></code>）を用いています．この図法では，中心線の経度（<code class="docutils literal notranslate"><span class="pre">138</span></code>）と図の横幅の大きさ（<code class="docutils literal notranslate"><span class="pre">12c</span></code>）を指定する必要があります．投影法の特徴により，図の縦の大きさは描画範囲と横幅から自動的に決まります．</p>
 <p>よく使われるメルカトル図法の場合は中心の経度は必要なく，たとえば <code class="docutils literal notranslate"><span class="pre">-JM12c</span></code> のように指定します．この場合も縦方向の大きさは指定できません．</p>
 <p>GMTには多種多様な投影法が用意されていますが，ここではその網羅的な説明はしません．必要に応じて他解説や公式マニュアルを参照してください．</p>
 </section>
 <section id="id6">
-<h3>ペンと色<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<h3>ペンと色<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <p>GMTにおける線の描画は</p>
 <ul class="simple">
 <li><p>太さ (太さの名前あるいは数値）</p></li>
@@ -734,24 +556,24 @@ GMT library information:
 <p>色は名前のほか，光の三原色 Red(R), Green(G), Blue(B)の大きさを0-255までの数値で表して，<code class="docutils literal notranslate"><span class="pre">R/G/B</span></code> で表現することもできます．</p>
 </section>
 <section id="tips-resolution-area-thresh">
-<h3>地図描画 Tips: <code class="docutils literal notranslate"><span class="pre">resolution</span></code> と <code class="docutils literal notranslate"><span class="pre">area_thresh</span></code><a class="headerlink" href="#tips-resolution-area-thresh" title="Permalink to this headline">#</a></h3>
+<h3>地図描画 Tips: <code class="docutils literal notranslate"><span class="pre">resolution</span></code> と <code class="docutils literal notranslate"><span class="pre">area_thresh</span></code><a class="headerlink" href="#tips-resolution-area-thresh" title="Link to this heading">#</a></h3>
 <p>海岸線の解像度は5種類ありますが，粗すぎても細かすぎても綺麗な図になりません．大は小を兼ねると思うかもしれませんが，細かすぎると微細な地形の特徴まで描画されるため，細かな島やリアス式海岸などでごちゃごちゃした印象になりがちです．解像度だけを変えた図を以下に示します．</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/basic_map_24_0.png" src="_images/basic_map_24_0.png" />
+<a class="reference internal image-reference" href="_images/7557c4336434b277236563deac1a4b4e6eaa9f900c613683461704651c7168e3.png"><img alt="_images/7557c4336434b277236563deac1a4b4e6eaa9f900c613683461704651c7168e3.png" src="_images/7557c4336434b277236563deac1a4b4e6eaa9f900c613683461704651c7168e3.png" style="width: 500px;" /></a>
 </div>
 </div>
 <p>高解像度ほどよいかというと，特に瀬戸内海などは小さな島がたくさん描画されて，真っ黒になってしまっています．そこで活躍するのが <code class="docutils literal notranslate"><span class="pre">area_thresh</span></code> オプションです．このオプションを指定すると，数値で与えられた面積（km<span class="math notranslate nohighlight">\(^2\)</span>）以下のサイズのものが描画されなくなります．そこで，海岸線の解像度は高めにしつつ，<code class="docutils literal notranslate"><span class="pre">area_thresh</span></code>を適宜設定すると綺麗な海岸線が描画できます．いくつか<code class="docutils literal notranslate"><span class="pre">area_thresh</span></code>の数値を変えた例を示しましょう．</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/basic_map_26_0.png" src="_images/basic_map_26_0.png" />
+<a class="reference internal image-reference" href="_images/a2f144ffb28c32b8c32109bf51662bdfe1cec59794f0fa07bc75c24fbbc531d5.png"><img alt="_images/a2f144ffb28c32b8c32109bf51662bdfe1cec59794f0fa07bc75c24fbbc531d5.png" src="_images/a2f144ffb28c32b8c32109bf51662bdfe1cec59794f0fa07bc75c24fbbc531d5.png" style="width: 500px;" /></a>
 </div>
 </div>
 <p>後半は明らかにやりすぎですね．
 日本列島全体を表示するなら，<code class="docutils literal notranslate"><span class="pre">area_thresh=100</span></code>程度がほどよいように思います．もっと細かな地域を表示する場合は，適宜<code class="docutils literal notranslate"><span class="pre">area_thresh</span></code>の値を小さくするとよいでしょう．</p>
 </section>
 <section id="basemap">
-<h3><code class="docutils literal notranslate"><span class="pre">basemap</span></code> とパラメタの省略<a class="headerlink" href="#basemap" title="Permalink to this headline">#</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">basemap</span></code> とパラメタの省略<a class="headerlink" href="#basemap" title="Link to this heading">#</a></h3>
 <p>上記の例では <code class="docutils literal notranslate"><span class="pre">fig.coast</span></code> ひとつですべてを描画しましたが，軸の描画を <code class="docutils literal notranslate"><span class="pre">fig.basemap</span></code> に任せることもできます：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -770,7 +592,7 @@ GMT library information:
 <span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">basemap</span><span class="p">(</span>
-    <span class="n">frame</span>       <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+t&quot;Figure&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;xafg&#39;</span><span class="p">,</span> <span class="s1">&#39;yafg&#39;</span><span class="p">]</span> 
+    <span class="n">frame</span>       <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+tFigure&#39;</span><span class="p">,</span> <span class="s1">&#39;xafg&#39;</span><span class="p">,</span> <span class="s1">&#39;yafg&#39;</span><span class="p">]</span> 
 <span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -778,7 +600,7 @@ GMT library information:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/basic_map_30_0.png" src="_images/basic_map_30_0.png" />
+<a class="reference internal image-reference" href="_images/0147abbc883cca0dded852d8f918da3240869a80b93424ac78b8fe4d1db12a31.png"><img alt="_images/0147abbc883cca0dded852d8f918da3240869a80b93424ac78b8fe4d1db12a31.png" src="_images/0147abbc883cca0dded852d8f918da3240869a80b93424ac78b8fe4d1db12a31.png" style="width: 500px;" /></a>
 </div>
 </div>
 <p>上記の例では，<code class="docutils literal notranslate"><span class="pre">fig.basemap</span></code> のオプションは <code class="docutils literal notranslate"><span class="pre">frame</span></code> しかないことに注目してください．</p>
@@ -786,10 +608,10 @@ GMT library information:
 </section>
 </section>
 <section id="gmt">
-<h2>GMTから移行するユーザー向けの話題<a class="headerlink" href="#gmt" title="Permalink to this headline">#</a></h2>
+<h2>GMTから移行するユーザー向けの話題<a class="headerlink" href="#gmt" title="Link to this heading">#</a></h2>
 <section id="id7">
-<h3>エイリアス<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
-<p>PyGMTでは，従来のGMTと比べてオプションの意味が多くの人にとってわかりやすい名前がつけられています．一方，昔からのGMTのオプション名を把握している筆者のような古代人向け（？）に，従来オプション名のエイリアスも設定されています．たとえば先程の地図は，以下のようなエイリアスオプション名を用いて作成することもできます．初めて見る人には全く意味不明のオプションでしょうが，GMTに馴染みのある人にはむしろ使いやすいかもしれません．</p>
+<h3>エイリアス<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>PyGMTでは，従来のGMTと比べてオプションの意味が多くの人にとってわかりやすい名前がつけられています．一方，昔からのGMTのオプション名を把握している旧GMTユーザー向け（？）に，従来オプション名のエイリアスも設定されています．たとえば先程の地図は，以下のようなエイリアスオプション名を用いて作成することもできます．初めて見る人には全く意味不明のオプションでしょうが，GMTに馴染みのある人にはむしろ使いやすいかもしれません．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
@@ -803,7 +625,7 @@ GMT library information:
     <span class="n">G</span> <span class="o">=</span> <span class="s1">&#39;249/243/202&#39;</span><span class="p">,</span>                     
     <span class="n">S</span> <span class="o">=</span> <span class="s1">&#39;190/220/250&#39;</span><span class="p">,</span>                     
     <span class="n">L</span> <span class="o">=</span> <span class="s1">&#39;142.5/32/32/400&#39;</span><span class="p">,</span>                 
-    <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+t&quot;Figure&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;xafg&#39;</span><span class="p">,</span> <span class="s1">&#39;yafg&#39;</span><span class="p">]</span> 
+    <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+tFigure&#39;</span><span class="p">,</span> <span class="s1">&#39;xafg&#39;</span><span class="p">,</span> <span class="s1">&#39;yafg&#39;</span><span class="p">]</span> 
 <span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -811,27 +633,27 @@ GMT library information:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/x3/nldc_t6578d7dv9ncgwfk94r0000gn/T/ipykernel_22450/1816858382.py:3: SyntaxWarning: Short-form parameter (R) is not recommended. Use long-form parameter &#39;region&#39; instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/wt/2gls824s1d3dfj1rwm2l_b8w0000gn/T/ipykernel_33240/1294256770.py:3: SyntaxWarning: Short-form parameter (A) is not recommended. Use long-form parameter &#39;area_thresh&#39; instead.
   fig.coast(
-/var/folders/x3/nldc_t6578d7dv9ncgwfk94r0000gn/T/ipykernel_22450/1816858382.py:3: SyntaxWarning: Short-form parameter (J) is not recommended. Use long-form parameter &#39;projection&#39; instead.
+/var/folders/wt/2gls824s1d3dfj1rwm2l_b8w0000gn/T/ipykernel_33240/1294256770.py:3: SyntaxWarning: Short-form parameter (B) is not recommended. Use long-form parameter &#39;frame&#39; instead.
   fig.coast(
-/var/folders/x3/nldc_t6578d7dv9ncgwfk94r0000gn/T/ipykernel_22450/1816858382.py:3: SyntaxWarning: Short-form parameter (A) is not recommended. Use long-form parameter &#39;area_thresh&#39; instead.
+/var/folders/wt/2gls824s1d3dfj1rwm2l_b8w0000gn/T/ipykernel_33240/1294256770.py:3: SyntaxWarning: Short-form parameter (D) is not recommended. Use long-form parameter &#39;resolution&#39; instead.
   fig.coast(
-/var/folders/x3/nldc_t6578d7dv9ncgwfk94r0000gn/T/ipykernel_22450/1816858382.py:3: SyntaxWarning: Short-form parameter (B) is not recommended. Use long-form parameter &#39;frame&#39; instead.
+/var/folders/wt/2gls824s1d3dfj1rwm2l_b8w0000gn/T/ipykernel_33240/1294256770.py:3: SyntaxWarning: Short-form parameter (G) is not recommended. Use long-form parameter &#39;land&#39; instead.
   fig.coast(
-/var/folders/x3/nldc_t6578d7dv9ncgwfk94r0000gn/T/ipykernel_22450/1816858382.py:3: SyntaxWarning: Short-form parameter (D) is not recommended. Use long-form parameter &#39;resolution&#39; instead.
+/var/folders/wt/2gls824s1d3dfj1rwm2l_b8w0000gn/T/ipykernel_33240/1294256770.py:3: SyntaxWarning: Short-form parameter (J) is not recommended. Use long-form parameter &#39;projection&#39; instead.
   fig.coast(
-/var/folders/x3/nldc_t6578d7dv9ncgwfk94r0000gn/T/ipykernel_22450/1816858382.py:3: SyntaxWarning: Short-form parameter (L) is not recommended. Use long-form parameter &#39;map_scale&#39; instead.
+/var/folders/wt/2gls824s1d3dfj1rwm2l_b8w0000gn/T/ipykernel_33240/1294256770.py:3: SyntaxWarning: Short-form parameter (L) is not recommended. Use long-form parameter &#39;map_scale&#39; instead.
   fig.coast(
-/var/folders/x3/nldc_t6578d7dv9ncgwfk94r0000gn/T/ipykernel_22450/1816858382.py:3: SyntaxWarning: Short-form parameter (W) is not recommended. Use long-form parameter &#39;shorelines&#39; instead.
+/var/folders/wt/2gls824s1d3dfj1rwm2l_b8w0000gn/T/ipykernel_33240/1294256770.py:3: SyntaxWarning: Short-form parameter (R) is not recommended. Use long-form parameter &#39;region&#39; instead.
   fig.coast(
-/var/folders/x3/nldc_t6578d7dv9ncgwfk94r0000gn/T/ipykernel_22450/1816858382.py:3: SyntaxWarning: Short-form parameter (G) is not recommended. Use long-form parameter &#39;land&#39; instead.
+/var/folders/wt/2gls824s1d3dfj1rwm2l_b8w0000gn/T/ipykernel_33240/1294256770.py:3: SyntaxWarning: Short-form parameter (S) is not recommended. Use long-form parameter &#39;water&#39; instead.
   fig.coast(
-/var/folders/x3/nldc_t6578d7dv9ncgwfk94r0000gn/T/ipykernel_22450/1816858382.py:3: SyntaxWarning: Short-form parameter (S) is not recommended. Use long-form parameter &#39;water&#39; instead.
+/var/folders/wt/2gls824s1d3dfj1rwm2l_b8w0000gn/T/ipykernel_33240/1294256770.py:3: SyntaxWarning: Short-form parameter (W) is not recommended. Use long-form parameter &#39;shorelines&#39; instead.
   fig.coast(
 </pre></div>
 </div>
-<img alt="_images/basic_map_33_1.png" src="_images/basic_map_33_1.png" />
+<a class="reference internal image-reference" href="_images/0147abbc883cca0dded852d8f918da3240869a80b93424ac78b8fe4d1db12a31.png"><img alt="_images/0147abbc883cca0dded852d8f918da3240869a80b93424ac78b8fe4d1db12a31.png" src="_images/0147abbc883cca0dded852d8f918da3240869a80b93424ac78b8fe4d1db12a31.png" style="width: 500px;" /></a>
 </div>
 </div>
 <p>オプション名のエイリアスなので当然ですが，結果として得られる画像は全く同じです．ただし，</p>
@@ -852,14 +674,14 @@ GMT library information:
 </div>
 </section>
 <section id="id8">
-<h3>従来型のGMTスクリプトとの比較<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<h3>従来型のGMTスクリプトとの比較<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
 </section>
 <section id="id9">
-<h3>pygmtとシェルスクリプトの比較<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<h3>pygmtとシェルスクリプトの比較<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
 <p>これまでに紹介した PyGMTのスクリプトと，それらと（ほとんど）同じ図を出力するbashによる従来型のGMTスクリプトを比較してみます．以下のタブをクリックするとコードが表示されます．なお，比較しやすいようできるだけ改行を多めに書いています．</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="8526818f-e29f-465d-98f6-c53b8d36fc09" name="55618669-c263-47cb-8f1c-df510ed4d17b" type="radio">
-</input><label class="sd-tab-label" for="8526818f-e29f-465d-98f6-c53b8d36fc09">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
 pygmt long</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 
@@ -872,13 +694,13 @@ pygmt long</label><div class="sd-tab-content docutils">
     <span class="n">land</span>        <span class="o">=</span> <span class="s1">&#39;230/240/220&#39;</span><span class="p">,</span>
     <span class="n">water</span>       <span class="o">=</span> <span class="s1">&#39;220/235/250&#39;</span><span class="p">,</span>
     <span class="n">map_scale</span>   <span class="o">=</span> <span class="s1">&#39;142.5/32/32/400&#39;</span><span class="p">,</span>
-    <span class="n">frame</span>       <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+t&quot;Figure&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;xafg&#39;</span><span class="p">,</span> <span class="s1">&#39;yafg&#39;</span><span class="p">]</span>
+    <span class="n">frame</span>       <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+tFigure&#39;</span><span class="p">,</span> <span class="s1">&#39;xafg&#39;</span><span class="p">,</span> <span class="s1">&#39;yafg&#39;</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<input id="f25ad65e-f08c-4aaa-9d0b-9791ff0f6fe1" name="55618669-c263-47cb-8f1c-df510ed4d17b" type="radio">
-</input><label class="sd-tab-label" for="f25ad65e-f08c-4aaa-9d0b-9791ff0f6fe1">
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
 pygmt short</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 
@@ -891,56 +713,56 @@ pygmt short</label><div class="sd-tab-content docutils">
     <span class="n">G</span> <span class="o">=</span> <span class="s1">&#39;230/240/220&#39;</span><span class="p">,</span>                     
     <span class="n">S</span> <span class="o">=</span> <span class="s1">&#39;220/235/250&#39;</span><span class="p">,</span>                     
     <span class="n">L</span> <span class="o">=</span> <span class="s1">&#39;142.5/32/32/400&#39;</span><span class="p">,</span>                 
-    <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+t&quot;Figure&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;xafg&#39;</span><span class="p">,</span> <span class="s1">&#39;yafg&#39;</span><span class="p">]</span> 
+    <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+tFigure&#39;</span><span class="p">,</span> <span class="s1">&#39;xafg&#39;</span><span class="p">,</span> <span class="s1">&#39;yafg&#39;</span><span class="p">]</span> 
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<input id="1e62cabe-a403-478b-aff8-338eec6f3540" name="55618669-c263-47cb-8f1c-df510ed4d17b" type="radio">
-</input><label class="sd-tab-label" for="1e62cabe-a403-478b-aff8-338eec6f3540">
+<input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-2">
 bash classic</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># 海岸線と枠を描画</span>
-gmt pscoast -JN138/12c <span class="se">\</span>
-            -R128/146/30/46 <span class="se">\</span>
-            -Wdefault,black <span class="se">\</span>
-            -A100 <span class="se">\</span>
-            -Df <span class="se">\</span>
-            -G230/240/220 <span class="se">\</span>
-            -S220/235/250 <span class="se">\</span>
-            -L142.5/32/32/400 <span class="se">\</span>
-            -BWSen+t<span class="s2">&quot;Figure&quot;</span> -Bxafg -Byafg <span class="se">\</span>
-&gt; fig/classic-coastline.ps
+gmt<span class="w"> </span>pscoast<span class="w"> </span>-JN138/12c<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>-R128/146/30/46<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>-Wdefault,black<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>-A100<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>-Df<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>-G230/240/220<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>-S220/235/250<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>-L142.5/32/32/400<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>-BWSen+t<span class="s2">&quot;Figure&quot;</span><span class="w"> </span>-Bxafg<span class="w"> </span>-Byafg<span class="w"> </span><span class="se">\</span>
+&gt;<span class="w"> </span>fig/classic-coastline.ps
 
 <span class="c1"># Postscript画像をPNGに変換</span>
-gmt psconvert -Tg -A -P -Qg2 -Qt2 fig/classic-coastline.ps
+gmt<span class="w"> </span>psconvert<span class="w"> </span>-Tg<span class="w"> </span>-A<span class="w"> </span>-P<span class="w"> </span>-Qg2<span class="w"> </span>-Qt2<span class="w"> </span>fig/classic-coastline.ps
 
 <span class="c1"># 不要な中間生成物であるPostscriptを削除</span>
-rm -f fig/classic-coastline.ps
+rm<span class="w"> </span>-f<span class="w"> </span>fig/classic-coastline.ps
 </pre></div>
 </div>
 </div>
-<input id="754d785d-323d-4ad0-bbee-fccc42bc8400" name="55618669-c263-47cb-8f1c-df510ed4d17b" type="radio">
-</input><label class="sd-tab-label" for="754d785d-323d-4ad0-bbee-fccc42bc8400">
+<input id="sd-tab-item-3" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-3">
 bash modern</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># modern mode では gmt begin ~ end の間でコマンド実行．</span>
-gmt begin fig/modern-coastline png
+gmt<span class="w"> </span>begin<span class="w"> </span>fig/modern-coastline<span class="w"> </span>png
 
-    gmt coast <span class="se">\</span>
-        -JN138/12c <span class="se">\</span>
-        -R128/146/30/46 <span class="se">\</span>
-        -Wdefault,black <span class="se">\</span>
-        -A100 <span class="se">\</span>
-        -Df <span class="se">\</span>
-        -G230/240/220 <span class="se">\</span>
-        -S220/235/250 <span class="se">\</span>
-        -L142.5/32/32/400 <span class="se">\</span>
-        -BWSen+t<span class="s2">&quot;Figure&quot;</span> -Bxafg -Byafg 
-        
-gmt end
+<span class="w">    </span>gmt<span class="w"> </span>coast<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-JN138/12c<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-R128/146/30/46<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-Wdefault,black<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-A100<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-Df<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-G230/240/220<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-S220/235/250<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-L142.5/32/32/400<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-BWSen+t<span class="s2">&quot;Figure&quot;</span><span class="w"> </span>-Bxafg<span class="w"> </span>-Byafg<span class="w"> </span>
+<span class="w">        </span>
+gmt<span class="w"> </span>end
 </pre></div>
 </div>
 </div>
@@ -962,7 +784,7 @@ gmt end
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -970,50 +792,122 @@ gmt end
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="install.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">PyGMTの環境構築</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="install.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">PyGMTの環境構築</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="savefig.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="savefig.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">画像の保存</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">準備</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook">Jupyter Notebookの立ち上げ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import">モジュールのimport</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">PyGMTによる作図の基本</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">基本の地図</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Jupyter Notebookにおける画像の表示</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">投影法</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">ペンと色</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-resolution-area-thresh">地図描画 Tips: <code class="docutils literal notranslate"><span class="pre">resolution</span></code> と <code class="docutils literal notranslate"><span class="pre">area_thresh</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basemap"><code class="docutils literal notranslate"><span class="pre">basemap</span></code> とパラメタの省略</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gmt">GMTから移行するユーザー向けの話題</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">エイリアス</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">従来型のGMTスクリプトとの比較</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">pygmtとシェルスクリプトの比較</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By <a href="https://tktmyd.github.io">Takuto Maeda</a><br/>
-  
-      &copy; Copyright 2021-2022. All Rights Reserved.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By <a href="https://tktmyd.github.io">Takuto Maeda</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2021-2022. All Rights Reserved.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
