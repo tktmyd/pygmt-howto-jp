@@ -163,6 +163,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="mech.html">
+   震源メカニズム解の表現
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="animation.html">
    アニメーション動画の作成
   </a>
@@ -855,8 +860,8 @@ GMT library information:
 <h3>pygmtとシェルスクリプトの比較<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
 <p>これまでに紹介した PyGMTのスクリプトと，それらと（ほとんど）同じ図を出力するbashによる従来型のGMTスクリプトを比較してみます．以下のタブをクリックするとコードが表示されます．なお，比較しやすいようできるだけ改行を多めに書いています．</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="e39314bd-f2d5-45c6-a2cf-ef53e51641d3" name="57dea5bb-5ab6-4a0f-99e5-413f60917311" type="radio">
-</input><label class="sd-tab-label" for="e39314bd-f2d5-45c6-a2cf-ef53e51641d3">
+<input checked="checked" id="056b6f63-ddce-4a37-9225-260933e9d0cb" name="fe46c159-854b-46bd-8621-cbe7c7380a4b" type="radio">
+</input><label class="sd-tab-label" for="056b6f63-ddce-4a37-9225-260933e9d0cb">
 pygmt long</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 
@@ -874,8 +879,8 @@ pygmt long</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="9e1b4a5f-dbe0-45b7-af27-dae77f2a09e3" name="57dea5bb-5ab6-4a0f-99e5-413f60917311" type="radio">
-</input><label class="sd-tab-label" for="9e1b4a5f-dbe0-45b7-af27-dae77f2a09e3">
+<input id="43371356-32ce-4652-91dc-b3551d90f507" name="fe46c159-854b-46bd-8621-cbe7c7380a4b" type="radio">
+</input><label class="sd-tab-label" for="43371356-32ce-4652-91dc-b3551d90f507">
 pygmt short</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 
@@ -893,8 +898,8 @@ pygmt short</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="6c49d04c-ac9e-465a-a0e4-75bbe88b8de0" name="57dea5bb-5ab6-4a0f-99e5-413f60917311" type="radio">
-</input><label class="sd-tab-label" for="6c49d04c-ac9e-465a-a0e4-75bbe88b8de0">
+<input id="1d6d93f4-77b4-4132-b0b2-dea34ea045c2" name="fe46c159-854b-46bd-8621-cbe7c7380a4b" type="radio">
+</input><label class="sd-tab-label" for="1d6d93f4-77b4-4132-b0b2-dea34ea045c2">
 bash classic</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
@@ -918,8 +923,8 @@ rm -f fig/classic-coastline.ps
 </pre></div>
 </div>
 </div>
-<input id="93a7a8e6-ca1a-46a6-aaf1-e22cfcb03547" name="57dea5bb-5ab6-4a0f-99e5-413f60917311" type="radio">
-</input><label class="sd-tab-label" for="93a7a8e6-ca1a-46a6-aaf1-e22cfcb03547">
+<input id="6aaa4691-0591-425d-94b6-d9abea42fa0b" name="fe46c159-854b-46bd-8621-cbe7c7380a4b" type="radio">
+</input><label class="sd-tab-label" for="6aaa4691-0591-425d-94b6-d9abea42fa0b">
 bash modern</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
