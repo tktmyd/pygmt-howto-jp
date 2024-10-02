@@ -429,6 +429,24 @@ title="Print to PDF"
 <span class="n">fig</span><span class="o">.</span><span class="n">meca</span><span class="p">(</span><span class="n">spec</span>  <span class="o">=</span> <span class="n">meca</span><span class="p">,</span> 
          <span class="n">scale</span> <span class="o">=</span> <span class="s1">&#39;1c&#39;</span><span class="p">,</span> 
          <span class="n">cmap</span>  <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
+         <span class="n">outline</span> <span class="o">=</span> <span class="s1">&#39;default,black&#39;</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/mech_6_0.png" src="_images/mech_6_0.png" />
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>2023年9月公開のPyGMT <code class="docutils literal notranslate"><span class="pre">v0.10.0</span></code> で<code class="docutils literal notranslate"><span class="pre">meca</span></code> モジュールのオプションの実装が進み，GMT本家の <code class="docutils literal notranslate"><span class="pre">T</span></code> オプションに相当する <code class="docutils literal notranslate"><span class="pre">outline</span></code> が実装されて，だいぶ使いやすくなりました．</p>
+<p>それ以前のバージョンでは，メカニズム解の押し部分への色塗りをひとつのモジュール呼び出しにまとめることができず，上記のスクリプトの <code class="docutils literal notranslate"><span class="pre">fig.meca</span></code> 部分を，以下のように2段階に分けて書く必要がありました．最新版を使うことをお勧めしますが，旧版をお使いの方のために情報として残しておきます．</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">meca</span><span class="p">(</span><span class="n">spec</span>  <span class="o">=</span> <span class="n">meca</span><span class="p">,</span> 
+         <span class="n">scale</span> <span class="o">=</span> <span class="s1">&#39;1c&#39;</span><span class="p">,</span> 
+         <span class="n">cmap</span>  <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> 
 <span class="p">)</span>
 
 <span class="c1"># 節面を描画するにはもういちど fig.meca を `T` オプションをつけて呼ぶ</span>
@@ -438,17 +456,10 @@ title="Print to PDF"
     <span class="n">pen</span>   <span class="o">=</span> <span class="s1">&#39;default,black&#39;</span><span class="p">,</span> 
     <span class="n">T</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
 <span class="p">)</span>
-
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+<p>なお， <code class="docutils literal notranslate"><span class="pre">meca</span></code> の <code class="docutils literal notranslate"><span class="pre">outline</span></code> オプションについては，染谷さん(<a class="reference external" href="https://github.com/msomeya1"><code class="docutils literal notranslate"><span class="pre">&#64;msomeya1</span></code></a>) にご教示いただきました．記して感謝いたします．</p>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/mech_5_0.png" src="_images/mech_5_0.png" />
-</div>
-</div>
-<p>残念ながら，辞書型での入力部分を除いて，PyGMTの <code class="docutils literal notranslate"><span class="pre">gmt</span> <span class="pre">meca</span></code> コマンドの実装はまだ完璧とはいえない状況にあるようです（2023年6月現在）．
-節面を描画するためのオプション（GMTの<code class="docutils literal notranslate"><span class="pre">T</span></code>）のPyGMT版が用意されていないため，<code class="docutils literal notranslate"><span class="pre">T=0</span></code> とした<code class="docutils literal notranslate"><span class="pre">meca</span></code>を別途呼び出しています．</p>
 </section>
 
     <script type="text/x-thebe-config">
