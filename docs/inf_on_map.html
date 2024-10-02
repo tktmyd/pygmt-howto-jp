@@ -161,11 +161,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="mech.html">
-   震源メカニズム解の表現
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="animation.html">
    アニメーション動画の作成
   </a>
@@ -353,21 +348,23 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#id2">
    データの準備
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   固定サイズ単一色のプロット
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
-   可変サイズ・可変色プロット
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
-   カラーパレットの扱い
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     固定サイズ単一色のプロット
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     可変サイズ・可変色プロット
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     カラーパレットの扱い
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -392,21 +389,23 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#id2">
    データの準備
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id3">
-   固定サイズ単一色のプロット
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id4">
-   可変サイズ・可変色プロット
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id5">
-   カラーパレットの扱い
-  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     固定サイズ単一色のプロット
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     可変サイズ・可変色プロット
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     カラーパレットの扱い
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -418,7 +417,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="id1">
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>地図上への情報描画<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
 <section id="id2">
 <h2>データの準備<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
@@ -477,9 +476,8 @@ title="Print to PDF"
 </pre></div>
 </div>
 <p>のように <code class="docutils literal notranslate"><span class="pre">変数名.列名</span></code> とします．</p>
-</section>
 <section id="id3">
-<h2>固定サイズ単一色のプロット<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<h3>固定サイズ単一色のプロット<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
 <p>まずは単純シンボルプロットから行いましょう．
 <code class="docutils literal notranslate"><span class="pre">fig.plot</span></code> で x軸（経度方向）とy軸（緯度方向）のデータ配列を個別に指定します．</p>
 <div class="cell docutils container">
@@ -496,13 +494,6 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>grdblend [NOTICE]: Remote data courtesy of GMT data server oceania [http://oceania.generic-mapping-tools.org]
-grdblend [NOTICE]: SRTM15 Earth Relief at 01x01 arc minutes reduced by Gaussian Cartesian filtering (1.9 km fullwidth) [Tozer et al., 2019].
-grdblend [NOTICE]:   -&gt; Download 30x30 degree grid tile (earth_relief_01m_g): N00E120
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -511,7 +502,7 @@ grdblend [NOTICE]:   -&gt; Download 30x30 degree grid tile (earth_relief_01m_g):
 <span class="n">fig</span><span class="o">.</span><span class="n">basemap</span><span class="p">(</span>
     <span class="n">region</span>     <span class="o">=</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">146</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">46</span><span class="p">],</span>
     <span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;M15c&#39;</span><span class="p">,</span> 
-    <span class="n">frame</span>      <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+t&quot;Seismicity around Japanese Archipelago&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;xaf&#39;</span><span class="p">,</span> <span class="s1">&#39;yaf&#39;</span><span class="p">],</span>
+    <span class="n">frame</span>      <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+tSeismicity around Japanese Archipelago&#39;</span><span class="p">,</span> <span class="s1">&#39;xaf&#39;</span><span class="p">,</span> <span class="s1">&#39;yaf&#39;</span><span class="p">],</span>
 <span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span>
@@ -561,7 +552,7 @@ grdblend [NOTICE]:   -&gt; Download 30x30 degree grid tile (earth_relief_01m_g):
 </div>
 </section>
 <section id="id4">
-<h2>可変サイズ・可変色プロット<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<h3>可変サイズ・可変色プロット<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
 <p>次に，マグニチュードと深さを用いてシンボルの色と大きさを変化させてみましょう．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -570,7 +561,7 @@ grdblend [NOTICE]:   -&gt; Download 30x30 degree grid tile (earth_relief_01m_g):
 <span class="n">fig</span><span class="o">.</span><span class="n">basemap</span><span class="p">(</span>
     <span class="n">region</span>     <span class="o">=</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">146</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">46</span><span class="p">],</span>
     <span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;M15c&#39;</span><span class="p">,</span> 
-    <span class="n">frame</span>      <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+t&quot;Seismicity around Japanese Archipelago&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;xaf&#39;</span><span class="p">,</span> <span class="s1">&#39;yaf&#39;</span><span class="p">],</span>
+    <span class="n">frame</span>      <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+tSeismicity around Japanese Archipelago&#39;</span><span class="p">,</span> <span class="s1">&#39;xaf&#39;</span><span class="p">,</span> <span class="s1">&#39;yaf&#39;</span><span class="p">],</span>
 <span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span>
@@ -621,11 +612,12 @@ grdblend [NOTICE]:   -&gt; Download 30x30 degree grid tile (earth_relief_01m_g):
 </div>
 </section>
 <section id="id5">
-<h2>カラーパレットの扱い<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
+<h3>カラーパレットの扱い<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">pygmt.makecpt</span></code> でカラーパレットファイルを作成できます．
 デフォルトでは，作成したカラーパレットがそのセッションの標準として登録され，それ以降のコマンドでのカラーパレットとして自動的に利用されます．</p>
 <p>複数のカラーパレットを同時に使い分けたいなど，明示的にカラーパレットを指示したいときには，<code class="docutils literal notranslate"><span class="pre">pygmt.makecpt</span></code>  の <code class="docutils literal notranslate"><span class="pre">output</span></code> オプションでファイル名を指定して <code class="docutils literal notranslate"><span class="pre">.cpt</span></code> ファイルを作成することもできます．その場合には，<code class="docutils literal notranslate"><span class="pre">plot</span></code> コマンドの <code class="docutils literal notranslate"><span class="pre">cmap</span></code> オプションにはその <code class="docutils literal notranslate"><span class="pre">.cpt</span></code> ファイル名を指定します．</p>
 <p>また，<code class="docutils literal notranslate"><span class="pre">fig.colorbar</span></code> は指定あるいは標準のカラーパレットに基づきカラースケールを描画します．位置指定を明示的にしない場合には，直前に描画した図の下部中央に配置されます．<code class="docutils literal notranslate"><span class="pre">frame</span></code> には数多くの指定ができるようですが，特に <code class="docutils literal notranslate"><span class="pre">+e</span></code>を指定すると，カラースケールの上限と下限を超えた値の色をカラースケール両側の三角形に示してくれます．</p>
+</section>
 </section>
 </section>
 

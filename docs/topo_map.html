@@ -161,11 +161,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="mech.html">
-   震源メカニズム解の表現
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="animation.html">
    アニメーション動画の作成
   </a>
@@ -518,7 +513,7 @@ title="Print to PDF"
 <p>一方，地図の距離スケール（<code class="docutils literal notranslate"><span class="pre">fig.pscoast</span></code>の<code class="docutils literal notranslate"><span class="pre">map-scale</span></code>オプション）をカラフルなカラーマップ上に描画すると，視認性がとても低くなってしまいます．そこで，<code class="docutils literal notranslate"><span class="pre">fig.plot()</span></code> で四角形の頂点を与え，半透明の白い「箱」を先に描画しています．これは順番が大事で，<code class="docutils literal notranslate"><span class="pre">fig.coast()</span></code>の<strong>前</strong>に予め箱を描画しておかないと，せっかくの地図スケールを塗りつぶしてしまうことになりかねません．<code class="docutils literal notranslate"><span class="pre">fig.plot()</span></code> には四隅の頂点を2次元配列として <code class="docutils literal notranslate"><span class="pre">data=</span></code> オプションに与えていますが，x軸とy軸の1次元配列を個別に <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> </code>, <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> </code> として与えることもできます．なお，地図上に頂点を指定してポリゴンを描画すると，デフォルトではその辺が地図上の大円経路に沿った線として描画されます．結果として，地図投影上は曲がった線に見えてしまいます．これを避けているのが<code class="docutils literal notranslate"> <span class="pre">straight_line</span> <span class="pre">=</span> <span class="pre">True</span></code> オプションです．</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p><code class="docutils literal notranslate"><span class="pre">fig.plot()</span></code>のオプション <code class="docutils literal notranslate"><span class="pre">fill=</span></code> はその名のとおり塗りつぶしの色を指定するオプションですが，PyGMT v0.8.0 までは，このオプションは <code class="docutils literal notranslate"><span class="pre">color=</span></code> であったものが，オプション名の変更がなされたようです．ドキュメントによると，PyGMT v0.9.0 時点では <code class="docutils literal notranslate"><span class="pre">fill</span></code> でも <code class="docutils literal notranslate"><span class="pre">color</span></code> でも動作しますが，v0.12.0 以降では<code class="docutils literal notranslate"><span class="pre">color</span></code>オプションは動作しなくなる，と警告がでています．ご利用のバージョンに応じて読み替えてください．</p>
+<p><code class="docutils literal notranslate"><span class="pre">fig.plot()</span></code>のオプション <code class="docutils literal notranslate"><span class="pre">fill=</span></code> はその名のとおり塗りつぶしの色を指定するオプションですが，PyGMT v0.8.0 までは，このオプションは <code class="docutils literal notranslate"><span class="pre">color=</span></code> であったものが，オプション名の変更がなされたようです．しばらくの移行期間を経て，v0.12.0 以降では<code class="docutils literal notranslate"><span class="pre">color</span></code>オプションは動作しなくなりました．</p>
 </div>
 </section>
 </section>

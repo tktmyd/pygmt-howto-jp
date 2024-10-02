@@ -161,11 +161,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="mech.html">
-   震源メカニズム解の表現
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="animation.html">
    アニメーション動画の作成
   </a>
@@ -321,8 +316,8 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#anaconda-miniconda">
-   Anaconda （Miniconda）によるインストール
+  <a class="reference internal nav-link" href="#anacondaminiforge">
+   Anacondaライセンス問題とMiniforgeの利用
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -335,24 +330,7 @@ title="Print to PDF"
      仮想環境の作成とPyGMTのインストール
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     過去のバージョンのインストールスクリプト
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#pygmt-v0-5-0-gmt-6-2-0">
-       PyGMT v0.5.0 と GMT 6.2.0
-      </a>
-     </li>
-    </ul>
-   </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pip">
-   （参考）pip によるインストール
-  </a>
  </li>
 </ul>
 
@@ -374,8 +352,8 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#anaconda-miniconda">
-   Anaconda （Miniconda）によるインストール
+  <a class="reference internal nav-link" href="#anacondaminiforge">
+   Anacondaライセンス問題とMiniforgeの利用
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -388,24 +366,7 @@ title="Print to PDF"
      仮想環境の作成とPyGMTのインストール
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     過去のバージョンのインストールスクリプト
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#pygmt-v0-5-0-gmt-6-2-0">
-       PyGMT v0.5.0 と GMT 6.2.0
-      </a>
-     </li>
-    </ul>
-   </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pip">
-   （参考）pip によるインストール
-  </a>
  </li>
 </ul>
 
@@ -421,28 +382,39 @@ title="Print to PDF"
 <h1>PyGMTの環境構築<a class="headerlink" href="#pygmt" title="Permalink to this headline">#</a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>本セクションの記述は<a class="reference external" href="https://www.apple.com/jp/macos/ventura/">macOS Ventura</a>およびLinuxディストリビューションの一種である<a class="reference external" href="https://jp.ubuntu.com">Ubuntu</a> 22.04LTSで動作確認しています．Windows OSへの直接インストールは，筆者がWindowsの使い方を知らないため記載していません．ただし，Windowsにおいても<a class="reference external" href="https://docs.microsoft.com/ja-jp/windows/wsl/install">WSL2</a>を用いることでUbuntuをはじめとしたLinuxディストリビューションを容易に利用可能なはずです．</p>
+<p>本セクションの記述は<a class="reference external" href="https://www.apple.com/jp/macos/sonoma/">macOS Sonoma</a>およびLinuxディストリビューションの一種である<a class="reference external" href="https://jp.ubuntu.com">Ubuntu</a> 24.04LTSで動作確認しています．Windows OSへの直接インストールは，筆者がWindowsの使い方を知らないため記載していません．ただし，Windowsにおいても<a class="reference external" href="https://docs.microsoft.com/ja-jp/windows/wsl/install">WSL2</a>を用いることでUbuntuをはじめとしたLinuxディストリビューションを容易に利用可能なはずです．</p>
 </div>
 <p>PyGMTを使うための環境構築には，Pythonのパッケージ管理システムである</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.anaconda.com">Anaconda（Miniconda）</a></p></li>
+<li><p><a class="reference external" href="https://www.anaconda.com">conda</a></p></li>
 <li><p><a class="reference external" href="https://www.python.jp/install/windows/pip.html">pip</a></p></li>
 </ul>
 <p>のどちらかを使います．原理的には自分でソースコードから構築することもできるはずですが，PyGMTはそれを動作させるための依存ライブラリが非常に多いため，パッケージ管理システムを使うことを勧めます．</p>
-<p>pipはPythonに付属したツールで，Python上で用いるライブラリの管理を行うものである一方，AnacondaはPythonの処理系自体を含むパッケージで，Pythonのみならずそれに（広い意味で）関連した様々なツールのインストールができます．</p>
-<p>どちらを使うかは好みの問題だと思いますが，Anaconda（Miniconda）のほうが容易に環境が構築できるようです．一方，Anacondaはライセンスの扱いにやや注意が必要です．</p>
-<section id="anaconda-miniconda">
-<h2>Anaconda （Miniconda）によるインストール<a class="headerlink" href="#anaconda-miniconda" title="Permalink to this headline">#</a></h2>
-<p>Anacondaは科学技術計算に必要なライブラリが多く含まれたPython実行環境とそのパッケージ管理システムからなるソフトウェアです．Anacondaをインストールするだけで一通りの計算環境が揃うため便利なものだったのですが，2020年4月より利用規約が<a class="reference external" href="https://www.anaconda.com/blog/sustaining-our-stewardship-of-the-open-source-data-science-community">改定</a>となり，大規模な商用利用は有償になりました．ただし，<a class="reference external" href="https://www.anaconda.com/blog/anaconda-commercial-edition-faq">FAQ</a>によると大学関係者や非商用利用に関してはこの条件が適用されないと明記されています．さらに，有償になるのはパッケージ管理の<code class="docutils literal notranslate"><span class="pre">default</span></code>のリポジトリであり，コミュニティで作成されているリポジトリであるconda-forgeの利用については制限がなことが<a class="reference external" href="https://conda-forge.org/blog/posts/2020-11-20-anaconda-tos/">明言</a>されているようです．</p>
-<p>そこで，ここではPythonおよびパッケージ管理コマンドの<code class="docutils literal notranslate"><span class="pre">conda</span></code>を含む最小限のパッケージであるMinicondaを導入し，そこから<code class="docutils literal notranslate"><span class="pre">conda-forge</span></code>のリポジトリを使って環境の構築をする方法を紹介します．Minicondaは<a class="reference external" href="https://www.anaconda.com/end-user-license-agreement-miniconda">有償ではない</a>ため，この方法ならどなたでも自由に使えるはずです（と，筆者は理解しています）．</p>
+<p>pipはPythonに付属したツールで，Python上で用いるライブラリの管理を行うものである一方，condaはPythonの処理系自体を含むパッケージで，Pythonのみならずそれに（広い意味で）関連した様々なツールのインストールができます．</p>
+<p>どちらを使うかは好みの問題だと思いますが，condaのほうが容易に環境が構築できるようです．ただし，condaはライセンスまわりにやや注意が必要です．</p>
+<section id="anacondaminiforge">
+<h2>Anacondaライセンス問題とMiniforgeの利用<a class="headerlink" href="#anacondaminiforge" title="Permalink to this headline">#</a></h2>
+<p>Anacondaは科学技術計算に必要なライブラリが多く含まれたPython実行環境とそのパッケージ管理システムからなるソフトウェアです．Anacondaをインストールするだけで一通りの計算環境が揃うため便利なものだったのですが，2020年4月より利用規約が<a class="reference external" href="https://www.anaconda.com/blog/sustaining-our-stewardship-of-the-open-source-data-science-community">改定</a>となり，大規模な商用利用は有償になりました．その時点では大学関係者や非商用利用に関してはこの条件は適用されないと<a class="reference external" href="https://www.anaconda.com/blog/anaconda-commercial-edition-faq">明記されていた</a>のですが，その後さらにライセンス条件が変更され，事実上Anacondaの無償利用は困難な状況になったようです．</p>
+<p>そこで，ここではPythonおよびパッケージ管理コマンドの<code class="docutils literal notranslate"><span class="pre">conda</span></code>を含むコミュニティベースのパッケージ管理システムである<a class="reference external" href="https://github.com/conda-forge/miniforge">miniforge</a>を利用し，PyGMTの環境を構築します．</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>以前，このページでは<a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a>とコミュニティベースのリポジトリである <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> の利用を推奨し，その方法について説明していました．しかしMinicondaはデフォルトの状態ではAnaconda本体のリポジトリを利用する設定となっているため，そのままでは無償利用のライセンスに抵触するおそれがあります．そこで，今後はコミュニティリポジトリの<code class="docutils literal notranslate"><span class="pre">conda-forge</span></code>をデフォルトで使いつつ，従来の<code class="docutils literal notranslate"><span class="pre">conda</span></code>と同じ使い方のできるMiniforgeの利用を推奨します．</p>
+</div>
 <section id="miniconda">
 <h3>Minicondaのインストール<a class="headerlink" href="#miniconda" title="Permalink to this headline">#</a></h3>
-<p><a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">公式ページ</a>で配布されているインストーラを使います．OSとCPUアーキテクチャごとにインストーラが異なります．また，macOSではダブルクリックでGUIインストールができる（と思われる；未確認）pkg形式と，Linuxと同じシェルスクリプトによるインストーラが提供されています．ここではシェルスクリプトを用います．アーキテクチャが色々あって迷うかもしれませんが，macOSのCPUは，Appleメニュー（デスクトップ左上のリンゴマーク）の『このMacについて』を選ぶと，『プロセッサ』の欄に記載されていますので，そこに<code class="docutils literal notranslate"><span class="pre">Intel</span></code>とあるかどうかで判断できるでしょう．Linuxの場合は（ARM製のCPUを用いたスパコンなど以外では）まず間違いなく<code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">64-bit</span></code>でしょう．</p>
-<p>スクリプトをダウンロードしたら，端末（macOSならターミナル.appなど，Linuxならgnome-terminalなど）からそのスクリプトを</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash <span class="k">$(</span>スクリプト名<span class="k">)</span>
+<p>まずは適当なディレクトリで，miniforgeをダウンロードします．ここでは<code class="docutils literal notranslate"><span class="pre">curl</span></code>コマンドを使った例を示します．</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl -L -O <span class="s2">&quot;https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-</span><span class="k">$(</span>uname<span class="k">)</span><span class="s2">-</span><span class="k">$(</span>uname -m<span class="k">)</span><span class="s2">.sh&quot;</span>
 </pre></div>
 </div>
-<p>として実行し，対話的にy/nを選んでいくことでインストールできます．その際，インストール先も指定できます．デフォルトは<code class="docutils literal notranslate"><span class="pre">~/miniconda3</span></code>のはずです．ただし<code class="docutils literal notranslate"><span class="pre">~</span></code>は自分のホームディレクトリを意味します．インストール時にnoと答えていなければ，自分のシェル設定ファイル（<code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>あるいは<code class="docutils literal notranslate"><span class="pre">.zshrc</span></code>）に<code class="docutils literal notranslate"><span class="pre">conda</span></code>コマンドを実行するための初期設定が書き込まれます．これにより，次回端末（あるいはシェル）起動時より，ターミナルのプロンプトに <code class="docutils literal notranslate"><span class="pre">(base)</span></code> と記載されるはずです．これはAnacondaの提供する仮想環境のうち，デフォルトの環境であることを意味します．</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>行頭の <code class="docutils literal notranslate"><span class="pre">$</span></code> はシェルのプロンプトです．コマンドそのものには含まれませんのでご注意ください．</p>
+</div>
+<p>ダウンロードしたら，そのスクリプトを <code class="docutils literal notranslate"><span class="pre">bash</span></code> コマンドで実行します．</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ bash Miniforge3-<span class="k">$(</span>uname<span class="k">)</span>-<span class="k">$(</span>uname -m<span class="k">)</span>.sh
+</pre></div>
+</div>
+<p>あとは対話的にy/nを選んでいくことでインストールできます．その際，インストール先も指定できます．デフォルトは<code class="docutils literal notranslate"><span class="pre">~/miniforge3</span></code>のはずです．ただし<code class="docutils literal notranslate"><span class="pre">~</span></code>は自分のホームディレクトリを意味します．インストール時にnoと答えていなければ，自分のシェル設定ファイル（<code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>あるいは<code class="docutils literal notranslate"><span class="pre">.zshrc</span></code>）に<code class="docutils literal notranslate"><span class="pre">conda</span></code>コマンドを実行するための初期設定が書き込まれます．これにより，次回端末（あるいはシェル）起動時より，ターミナルのプロンプトに <code class="docutils literal notranslate"><span class="pre">(base)</span></code> と記載されるはずです．</p>
 <p>これでインストール作業は終わりですが，<code class="docutils literal notranslate"><span class="pre">conda</span></code>自体を最新版にアップデートしておきましょう．</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda update conda
 </pre></div>
@@ -451,87 +423,35 @@ title="Print to PDF"
 <section id="id1">
 <h3>仮想環境の作成とPyGMTのインストール<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>このままデフォルトの環境にパッケージを追加していってもよいのですが，ここではPyGMT用の<strong>仮想環境</strong>を作成します．このようにすると，パッケージ間のバージョン不整合などのトラブルがあったときに，仮想環境ごと切り替えるということが可能になります．ここでは，本Webサイトで利用するパッケージをまるごと導入する仮想環境<code class="docutils literal notranslate"><span class="pre">pygmt</span></code>を作ってみましょう．ここでは，2023年6月時点で最新となるPyGMT v0.9.0と，GMT v6.4.0 を導入します．</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name pygmt-howto-v0.9 --channel conda-forge <span class="se">\</span>
-<span class="nv">pygmt</span><span class="o">==</span><span class="m">0</span>.9.0 <span class="nv">gmt</span><span class="o">==</span><span class="m">6</span>.4.0 <span class="nv">numpy</span><span class="o">==</span><span class="m">1</span>.24.3 <span class="nv">scipy</span><span class="o">==</span><span class="m">1</span>.10.1 <span class="se">\</span>
-<span class="nv">obspy</span><span class="o">==</span><span class="m">1</span>.4.0 <span class="nv">notebook</span><span class="o">==</span><span class="m">6</span>.5.4 <span class="nv">matplotlib</span><span class="o">==</span><span class="m">3</span>.7.1 <span class="nv">ffmpeg</span><span class="o">==</span><span class="m">4</span>.4.2
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ conda create --name pygmt-howto-v0.12 <span class="se">\</span>
+  <span class="nv">pygmt</span><span class="o">==</span><span class="m">0</span>.12.0 gmt numpy scipy <span class="nv">obspy</span><span class="o">==</span><span class="m">1</span>.4.1 notebook matplotlib ffmpeg
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>コマンドが長いため <code class="docutils literal notranslate"><span class="pre">\</span></code>で適宜改行しています．仮想環境の名前 <code class="docutils literal notranslate"><span class="pre">pygmt-howto</span></code> はお好みで適宜変更するとよいでしょう．</p>
 </div>
-<p>上記のコマンドでは，まず <code class="docutils literal notranslate"><span class="pre">--name</span></code> オプションで仮想環境の名前を，<code class="docutils literal notranslate"><span class="pre">--channel</span></code> オプションでパッケージのリポジトリとして <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> の利用をそれぞれ宣言し，そのあとでインストールする各種パッケージとそのバージョンを <code class="docutils literal notranslate"><span class="pre">==</span></code> でつないで表現しています．PyGMTのほか，科学技術計算に必要なNumPyやSciPy，地震学データ解析に用いるObsPy，実行環境としてJupyter Notebook(<code class="docutils literal notranslate"><span class="pre">notebook</span></code>がそれにあたります）などをインストールしています．</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>なお，まだ本Webで扱われていないパッケージも一部含まれていますが，今後記事を拡張予定です．</p>
-</div>
+<p>上記のコマンドでは，まず <code class="docutils literal notranslate"><span class="pre">--name</span></code> オプションで仮想環境の名前を宣言し，そのあとでインストールする各種パッケージと必要に応じてそのバージョンを <code class="docutils literal notranslate"><span class="pre">==</span></code> でつないで表現しています．PyGMTのほか，科学技術計算に必要なNumPyやSciPy，地震学データ解析に用いるObsPy，実行環境としてJupyter Notebook(<code class="docutils literal notranslate"><span class="pre">notebook</span></code>がそれにあたります）などをインストールしています．</p>
 <p>上記コマンドからわかるように，<code class="docutils literal notranslate"><span class="pre">conda</span></code>ではPythonのライブラリだけではなく，GMTそのものもインストールされます．ですから，GMTを別途インストールしておく必要はありません．また，Python本体も指定したバージョンのものがインストールされます．ライブラリやPythonのバージョン番号は指定しなければ最新版が入ります．</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>これらのライブラリや実行バイナリは，<code class="docutils literal notranslate"><span class="pre">miniconda</span></code> のインストールディレクトリ下の <code class="docutils literal notranslate"><span class="pre">envs</span></code> ディレクトリに格納されます<code class="docutils literal notranslate"><span class="pre">miniconda</span></code>をデフォルトでホームディレクトリにインストールしている場合，容量の増大にはご注意ください．</p>
+<p>これらのライブラリや実行バイナリは，<code class="docutils literal notranslate"><span class="pre">miniforge</span></code> のインストールディレクトリ下の <code class="docutils literal notranslate"><span class="pre">envs</span></code> ディレクトリに格納されます．<code class="docutils literal notranslate"><span class="pre">miniforge</span></code>をデフォルトでホームディレクトリにインストールしている場合，容量の増大にはご注意ください．</p>
 </div>
 <p>インストールが完了したら</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate pygmt-howto-v0.9
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate pygmt-howto-v0.12
 </pre></div>
 </div>
-<p>により仮想環境を有効化します．すると，プロンプトの左側の <code class="docutils literal notranslate"><span class="pre">(base)</span></code> が仮想環境の名前 <code class="docutils literal notranslate"><span class="pre">(pygmt-howto)</span></code> に変わります．もしいつでもこの環境を使いたいならば，シェルの初期設定ファイル（<code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> あるいは <code class="docutils literal notranslate"><span class="pre">.zshrc</span></code> など）に上記の <code class="docutils literal notranslate"><span class="pre">activate</span></code> コマンドを記載しておくとよいでしょう．</p>
+<p>により仮想環境を有効化します．すると，プロンプトの左側の <code class="docutils literal notranslate"><span class="pre">(base)</span></code> が仮想環境の名前 <code class="docutils literal notranslate"><span class="pre">(pygmt-howto-v0.12)</span></code> に変わります．もしいつでもこの環境を使いたいならば，シェルの初期設定ファイル（<code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> あるいは <code class="docutils literal notranslate"><span class="pre">.zshrc</span></code> など）に上記の <code class="docutils literal notranslate"><span class="pre">activate</span></code> コマンドを記載しておくとよいでしょう．</p>
 <p>一方，仮想環境から抜けるには</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda deactivate
 </pre></div>
 </div>
 <p>です．もしこの仮想環境が不要になって削除したいときは，仮想環境から<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">deactivate</span></code> した状態で</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda remove -n pygmt-howto-v0.9 --all
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda remove -n pygmt-howto-v0.12 --all
 </pre></div>
 </div>
 <p>とします．</p>
 </section>
-<section id="id2">
-<h3>過去のバージョンのインストールスクリプト<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
-<p>PyGMTはかなり活発に開発が続いており，頻繁なバージョンアップがあります．参考のため，このPyGMT-HowToページた以前紹介していた過去バージョンのインストール法もアーカイブとして残しておきます．これから新たにインストールするのであれば，前節のインストールスクリプトを参考にしてください．</p>
-<section id="pygmt-v0-5-0-gmt-6-2-0">
-<h4>PyGMT v0.5.0 と GMT 6.2.0<a class="headerlink" href="#pygmt-v0-5-0-gmt-6-2-0" title="Permalink to this headline">#</a></h4>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name pygmt-howto --channel conda-forge <span class="se">\</span>
-<span class="nv">python</span><span class="o">==</span><span class="m">3</span>.10.5 <span class="nv">pygmt</span><span class="o">==</span><span class="m">0</span>.5.0 <span class="nv">gmt</span><span class="o">==</span><span class="m">6</span>.2.0 <span class="nv">numpy</span><span class="o">==</span><span class="m">1</span>.22.4 <span class="nv">scipy</span><span class="o">==</span><span class="m">1</span>.8.1 <span class="se">\</span>
-<span class="nv">obspy</span><span class="o">==</span><span class="m">1</span>.3.0 <span class="nv">notebook</span><span class="o">==</span><span class="m">6</span>.4.11 <span class="nv">netcdf4</span><span class="o">==</span><span class="m">1</span>.5.8 <span class="nv">matplotlib</span><span class="o">==</span><span class="m">3</span>.5.1
-</pre></div>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>GMTの6.3.0の利用には注意が必要で，PyGMTの過去バージョンとの組み合わせにおいて，時間軸を横軸とするプロットがうまく生成できない，というトラブルが発生していました．
-さらにPyGMTは0.6.0以降ではGMTの最低限のバージョンとして6.3.0の最新版を要求しているため，最新版のPyGMTを用いるなら，2022年6月にリリースされたばかりのGMT6.4.0の利用が必要です．</p>
-<p>上記の例ではどちらも最新版は使わず，PyGMT 0.5.0とGMT 6.2.0を利用していますが，もし最新版を使いたいなら以下の<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span></code>で作成するのが良いでしょう．</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name pygmt-howto2 --channel conda-forge <span class="se">\</span>
-<span class="nv">python</span><span class="o">==</span><span class="m">3</span>.10.5 <span class="nv">pygmt</span><span class="o">==</span><span class="m">0</span>.6.1 <span class="nv">gmt</span><span class="o">==</span><span class="m">6</span>.4.0 <span class="nv">numpy</span><span class="o">==</span><span class="m">1</span>.22.4 <span class="nv">scipy</span><span class="o">==</span><span class="m">1</span>.8.1 <span class="se">\</span>
-<span class="nv">obspy</span><span class="o">==</span><span class="m">1</span>.3.0 <span class="nv">notebook</span><span class="o">==</span><span class="m">6</span>.4.11 <span class="nv">netcdf4</span><span class="o">==</span><span class="m">1</span>.5.8 <span class="nv">matplotlib</span><span class="o">==</span><span class="m">3</span>.5.1
-</pre></div>
-</div>
-</div>
-</section>
-</section>
-</section>
-<section id="pip">
-<h2>（参考）pip によるインストール<a class="headerlink" href="#pip" title="Permalink to this headline">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">pip</span></code> はPythonに付属しているパッケージ管理コマンドです．
-<code class="docutils literal notranslate"><span class="pre">conda</span></code>で行ったように，Python本体を仮想化して目的別のパッケージ管理を行う方法も（多数）ありますが，本筋からそれるためここでは割愛します．</p>
-<p>PyGMTは<code class="docutils literal notranslate"><span class="pre">pip</span></code>コマンドに対応しており，インストールは</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install <span class="nv">pygmt</span><span class="o">==</span><span class="m">0</span>.5.0
-</pre></div>
-</div>
-<p>とするだけです．ただし，この場合は<code class="docutils literal notranslate"><span class="pre">conda</span></code>と異なり，GMTはあらかじめ別途インストールが必要です．
-GMTはパッケージ管理ソフト（macOSならhomebrew, Ubuntuならapt, CentOSやらyumなど）を用いてインストールするのが簡単でしょう．ただし，PyGMTは原則として最新版に近いバージョンのGMTを要求する一方，Linuxのパッケージ管理システムが最新版のインストールに対応していない，ということがままあります．また，特にLinuxにおいては，インストールしたGMTのありかをPyGMTが正しく認識できない，というトラブルがしばしば発生しているようで，<a class="reference external" href="https://qiita.com/fujitatsu0520/items/14e2e965f9304ddb996b">環境変数の設定で回避する必要がある</a>ようです．特にこだわりがなければ，minicondaによるほうが確実にインストールできるでしょう．</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Anacondaの節に記載したように，2022年6月時点ではGMT6.3.0とPyGMTを組み合わせることが推奨できません．GMTを独自に導入する場合はご注意ください．</p>
-</div>
-<p>そのほかのライブラリも同様にインストールします．</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install numpy
-pip install scipy
-pip install obspy
-pip install matplotlib
-pip install notebook
-pip install netcdf4
-</pre></div>
-</div>
 </section>
 </section>
 

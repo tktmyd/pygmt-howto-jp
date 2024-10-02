@@ -163,11 +163,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="mech.html">
-   震源メカニズム解の表現
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="animation.html">
    アニメーション動画の作成
   </a>
@@ -618,30 +613,32 @@ fi
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PyGMT information:
-  version: v0.9.0
+  version: v0.12.0
 System information:
-  python: 3.11.3 | packaged by conda-forge | (main, Apr  6 2023, 08:58:31) [Clang 14.0.6 ]
-  executable: /opt/homebrew/Caskroom/miniconda/base/envs/pygmt-howto-v0.9/bin/python
-  machine: macOS-13.0-arm64-arm-64bit
+  python: 3.12.4 | packaged by conda-forge | (main, Jun 17 2024, 10:13:44) [Clang 16.0.6 ]
+  executable: /Users/tktmyd/miniforge3/envs/pygmt-howto-v0.12/bin/python
+  machine: macOS-14.3.1-arm64-arm-64bit
 Dependency information:
-  numpy: 1.24.3
-  pandas: 2.0.2
-  xarray: 2023.5.0
-  netCDF4: 1.6.3
-  packaging: 23.1
+  numpy: 1.26.4
+  pandas: 2.2.2
+  xarray: 2024.6.0
+  netCDF4: 1.7.1
+  packaging: 24.1
   contextily: None
   geopandas: None
-  ghostscript: 9.54.0
+  ipython: None
+  rioxarray: None
+  ghostscript: 10.03.1
 GMT library information:
-  binary version: 6.4.0
+  binary version: 6.5.0
   cores: 8
   grid layout: rows
   image layout: 
-  library path: /opt/homebrew/Caskroom/miniconda/base/envs/pygmt-howto-v0.9/lib/libgmt.dylib
+  library path: /Users/tktmyd/miniforge3/envs/pygmt-howto-v0.12/lib/libgmt.dylib
   padding: 2
-  plugin dir: /opt/homebrew/Caskroom/miniconda/base/envs/pygmt-howto-v0.9/lib/gmt/plugins
-  share dir: /opt/homebrew/Caskroom/miniconda/base/envs/pygmt-howto-v0.9/share/gmt
-  version: 6.4.0
+  plugin dir: /Users/tktmyd/miniforge3/envs/pygmt-howto-v0.12/lib/gmt/plugins
+  share dir: /Users/tktmyd/miniforge3/envs/pygmt-howto-v0.12/share/gmt
+  version: 6.5.0
 </pre></div>
 </div>
 </div>
@@ -654,7 +651,7 @@ GMT library information:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v0.9.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v0.12.0
 </pre></div>
 </div>
 </div>
@@ -698,7 +695,7 @@ GMT library information:
     <span class="n">land</span>        <span class="o">=</span> <span class="s1">&#39;249/243/202&#39;</span><span class="p">,</span>                      <span class="c1"># 陸地の色を 0-255の値の R/G/B で指定</span>
     <span class="n">water</span>       <span class="o">=</span> <span class="s1">&#39;190/220/250&#39;</span><span class="p">,</span>                      <span class="c1"># 水の色を 0-255の値の R/G/B で指定</span>
     <span class="n">map_scale</span>   <span class="o">=</span> <span class="s1">&#39;142.5/32/32/400&#39;</span><span class="p">,</span>                  <span class="c1"># 距離スケールの水平・縦位置と距離サイズ</span>
-    <span class="n">frame</span>       <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+t&quot;Figure&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;xafg&#39;</span><span class="p">,</span> <span class="s1">&#39;yafg&#39;</span><span class="p">]</span>  <span class="c1"># 南西に軸名・タイトル指定（+t) およびXY方向それぞれの軸情報</span>
+    <span class="n">frame</span>       <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+tFigure&#39;</span><span class="p">,</span> <span class="s1">&#39;xafg&#39;</span><span class="p">,</span> <span class="s1">&#39;yafg&#39;</span><span class="p">]</span>    <span class="c1"># 南西に軸名・タイトル指定（+t) およびXY方向それぞれの軸情報</span>
 <span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -770,7 +767,7 @@ GMT library information:
 <span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">basemap</span><span class="p">(</span>
-    <span class="n">frame</span>       <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+t&quot;Figure&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;xafg&#39;</span><span class="p">,</span> <span class="s1">&#39;yafg&#39;</span><span class="p">]</span> 
+    <span class="n">frame</span>       <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+tFigure&#39;</span><span class="p">,</span> <span class="s1">&#39;xafg&#39;</span><span class="p">,</span> <span class="s1">&#39;yafg&#39;</span><span class="p">]</span> 
 <span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -789,7 +786,7 @@ GMT library information:
 <h2>GMTから移行するユーザー向けの話題<a class="headerlink" href="#gmt" title="Permalink to this headline">#</a></h2>
 <section id="id7">
 <h3>エイリアス<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
-<p>PyGMTでは，従来のGMTと比べてオプションの意味が多くの人にとってわかりやすい名前がつけられています．一方，昔からのGMTのオプション名を把握している筆者のような古代人向け（？）に，従来オプション名のエイリアスも設定されています．たとえば先程の地図は，以下のようなエイリアスオプション名を用いて作成することもできます．初めて見る人には全く意味不明のオプションでしょうが，GMTに馴染みのある人にはむしろ使いやすいかもしれません．</p>
+<p>PyGMTでは，従来のGMTと比べてオプションの意味が多くの人にとってわかりやすい名前がつけられています．一方，昔からのGMTのオプション名を把握している旧GMTユーザー向け（？）に，従来オプション名のエイリアスも設定されています．たとえば先程の地図は，以下のようなエイリアスオプション名を用いて作成することもできます．初めて見る人には全く意味不明のオプションでしょうが，GMTに馴染みのある人にはむしろ使いやすいかもしれません．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
@@ -803,7 +800,7 @@ GMT library information:
     <span class="n">G</span> <span class="o">=</span> <span class="s1">&#39;249/243/202&#39;</span><span class="p">,</span>                     
     <span class="n">S</span> <span class="o">=</span> <span class="s1">&#39;190/220/250&#39;</span><span class="p">,</span>                     
     <span class="n">L</span> <span class="o">=</span> <span class="s1">&#39;142.5/32/32/400&#39;</span><span class="p">,</span>                 
-    <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+t&quot;Figure&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;xafg&#39;</span><span class="p">,</span> <span class="s1">&#39;yafg&#39;</span><span class="p">]</span> 
+    <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+tFigure&#39;</span><span class="p">,</span> <span class="s1">&#39;xafg&#39;</span><span class="p">,</span> <span class="s1">&#39;yafg&#39;</span><span class="p">]</span> 
 <span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -811,23 +808,23 @@ GMT library information:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/x3/nldc_t6578d7dv9ncgwfk94r0000gn/T/ipykernel_22450/1816858382.py:3: SyntaxWarning: Short-form parameter (R) is not recommended. Use long-form parameter &#39;region&#39; instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/wt/2gls824s1d3dfj1rwm2l_b8w0000gn/T/ipykernel_33240/1294256770.py:3: SyntaxWarning: Short-form parameter (A) is not recommended. Use long-form parameter &#39;area_thresh&#39; instead.
   fig.coast(
-/var/folders/x3/nldc_t6578d7dv9ncgwfk94r0000gn/T/ipykernel_22450/1816858382.py:3: SyntaxWarning: Short-form parameter (J) is not recommended. Use long-form parameter &#39;projection&#39; instead.
+/var/folders/wt/2gls824s1d3dfj1rwm2l_b8w0000gn/T/ipykernel_33240/1294256770.py:3: SyntaxWarning: Short-form parameter (B) is not recommended. Use long-form parameter &#39;frame&#39; instead.
   fig.coast(
-/var/folders/x3/nldc_t6578d7dv9ncgwfk94r0000gn/T/ipykernel_22450/1816858382.py:3: SyntaxWarning: Short-form parameter (A) is not recommended. Use long-form parameter &#39;area_thresh&#39; instead.
+/var/folders/wt/2gls824s1d3dfj1rwm2l_b8w0000gn/T/ipykernel_33240/1294256770.py:3: SyntaxWarning: Short-form parameter (D) is not recommended. Use long-form parameter &#39;resolution&#39; instead.
   fig.coast(
-/var/folders/x3/nldc_t6578d7dv9ncgwfk94r0000gn/T/ipykernel_22450/1816858382.py:3: SyntaxWarning: Short-form parameter (B) is not recommended. Use long-form parameter &#39;frame&#39; instead.
+/var/folders/wt/2gls824s1d3dfj1rwm2l_b8w0000gn/T/ipykernel_33240/1294256770.py:3: SyntaxWarning: Short-form parameter (G) is not recommended. Use long-form parameter &#39;land&#39; instead.
   fig.coast(
-/var/folders/x3/nldc_t6578d7dv9ncgwfk94r0000gn/T/ipykernel_22450/1816858382.py:3: SyntaxWarning: Short-form parameter (D) is not recommended. Use long-form parameter &#39;resolution&#39; instead.
+/var/folders/wt/2gls824s1d3dfj1rwm2l_b8w0000gn/T/ipykernel_33240/1294256770.py:3: SyntaxWarning: Short-form parameter (J) is not recommended. Use long-form parameter &#39;projection&#39; instead.
   fig.coast(
-/var/folders/x3/nldc_t6578d7dv9ncgwfk94r0000gn/T/ipykernel_22450/1816858382.py:3: SyntaxWarning: Short-form parameter (L) is not recommended. Use long-form parameter &#39;map_scale&#39; instead.
+/var/folders/wt/2gls824s1d3dfj1rwm2l_b8w0000gn/T/ipykernel_33240/1294256770.py:3: SyntaxWarning: Short-form parameter (L) is not recommended. Use long-form parameter &#39;map_scale&#39; instead.
   fig.coast(
-/var/folders/x3/nldc_t6578d7dv9ncgwfk94r0000gn/T/ipykernel_22450/1816858382.py:3: SyntaxWarning: Short-form parameter (W) is not recommended. Use long-form parameter &#39;shorelines&#39; instead.
+/var/folders/wt/2gls824s1d3dfj1rwm2l_b8w0000gn/T/ipykernel_33240/1294256770.py:3: SyntaxWarning: Short-form parameter (R) is not recommended. Use long-form parameter &#39;region&#39; instead.
   fig.coast(
-/var/folders/x3/nldc_t6578d7dv9ncgwfk94r0000gn/T/ipykernel_22450/1816858382.py:3: SyntaxWarning: Short-form parameter (G) is not recommended. Use long-form parameter &#39;land&#39; instead.
+/var/folders/wt/2gls824s1d3dfj1rwm2l_b8w0000gn/T/ipykernel_33240/1294256770.py:3: SyntaxWarning: Short-form parameter (S) is not recommended. Use long-form parameter &#39;water&#39; instead.
   fig.coast(
-/var/folders/x3/nldc_t6578d7dv9ncgwfk94r0000gn/T/ipykernel_22450/1816858382.py:3: SyntaxWarning: Short-form parameter (S) is not recommended. Use long-form parameter &#39;water&#39; instead.
+/var/folders/wt/2gls824s1d3dfj1rwm2l_b8w0000gn/T/ipykernel_33240/1294256770.py:3: SyntaxWarning: Short-form parameter (W) is not recommended. Use long-form parameter &#39;shorelines&#39; instead.
   fig.coast(
 </pre></div>
 </div>
@@ -858,8 +855,8 @@ GMT library information:
 <h3>pygmtとシェルスクリプトの比較<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
 <p>これまでに紹介した PyGMTのスクリプトと，それらと（ほとんど）同じ図を出力するbashによる従来型のGMTスクリプトを比較してみます．以下のタブをクリックするとコードが表示されます．なお，比較しやすいようできるだけ改行を多めに書いています．</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="ff599ed3-af6c-4170-b15a-24b0f6d3dea4" name="08ed25ad-22d4-4ae9-8c9b-84acf3892301" type="radio">
-</input><label class="sd-tab-label" for="ff599ed3-af6c-4170-b15a-24b0f6d3dea4">
+<input checked="checked" id="e39314bd-f2d5-45c6-a2cf-ef53e51641d3" name="57dea5bb-5ab6-4a0f-99e5-413f60917311" type="radio">
+</input><label class="sd-tab-label" for="e39314bd-f2d5-45c6-a2cf-ef53e51641d3">
 pygmt long</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 
@@ -872,13 +869,13 @@ pygmt long</label><div class="sd-tab-content docutils">
     <span class="n">land</span>        <span class="o">=</span> <span class="s1">&#39;230/240/220&#39;</span><span class="p">,</span>
     <span class="n">water</span>       <span class="o">=</span> <span class="s1">&#39;220/235/250&#39;</span><span class="p">,</span>
     <span class="n">map_scale</span>   <span class="o">=</span> <span class="s1">&#39;142.5/32/32/400&#39;</span><span class="p">,</span>
-    <span class="n">frame</span>       <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+t&quot;Figure&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;xafg&#39;</span><span class="p">,</span> <span class="s1">&#39;yafg&#39;</span><span class="p">]</span>
+    <span class="n">frame</span>       <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+tFigure&#39;</span><span class="p">,</span> <span class="s1">&#39;xafg&#39;</span><span class="p">,</span> <span class="s1">&#39;yafg&#39;</span><span class="p">]</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<input id="0a2d0468-abce-409b-9db5-8d7d3c0b4a81" name="08ed25ad-22d4-4ae9-8c9b-84acf3892301" type="radio">
-</input><label class="sd-tab-label" for="0a2d0468-abce-409b-9db5-8d7d3c0b4a81">
+<input id="9e1b4a5f-dbe0-45b7-af27-dae77f2a09e3" name="57dea5bb-5ab6-4a0f-99e5-413f60917311" type="radio">
+</input><label class="sd-tab-label" for="9e1b4a5f-dbe0-45b7-af27-dae77f2a09e3">
 pygmt short</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 
@@ -891,13 +888,13 @@ pygmt short</label><div class="sd-tab-content docutils">
     <span class="n">G</span> <span class="o">=</span> <span class="s1">&#39;230/240/220&#39;</span><span class="p">,</span>                     
     <span class="n">S</span> <span class="o">=</span> <span class="s1">&#39;220/235/250&#39;</span><span class="p">,</span>                     
     <span class="n">L</span> <span class="o">=</span> <span class="s1">&#39;142.5/32/32/400&#39;</span><span class="p">,</span>                 
-    <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+t&quot;Figure&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;xafg&#39;</span><span class="p">,</span> <span class="s1">&#39;yafg&#39;</span><span class="p">]</span> 
+    <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+tFigure&#39;</span><span class="p">,</span> <span class="s1">&#39;xafg&#39;</span><span class="p">,</span> <span class="s1">&#39;yafg&#39;</span><span class="p">]</span> 
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<input id="ac71de0d-ddaa-4a00-b529-ed6292dc9eaf" name="08ed25ad-22d4-4ae9-8c9b-84acf3892301" type="radio">
-</input><label class="sd-tab-label" for="ac71de0d-ddaa-4a00-b529-ed6292dc9eaf">
+<input id="6c49d04c-ac9e-465a-a0e4-75bbe88b8de0" name="57dea5bb-5ab6-4a0f-99e5-413f60917311" type="radio">
+</input><label class="sd-tab-label" for="6c49d04c-ac9e-465a-a0e4-75bbe88b8de0">
 bash classic</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
@@ -921,8 +918,8 @@ rm -f fig/classic-coastline.ps
 </pre></div>
 </div>
 </div>
-<input id="2b778ebe-b2df-4313-95bd-831079782e2d" name="08ed25ad-22d4-4ae9-8c9b-84acf3892301" type="radio">
-</input><label class="sd-tab-label" for="2b778ebe-b2df-4313-95bd-831079782e2d">
+<input id="93a7a8e6-ca1a-46a6-aaf1-e22cfcb03547" name="57dea5bb-5ab6-4a0f-99e5-413f60917311" type="radio">
+</input><label class="sd-tab-label" for="93a7a8e6-ca1a-46a6-aaf1-e22cfcb03547">
 bash modern</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 

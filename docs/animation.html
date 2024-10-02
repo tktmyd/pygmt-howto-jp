@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="License" href="license.html" />
-    <link rel="prev" title="震源メカニズム解の表現" href="mech.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="mech.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -158,11 +158,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="obspy.html">
    Obspyとの連携
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="mech.html">
-   震源メカニズム解の表現
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -512,12 +507,6 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.73 s, sys: 9.07 s, total: 11.8 s
-Wall time: 2min 19s
-</pre></div>
-</div>
-</div>
 </div>
 <p>説明はほぼコメントに書いてあるとおりですが，まず画像を動かすパラメタである初期位相のリストを作り，また同時に画像保存先の一時ディレクトリを作成しておきます．手動でディレクトリ名を指定してもよいのですが，ここでは<code class="docutils literal notranslate"><span class="pre">tmpfile.mkdtemp()</span></code>関数を使いました．この関数は，乱数を使った名前の適当なディレクトリを作成し，そのディレクトリ名を返してくれます．確認してみましょう．</p>
 <div class="cell docutils container">
@@ -527,7 +516,7 @@ Wall time: 2min 19s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/qw/cvrqp2fd6171t6js_gytd9_h0009rj/T/tmplof855wg
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/wt/2gls824s1d3dfj1rwm2l_b8w0000gn/T/tmpzjk04yyy
 </pre></div>
 </div>
 </div>
@@ -539,23 +528,40 @@ Wall time: 2min 19s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plot_000.png plot_017.png plot_034.png plot_051.png plot_068.png plot_085.png
-plot_001.png plot_018.png plot_035.png plot_052.png plot_069.png plot_086.png
-plot_002.png plot_019.png plot_036.png plot_053.png plot_070.png plot_087.png
-plot_003.png plot_020.png plot_037.png plot_054.png plot_071.png plot_088.png
-plot_004.png plot_021.png plot_038.png plot_055.png plot_072.png plot_089.png
-plot_005.png plot_022.png plot_039.png plot_056.png plot_073.png plot_090.png
-plot_006.png plot_023.png plot_040.png plot_057.png plot_074.png plot_091.png
-plot_007.png plot_024.png plot_041.png plot_058.png plot_075.png plot_092.png
-plot_008.png plot_025.png plot_042.png plot_059.png plot_076.png plot_093.png
-plot_009.png plot_026.png plot_043.png plot_060.png plot_077.png plot_094.png
-plot_010.png plot_027.png plot_044.png plot_061.png plot_078.png plot_095.png
-plot_011.png plot_028.png plot_045.png plot_062.png plot_079.png plot_096.png
-plot_012.png plot_029.png plot_046.png plot_063.png plot_080.png plot_097.png
-plot_013.png plot_030.png plot_047.png plot_064.png plot_081.png plot_098.png
-plot_014.png plot_031.png plot_048.png plot_065.png plot_082.png plot_099.png
-plot_015.png plot_032.png plot_049.png plot_066.png plot_083.png
-plot_016.png plot_033.png plot_050.png plot_067.png plot_084.png
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>plot_000.png plot_034.png plot_068.png plot_102.png plot_136.png plot_170.png
+plot_001.png plot_035.png plot_069.png plot_103.png plot_137.png plot_171.png
+plot_002.png plot_036.png plot_070.png plot_104.png plot_138.png plot_172.png
+plot_003.png plot_037.png plot_071.png plot_105.png plot_139.png plot_173.png
+plot_004.png plot_038.png plot_072.png plot_106.png plot_140.png plot_174.png
+plot_005.png plot_039.png plot_073.png plot_107.png plot_141.png plot_175.png
+plot_006.png plot_040.png plot_074.png plot_108.png plot_142.png plot_176.png
+plot_007.png plot_041.png plot_075.png plot_109.png plot_143.png plot_177.png
+plot_008.png plot_042.png plot_076.png plot_110.png plot_144.png plot_178.png
+plot_009.png plot_043.png plot_077.png plot_111.png plot_145.png plot_179.png
+plot_010.png plot_044.png plot_078.png plot_112.png plot_146.png plot_180.png
+plot_011.png plot_045.png plot_079.png plot_113.png plot_147.png plot_181.png
+plot_012.png plot_046.png plot_080.png plot_114.png plot_148.png plot_182.png
+plot_013.png plot_047.png plot_081.png plot_115.png plot_149.png plot_183.png
+plot_014.png plot_048.png plot_082.png plot_116.png plot_150.png plot_184.png
+plot_015.png plot_049.png plot_083.png plot_117.png plot_151.png plot_185.png
+plot_016.png plot_050.png plot_084.png plot_118.png plot_152.png plot_186.png
+plot_017.png plot_051.png plot_085.png plot_119.png plot_153.png plot_187.png
+plot_018.png plot_052.png plot_086.png plot_120.png plot_154.png plot_188.png
+plot_019.png plot_053.png plot_087.png plot_121.png plot_155.png plot_189.png
+plot_020.png plot_054.png plot_088.png plot_122.png plot_156.png plot_190.png
+plot_021.png plot_055.png plot_089.png plot_123.png plot_157.png plot_191.png
+plot_022.png plot_056.png plot_090.png plot_124.png plot_158.png plot_192.png
+plot_023.png plot_057.png plot_091.png plot_125.png plot_159.png plot_193.png
+plot_024.png plot_058.png plot_092.png plot_126.png plot_160.png plot_194.png
+plot_025.png plot_059.png plot_093.png plot_127.png plot_161.png plot_195.png
+plot_026.png plot_060.png plot_094.png plot_128.png plot_162.png plot_196.png
+plot_027.png plot_061.png plot_095.png plot_129.png plot_163.png plot_197.png
+plot_028.png plot_062.png plot_096.png plot_130.png plot_164.png plot_198.png
+plot_029.png plot_063.png plot_097.png plot_131.png plot_165.png plot_199.png
+plot_030.png plot_064.png plot_098.png plot_132.png plot_166.png
+plot_031.png plot_065.png plot_099.png plot_133.png plot_167.png
+plot_032.png plot_066.png plot_100.png plot_134.png plot_168.png
+plot_033.png plot_067.png plot_101.png plot_135.png plot_169.png
 </pre></div>
 </div>
 </div>
@@ -601,7 +607,7 @@ ffmpeg -i &quot;$1/plot_%3d.png&quot; \
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span> -s &quot;$tmpdir&quot; 
 ffmpeg -i &quot;$1/plot_%3d.png&quot; \
-  -vf scale=800:-1 -qscale 0 -pix_fmt yuv420p \
+  -vf scale=800:328 -qscale 0 -pix_fmt yuv420p \
   -y out.mp4 \
   &gt; /dev/null 2&gt;&amp;1
 </pre></div>
@@ -694,7 +700,7 @@ seq 0 199 | xargs -P10 -n1 python ./exe_plot_fig.py ${tmpdir}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/qw/cvrqp2fd6171t6js_gytd9_h0009rj/T/tmp.90nxgNul
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/wt/2gls824s1d3dfj1rwm2l_b8w0000gn/T/tmp.SwKIm29Sve
 </pre></div>
 </div>
 </div>
@@ -755,7 +761,7 @@ seq 0 199 | xargs -P10 -n1 python ./exe_plot_fig.py ${tmpdir}
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">震源メカニズム解の表現</p>
+            <p class="prev-next-title">&lt;no title&gt;</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="license.html" title="next page">

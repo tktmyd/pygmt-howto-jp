@@ -163,11 +163,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="mech.html">
-   震源メカニズム解の表現
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="animation.html">
    アニメーション動画の作成
   </a>
@@ -491,7 +486,7 @@ title="Print to PDF"
 
 <span class="n">fig</span><span class="o">.</span><span class="n">grdcontour</span><span class="p">(</span>
     <span class="n">grid</span>     <span class="o">=</span> <span class="n">grddata</span><span class="p">,</span> 
-    <span class="n">interval</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> 
+    <span class="n">levels</span>   <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> 
     <span class="n">pen</span>      <span class="o">=</span> <span class="s1">&#39;default,black&#39;</span>
 <span class="p">)</span>
 
@@ -508,6 +503,10 @@ title="Print to PDF"
 </div>
 </div>
 <p>ここでは，<code class="docutils literal notranslate"><span class="pre">grdimage</span></code>のほかに<code class="docutils literal notranslate"><span class="pre">grdcontour</span></code>も用いて等値線も描画してみました．使い方は上記の例を見ればほとんど明らかだと思います．</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">grdcontour</span></code> で等値線の間隔を指定するオプションは，従来は <code class="docutils literal notranslate"><span class="pre">intervals</span></code> でしたが，v0.12.0 からは <code class="docutils literal notranslate"><span class="pre">levels</span></code> に変更されました．</p>
+</div>
 </section>
 <section id="id3">
 <h2>2次元データの補間と可視化<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
@@ -582,7 +581,7 @@ title="Print to PDF"
 <span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span>
     <span class="n">grid</span> <span class="o">=</span> <span class="n">griddata_x</span><span class="p">,</span> 
     <span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;X10c/10c&#39;</span><span class="p">,</span>
-    <span class="n">frame</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+t&quot;GMT xyz2grd&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;xaf&#39;</span><span class="p">,</span> <span class="s1">&#39;yaf&#39;</span><span class="p">],</span> 
+    <span class="n">frame</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+tGMT xyz2grd&#39;</span><span class="p">,</span> <span class="s1">&#39;xaf&#39;</span><span class="p">,</span> <span class="s1">&#39;yaf&#39;</span><span class="p">],</span> 
 <span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
@@ -598,7 +597,7 @@ title="Print to PDF"
 <span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span>
     <span class="n">grid</span> <span class="o">=</span> <span class="n">griddata_s</span><span class="p">,</span> 
     <span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;X10c/10c&#39;</span><span class="p">,</span>
-    <span class="n">frame</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+t&quot;GMT surface&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;xaf&#39;</span><span class="p">,</span> <span class="s1">&#39;yaf&#39;</span><span class="p">]</span>    
+    <span class="n">frame</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+tGMT surface&#39;</span><span class="p">,</span> <span class="s1">&#39;xaf&#39;</span><span class="p">,</span> <span class="s1">&#39;yaf&#39;</span><span class="p">]</span>    
 <span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">grdcontour</span><span class="p">(</span> 
@@ -630,6 +629,119 @@ title="Print to PDF"
 <p class="admonition-title">Note</p>
 <p><code class="docutils literal notranslate"><span class="pre">pygmt.surface</span></code> は tension factor <span class="math notranslate nohighlight">\(t\)</span> という量で補間の状況をコントロールします．その値を指定するオリジナルのGMTの <code class="docutils literal notranslate"><span class="pre">-T</span></code> オプションは，v0.8.0までが正式には実装されていませんでしたが， <code class="docutils literal notranslate"><span class="pre">pygmt.surface{T</span> <span class="pre">=</span> <span class="pre">}</span></code> とすると動作する状態でした．この <code class="docutils literal notranslate"><span class="pre">T</span></code> はオリジナルのGMTの<code class="docutils literal notranslate"><span class="pre">surface</span></code>モジュールのオプション名です．</p>
 <p>v0.9.0から公式に <code class="docutils literal notranslate"><span class="pre">pygmt.surface</span></code> に GMTの<code class="docutils literal notranslate"><span class="pre">T</span></code>オプションに相当する<code class="docutils literal notranslate"><span class="pre">tension</span></code>オプションが実装されたようです．</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">surface</span></code>による補間の挙動は，<code class="docutils literal notranslate"><span class="pre">tension</span></code>パラメタによってだいぶ変わります．<code class="docutils literal notranslate"><span class="pre">tension</span></code>を変えてみて，補間の違いを見てみましょう．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="n">pygmt</span><span class="o">.</span><span class="n">makecpt</span><span class="p">(</span>
+    <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;viridis&#39;</span><span class="p">,</span> 
+    <span class="n">series</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> 
+    <span class="n">continuous</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="n">griddata_s0</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">surface</span><span class="p">(</span>
+    <span class="n">x</span>       <span class="o">=</span> <span class="n">mesh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> 
+    <span class="n">y</span>       <span class="o">=</span> <span class="n">mesh</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> 
+    <span class="n">z</span>       <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> 
+    <span class="n">region</span>  <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">],</span> 
+    <span class="n">spacing</span> <span class="o">=</span> <span class="s1">&#39;0.02/0.02&#39;</span><span class="p">,</span>
+    <span class="n">tension</span> <span class="o">=</span> <span class="mf">0.0</span> 
+<span class="p">)</span>
+<span class="n">griddata_s1</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">surface</span><span class="p">(</span>
+    <span class="n">x</span>       <span class="o">=</span> <span class="n">mesh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> 
+    <span class="n">y</span>       <span class="o">=</span> <span class="n">mesh</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> 
+    <span class="n">z</span>       <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> 
+    <span class="n">region</span>  <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">],</span> 
+    <span class="n">spacing</span> <span class="o">=</span> <span class="s1">&#39;0.02/0.02&#39;</span><span class="p">,</span>
+    <span class="n">tension</span> <span class="o">=</span> <span class="mf">0.5</span> 
+<span class="p">)</span>
+<span class="n">griddata_s2</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">surface</span><span class="p">(</span>
+    <span class="n">x</span>       <span class="o">=</span> <span class="n">mesh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> 
+    <span class="n">y</span>       <span class="o">=</span> <span class="n">mesh</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> 
+    <span class="n">z</span>       <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> 
+    <span class="n">region</span>  <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">],</span> 
+    <span class="n">spacing</span> <span class="o">=</span> <span class="s1">&#39;0.02/0.02&#39;</span><span class="p">,</span>
+    <span class="n">tension</span> <span class="o">=</span> <span class="mf">1.0</span> 
+<span class="p">)</span>
+
+
+<span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">griddata_s0</span><span class="p">,</span> 
+    <span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;X10c/10c&#39;</span><span class="p">,</span>
+    <span class="n">frame</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+ttension = 0.0&#39;</span><span class="p">,</span> <span class="s1">&#39;xaf&#39;</span><span class="p">,</span> <span class="s1">&#39;yaf&#39;</span><span class="p">]</span>    
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">grdcontour</span><span class="p">(</span> 
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">griddata_s0</span><span class="p">,</span> 
+    <span class="n">pen</span> <span class="o">=</span> <span class="s1">&#39;default,black&#39;</span><span class="p">,</span> 
+    <span class="n">annotation</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> 
+    <span class="n">y</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> 
+    <span class="n">style</span> <span class="o">=</span> <span class="s1">&#39;c0.2c&#39;</span><span class="p">,</span> 
+    <span class="n">fill</span>  <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> 
+<span class="p">)</span>
+
+<span class="c1"># 右にずれる</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">shift_origin</span><span class="p">(</span> <span class="n">xshift</span> <span class="o">=</span> <span class="mi">11</span> <span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">griddata_s1</span><span class="p">,</span> 
+    <span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;X10c/10c&#39;</span><span class="p">,</span>
+    <span class="n">frame</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+ttension = 0.5&#39;</span><span class="p">,</span> <span class="s1">&#39;xaf&#39;</span><span class="p">,</span> <span class="s1">&#39;yaf&#39;</span><span class="p">]</span>    
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">grdcontour</span><span class="p">(</span> 
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">griddata_s1</span><span class="p">,</span> 
+    <span class="n">pen</span> <span class="o">=</span> <span class="s1">&#39;default,black&#39;</span><span class="p">,</span> 
+    <span class="n">annotation</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> 
+    <span class="n">y</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> 
+    <span class="n">style</span> <span class="o">=</span> <span class="s1">&#39;c0.2c&#39;</span><span class="p">,</span> 
+    <span class="n">fill</span>  <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> 
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span>
+    <span class="n">position</span> <span class="o">=</span> <span class="s1">&#39;+e&#39;</span>    
+<span class="p">)</span>
+
+<span class="c1"># 右にずれる</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">shift_origin</span><span class="p">(</span> <span class="n">xshift</span> <span class="o">=</span> <span class="mi">11</span> <span class="p">)</span>
+
+
+<span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">griddata_s2</span><span class="p">,</span> 
+    <span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;X10c/10c&#39;</span><span class="p">,</span>
+    <span class="n">frame</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen+ttension = 1.0&#39;</span><span class="p">,</span> <span class="s1">&#39;xaf&#39;</span><span class="p">,</span> <span class="s1">&#39;yaf&#39;</span><span class="p">]</span>    
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">grdcontour</span><span class="p">(</span> 
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">griddata_s2</span><span class="p">,</span> 
+    <span class="n">pen</span> <span class="o">=</span> <span class="s1">&#39;default,black&#39;</span><span class="p">,</span> 
+    <span class="n">annotation</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> 
+    <span class="n">y</span> <span class="o">=</span> <span class="n">mesh</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> 
+    <span class="n">style</span> <span class="o">=</span> <span class="s1">&#39;c0.2c&#39;</span><span class="p">,</span> 
+    <span class="n">fill</span>  <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> 
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/mesh_18_0.png" src="_images/mesh_18_0.png" />
+</div>
 </div>
 </section>
 </section>
