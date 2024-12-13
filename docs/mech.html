@@ -1,106 +1,171 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+
+<html lang="en" data-content_root="./" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>震源メカニズム解の表現 &#8212; pygmt-howto</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'mech';</script>
     <link rel="canonical" href="https://tktmyd.github.io/pygmt-howto-jp/mech.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="アニメーション動画の作成" href="animation.html" />
     <link rel="prev" title="Obspyとの連携" href="obspy.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">pygmt-howto</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+  
+
+<a class="navbar-brand logo" href="pygmt.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pygmt-howto</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -110,252 +175,201 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="install.html">
-   PyGMTの環境構築
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="basic_map.html">
-   PyGMT の基本
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="savefig.html">
-   画像の保存
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="topo_map.html">
-   地形段彩図の描画
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="xy.html">
-   xyグラフの描画
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="inf_on_map.html">
-   地図上への情報描画
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="mesh.html">
-   メッシュデータの扱い
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="config.html">
-   GMTの微調整
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="timeseries.html">
-   時系列の扱い
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="obspy.html">
-   Obspyとの連携
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   震源メカニズム解の表現
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="animation.html">
-   アニメーション動画の作成
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="license.html">
-   License
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">PyGMTの環境構築</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_map.html">PyGMT の基本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="savefig.html">画像の保存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topo_map.html">地形段彩図の描画</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xy.html">xyグラフの描画</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inf_on_map.html">地図上への情報描画</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mesh.html">メッシュデータの扱い</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">GMTの微調整</a></li>
+<li class="toctree-l1"><a class="reference internal" href="timeseries.html">時系列の扱い</a></li>
+<li class="toctree-l1"><a class="reference internal" href="obspy.html">Obspyとの連携</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">震源メカニズム解の表現</a></li>
+<li class="toctree-l1"><a class="reference internal" href="animation.html">アニメーション動画の作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/tktmyd/pygmt-howto-jp/master?urlpath=tree/docs/mech.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
-</div>
+  
+  <div id="rtd-footer-container"></div>
 
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/tktmyd/pygmt-howto-jp" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-<a href="https://github.com/tktmyd/pygmt-howto-jp"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="bottom"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fab fa-github"></i>
   </span>
 
 </a>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/mech.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/mech.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-
-      </li>
+</li>
+      
+      
+      
       
       <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-file-pdf"></i>
   </span>
-<span class="headerbtn__text-container">.pdf</span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
 </button>
 
-      </li>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
       
-    </ul>
-  </div>
-</div>
-
     </div>
+  
 </div>
+</div>
+              
+              
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>震源メカニズム解の表現</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>震源メカニズム解の表現</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">メカニズム解の鉛直断面表示</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">モーメントテンソルと座標変換</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>震源メカニズム解の表現<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<h1>震源メカニズム解の表現<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
@@ -364,43 +378,45 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meca</span> <span class="o">=</span><span class="p">{</span>
-    <span class="s2">&quot;strike&quot;</span>   <span class="p">:</span> <span class="p">[</span><span class="mi">35</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span> 
-    <span class="s2">&quot;dip&quot;</span>      <span class="p">:</span> <span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="mi">35</span><span class="p">],</span> 
-    <span class="s2">&quot;rake&quot;</span>     <span class="p">:</span> <span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">120</span><span class="p">],</span> 
-    <span class="s2">&quot;magnitude&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> 
+    <span class="s2">&quot;strike&quot;</span>   <span class="p">:</span> <span class="p">[</span> <span class="mi">35</span><span class="p">,</span>  <span class="mi">15</span><span class="p">],</span> 
+    <span class="s2">&quot;dip&quot;</span>      <span class="p">:</span> <span class="p">[</span> <span class="mi">45</span><span class="p">,</span>  <span class="mi">35</span><span class="p">],</span> 
+    <span class="s2">&quot;rake&quot;</span>     <span class="p">:</span> <span class="p">[</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">120</span><span class="p">],</span> 
+    <span class="s2">&quot;magnitude&quot;</span><span class="p">:</span> <span class="p">[</span>  <span class="mi">6</span><span class="p">,</span>   <span class="mi">4</span><span class="p">],</span> 
     <span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">135</span><span class="p">,</span> <span class="mi">140</span><span class="p">],</span>
-    <span class="s2">&quot;latitude&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">35</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span> 
-    <span class="s2">&quot;depth&quot;</span>    <span class="p">:</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">400</span><span class="p">]</span>
+    <span class="s2">&quot;latitude&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="mi">35</span><span class="p">,</span>  <span class="mi">40</span><span class="p">],</span> 
+    <span class="s2">&quot;depth&quot;</span>    <span class="p">:</span> <span class="p">[</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">400</span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>この例のように，<code class="docutils literal notranslate"><span class="pre">strike,</span> <span class="pre">dip,</span> <span class="pre">rake</span></code> が指定されると自動的にAki and Richardsフォーマットが選択されます．公式マニュアルによると，その他のフォーマットは以下のような辞書項目が設定されていれば良いようです：</p>
-<table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="text-align:left head"><p>format</p></th>
-<th class="text-align:left head"><p>dictionary keys</p></th>
+<tr class="row-odd"><th class="head text-left"><p>format</p></th>
+<th class="head text-left"><p>dictionary keys</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">aki</span></code></p></td>
-<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">strike</span></code>, <code class="docutils literal notranslate"><span class="pre">dip</span></code>, <code class="docutils literal notranslate"><span class="pre">rake</span></code>, <code class="docutils literal notranslate"><span class="pre">magnitude</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">aki</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">strike</span></code>, <code class="docutils literal notranslate"><span class="pre">dip</span></code>, <code class="docutils literal notranslate"><span class="pre">rake</span></code>, <code class="docutils literal notranslate"><span class="pre">magnitude</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">gcmt</span></code></p></td>
-<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">strike1</span></code>, <code class="docutils literal notranslate"><span class="pre">dip1</span></code>, <code class="docutils literal notranslate"><span class="pre">rake1</span></code>, <code class="docutils literal notranslate"><span class="pre">strike2</span></code>, <code class="docutils literal notranslate"><span class="pre">dip2</span></code>, <code class="docutils literal notranslate"><span class="pre">rake2</span></code>, <code class="docutils literal notranslate"><span class="pre">mantissa</span></code>, <code class="docutils literal notranslate"><span class="pre">exponent</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">gcmt</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">strike1</span></code>, <code class="docutils literal notranslate"><span class="pre">dip1</span></code>, <code class="docutils literal notranslate"><span class="pre">rake1</span></code>, <code class="docutils literal notranslate"><span class="pre">strike2</span></code>, <code class="docutils literal notranslate"><span class="pre">dip2</span></code>, <code class="docutils literal notranslate"><span class="pre">rake2</span></code>, <code class="docutils literal notranslate"><span class="pre">mantissa</span></code>, <code class="docutils literal notranslate"><span class="pre">exponent</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">mt</span></code></p></td>
-<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">mrr</span></code>, <code class="docutils literal notranslate"><span class="pre">mtt</span></code>, <code class="docutils literal notranslate"><span class="pre">mff</span></code>, <code class="docutils literal notranslate"><span class="pre">mrt</span></code>, <code class="docutils literal notranslate"><span class="pre">mrf</span></code>, <code class="docutils literal notranslate"><span class="pre">mtf</span></code>, <code class="docutils literal notranslate"><span class="pre">exponent</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">mt</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">mrr</span></code>, <code class="docutils literal notranslate"><span class="pre">mtt</span></code>, <code class="docutils literal notranslate"><span class="pre">mff</span></code>, <code class="docutils literal notranslate"><span class="pre">mrt</span></code>, <code class="docutils literal notranslate"><span class="pre">mrf</span></code>, <code class="docutils literal notranslate"><span class="pre">mtf</span></code>, <code class="docutils literal notranslate"><span class="pre">exponent</span></code></p></td>
 </tr>
-<tr class="row-odd"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">partial</span></code></p></td>
-<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">strike1</span></code>, <code class="docutils literal notranslate"><span class="pre">dip1</span></code>, <code class="docutils literal notranslate"><span class="pre">strike2</span></code>, <code class="docutils literal notranslate"><span class="pre">fault_type</span></code>, <code class="docutils literal notranslate"><span class="pre">magnitude</span></code></p></td>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">partial</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">strike1</span></code>, <code class="docutils literal notranslate"><span class="pre">dip1</span></code>, <code class="docutils literal notranslate"><span class="pre">strike2</span></code>, <code class="docutils literal notranslate"><span class="pre">fault_type</span></code>, <code class="docutils literal notranslate"><span class="pre">magnitude</span></code></p></td>
 </tr>
-<tr class="row-even"><td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">principal_axis</span></code></p></td>
-<td class="text-align:left"><p><code class="docutils literal notranslate"><span class="pre">t_exponent</span></code>, <code class="docutils literal notranslate"><span class="pre">t_azimuth</span></code>, <code class="docutils literal notranslate"><span class="pre">t_plunge</span></code>, <code class="docutils literal notranslate"><span class="pre">n_exponent</span></code>, <code class="docutils literal notranslate"><span class="pre">n_azimuth</span></code>, <code class="docutils literal notranslate"><span class="pre">n_plunge</span></code>, <code class="docutils literal notranslate"><span class="pre">p_exponent</span></code>, <code class="docutils literal notranslate"><span class="pre">p_azimuth</span></code>, <code class="docutils literal notranslate"><span class="pre">p_plunge</span></code>, <code class="docutils literal notranslate"><span class="pre">exponent</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">principal_axis</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">t_exponent</span></code>, <code class="docutils literal notranslate"><span class="pre">t_azimuth</span></code>, <code class="docutils literal notranslate"><span class="pre">t_plunge</span></code>, <code class="docutils literal notranslate"><span class="pre">n_exponent</span></code>, <code class="docutils literal notranslate"><span class="pre">n_azimuth</span></code>, <code class="docutils literal notranslate"><span class="pre">n_plunge</span></code>, <code class="docutils literal notranslate"><span class="pre">p_exponent</span></code>, <code class="docutils literal notranslate"><span class="pre">p_azimuth</span></code>, <code class="docutils literal notranslate"><span class="pre">p_plunge</span></code>, <code class="docutils literal notranslate"><span class="pre">exponent</span></code></p></td>
 </tr>
 </tbody>
 </table>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">spec</span></code> として渡された辞書のkeyに基づいて，フォーマットが自動判定されます．</p>
 <p>複数のメカニズム解を表現したい場合は，辞書のそれぞれのキーに対応する値をリストやタプルにします．同じ構造を持つ辞書全体のリストを一括で処理することはできないようです．（とはいえ，Pythonの <code class="docutils literal notranslate"><span class="pre">for</span></code> 構文と組み合わせればそれは容易に実現できます）</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -437,7 +453,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/mech_5_0.png" src="_images/mech_5_0.png" />
+<a class="reference internal image-reference" href="_images/ef1b18bf595c08eaba54ad35e385123e8da2af6239c2991993059f32138f311d.png"><img alt="_images/ef1b18bf595c08eaba54ad35e385123e8da2af6239c2991993059f32138f311d.png" src="_images/ef1b18bf595c08eaba54ad35e385123e8da2af6239c2991993059f32138f311d.png" style="width: 500px;" />
+</a>
 </div>
 </div>
 <div class="admonition note">
@@ -460,6 +477,262 @@ title="Print to PDF"
 </div>
 <p>なお， <code class="docutils literal notranslate"><span class="pre">meca</span></code> の <code class="docutils literal notranslate"><span class="pre">outline</span></code> オプションについては，染谷さん(<a class="reference external" href="https://github.com/msomeya1"><code class="docutils literal notranslate"><span class="pre">&#64;msomeya1</span></code></a>) にご教示いただきました．記して感謝いたします．</p>
 </div>
+<section id="id2">
+<h2>メカニズム解の鉛直断面表示<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>地図上ではなく，ある側線に沿った鉛直断面におけるメカニズム解を表示することがあります．このようなとき，プロットされるメカニズム解は水平な地図上での下半球投影ではなく，それを断面の角度に応じて投影したものを表示することが通例です．たとえば東西-鉛直断面を南側から見た場合，その断面の奥側，すなわち東半球が投影されます．</p>
+<p>GMTでは，このような目的で <a class="reference external" href="https://docs.generic-mapping-tools.org/latest/supplements/seis/coupe.html"><code class="docutils literal notranslate"><span class="pre">coupe</span></code></a> というモジュールが提供されています．このモジュールはまさに上記のような目的を叶えるもので，震源メカニズムを鉛直断面上に表示します．</p>
+<p>本家GMTにおける<code class="docutils literal notranslate"><span class="pre">coupe</span></code>利用の簡単な例として，3つのメカニズム解の東西鉛直断面と南北鉛直断面を表示するスクリプトの例を以下に示します．</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nv">strike</span><span class="o">=</span><span class="m">180</span>
+<span class="nv">dip1</span><span class="o">=</span><span class="m">5</span>
+<span class="nv">dip2</span><span class="o">=</span><span class="m">80</span>
+<span class="nv">dip3</span><span class="o">=</span><span class="m">15</span>
+<span class="nv">rake1</span><span class="o">=</span><span class="m">30</span>
+<span class="nv">rake2</span><span class="o">=</span><span class="m">15</span>
+<span class="nv">rake3</span><span class="o">=</span>-80
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;1 3 1 </span><span class="nv">$strike</span><span class="s2"> </span><span class="nv">$dip1</span><span class="s2"> </span><span class="nv">$rake1</span><span class="s2"> 5 0 0&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>meca.dat
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;2 2 1 </span><span class="nv">$strike</span><span class="s2"> </span><span class="nv">$dip2</span><span class="s2"> </span><span class="nv">$rake2</span><span class="s2"> 5 0 0&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>meca.dat
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;3 1 1 </span><span class="nv">$strike</span><span class="s2"> </span><span class="nv">$dip3</span><span class="s2"> </span><span class="nv">$rake3</span><span class="s2"> 5 0 0&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>meca.dat
+
+gmt<span class="w"> </span>begin<span class="w"> </span>coupe_test<span class="w"> </span>png
+
+<span class="w">    </span>gmt<span class="w"> </span>basemap<span class="w"> </span>-R0/4/0/4<span class="w"> </span>-JX10c/10c<span class="w"> </span>-BWseN<span class="w"> </span>-Bxaf+l<span class="s2">&quot;Easting&quot;</span><span class="w"> </span>-Byaf+l<span class="s2">&quot;Northing&quot;</span><span class="w"> </span>
+<span class="w">    </span>gmt<span class="w"> </span>meca<span class="w"> </span>meca.dat<span class="w"> </span>-Sa2c<span class="w"> </span>-Gred<span class="w"> </span>-L<span class="w"> </span>
+
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;1 3.5 (</span><span class="nv">$strike</span><span class="s2">, </span><span class="nv">$dip1</span><span class="s2">, </span><span class="nv">$rake1</span><span class="s2">)&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-F+f10p,Helvetica+jCB<span class="w"> </span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;2 2.5 (</span><span class="nv">$strike</span><span class="s2">, </span><span class="nv">$dip2</span><span class="s2">, </span><span class="nv">$rake2</span><span class="s2">)&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-F+f10p,Helvetica+jCB<span class="w"> </span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;3 1.5 (</span><span class="nv">$strike</span><span class="s2">, </span><span class="nv">$dip3</span><span class="s2">, </span><span class="nv">$rake3</span><span class="s2">)&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-F+f10p,Helvetica+jCB<span class="w"> </span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;3.9 3.9 (@~f@~, @~d@~, @~l@~)&quot;</span><span class="w">  </span><span class="p">|</span><span class="w"> </span>gmt<span class="w"> </span>text<span class="w"> </span>-F+f12p,Helvetica+jRT
+
+<span class="w">    </span>gmt<span class="w"> </span>coupe<span class="w"> </span>meca.dat<span class="w"> </span>-Ac0/2/4/2<span class="w"> </span>-Sa2c<span class="w"> </span>-R0/4/0/2<span class="w"> </span>-JX10c/-4c<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-BWSen<span class="w"> </span>-Y-5c<span class="w"> </span>-Bxaf+l<span class="s2">&quot;Easting&quot;</span><span class="w"> </span>-Bya1f0.2+l<span class="s2">&quot;Depth&quot;</span><span class="w"> </span>-Gred<span class="w"> </span>-L
+<span class="w">    </span>gmt<span class="w"> </span>coupe<span class="w"> </span>meca.dat<span class="w"> </span>-Ac2/0/2/4<span class="w"> </span>-Sa2c<span class="w"> </span>-R0/4/0/2<span class="w"> </span>-JX10c/-4c<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-BWSen<span class="w"> </span>-Y-5.5c<span class="w"> </span>-Bxaf+l<span class="s2">&quot;Northing&quot;</span><span class="w"> </span>-Bya1f0.2+l<span class="s2">&quot;Depth&quot;</span><span class="w"> </span>-Gred<span class="w"> </span>-L
+<span class="w">    </span>
+gmt<span class="w"> </span>end
+</pre></div>
+</div>
+<p>上記のスクリプトを実行すると，下図のようなメカニズム解とその鉛直断面図が得られます．</p>
+<a class="reference internal image-reference" href="_images/coupe_test.png"><img alt="_images/coupe_test.png" class="align-center" src="_images/coupe_test.png" style="width: 50%;" />
+</a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>本来であれば南北断面については，横軸に深さ，縦軸に南北方向という座標系を取りたいところですが，筆者の知る限り <code class="docutils literal notranslate"><span class="pre">gmt</span> <span class="pre">coupe</span></code> でそれを実現することはできなさそうです．</p>
+</div>
+<p>ただし，残念なことに，<code class="docutils literal notranslate"><span class="pre">coupe</span></code> は<code class="docutils literal notranslate"><span class="pre">v.0.13.0</span></code>ではまだPyGMTには本モジュールが実装されていません．</p>
+<p>この問題については，産業総合技術研究所の<a class="reference external" href="https://yasuit21.github.io/">佐脇</a>さんが，独自実装した<code class="docutils literal notranslate"><span class="pre">coupe.py</span></code> とその使い方を <a class="reference external" href="https://yasuit21.github.io/ja/post/2023/09/0007/">公開</a> されています．その中では実装の詳細についても解説されており，大変有意義です．</p>
+<p>もちろんそれを使えば用は足りるのですが，ここではモーメントテンソルそのものの回転に基づく別の方法を考えます．</p>
+</section>
+<section id="id3">
+<h2>モーメントテンソルと座標変換<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>PyGMTの <code class="docutils literal notranslate"><span class="pre">meca</span></code> モジュールは，（入力フォーマットは様々ですが，本質的には）モーメントテンソルを水平面内（XYもしくはlon-lat座標系）において下半球投影したものを可視化してくれます．ここでは，その <code class="docutils literal notranslate"><span class="pre">meca</span></code> モジュールはそのままに，モーメントテンソルのほうを座標変換してしまうことで，異なる方向から見たモーメントテンソルがプロットされるようにしてみます．具体的には，以下の図で模式的に示すような <span class="math notranslate nohighlight">\((X,Y,Z)\)</span>から<span class="math notranslate nohighlight">\((X', Y', Z')\)</span>（東西鉛直断面）あるいは<span class="math notranslate nohighlight">\((X&quot;,Y&quot;,Z&quot;)\)</span>（南北鉛直断面）のような変換を考えます．</p>
+<a class="reference internal image-reference" href="_images/Mech_cross_section.png"><img alt="_images/Mech_cross_section.png" src="_images/Mech_cross_section.png" style="width: 80%;" />
+</a>
+<p>ここでは，もともとのXYZ座標系として，Aki and Richards (2002)に倣って北（上）を<span class="math notranslate nohighlight">\(X\)</span>, 東（右）を <span class="math notranslate nohighlight">\(Y\)</span>, 深さ方向（奥）を <span class="math notranslate nohighlight">\(Z\)</span> としました．それに対して東西鉛直断面では，上が<span class="math notranslate nohighlight">\(-Z\)</span>, 右が<span class="math notranslate nohighlight">\(Y\)</span>, 奥が<span class="math notranslate nohighlight">\(Z'\)</span>になりますから，</p>
+<div class="math notranslate nohighlight">
+\[
+X' = -Z, Y' = Y, Z' = X
+\]</div>
+<p>すなわち</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix} X'\\Y'\\Z' \end{pmatrix}
+=
+\begin{pmatrix} 0 &amp; 0 &amp; -1\\ 0 &amp; 1 &amp; 0 \\ 1 &amp; 0 &amp; 0 \end{pmatrix}
+\begin{pmatrix} X\\Y\\Z \end{pmatrix}
+\end{split}\]</div>
+<p>で座標変換が表されます．</p>
+<p>同様に，上図から南北-鉛直断面を鉛直方向を右に表示するには，</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix} X''\\Y''\\Z'' \end{pmatrix}
+=
+\begin{pmatrix} 1 &amp; 0 &amp; 0\\ 0 &amp; 0 &amp; 1 \\ 0 &amp; -1 &amp; 0 \end{pmatrix}
+\begin{pmatrix} X\\Y\\Z \end{pmatrix}
+\end{split}\]</div>
+<p>とすればよいことがわかります．</p>
+<p>一般に，座標系<span class="math notranslate nohighlight">\(O(XYZ)\)</span>から<span class="math notranslate nohighlight">\(O(X'Y'Z')\)</span>への座標変換が行列<span class="math notranslate nohighlight">\(\boldsymbol{R}\)</span>で与えられるとき，<span class="math notranslate nohighlight">\(O(XYZ)\)</span>における2階のテンソル<span class="math notranslate nohighlight">\(\boldsymbol{M}\)</span>は<span class="math notranslate nohighlight">\(O(X'Y'Z')\)</span>において</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol{M}' = \boldsymbol{R M R}^T
+\]</div>
+<p>と表されます．このことを用いると，東西鉛直断面表示をするためのモーメントテンソルは</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix} M'_{xx} &amp; M'_{xy} &amp;M'_{xz} \\ M'_{xy} &amp; M'_{yy} &amp;M'_{yz} \\ M'_{xz} &amp; M'_{yz} &amp;M'_{zz} \end{pmatrix}
+=
+\begin{pmatrix} M_{zz} &amp; - M_{yz} &amp; -M_{xz} \\ - M_{yz} &amp; M_{yy} &amp; M_{xy} \\ - M_{xz} &amp; M_{xy} &amp; M_{xx} \end{pmatrix}
+\end{split}\]</div>
+<p>南北鉛直断面については，</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix} M''_{xx} &amp; M''_{xy} &amp;M''_{xz} \\ M''_{xy} &amp; M''_{yy} &amp;M''_{yz} \\ M''_{xz} &amp; M''_{yz} &amp;M''_{zz} \end{pmatrix}
+=
+\begin{pmatrix} M_{xx} &amp; M_{xz} &amp; -M_{xy} \\ M_{xz} &amp; M_{zz} &amp; -M_{yz} \\ - M_{xy} &amp; -M_{yz} &amp; M_{yy} \end{pmatrix}
+\end{split}\]</div>
+<p>であることが導かれます．</p>
+<p>ところで，もし <code class="docutils literal notranslate"><span class="pre">aki</span></code> フォーマットで <code class="docutils literal notranslate"><span class="pre">strike</span></code>, <code class="docutils literal notranslate"><span class="pre">dip</span></code>, <code class="docutils literal notranslate"><span class="pre">rake</span></code> および <code class="docutils literal notranslate"><span class="pre">Mw</span></code> をもってメカニズム解を指定した場合，上記の方法を用いるためには，まずそれをモーメントテンソル成分に変換しなければなりません．しかも，<code class="docutils literal notranslate"><span class="pre">meca</span></code>モジュールの <code class="docutils literal notranslate"><span class="pre">mt</span></code> フォーマットは，極座標におけるモーメントテンソル成分を入力として要求します．</p>
+<p>まず，<code class="docutils literal notranslate"><span class="pre">strike</span></code> <span class="math notranslate nohighlight">\(\phi\)</span>, <code class="docutils literal notranslate"><span class="pre">dip</span></code> <span class="math notranslate nohighlight">\(\delta\)</span>, <code class="docutils literal notranslate"><span class="pre">rake</span></code> <span class="math notranslate nohighlight">\(\lambda\)</span> と地震モーメント <span class="math notranslate nohighlight">\(M_0\)</span> が与えられたとき，上図のような北を<span class="math notranslate nohighlight">\(X\)</span>軸にとる直交座標系におけるモーメントテンソルは，</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+    &amp;M_{xx} = - M_0  (\sin\delta * \cos\lambda * \sin2\phi + \sin2\delta * \sin\lambda * \sin\phi * \sin\phi )\\
+    &amp;M_{xy} = \,\,\,\, M_0  (\sin\delta * \cos\lambda * \cos2\phi + \sin2\delta * \sin\lambda * \sin2\phi / 2    )\\
+    &amp;M_{xz} = - M_0  (\cos\delta * \cos\lambda * \cos\phi  + \cos2\delta * \sin\lambda * \sin\phi         )\\
+    &amp;M_{yy} = \,\,\,\, M_0  (\sin\delta * \cos\lambda * \sin2\phi - \sin2\delta * \sin\lambda * \cos\phi * \cos\phi )\\
+    &amp;M_{yz} = - M_0  (\cos\delta * \cos\lambda * \sin\phi  - \cos2\delta * \sin\lambda * \cos\phi         )\\
+    &amp;M_{zz} = \,\,\,\, M_0  (                         \sin2\delta * \sin\lambda                 )
+\end{align}
+\end{split}\]</div>
+<p>の関係にあります．加えて，<span class="math notranslate nohighlight">\(O(r\theta\phi)\)</span>の極座標系におけるモーメントテンソルは，この直交座標系におけるモーメントテンソルと，</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+M_{rr} &amp; M_{r\theta} &amp; M_{r\phi}\\
+M_{r\theta} &amp; M_{\theta \theta} &amp; M_{\theta \phi}\\
+M_{r \phi} &amp; M_{\theta \phi} &amp; M_{\phi \phi} 
+\end{pmatrix}
+= 
+\begin{pmatrix}
+M_{zz} &amp; M_{xz} &amp; -M_{yz} \\
+M_{xz} &amp; M_{xx} &amp; -M_{xy} \\
+-M_{yz} &amp; M_{yx} &amp; M_{yy}
+\end{pmatrix}
+\end{split}\]</div>
+<p>という関係があります (Aki and Richards, 2002, p. 113 Box 4.4)．これらを用いて，</p>
+<ol class="arabic simple">
+<li><p>strike, dip, rake から直交座標系のモーメントテンソルに変換</p></li>
+<li><p>1.の結果を断面に応じて座標変換</p></li>
+<li><p>2.の結果を極座標のモーメントテンソルに変換</p></li>
+</ol>
+<p>という3つのステップによって鉛直断面を投影できます．</p>
+<p>それでは，実践してみましょう．上記1.と2.の手続きをそれぞれ関数化しておきます．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sdr2moment</span><span class="p">(</span><span class="n">strike</span><span class="p">,</span> <span class="n">dip</span><span class="p">,</span> <span class="n">rake</span><span class="p">,</span> <span class="n">M0</span><span class="p">):</span> 
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;calculate moment tensor component from strike, dip, and rake &quot;&quot;&quot;</span>
+
+    <span class="n">sinδ</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span>    <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">dip</span>   <span class="p">))</span>
+    <span class="n">cosδ</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span>    <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">dip</span>   <span class="p">))</span>
+    <span class="n">sin2δ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">dip</span>   <span class="p">))</span>
+    <span class="n">cos2δ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">dip</span>   <span class="p">))</span>
+    <span class="n">sinλ</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span>    <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">rake</span>  <span class="p">))</span>
+    <span class="n">cosλ</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span>    <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">rake</span>  <span class="p">))</span>
+    <span class="n">sinφ</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span>    <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">strike</span><span class="p">))</span>
+    <span class="n">cosφ</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span>    <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">strike</span><span class="p">))</span>
+    <span class="n">sin2φ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">strike</span><span class="p">))</span>
+    <span class="n">cos2φ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">strike</span><span class="p">))</span>
+    
+    <span class="n">Mxx</span> <span class="o">=</span> <span class="o">-</span> <span class="n">M0</span> <span class="o">*</span> <span class="p">(</span><span class="n">sinδ</span> <span class="o">*</span> <span class="n">cosλ</span> <span class="o">*</span> <span class="n">sin2φ</span> <span class="o">+</span> <span class="n">sin2δ</span> <span class="o">*</span> <span class="n">sinλ</span> <span class="o">*</span> <span class="n">sinφ</span> <span class="o">*</span> <span class="n">sinφ</span> <span class="p">)</span>
+    <span class="n">Mxy</span> <span class="o">=</span>   <span class="n">M0</span> <span class="o">*</span> <span class="p">(</span><span class="n">sinδ</span> <span class="o">*</span> <span class="n">cosλ</span> <span class="o">*</span> <span class="n">cos2φ</span> <span class="o">+</span> <span class="n">sin2δ</span> <span class="o">*</span> <span class="n">sinλ</span> <span class="o">*</span> <span class="n">sin2φ</span> <span class="o">/</span> <span class="mi">2</span>    <span class="p">)</span>
+    <span class="n">Mxz</span> <span class="o">=</span> <span class="o">-</span> <span class="n">M0</span> <span class="o">*</span> <span class="p">(</span><span class="n">cosδ</span> <span class="o">*</span> <span class="n">cosλ</span> <span class="o">*</span> <span class="n">cosφ</span>  <span class="o">+</span> <span class="n">cos2δ</span> <span class="o">*</span> <span class="n">sinλ</span> <span class="o">*</span> <span class="n">sinφ</span>         <span class="p">)</span>
+    <span class="n">Myy</span> <span class="o">=</span>   <span class="n">M0</span> <span class="o">*</span> <span class="p">(</span><span class="n">sinδ</span> <span class="o">*</span> <span class="n">cosλ</span> <span class="o">*</span> <span class="n">sin2φ</span> <span class="o">-</span> <span class="n">sin2δ</span> <span class="o">*</span> <span class="n">sinλ</span> <span class="o">*</span> <span class="n">cosφ</span> <span class="o">*</span> <span class="n">cosφ</span> <span class="p">)</span>
+    <span class="n">Myz</span> <span class="o">=</span> <span class="o">-</span> <span class="n">M0</span> <span class="o">*</span> <span class="p">(</span><span class="n">cosδ</span> <span class="o">*</span> <span class="n">cosλ</span> <span class="o">*</span> <span class="n">sinφ</span>  <span class="o">-</span> <span class="n">cos2δ</span> <span class="o">*</span> <span class="n">sinλ</span> <span class="o">*</span> <span class="n">cosφ</span>         <span class="p">)</span>
+    <span class="n">Mzz</span> <span class="o">=</span>   <span class="n">M0</span> <span class="o">*</span> <span class="p">(</span>                         <span class="n">sin2δ</span> <span class="o">*</span> <span class="n">sinλ</span>                 <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">Mxx</span><span class="p">,</span> <span class="n">Myy</span><span class="p">,</span> <span class="n">Mzz</span><span class="p">,</span> <span class="n">Myz</span><span class="p">,</span> <span class="n">Mxz</span><span class="p">,</span> <span class="n">Mxy</span>
+
+
+<span class="k">def</span> <span class="nf">meca_crosssection</span><span class="p">(</span><span class="n">strike</span><span class="p">,</span> <span class="n">dip</span><span class="p">,</span> <span class="n">rake</span><span class="p">,</span> <span class="n">Mw</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;E&#39;</span><span class="p">):</span> 
+
+    <span class="n">M0</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">Mw</span> <span class="o">+</span> <span class="mf">10.7</span><span class="p">)</span> <span class="p">)</span> <span class="c1"># in dyn-cm unit</span>
+    <span class="n">exponent</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">M0</span><span class="p">)))</span>
+    <span class="n">Mxx</span><span class="p">,</span> <span class="n">Myy</span><span class="p">,</span> <span class="n">Mzz</span><span class="p">,</span> <span class="n">Myz</span><span class="p">,</span> <span class="n">Mxz</span><span class="p">,</span> <span class="n">Mxy</span> <span class="o">=</span> <span class="n">sdr2moment</span><span class="p">(</span><span class="n">strike</span><span class="p">,</span> <span class="n">dip</span><span class="p">,</span> <span class="n">rake</span><span class="p">,</span> <span class="n">M0</span><span class="o">/</span><span class="mi">10</span><span class="o">**</span><span class="n">exponent</span><span class="p">)</span>
+
+    <span class="c1"># Coordinate transform</span>
+    <span class="k">if</span> <span class="n">orient</span> <span class="o">==</span> <span class="s1">&#39;E&#39;</span><span class="p">:</span>
+        <span class="n">Mxx</span><span class="p">,</span> <span class="n">Myy</span><span class="p">,</span> <span class="n">Mzz</span><span class="p">,</span> <span class="n">Myz</span><span class="p">,</span> <span class="n">Mxz</span><span class="p">,</span> <span class="n">Mxy</span> <span class="o">=</span> <span class="n">Mzz</span><span class="p">,</span> <span class="n">Myy</span><span class="p">,</span> <span class="n">Mxx</span><span class="p">,</span> <span class="n">Mxy</span><span class="p">,</span> <span class="o">-</span><span class="n">Mxz</span><span class="p">,</span> <span class="o">-</span><span class="n">Myz</span>
+    <span class="k">else</span><span class="p">:</span> 
+        <span class="n">Mxx</span><span class="p">,</span> <span class="n">Myy</span><span class="p">,</span> <span class="n">Mzz</span><span class="p">,</span> <span class="n">Myz</span><span class="p">,</span> <span class="n">Mxz</span><span class="p">,</span> <span class="n">Mxy</span> <span class="o">=</span> <span class="n">Mxx</span><span class="p">,</span> <span class="n">Mzz</span><span class="p">,</span> <span class="n">Myy</span><span class="p">,</span> <span class="o">-</span><span class="n">Myz</span><span class="p">,</span> <span class="o">-</span><span class="n">Mxy</span><span class="p">,</span> <span class="n">Mxz</span>
+        
+    <span class="c1"># Polar Coordinate</span>
+    <span class="n">Mrr</span><span class="p">,</span> <span class="n">Mtt</span><span class="p">,</span> <span class="n">Mff</span><span class="p">,</span> <span class="n">Mtf</span><span class="p">,</span> <span class="n">Mrf</span><span class="p">,</span> <span class="n">Mrt</span> <span class="o">=</span> <span class="n">Mzz</span><span class="p">,</span> <span class="n">Mxx</span><span class="p">,</span> <span class="n">Myy</span><span class="p">,</span> <span class="o">-</span><span class="n">Mxy</span><span class="p">,</span> <span class="o">-</span><span class="n">Myz</span><span class="p">,</span> <span class="n">Mxz</span>
+
+    <span class="c1"># Data for plotting by pygmt.Figure.meca</span>
+    <span class="n">spec</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;mrr&quot;</span><span class="p">:</span> <span class="n">Mrr</span><span class="p">,</span> <span class="s2">&quot;mtt&quot;</span><span class="p">:</span> <span class="n">Mtt</span><span class="p">,</span> <span class="s2">&quot;mff&quot;</span><span class="p">:</span> <span class="n">Mff</span><span class="p">,</span> 
+            <span class="s2">&quot;mrf&quot;</span><span class="p">:</span> <span class="n">Mrf</span><span class="p">,</span> <span class="s2">&quot;mrt&quot;</span><span class="p">:</span> <span class="n">Mrt</span><span class="p">,</span> <span class="s2">&quot;mtf&quot;</span><span class="p">:</span> <span class="n">Mtf</span><span class="p">,</span> 
+            <span class="s2">&quot;exponent&quot;</span><span class="p">:</span> <span class="n">exponent</span><span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">spec</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">meca</span></code> の <code class="docutils literal notranslate"><span class="pre">mt</span></code> フォーマットでは，パラメタ <code class="docutils literal notranslate"><span class="pre">exponent</span></code> を使って <code class="docutils literal notranslate"><span class="pre">10^(exponent)</span></code> を地震モーメントから <span class="math notranslate nohighlight">\(M_0\)</span> から括りだしているということ，また地震モーメントは Nm ではなく dyn cm の単位系で表現している，ということに注意してください．</p>
+<p>そのうえで，先の <code class="docutils literal notranslate"><span class="pre">bash</span></code> スクリプトと同等の図を作成するには，以下のようにします．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">strike</span> <span class="o">=</span> <span class="mi">180</span>
+<span class="n">dip1</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">dip2</span> <span class="o">=</span> <span class="mi">80</span>
+<span class="n">dip3</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">rake1</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">rake2</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">rake3</span> <span class="o">=</span> <span class="o">-</span><span class="mi">80</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">basemap</span><span class="p">(</span><span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;X10c/10c&#39;</span><span class="p">,</span> <span class="n">region</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> 
+            <span class="n">frame</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WseN&#39;</span><span class="p">,</span> <span class="s1">&#39;xaf+lEasting&#39;</span><span class="p">,</span> <span class="s1">&#39;yaf+lNorthing&#39;</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">dip</span><span class="p">,</span> <span class="n">rake</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+                               <span class="p">[</span><span class="n">dip1</span><span class="p">,</span> <span class="n">dip2</span><span class="p">,</span> <span class="n">dip3</span><span class="p">],</span> <span class="p">[</span><span class="n">rake1</span><span class="p">,</span> <span class="n">rake2</span><span class="p">,</span> <span class="n">rake3</span><span class="p">]):</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">meca</span><span class="p">(</span><span class="n">spec</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;strike&#39;</span><span class="p">:</span><span class="n">strike</span><span class="p">,</span> <span class="s1">&#39;dip&#39;</span><span class="p">:</span><span class="n">dip</span><span class="p">,</span> <span class="s1">&#39;rake&#39;</span><span class="p">:</span> <span class="n">rake</span><span class="p">,</span> <span class="s1">&#39;magnitude&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span> 
+             <span class="n">longitude</span> <span class="o">=</span> <span class="n">lon</span><span class="p">,</span> <span class="n">latitude</span> <span class="o">=</span> <span class="n">lat</span><span class="p">,</span> <span class="n">depth</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="s1">&#39;2c&#39;</span><span class="p">,</span> 
+             <span class="n">compressionfill</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">outline</span> <span class="o">=</span> <span class="s1">&#39;default,black&#39;</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">justify</span><span class="o">=</span><span class="s1">&#39;CB&#39;</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">lon</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">lat</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> 
+             <span class="n">text</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="n">strike</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">dip</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">rake</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> 
+             <span class="n">font</span> <span class="o">=</span> <span class="s1">&#39;10p,Helvetica,Black&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">justify</span><span class="o">=</span><span class="s1">&#39;RT&#39;</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">3.9</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mf">3.9</span><span class="p">,</span> 
+         <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;(@~f@~, @~d@~, @~l@~)&#39;</span><span class="p">,</span> <span class="n">font</span> <span class="o">=</span> <span class="s1">&#39;12p,Helvetica,Black&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">shift_origin</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.5</span><span class="p">)</span>
+
+<span class="c1"># E-Z cross section</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">basemap</span><span class="p">(</span><span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;X10c/-4c&#39;</span><span class="p">,</span> <span class="n">region</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> 
+            <span class="n">frame</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen&#39;</span><span class="p">,</span> <span class="s1">&#39;xaf+lEasting&#39;</span><span class="p">,</span> <span class="s1">&#39;ya1f0.2+lDepth&#39;</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">lon</span><span class="p">,</span> <span class="n">dip</span><span class="p">,</span> <span class="n">rake</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>  
+                          <span class="p">[</span><span class="n">dip1</span><span class="p">,</span> <span class="n">dip2</span><span class="p">,</span> <span class="n">dip3</span><span class="p">],</span> <span class="p">[</span><span class="n">rake1</span><span class="p">,</span> <span class="n">rake2</span><span class="p">,</span> <span class="n">rake3</span><span class="p">]):</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">meca</span><span class="p">(</span><span class="n">spec</span><span class="o">=</span><span class="n">meca_crosssection</span><span class="p">(</span><span class="n">strike</span><span class="p">,</span> <span class="n">dip</span><span class="p">,</span> <span class="n">rake</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;E&#39;</span><span class="p">),</span> 
+             <span class="n">longitude</span> <span class="o">=</span> <span class="n">lon</span><span class="p">,</span> <span class="n">latitude</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="s1">&#39;2c&#39;</span><span class="p">,</span> 
+             <span class="n">compressionfill</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">outline</span> <span class="o">=</span> <span class="s1">&#39;default,black&#39;</span><span class="p">)</span>  
+
+<span class="n">fig</span><span class="o">.</span><span class="n">shift_origin</span><span class="p">(</span><span class="mf">10.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">)</span>
+
+<span class="c1"># N-Z cross section</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">basemap</span><span class="p">(</span><span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;X4c/10c&#39;</span><span class="p">,</span> <span class="n">region</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> 
+            <span class="n">frame</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;wSEn&#39;</span><span class="p">,</span> <span class="s1">&#39;xa1f0.2+lDepth&#39;</span><span class="p">,</span> <span class="s1">&#39;yaf+lNorthing&#39;</span><span class="p">])</span>
+
+
+<span class="k">for</span> <span class="n">lat</span><span class="p">,</span> <span class="n">dip</span><span class="p">,</span> <span class="n">rake</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>  
+                          <span class="p">[</span><span class="n">dip1</span><span class="p">,</span> <span class="n">dip2</span><span class="p">,</span> <span class="n">dip3</span><span class="p">],</span> <span class="p">[</span><span class="n">rake1</span><span class="p">,</span> <span class="n">rake2</span><span class="p">,</span> <span class="n">rake3</span><span class="p">]):</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">meca</span><span class="p">(</span><span class="n">spec</span><span class="o">=</span><span class="n">meca_crosssection</span><span class="p">(</span><span class="n">strike</span><span class="p">,</span> <span class="n">dip</span><span class="p">,</span> <span class="n">rake</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;N&#39;</span><span class="p">),</span> 
+             <span class="n">longitude</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">latitude</span> <span class="o">=</span> <span class="n">lat</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="s1">&#39;2c&#39;</span><span class="p">,</span> 
+             <span class="n">compressionfill</span> <span class="o">=</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">outline</span> <span class="o">=</span> <span class="s1">&#39;default,black&#39;</span><span class="p">)</span>  
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/ab79d895cde615c5ac18065cc7f5004ed7873a0f45bf4568f02bcb811a50255d.png"><img alt="_images/ab79d895cde615c5ac18065cc7f5004ed7873a0f45bf4568f02bcb811a50255d.png" src="_images/ab79d895cde615c5ac18065cc7f5004ed7873a0f45bf4568f02bcb811a50255d.png" style="width: 500px;" />
+</a>
+</div>
+</div>
+<p>本家 <code class="docutils literal notranslate"><span class="pre">gmt</span> <span class="pre">coupe</span></code> とは異なり，自力でモーメントテンソルを座標変換しているので，その行列の定義を注意深く行えば，この例のように南北断面を横軸深さ，縦軸南北にすることも容易です．これを，<code class="docutils literal notranslate"><span class="pre">strike</span></code> 角だけを少しずつ変えながら <a class="reference internal" href="animation.html"><span class="std std-doc">こちらのページ</span></a> で解説している方法で gifアニメーションにすると以下のようになります．</p>
+<a class="reference internal image-reference" href="_images/meca_rot.gif"><img alt="_images/meca_rot.gif" class="align-center" src="_images/meca_rot.gif" style="width: 60%;" />
+</a>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>上記の例を作成している途上で，特定の(<code class="docutils literal notranslate"><span class="pre">strike</span></code>, <code class="docutils literal notranslate"><span class="pre">dip</span></code>, <code class="docutils literal notranslate"><span class="pre">rake</span></code>) の組み合わせをモーメントテンソルに変換してから <code class="docutils literal notranslate"><span class="pre">meca</span></code> で表示すると，表示されるメカニズム解の押し引きが反転してしまう，というバグに遭遇しました．この問題はモーメントテンソル対角成分のうち一つが<span class="math notranslate nohighlight">\(0\)</span>に十分近くなるときに起こりうる（いつでもとは限りません）ようです．<code class="docutils literal notranslate"><span class="pre">strike</span></code>, <code class="docutils literal notranslate"><span class="pre">dip</span></code>, <code class="docutils literal notranslate"><span class="pre">rake</span></code> の角度が整数値では，（90度とか270度などのキリの良い数字で）そういうことが発生しがちであるため，上記のアニメーションではこれらの角度値に対して描画結果に影響が出ないくらい小さな値（0.0001度）を加えて描画しています．</p>
+<p>このバグについては<a class="reference external" href="https://github.com/GenericMappingTools/pygmt/issues/3682">報告</a> してあり，またGMT本家でも類似の <a class="reference external" href="https://github.com/GenericMappingTools/gmt/issues/8009">報告</a> や，<a class="reference external" href="https://forum.generic-mapping-tools.org/t/psmeca-moment-tensor-behavior/3076">Q&amp;A</a>でも似たような問題が挙げられているようです．</p>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -474,7 +747,7 @@ title="Print to PDF"
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -482,50 +755,104 @@ title="Print to PDF"
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="obspy.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Obspyとの連携</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="obspy.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Obspyとの連携</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="animation.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="animation.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">アニメーション動画の作成</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">メカニズム解の鉛直断面表示</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">モーメントテンソルと座標変換</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By <a href="https://tktmyd.github.io">Takuto Maeda</a><br/>
-  
-      &copy; Copyright 2021-2022. All Rights Reserved.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By <a href="https://tktmyd.github.io">Takuto Maeda</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2021-2022. All Rights Reserved.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
