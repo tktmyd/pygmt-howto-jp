@@ -1,8 +1,34 @@
 # PyGMTの環境構築
 
+## Google Colab 上での利用
+
+手軽にPyGMTを試すためには，[Google Colab](https://colab.research.google.com/)を利用するのがよいでしょう．Google ColabはGoogleが機械学習の教育及び研究用に提供しているもので，Googleアカウントさえあればクラウド上でJupyter Notebookを実行できます．大量の計算リソースを使うためには有料のサービスもありますが，本Webページで示しているくらいの可視化を行う程度の基本的な利用は無料です．
+
+Google Colabには，機械学習等で使われる標準的なパッケージはあらかじめ含まれているのですが，残念ながらPyGMTは含まれていません．すでに多くの関連Webでも紹介されていますが（例えば[PyGMT開発メンバーの@seisman 氏のGMT Forum](https://forum.generic-mapping-tools.org/t/colab-example-on-github-try-pygmt-online-not-working-any-more/1790/10), [@after-a-rain 氏のQiita記事](https://qiita.com/after-a-rain/items/ee980a1c39a772a26b00)や[@mim 氏のnote記事](https://note.com/mim_2020/n/n646cfd0288d7)など），比較的容易にインストールすることができます．
+
+```python
+import sys
+if 'google.colab' in sys.modules:
+    print("Installing pygmt on Google Colab. It may take a few minutes.")
+    ! pip install -q condacolab &> /dev/null
+    import condacolab
+    condacolab.install()
+    ! mamba install pygmt &> /dev/null
+```
+
+上記のコードは，Google Colabで実行したときにだけPyGMTをインストールするためのコードです．それ以外の環境では実行されないようにもなっています．これをColab上のノートブックのセルに貼り付けて実行するか，あるいは[こちらのリンク](https://colab.research.google.com/github/tktmyd/ipynbs/blob/main/colab/using_pygmt.ipynb)からサンプルのノートブックを開くことでも実行できます．
+
+```{note}
+インストールには約2分ほどの時間かかります．インストール時にカーネルがクラッシュした旨のメッセージが出ることがありますが，そのまま進めて特に問題はなさそうです．
+
+また，Google Colabの仕様により，この方法でインストールしたPyGMTは，そのセッション限りで有効です．そのため，毎回セッションを開始するたびに上記のコードを実行する必要があります．毎回のインストール作業が鬱陶しいようであれば，以下の節で説明するローカル環境へのインストールをお勧めします．
+```
+
+
+## ローカル環境へのインストール
 
 ```{warning}
-本セクションの記述は[macOS Sequoia 15.2](https://www.apple.com/jp/macos/macos-sequoia/)およびLinuxディストリビューションの一種である[Ubuntu](https://jp.ubuntu.com) 24.04LTSで動作確認しています．Windows OSへの直接インストールは，筆者がWindowsの使い方を知らないため記載していません．ただし，Windowsにおいても[WSL2](https://docs.microsoft.com/ja-jp/windows/wsl/install)を用いることでUbuntuをはじめとしたLinuxディストリビューションを容易に利用可能なはずです．
+本節の記述は[macOS Sequoia 15.2](https://www.apple.com/jp/macos/macos-sequoia/)およびLinuxディストリビューションの一種である[Ubuntu](https://jp.ubuntu.com) 24.04LTSで動作確認しています．Windows OSにおいても[WSL2](https://docs.microsoft.com/ja-jp/windows/wsl/install)を用いることでUbuntuをはじめとしたLinuxディストリビューションを容易に利用可能なはずです（未確認）．
 ```
 
 PyGMTを使うための環境構築には，Pythonのパッケージ管理システムである
@@ -16,7 +42,7 @@ PyGMTを使うための環境構築には，Pythonのパッケージ管理シス
 
 どちらを使うかは好みの問題だと思いますが，PyGMTについてはcondaのほうが比較的に容易に環境が構築できるようです．ただし，condaはライセンスまわりにやや注意が必要です．
 
-## Anacondaライセンス問題とMiniforgeの利用
+### Anacondaライセンス問題とMiniforgeの利用
 
 `conda` コマンドはもともとAnacondaという科学技術計算に必要なライブラリが多く含まれたPython実行環境とそのパッケージ管理システムの一部でした．Anacondaをインストールするだけで一通りの計算環境が揃うためたいへん便利なものだったのですが，2020年4月より利用規約が[改定](https://www.anaconda.com/blog/sustaining-our-stewardship-of-the-open-source-data-science-community)となり，大規模な商用利用は有償になりました．その時点では大学関係者や非商用利用に関してはこの条件は適用されないと[明記されていた](https://www.anaconda.com/blog/anaconda-commercial-edition-faq)のですが，その後さらにライセンス条件が変更され，2024年現在，事実上Anacondaの無償利用は困難な状況になったようです．
 
@@ -26,7 +52,7 @@ PyGMTを使うための環境構築には，Pythonのパッケージ管理シス
 以前，このページでは[Miniconda](https://docs.conda.io/en/latest/miniconda.html)とコミュニティベースのリポジトリである `conda-forge` の利用を推奨し，その方法について説明していました．しかしMinicondaはデフォルトの状態ではAnaconda本体のリポジトリを利用する設定となっているため，そのままではライセンスに抵触するおそれがあります．そこで，今後はコミュニティリポジトリの`conda-forge`をデフォルトで使いつつ，従来の`conda`と同じ使い方のできるMiniforgeの利用を推奨します．
 ```
 
-### Miniforgeのインストール
+#### Miniforgeのインストール
 
 まずは適当なディレクトリで，miniforgeをダウンロードします．ここでは`curl`コマンドを使った例を示します．
 

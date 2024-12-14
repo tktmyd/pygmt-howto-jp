@@ -18,12 +18,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
@@ -34,12 +34,12 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -140,6 +140,8 @@
         <div class="sidebar-primary-item">
 
   
+    
+  
 
 <a class="navbar-brand logo" href="pygmt.html">
   
@@ -155,7 +157,7 @@
 
  <script>
  document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -310,10 +312,10 @@
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
@@ -321,7 +323,7 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
@@ -349,9 +351,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anacondaminiforge">Anacondaライセンス問題とMiniforgeの利用</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#miniforge">Miniforgeのインストール</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">仮想環境の作成とPyGMTのインストール</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-colab">Google Colab 上での利用</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">ローカル環境へのインストール</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anacondaminiforge">Anacondaライセンス問題とMiniforgeの利用</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#miniforge">Miniforgeのインストール</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">仮想環境の作成とPyGMTのインストール</a></li>
 </ul>
 </li>
 </ul>
@@ -367,9 +373,31 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="pygmt">
 <h1>PyGMTの環境構築<a class="headerlink" href="#pygmt" title="Link to this heading">#</a></h1>
+<section id="google-colab">
+<h2>Google Colab 上での利用<a class="headerlink" href="#google-colab" title="Link to this heading">#</a></h2>
+<p>手軽にPyGMTを試すためには，<a class="reference external" href="https://colab.research.google.com/">Google Colab</a>を利用するのがよいでしょう．Google ColabはGoogleが機械学習の教育及び研究用に提供しているもので，Googleアカウントさえあればクラウド上でJupyter Notebookを実行できます．大量の計算リソースを使うためには有料のサービスもありますが，本Webページで示しているくらいの可視化を行う程度の基本的な利用は無料です．</p>
+<p>Google Colabには，機械学習等で使われる標準的なパッケージはあらかじめ含まれているのですが，残念ながらPyGMTは含まれていません．すでに多くの関連Webでも紹介されていますが（例えば<a class="reference external" href="https://forum.generic-mapping-tools.org/t/colab-example-on-github-try-pygmt-online-not-working-any-more/1790/10">PyGMT開発メンバーの&#64;seisman 氏のGMT Forum</a>, <a class="reference external" href="https://qiita.com/after-a-rain/items/ee980a1c39a772a26b00">&#64;after-a-rain 氏のQiita記事</a>や<a class="reference external" href="https://note.com/mim_2020/n/n646cfd0288d7">&#64;mim 氏のnote記事</a>など），比較的容易にインストールすることができます．</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Installing pygmt on Google Colab. It may take a few minutes.&quot;</span><span class="p">)</span>
+    <span class="err">!</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">q</span> <span class="n">condacolab</span> <span class="o">&amp;&gt;</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span>
+    <span class="kn">import</span> <span class="nn">condacolab</span>
+    <span class="n">condacolab</span><span class="o">.</span><span class="n">install</span><span class="p">()</span>
+    <span class="err">!</span> <span class="n">mamba</span> <span class="n">install</span> <span class="n">pygmt</span> <span class="o">&amp;&gt;</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span>
+</pre></div>
+</div>
+<p>上記のコードは，Google Colabで実行したときにだけPyGMTをインストールするためのコードです．それ以外の環境では実行されないようにもなっています．これをColab上のノートブックのセルに貼り付けて実行するか，あるいは<a class="reference external" href="https://colab.research.google.com/github/tktmyd/ipynbs/blob/main/colab/using_pygmt.ipynb">こちらのリンク</a>からサンプルのノートブックを開くことでも実行できます．</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>インストールには約2分ほどの時間かかります．インストール時にカーネルがクラッシュした旨のメッセージが出ることがありますが，そのまま進めて特に問題はなさそうです．</p>
+<p>また，Google Colabの仕様により，この方法でインストールしたPyGMTは，そのセッション限りで有効です．そのため，毎回セッションを開始するたびに上記のコードを実行する必要があります．毎回のインストール作業が鬱陶しいようであれば，以下の節で説明するローカル環境へのインストールをお勧めします．</p>
+</div>
+</section>
+<section id="id1">
+<h2>ローカル環境へのインストール<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>本セクションの記述は<a class="reference external" href="https://www.apple.com/jp/macos/macos-sequoia/">macOS Sequoia 15.2</a>およびLinuxディストリビューションの一種である<a class="reference external" href="https://jp.ubuntu.com">Ubuntu</a> 24.04LTSで動作確認しています．Windows OSへの直接インストールは，筆者がWindowsの使い方を知らないため記載していません．ただし，Windowsにおいても<a class="reference external" href="https://docs.microsoft.com/ja-jp/windows/wsl/install">WSL2</a>を用いることでUbuntuをはじめとしたLinuxディストリビューションを容易に利用可能なはずです．</p>
+<p>本節の記述は<a class="reference external" href="https://www.apple.com/jp/macos/macos-sequoia/">macOS Sequoia 15.2</a>およびLinuxディストリビューションの一種である<a class="reference external" href="https://jp.ubuntu.com">Ubuntu</a> 24.04LTSで動作確認しています．Windows OSにおいても<a class="reference external" href="https://docs.microsoft.com/ja-jp/windows/wsl/install">WSL2</a>を用いることでUbuntuをはじめとしたLinuxディストリビューションを容易に利用可能なはずです（未確認）．</p>
 </div>
 <p>PyGMTを使うための環境構築には，Pythonのパッケージ管理システムである</p>
 <ul class="simple">
@@ -380,7 +408,7 @@ document.write(`
 <p><code class="docutils literal notranslate"><span class="pre">pip</span></code>はPythonに付属したツールで，Python上で用いるライブラリの管理を行うものである一方，<code class="docutils literal notranslate"><span class="pre">conda</span></code>はPythonの処理系自体を含むパッケージで，Pythonのみならずそれに（広い意味で）関連した様々なツールをインストールできます．</p>
 <p>どちらを使うかは好みの問題だと思いますが，PyGMTについてはcondaのほうが比較的に容易に環境が構築できるようです．ただし，condaはライセンスまわりにやや注意が必要です．</p>
 <section id="anacondaminiforge">
-<h2>Anacondaライセンス問題とMiniforgeの利用<a class="headerlink" href="#anacondaminiforge" title="Link to this heading">#</a></h2>
+<h3>Anacondaライセンス問題とMiniforgeの利用<a class="headerlink" href="#anacondaminiforge" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">conda</span></code> コマンドはもともとAnacondaという科学技術計算に必要なライブラリが多く含まれたPython実行環境とそのパッケージ管理システムの一部でした．Anacondaをインストールするだけで一通りの計算環境が揃うためたいへん便利なものだったのですが，2020年4月より利用規約が<a class="reference external" href="https://www.anaconda.com/blog/sustaining-our-stewardship-of-the-open-source-data-science-community">改定</a>となり，大規模な商用利用は有償になりました．その時点では大学関係者や非商用利用に関してはこの条件は適用されないと<a class="reference external" href="https://www.anaconda.com/blog/anaconda-commercial-edition-faq">明記されていた</a>のですが，その後さらにライセンス条件が変更され，2024年現在，事実上Anacondaの無償利用は困難な状況になったようです．</p>
 <p>そこで，ここではPythonおよびパッケージ管理コマンドの<code class="docutils literal notranslate"><span class="pre">conda</span></code>を含むコミュニティベースのパッケージ管理システムである<a class="reference external" href="https://github.com/conda-forge/miniforge">miniforge</a>を利用し，PyGMTの環境を構築します．</p>
 <div class="admonition warning">
@@ -388,7 +416,7 @@ document.write(`
 <p>以前，このページでは<a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a>とコミュニティベースのリポジトリである <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> の利用を推奨し，その方法について説明していました．しかしMinicondaはデフォルトの状態ではAnaconda本体のリポジトリを利用する設定となっているため，そのままではライセンスに抵触するおそれがあります．そこで，今後はコミュニティリポジトリの<code class="docutils literal notranslate"><span class="pre">conda-forge</span></code>をデフォルトで使いつつ，従来の<code class="docutils literal notranslate"><span class="pre">conda</span></code>と同じ使い方のできるMiniforgeの利用を推奨します．</p>
 </div>
 <section id="miniforge">
-<h3>Miniforgeのインストール<a class="headerlink" href="#miniforge" title="Link to this heading">#</a></h3>
+<h4>Miniforgeのインストール<a class="headerlink" href="#miniforge" title="Link to this heading">#</a></h4>
 <p>まずは適当なディレクトリで，miniforgeをダウンロードします．ここでは<code class="docutils literal notranslate"><span class="pre">curl</span></code>コマンドを使った例を示します．</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>curl<span class="w"> </span>-L<span class="w"> </span>-O<span class="w"> </span><span class="s2">&quot;https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-</span><span class="k">$(</span>uname<span class="k">)</span><span class="s2">-</span><span class="k">$(</span>uname<span class="w"> </span>-m<span class="k">)</span><span class="s2">.sh&quot;</span>
 </pre></div>
@@ -407,8 +435,9 @@ document.write(`
 </pre></div>
 </div>
 </section>
-<section id="id1">
-<h3>仮想環境の作成とPyGMTのインストール<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+</section>
+<section id="id2">
+<h3>仮想環境の作成とPyGMTのインストール<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <p>このままデフォルトの環境にパッケージを追加していってもよいのですが，ここではPyGMT用の<strong>仮想環境</strong>を作成します．このようにすると，パッケージ間のバージョン不整合などのトラブルがあったときに，仮想環境ごと切り替えるということが可能になります．ここでは，本Webサイトで利用するパッケージをまるごと導入する仮想環境<code class="docutils literal notranslate"><span class="pre">pygmt</span></code>を作ってみましょう．ここでは，2023年12月時点で最新となるPyGMT v0.13.0と，GMT v6.5.0 を導入します．</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>pygmt<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="nv">pygmt</span><span class="o">==</span><span class="m">0</span>.13.0<span class="w"> </span><span class="nv">gmt</span><span class="o">==</span><span class="m">6</span>.5.0<span class="w"> </span>numpy<span class="w"> </span>scipy<span class="w"> </span><span class="nv">obspy</span><span class="o">==</span><span class="m">1</span>.4.1<span class="w"> </span>notebook<span class="w"> </span>matplotlib<span class="w"> </span>ffmpeg
@@ -506,9 +535,13 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anacondaminiforge">Anacondaライセンス問題とMiniforgeの利用</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#miniforge">Miniforgeのインストール</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">仮想環境の作成とPyGMTのインストール</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-colab">Google Colab 上での利用</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">ローカル環境へのインストール</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anacondaminiforge">Anacondaライセンス問題とMiniforgeの利用</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#miniforge">Miniforgeのインストール</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">仮想環境の作成とPyGMTのインストール</a></li>
 </ul>
 </li>
 </ul>
@@ -559,8 +592,8 @@ By <a href="https://tktmyd.github.io">Takuto Maeda</a>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
