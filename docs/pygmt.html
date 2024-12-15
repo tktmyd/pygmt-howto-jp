@@ -389,7 +389,7 @@ document.write(`
 </aside>
 <p>もともと，GMTはUn*x用のコマンドラインツール群として開発されました．単独Postscriptという形式の画像データを生成する多数のコマンド群からなり，シェルスクリプト等によりそれらのコマンドを組み合わせる必要がありました．シェルスクリプトの特性上，どうしても可視化のコードが煩雑になりがちで，再利用性も低くなりがちでした．</p>
 <p>PyGMTは，そんなGMTのPythonインターフェースです．Python上のデータから（原則としては中間ファイルやシェルスクリプトを介することなく）直接GMTによる可視化を行うことができます．さらに<a class="reference external" href="https://numpy.org">NumPy</a>や<a class="reference external" href="https://pandas.pydata.org">pandas</a>といったPython上の科学技術計算でよく使われるライブラリのデータ型と互換性があるため，研究成果の可視化ツールとしてとても使いやすいと思います．</p>
-<p>Python上の可視化というと，通常のグラフでは<a class="reference external" href="https://matplotlib.org">matplotlib</a>が，地図では<a class="reference external" href="https://scitools.org.uk/cartopy">cartopy</a>が広く使われていると思います．PyGMTとどちらを使うかは好みの問題だと思いますが，筆者の意見ではPyGMTのほうが美麗なグラフを生成しやすいと思います．また，GMTの地図投影やグリッドデータ（2次元等間隔のメッシュに対して値が割り当てられたデータ）を扱う機能の豊富さは，大変魅力的です．一方，処理はやや遅めのようです．特に地震学分野ではこれまでGMTが広く使われていたという経緯もあるため，これまでと同じようなやり方で可視化ができるという継続性に魅力を感じる人もいるかもしれません．</p>
+<p>Python上の可視化というと，通常のグラフでは<a class="reference external" href="https://matplotlib.org">matplotlib</a>が，地図では<a class="reference external" href="https://scitools.org.uk/cartopy">cartopy</a>が広く使われているようです．PyGMTとどちらを使うかは好みの問題だと思いますが，筆者の意見ではPyGMTのほうが美麗なグラフを生成しやすいと思います．また，GMTの地図投影やグリッドデータ（2次元等間隔のメッシュに対して値が割り当てられたデータ）を扱う機能の豊富さは，大変魅力的です．一方，可視化のための処理はやや遅めのようです．特に地震学分野ではこれまでGMTが広く使われていたという経緯もあるため，これまでと同じようなやり方で可視化ができるという継続性に魅力を感じる人もいるかもしれません．</p>
 </section>
 <section id="id1">
 <h2>このページの目指すもの・目指さないもの<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
@@ -398,13 +398,13 @@ document.write(`
 <p class="sidebar-title"></p>
 <p>ただし，Version 0.5.0くらいから，地震学における標準的な可視化を行うためのツールは概ね出揃ったのでは，という印象です．</p>
 </aside>
-<p>また，2022年現在PyGMTはいまだ活発な開発下にあり，GMTのあらゆる機能がPythonで使えて，かつそれがドキュメント化されているとは言い切れない状態にあります．そこで，（ごく一部ではありますが）公式にはドキュメント化されてないものの，筆者が試行錯誤的に見つけた使い方のTipsなどもこの場で紹介します．</p>
-<p>逆に，本Webサイトでは，PyGMTやGMTのあらゆる機能を網羅するような解説は行いません．説明の一部で従来型のGMTのスクリプトも現れますが，それらについての詳しい説明も行いません．必要に応じて本家のマニュアルや多数ある解説サイトをご覧ください．また，特にインストール時などでは，Un*xコマンドラインの利用については既知であることを前提として説明しています．</p>
-<p>本WebサイトのコードはmacOS Monterey (Intel/M1 CPUs)とUbuntu 22.04 LTSのマシン上でMinicondaによって<a class="reference internal" href="install.html"><span class="std std-doc">構築</span></a>したJupyter Notebookにより動作確認しています．検証にもちいたPyGMTとGMTのバージョンはそれぞれ0.6.1と6.3です．</p>
+<p>また，2024年現在PyGMTはいまだ活発な開発下にあり，GMTのあらゆる機能がPythonで使えて，かつそれがドキュメント化されているとまでは言い切れない状態にあります．そこで，（ごく一部ではありますが）公式にはドキュメント化されてないものの，筆者が試行錯誤的に見つけた使い方のTipsなどもこの場で紹介します．</p>
+<p>一方，本Webサイトでは，PyGMTやGMTのあらゆる機能を網羅することは目指しません．また，Un*xコマンドラインの利用についてはある程度知っていることを前提として説明しています．</p>
+<p>本WebサイトのコードはmacOS SequoiaとUbuntu 22.04 LTSのマシン上でMiniforgeによって<a class="reference internal" href="install.html"><span class="std std-doc">構築</span></a>したJupyter Notebookにより動作確認しています．</p>
 </section>
 <section id="id2">
 <h2>筆者について<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>筆者は地震学研究者（大学教員）です．Pythonをはじめて触ったのはAI研究による流行が始まるより前の2007年ごろですが，それから10年以上のブランクを経て2021年頃から再びPythonを研究および業務に使い始めました．とはいえ，コンピュータ上の母国語はModern Fortranであり，Python巧者とはとても言えません．本ページを見て「もっと良い書き方がある」と思われたら，ぜひ<a class="reference external" href="https://github.com/tktmyd/pygmt-howto-jp">github</a>のIssueやPull Requestでご教示ください．本ページ上部のGitHubのアイコンからもたどれます．</p>
+<p>筆者は地震学の研究者（大学教員）です．Pythonをはじめて触ったのはAI研究による流行が始まるより前の2007年ごろですが，それから10年以上のブランクを経て2021年頃から再びPythonを研究および業務に使い始めました．とはいえ，数値シミュレーションをおもな専門にしているということもあり，研究で最もよく用いるコンピュータ言語はModern Fortranであり，Python巧者とはとても言えません．本ページを見て「もっと良い書き方がある」と思われたら，ぜひ<a class="reference external" href="https://github.com/tktmyd/pygmt-howto-jp">github</a>のIssuesでご教示ください．本ページ上部のGitHubのアイコンからもたどれます．</p>
 </section>
 <section id="id3">
 <h2>改版履歴<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
@@ -540,7 +540,7 @@ By <a href="https://tktmyd.github.io">Takuto Maeda</a>
 
   <p class="copyright">
     
-      © Copyright 2021-2022. All Rights Reserved.
+      © Copyright 2021-2024. All Rights Reserved.
       <br/>
     
   </p>

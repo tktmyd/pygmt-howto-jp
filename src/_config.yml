@@ -4,7 +4,7 @@
 title: pygmt-howto
 author: <a href="https://tktmyd.github.io">Takuto Maeda</a>
 #logo: logo.png
-copyright: '2021-2022. All Rights Reserved'
+copyright: '2021-2024. All Rights Reserved'
 description: A tutorial of PyGMT for seismologists
 
 # Force re-execution of notebooks on each build.
