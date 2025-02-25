@@ -18,12 +18,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
@@ -34,12 +34,12 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -142,8 +142,6 @@
         <div class="sidebar-primary-item">
 
   
-    
-  
 
 <a class="navbar-brand logo" href="pygmt.html">
   
@@ -159,7 +157,7 @@
 
  <script>
  document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -314,10 +312,10 @@
 
 <script>
 document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -325,7 +323,7 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
@@ -384,23 +382,27 @@ document.write(`
 <p>まず，サンプルとして NumPy で適当な等間隔データを作成してみます．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span> <span class="o">=</span> <span class="mi">500</span>
-<span class="n">ny</span> <span class="o">=</span> <span class="mi">500</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">nx</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">ny</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">nx</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">ny</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>長らくリスト <code class="docutils literal notranslate"><span class="pre">z</span></code>の <code class="docutils literal notranslate"><span class="pre">i,j</span></code> の順序が逆になっていました（等方的な図のうえ，XY方向のサイズも等しいため気が付きませんでした．お詫びします．(2025/02/25)</p>
+</aside>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">nx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">ny</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">ny</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">nx</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nx</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ny</span><span class="p">):</span>
         <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>    <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">)</span>
         <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span> <span class="mf">3.</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">)</span>
-        <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">7</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+        <span class="n">z</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">7</span><span class="o">*</span><span class="n">a</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -415,13 +417,18 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/751d95565362b0fd9aaf001950e06e1c907f8fc86edb969e3b9e8fd1d997cf78.png" src="_images/751d95565362b0fd9aaf001950e06e1c907f8fc86edb969e3b9e8fd1d997cf78.png" />
+<a class="reference internal image-reference" href="_images/d872560fc7e80a1fb6675ce04bf5c4cd2272ec3f45b21651c75099d537a7bf1e.png"><img alt="_images/d872560fc7e80a1fb6675ce04bf5c4cd2272ec3f45b21651c75099d537a7bf1e.png" src="_images/d872560fc7e80a1fb6675ce04bf5c4cd2272ec3f45b21651c75099d537a7bf1e.png" style="width: 500px;" />
+</a>
 </div>
 </div>
 <p>このデータを pygmt の <code class="docutils literal notranslate"><span class="pre">xyz2grd</span></code> を用いて grdデータにしてプロットしてみます．</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><code class="docutils literal notranslate"><span class="pre">xarray</span></code>を用いる方法は<a class="reference external" href="https://github.com/msomeya1">染谷（&#64;someya）</a>さんに<a class="reference external" href="https://github.com/tktmyd/pygmt-howto-jp/issues/2">ご教示</a>いただきました．記して感謝いたします．</p>
+</aside>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>xyz2grd<code class="docutils literal notranslate"> <span class="pre">はx,</span> <span class="pre">y,</span> <span class="pre">zそれぞれ1次元配列にしないと渡せないようです．そのため，</span></code>np.meshgrid()<code class="docutils literal notranslate"><span class="pre">と</span> </code>ravel()<code class="docutils literal notranslate"><span class="pre">メソッドを通じて</span></code>nx * ny` サイズの1次元配列を作っています．</p>
+<p><code class="docutils literal notranslate"><span class="pre">xyz2grd</span></code> はx, y, zそれぞれ1次元配列にしないと渡せないようです．そのため，<code class="docutils literal notranslate"><span class="pre">np.meshgrid()</span></code>と <code class="docutils literal notranslate"><span class="pre">ravel()</span></code> メソッドを通じて <code class="docutils literal notranslate"><span class="pre">nx</span> <span class="pre">*</span> <span class="pre">ny</span></code> サイズの1次元配列を作っています．</p>
 <p>もうすこしスッキリした書き方としては，<code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">z</span></code>の代わりにそれらがパッキングされた<code class="docutils literal notranslate"><span class="pre">data</span></code>リストを内包表記を用いて与える方法もあります:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pygmt</span><span class="o">.</span><span class="n">xyz2grd</span><span class="p">(</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))]</span>
@@ -429,6 +436,16 @@ document.write(`
     <span class="p">)</span>
 </pre></div>
 </div>
+<p>さらに発展的な方法として，<code class="docutils literal notranslate"><span class="pre">xarray</span></code> モジュールを用いて，以下のように表現することもできます．</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="n">grddata</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">z</span><span class="p">,</span>
+    <span class="n">dims</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">],</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>この方法は高速なだけでなく，PyGMTがグリッドデータのPython内部オブジェクトとしてxarrayを用いている点からもより直接的で好ましい方法と思われます．<code class="docutils literal notranslate"><span class="pre">xyz2grd</span></code>モジュールとことなり，わざわざxy方向のグリッド間隔を明示的に指定する必要がないのも好ましい点です．</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -437,8 +454,8 @@ document.write(`
 <span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="n">grddata</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">xyz2grd</span><span class="p">(</span>
-    <span class="n">region</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>     
-    <span class="n">spacing</span> <span class="o">=</span> <span class="s1">&#39;0.004/0.004&#39;</span><span class="p">,</span> 
+    <span class="n">region</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>     
+    <span class="n">spacing</span> <span class="o">=</span> <span class="s1">&#39;0.01/0.01&#39;</span><span class="p">,</span> 
     <span class="n">x</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">Y</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> 
     <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
@@ -452,8 +469,8 @@ document.write(`
 
 <span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span>
     <span class="n">grid</span>       <span class="o">=</span> <span class="n">grddata</span><span class="p">,</span> 
-    <span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;X10c/10c&#39;</span><span class="p">,</span> 
-    <span class="n">frame</span>      <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen&#39;</span><span class="p">,</span> <span class="s1">&#39;xaf+l&quot;x&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;yaf+l&quot;y&quot;&#39;</span><span class="p">],</span>    
+    <span class="n">projection</span> <span class="o">=</span> <span class="s1">&#39;X9c/6c&#39;</span><span class="p">,</span> 
+    <span class="n">frame</span>      <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WSen&#39;</span><span class="p">,</span> <span class="s1">&#39;xaf+lx&#39;</span><span class="p">,</span> <span class="s1">&#39;yaf+ly&#39;</span><span class="p">],</span>    
 <span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">grdcontour</span><span class="p">(</span>
@@ -471,7 +488,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/e876629bb637ff74a48db41849cfaef03bcef2e031d7ac2ec225abb3581ab962.png"><img alt="_images/e876629bb637ff74a48db41849cfaef03bcef2e031d7ac2ec225abb3581ab962.png" src="_images/e876629bb637ff74a48db41849cfaef03bcef2e031d7ac2ec225abb3581ab962.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="_images/216d5d14b47e45f07bdfc5fabf97ffc98cba058e153298a6dec5a05ccd22ac5c.png"><img alt="_images/216d5d14b47e45f07bdfc5fabf97ffc98cba058e153298a6dec5a05ccd22ac5c.png" src="_images/216d5d14b47e45f07bdfc5fabf97ffc98cba058e153298a6dec5a05ccd22ac5c.png" style="width: 500px;" />
+</a>
 </div>
 </div>
 <p>ここでは，<code class="docutils literal notranslate"><span class="pre">grdimage</span></code>のほかに<code class="docutils literal notranslate"><span class="pre">grdcontour</span></code>も用いて等値線も描画してみました．使い方は上記の例を見ればほとんど明らかだと思います．</p>
@@ -516,8 +534,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e4aaf452fd32bc48bd948a1a6a37a5f6cb8bf6ccb735a8e7b0b64bb1a724e324.png" src="_images/e4aaf452fd32bc48bd948a1a6a37a5f6cb8bf6ccb735a8e7b0b64bb1a724e324.png" />
-<img alt="_images/15fee5eecd41a69e079db70ff90cf8413466c378e58edf19faab616fecf46a9c.png" src="_images/15fee5eecd41a69e079db70ff90cf8413466c378e58edf19faab616fecf46a9c.png" />
+<a class="reference internal image-reference" href="_images/e4aaf452fd32bc48bd948a1a6a37a5f6cb8bf6ccb735a8e7b0b64bb1a724e324.png"><img alt="_images/e4aaf452fd32bc48bd948a1a6a37a5f6cb8bf6ccb735a8e7b0b64bb1a724e324.png" src="_images/e4aaf452fd32bc48bd948a1a6a37a5f6cb8bf6ccb735a8e7b0b64bb1a724e324.png" style="width: 500px;" />
+</a>
+<a class="reference internal image-reference" href="_images/15fee5eecd41a69e079db70ff90cf8413466c378e58edf19faab616fecf46a9c.png"><img alt="_images/15fee5eecd41a69e079db70ff90cf8413466c378e58edf19faab616fecf46a9c.png" src="_images/15fee5eecd41a69e079db70ff90cf8413466c378e58edf19faab616fecf46a9c.png" style="width: 500px;" />
+</a>
 </div>
 </div>
 <p>ここで作られたデータを <code class="docutils literal notranslate"><span class="pre">ravel()</span></code>メソッド1次元化し，<code class="docutils literal notranslate"><span class="pre">pygmt.surface</span></code>で補間をしてみます．比較のため <code class="docutils literal notranslate"><span class="pre">pygmt.xyz2grd</span></code> で粗い間隔のままのプロットも作成します．</p>
@@ -594,7 +614,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/57519a6d55129874efb9e053c7a39d12d3bfcaa51829aee6c0168f3d035e800c.png"><img alt="_images/57519a6d55129874efb9e053c7a39d12d3bfcaa51829aee6c0168f3d035e800c.png" src="_images/57519a6d55129874efb9e053c7a39d12d3bfcaa51829aee6c0168f3d035e800c.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="_images/57519a6d55129874efb9e053c7a39d12d3bfcaa51829aee6c0168f3d035e800c.png"><img alt="_images/57519a6d55129874efb9e053c7a39d12d3bfcaa51829aee6c0168f3d035e800c.png" src="_images/57519a6d55129874efb9e053c7a39d12d3bfcaa51829aee6c0168f3d035e800c.png" style="width: 500px;" />
+</a>
 </div>
 </div>
 <div class="admonition note">
@@ -712,7 +733,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c6e406d5e6e4d122eacfb7630a6c27e30a0c1891e23b24cddeea43881bcff855.png"><img alt="_images/c6e406d5e6e4d122eacfb7630a6c27e30a0c1891e23b24cddeea43881bcff855.png" src="_images/c6e406d5e6e4d122eacfb7630a6c27e30a0c1891e23b24cddeea43881bcff855.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="_images/c6e406d5e6e4d122eacfb7630a6c27e30a0c1891e23b24cddeea43881bcff855.png"><img alt="_images/c6e406d5e6e4d122eacfb7630a6c27e30a0c1891e23b24cddeea43881bcff855.png" src="_images/c6e406d5e6e4d122eacfb7630a6c27e30a0c1891e23b24cddeea43881bcff855.png" style="width: 500px;" />
+</a>
 </div>
 </div>
 </section>
@@ -832,8 +854,8 @@ By <a href="https://tktmyd.github.io">Takuto Maeda</a>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
   </footer>
