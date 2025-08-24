@@ -130,3 +130,5 @@ dmypy.json
 
 src/_build
 src/_build/*
+
+.DS_Store
