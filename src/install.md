@@ -24,7 +24,6 @@ if 'google.colab' in sys.modules:
 また，Google Colabの仕様により，この方法でインストールしたPyGMTは，そのセッション限りで有効です．そのため，毎回セッションを開始するたびに上記のコードを実行する必要があります．毎回のインストール作業が鬱陶しいようであれば，以下の節で説明するローカル環境へのインストールをお勧めします．
 ```
 
-
 ## ローカル環境へのインストール
 
 ```{warning}
@@ -57,15 +56,17 @@ PyGMTを使うための環境構築には，Pythonのパッケージ管理シス
 まずは適当なディレクトリで，miniforgeをダウンロードします．ここでは`curl`コマンドを使った例を示します．
 
 ```bash
-$ curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
 ```
+
 ```{note}
 行頭の `$` はシェルのプロンプトです．コマンドそのものには含まれませんのでご注意ください．
 ```
 
 ダウンロードしたら，そのスクリプトを `bash` コマンドで実行します．
+
 ```bash
-$ bash Miniforge3-$(uname)-$(uname -m).sh
+bash Miniforge3-$(uname)-$(uname -m).sh
 ```
 
 あとは対話的に `y/n` を選んでいくことでMiniforgeインストールできます．その際，インストール先も指定できます．デフォルトは`~/miniforge3`のはずです．ただし`~`は自分のホームディレクトリを意味します．インストール時にnoと答えていなければ，自分のシェル設定ファイル（`.bashrc`あるいは`.zshrc`）に`conda`コマンドを実行するための初期設定が書き込まれます．これにより，次回端末（あるいはシェル）起動時より，ターミナルのプロンプトに `(base)` と表示されるはずです．これは`conda`の`base`仮想環境（標準状態）であることを意味します．
@@ -78,11 +79,11 @@ conda update conda
 
 ### 仮想環境の作成とPyGMTのインストール
 
-このままデフォルトの環境にパッケージを追加していってもよいのですが，ここではPyGMT用の**仮想環境**を作成します．このようにすると，パッケージ間のバージョン不整合などのトラブルがあったときに，仮想環境ごと切り替えるということが可能になります．ここでは，本Webサイトで利用するパッケージをまるごと導入する仮想環境`pygmt`を作ってみましょう．ここでは，2023年12月時点で最新となるPyGMT v0.13.0と，GMT v6.5.0 を導入します．
+このままデフォルトの環境にパッケージを追加していってもよいのですが，ここではPyGMT用の**仮想環境**を作成します．このようにすると，パッケージ間のバージョン不整合などのトラブルがあったときに，仮想環境ごと切り替えるということが可能になります．ここでは，本Webサイトで利用するパッケージをまるごと導入する仮想環境`pygmt`を作ってみましょう．ここでは，2025年8月時点で最新となるPyGMT v0.16.0と，GMT v6.6.0 を導入します．
 
 ```bash
-$ conda create --name pygmt \
-  pygmt==0.13.0 gmt==6.5.0 numpy scipy obspy==1.4.1 notebook matplotlib ffmpeg
+$ conda create --name pygmt16 \
+  pygmt==0.16.0 gmt==6.6.0 numpy scipy obspy==1.4.2 notebook matplotlib ffmpeg
 ```
 
 ```{note}
@@ -98,17 +99,23 @@ $ conda create --name pygmt \
 ```
 
 インストールが完了したら
+
 ```bash
-conda activate pygmt
+conda activate pygmt16
 ```
+
 により仮想環境を有効化します．すると，プロンプトの左側の `(base)` が仮想環境の名前 `(pygmt)` に変わります．もしいつでもこの環境を使いたいならば，シェルの初期設定ファイル（`.bashrc` あるいは `.zshrc` など）に上記の `activate` コマンドを記載しておくとよいでしょう．
 
 一方，仮想環境から抜けるには
+
 ```bash
 conda deactivate
 ```
+
 です．もしこの仮想環境が不要になって削除したいときは，仮想環境から`conda deactivate` した状態で
+
 ```bash
 conda remove -n pygmt --all
 ```
+
 とします．

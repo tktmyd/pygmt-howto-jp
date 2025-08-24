@@ -18,12 +18,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
@@ -34,12 +34,12 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -140,6 +140,8 @@
         <div class="sidebar-primary-item">
 
   
+    
+  
 
 <a class="navbar-brand logo" href="pygmt.html">
   
@@ -155,7 +157,7 @@
 
  <script>
  document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -185,6 +187,7 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Obspyとの連携</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mech.html">震源メカニズム解の表現</a></li>
 <li class="toctree-l1"><a class="reference internal" href="animation.html">アニメーション動画の作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="japanese.html">日本語フォントの利用</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
@@ -310,10 +313,10 @@
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
@@ -321,7 +324,7 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
@@ -390,8 +393,7 @@ SAC&gt;<span class="w"> </span>quit
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/67e8a223b713dc0d5e3a810c69a3e64596ce3b1432647f242ce9327fcb2c7ccd.png"><img alt="_images/67e8a223b713dc0d5e3a810c69a3e64596ce3b1432647f242ce9327fcb2c7ccd.png" src="_images/67e8a223b713dc0d5e3a810c69a3e64596ce3b1432647f242ce9327fcb2c7ccd.png" style="width: 500px;" />
-</a>
+<img alt="_images/67e8a223b713dc0d5e3a810c69a3e64596ce3b1432647f242ce9327fcb2c7ccd.png" src="_images/67e8a223b713dc0d5e3a810c69a3e64596ce3b1432647f242ce9327fcb2c7ccd.png" />
 </div>
 </div>
 <p>ObsPyで読み込んだ波形には，</p>
@@ -430,8 +432,7 @@ SAC&gt;<span class="w"> </span>quit
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/95a8f9546f293ba8444d641f9ca811a9026248634d9c2cf27b78152dadf9d857.png"><img alt="_images/95a8f9546f293ba8444d641f9ca811a9026248634d9c2cf27b78152dadf9d857.png" src="_images/95a8f9546f293ba8444d641f9ca811a9026248634d9c2cf27b78152dadf9d857.png" style="width: 500px;" />
-</a>
+<a class="reference internal image-reference" href="_images/95a8f9546f293ba8444d641f9ca811a9026248634d9c2cf27b78152dadf9d857.png"><img alt="_images/95a8f9546f293ba8444d641f9ca811a9026248634d9c2cf27b78152dadf9d857.png" src="_images/95a8f9546f293ba8444d641f9ca811a9026248634d9c2cf27b78152dadf9d857.png" style="width: 500px;" /></a>
 </div>
 </div>
 <p>基本的にこれまでに出てきたコマンドの組み合わせで実現できます．</p>
@@ -464,8 +465,7 @@ SAC&gt;<span class="w"> </span>quit
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/c6c1e004e3f5048763d0dd6e1fc6c8e4fae22676cbb5d2aee3154e09c2a2f798.png"><img alt="_images/c6c1e004e3f5048763d0dd6e1fc6c8e4fae22676cbb5d2aee3154e09c2a2f798.png" src="_images/c6c1e004e3f5048763d0dd6e1fc6c8e4fae22676cbb5d2aee3154e09c2a2f798.png" style="width: 500px;" />
-</a>
+<a class="reference internal image-reference" href="_images/c6c1e004e3f5048763d0dd6e1fc6c8e4fae22676cbb5d2aee3154e09c2a2f798.png"><img alt="_images/c6c1e004e3f5048763d0dd6e1fc6c8e4fae22676cbb5d2aee3154e09c2a2f798.png" src="_images/c6c1e004e3f5048763d0dd6e1fc6c8e4fae22676cbb5d2aee3154e09c2a2f798.png" style="width: 500px;" /></a>
 </div>
 </div>
 </section>
@@ -568,8 +568,8 @@ By <a href="https://tktmyd.github.io">Takuto Maeda</a>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

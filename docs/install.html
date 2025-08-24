@@ -18,12 +18,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
@@ -34,12 +34,12 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -140,6 +140,8 @@
         <div class="sidebar-primary-item">
 
   
+    
+  
 
 <a class="navbar-brand logo" href="pygmt.html">
   
@@ -155,7 +157,7 @@
 
  <script>
  document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -185,6 +187,7 @@
 <li class="toctree-l1"><a class="reference internal" href="obspy.html">Obspyとの連携</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mech.html">震源メカニズム解の表現</a></li>
 <li class="toctree-l1"><a class="reference internal" href="animation.html">アニメーション動画の作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="japanese.html">日本語フォントの利用</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
@@ -310,10 +313,10 @@
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
@@ -321,7 +324,7 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
@@ -416,7 +419,7 @@ document.write(`
 <section id="miniforge">
 <h4>Miniforgeのインストール<a class="headerlink" href="#miniforge" title="Link to this heading">#</a></h4>
 <p>まずは適当なディレクトリで，miniforgeをダウンロードします．ここでは<code class="docutils literal notranslate"><span class="pre">curl</span></code>コマンドを使った例を示します．</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>curl<span class="w"> </span>-L<span class="w"> </span>-O<span class="w"> </span><span class="s2">&quot;https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-</span><span class="k">$(</span>uname<span class="k">)</span><span class="s2">-</span><span class="k">$(</span>uname<span class="w"> </span>-m<span class="k">)</span><span class="s2">.sh&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-L<span class="w"> </span>-O<span class="w"> </span><span class="s2">&quot;https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-</span><span class="k">$(</span>uname<span class="k">)</span><span class="s2">-</span><span class="k">$(</span>uname<span class="w"> </span>-m<span class="k">)</span><span class="s2">.sh&quot;</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -424,7 +427,7 @@ document.write(`
 <p>行頭の <code class="docutils literal notranslate"><span class="pre">$</span></code> はシェルのプロンプトです．コマンドそのものには含まれませんのでご注意ください．</p>
 </div>
 <p>ダウンロードしたら，そのスクリプトを <code class="docutils literal notranslate"><span class="pre">bash</span></code> コマンドで実行します．</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>bash<span class="w"> </span>Miniforge3-<span class="k">$(</span>uname<span class="k">)</span>-<span class="k">$(</span>uname<span class="w"> </span>-m<span class="k">)</span>.sh
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>Miniforge3-<span class="k">$(</span>uname<span class="k">)</span>-<span class="k">$(</span>uname<span class="w"> </span>-m<span class="k">)</span>.sh
 </pre></div>
 </div>
 <p>あとは対話的に <code class="docutils literal notranslate"><span class="pre">y/n</span></code> を選んでいくことでMiniforgeインストールできます．その際，インストール先も指定できます．デフォルトは<code class="docutils literal notranslate"><span class="pre">~/miniforge3</span></code>のはずです．ただし<code class="docutils literal notranslate"><span class="pre">~</span></code>は自分のホームディレクトリを意味します．インストール時にnoと答えていなければ，自分のシェル設定ファイル（<code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>あるいは<code class="docutils literal notranslate"><span class="pre">.zshrc</span></code>）に<code class="docutils literal notranslate"><span class="pre">conda</span></code>コマンドを実行するための初期設定が書き込まれます．これにより，次回端末（あるいはシェル）起動時より，ターミナルのプロンプトに <code class="docutils literal notranslate"><span class="pre">(base)</span></code> と表示されるはずです．これは<code class="docutils literal notranslate"><span class="pre">conda</span></code>の<code class="docutils literal notranslate"><span class="pre">base</span></code>仮想環境（標準状態）であることを意味します．</p>
@@ -436,9 +439,9 @@ document.write(`
 </section>
 <section id="id2">
 <h3>仮想環境の作成とPyGMTのインストール<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<p>このままデフォルトの環境にパッケージを追加していってもよいのですが，ここではPyGMT用の<strong>仮想環境</strong>を作成します．このようにすると，パッケージ間のバージョン不整合などのトラブルがあったときに，仮想環境ごと切り替えるということが可能になります．ここでは，本Webサイトで利用するパッケージをまるごと導入する仮想環境<code class="docutils literal notranslate"><span class="pre">pygmt</span></code>を作ってみましょう．ここでは，2023年12月時点で最新となるPyGMT v0.13.0と，GMT v6.5.0 を導入します．</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>pygmt<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span><span class="nv">pygmt</span><span class="o">==</span><span class="m">0</span>.13.0<span class="w"> </span><span class="nv">gmt</span><span class="o">==</span><span class="m">6</span>.5.0<span class="w"> </span>numpy<span class="w"> </span>scipy<span class="w"> </span><span class="nv">obspy</span><span class="o">==</span><span class="m">1</span>.4.1<span class="w"> </span>notebook<span class="w"> </span>matplotlib<span class="w"> </span>ffmpeg
+<p>このままデフォルトの環境にパッケージを追加していってもよいのですが，ここではPyGMT用の<strong>仮想環境</strong>を作成します．このようにすると，パッケージ間のバージョン不整合などのトラブルがあったときに，仮想環境ごと切り替えるということが可能になります．ここでは，本Webサイトで利用するパッケージをまるごと導入する仮想環境<code class="docutils literal notranslate"><span class="pre">pygmt</span></code>を作ってみましょう．ここでは，2025年8月時点で最新となるPyGMT v0.16.0と，GMT v6.6.0 を導入します．</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>pygmt16<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="nv">pygmt</span><span class="o">==</span><span class="m">0</span>.16.0<span class="w"> </span><span class="nv">gmt</span><span class="o">==</span><span class="m">6</span>.6.0<span class="w"> </span>numpy<span class="w"> </span>scipy<span class="w"> </span><span class="nv">obspy</span><span class="o">==</span><span class="m">1</span>.4.2<span class="w"> </span>notebook<span class="w"> </span>matplotlib<span class="w"> </span>ffmpeg
 </pre></div>
 </div>
 <div class="admonition note">
@@ -452,7 +455,7 @@ document.write(`
 <p>これらのライブラリや実行バイナリは，<code class="docutils literal notranslate"><span class="pre">miniforge</span></code> のインストールディレクトリ下の <code class="docutils literal notranslate"><span class="pre">envs</span></code> ディレクトリに格納されます．<code class="docutils literal notranslate"><span class="pre">miniforge</span></code>をデフォルトでホームディレクトリにインストールしている場合，容量の増大にはご注意ください．</p>
 </div>
 <p>インストールが完了したら</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>pygmt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>pygmt16
 </pre></div>
 </div>
 <p>により仮想環境を有効化します．すると，プロンプトの左側の <code class="docutils literal notranslate"><span class="pre">(base)</span></code> が仮想環境の名前 <code class="docutils literal notranslate"><span class="pre">(pygmt)</span></code> に変わります．もしいつでもこの環境を使いたいならば，シェルの初期設定ファイル（<code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> あるいは <code class="docutils literal notranslate"><span class="pre">.zshrc</span></code> など）に上記の <code class="docutils literal notranslate"><span class="pre">activate</span></code> コマンドを記載しておくとよいでしょう．</p>
@@ -590,8 +593,8 @@ By <a href="https://tktmyd.github.io">Takuto Maeda</a>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

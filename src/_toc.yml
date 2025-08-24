@@ -2,18 +2,19 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root:  pygmt
+root: pygmt
 chapters:
-- file: install
-- file: basic_map
-- file: savefig
-- file: topo_map
-- file: xy
-- file: inf_on_map
-- file: mesh
-- file: config
-- file: timeseries
-- file: obspy
-- file: mech
-- file: animation
-- file: license
+  - file: install
+  - file: basic_map
+  - file: savefig
+  - file: topo_map
+  - file: xy
+  - file: inf_on_map
+  - file: mesh
+  - file: config
+  - file: timeseries
+  - file: obspy
+  - file: mech
+  - file: animation
+  - file: japanese
+  - file: license

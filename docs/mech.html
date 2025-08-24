@@ -18,12 +18,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
@@ -34,12 +34,12 @@
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -142,6 +142,8 @@
         <div class="sidebar-primary-item">
 
   
+    
+  
 
 <a class="navbar-brand logo" href="pygmt.html">
   
@@ -157,7 +159,7 @@
 
  <script>
  document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -187,6 +189,7 @@
 <li class="toctree-l1"><a class="reference internal" href="obspy.html">Obspyとの連携</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">震源メカニズム解の表現</a></li>
 <li class="toctree-l1"><a class="reference internal" href="animation.html">アニメーション動画の作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="japanese.html">日本語フォントの利用</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
@@ -312,10 +315,10 @@
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
@@ -323,7 +326,7 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
@@ -453,8 +456,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ef1b18bf595c08eaba54ad35e385123e8da2af6239c2991993059f32138f311d.png"><img alt="_images/ef1b18bf595c08eaba54ad35e385123e8da2af6239c2991993059f32138f311d.png" src="_images/ef1b18bf595c08eaba54ad35e385123e8da2af6239c2991993059f32138f311d.png" style="width: 500px;" />
-</a>
+<a class="reference internal image-reference" href="_images/ef1b18bf595c08eaba54ad35e385123e8da2af6239c2991993059f32138f311d.png"><img alt="_images/ef1b18bf595c08eaba54ad35e385123e8da2af6239c2991993059f32138f311d.png" src="_images/ef1b18bf595c08eaba54ad35e385123e8da2af6239c2991993059f32138f311d.png" style="width: 500px;" /></a>
 </div>
 </div>
 <aside class="margin sidebar">
@@ -518,8 +520,7 @@ gmt<span class="w"> </span>end
 </pre></div>
 </div>
 <p>上記のスクリプトを実行すると，下図のようなメカニズム解とその鉛直断面図が得られます．</p>
-<a class="reference internal image-reference" href="_images/coupe_test.png"><img alt="_images/coupe_test.png" class="align-center" src="_images/coupe_test.png" style="width: 50%;" />
-</a>
+<a class="reference internal image-reference" href="_images/coupe_test.png"><img alt="_images/coupe_test.png" class="align-center" src="_images/coupe_test.png" style="width: 50%;" /></a>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>本来であれば南北断面については，横軸に深さ，縦軸に南北方向という座標系を取りたいところですが，筆者の知る限り <code class="docutils literal notranslate"><span class="pre">gmt</span> <span class="pre">coupe</span></code> でそれを実現することはできなさそうです．</p>
@@ -531,8 +532,7 @@ gmt<span class="w"> </span>end
 <section id="id3">
 <h2>モーメントテンソルと座標変換<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <p>PyGMTの <code class="docutils literal notranslate"><span class="pre">meca</span></code> モジュールは，（入力フォーマットは様々ですが，本質的には）モーメントテンソルを水平面内（XYもしくはlon-lat座標系）において下半球投影したものを可視化してくれます．ここでは，その <code class="docutils literal notranslate"><span class="pre">meca</span></code> モジュールはそのままに，モーメントテンソルのほうを座標変換してしまうことで，異なる方向から見たモーメントテンソルがプロットされるようにしてみます．具体的には，以下の図で模式的に示すような <span class="math notranslate nohighlight">\((X,Y,Z)\)</span>から<span class="math notranslate nohighlight">\((X', Y', Z')\)</span>（東西鉛直断面）あるいは<span class="math notranslate nohighlight">\((X&quot;,Y&quot;,Z&quot;)\)</span>（南北鉛直断面）のような変換を考えます．</p>
-<a class="reference internal image-reference" href="_images/Mech_cross_section.png"><img alt="_images/Mech_cross_section.png" src="_images/Mech_cross_section.png" style="width: 80%;" />
-</a>
+<a class="reference internal image-reference" href="_images/Mech_cross_section.png"><img alt="_images/Mech_cross_section.png" src="_images/Mech_cross_section.png" style="width: 80%;" /></a>
 <p>ここでは，もともとのXYZ座標系として，Aki and Richards (2002)に倣って北（上）を<span class="math notranslate nohighlight">\(X\)</span>, 東（右）を <span class="math notranslate nohighlight">\(Y\)</span>, 深さ方向（奥）を <span class="math notranslate nohighlight">\(Z\)</span> としました．それに対して東西鉛直断面では，上が<span class="math notranslate nohighlight">\(-Z\)</span>, 右が<span class="math notranslate nohighlight">\(Y\)</span>, 奥が<span class="math notranslate nohighlight">\(Z'\)</span>になりますから，</p>
 <div class="math notranslate nohighlight">
 \[
@@ -723,13 +723,11 @@ M_{xz} &amp; M_{xx} &amp; -M_{xy} \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/ab79d895cde615c5ac18065cc7f5004ed7873a0f45bf4568f02bcb811a50255d.png"><img alt="_images/ab79d895cde615c5ac18065cc7f5004ed7873a0f45bf4568f02bcb811a50255d.png" src="_images/ab79d895cde615c5ac18065cc7f5004ed7873a0f45bf4568f02bcb811a50255d.png" style="width: 500px;" />
-</a>
+<a class="reference internal image-reference" href="_images/ab79d895cde615c5ac18065cc7f5004ed7873a0f45bf4568f02bcb811a50255d.png"><img alt="_images/ab79d895cde615c5ac18065cc7f5004ed7873a0f45bf4568f02bcb811a50255d.png" src="_images/ab79d895cde615c5ac18065cc7f5004ed7873a0f45bf4568f02bcb811a50255d.png" style="width: 500px;" /></a>
 </div>
 </div>
 <p>本家 <code class="docutils literal notranslate"><span class="pre">gmt</span> <span class="pre">coupe</span></code> とは異なり，自力でモーメントテンソルを座標変換しているので，その行列の定義を注意深く行えば，この例のように南北断面を横軸深さ，縦軸南北にすることも容易です．これを，<code class="docutils literal notranslate"><span class="pre">strike</span></code> 角だけを少しずつ変えながら <a class="reference internal" href="animation.html"><span class="std std-doc">こちらのページ</span></a> で解説している方法で gifアニメーションにすると以下のようになります．</p>
-<a class="reference internal image-reference" href="_images/meca_rot.gif"><img alt="_images/meca_rot.gif" class="align-center" src="_images/meca_rot.gif" style="width: 60%;" />
-</a>
+<a class="reference internal image-reference" href="_images/meca_rot.gif"><img alt="_images/meca_rot.gif" class="align-center" src="_images/meca_rot.gif" style="width: 60%;" /></a>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>上記の例を作成している途上で，特定の(<code class="docutils literal notranslate"><span class="pre">strike</span></code>, <code class="docutils literal notranslate"><span class="pre">dip</span></code>, <code class="docutils literal notranslate"><span class="pre">rake</span></code>) の組み合わせをモーメントテンソルに変換してから <code class="docutils literal notranslate"><span class="pre">meca</span></code> で表示すると，表示されるメカニズム解の押し引きが反転してしまう，というバグに遭遇しました．この問題はモーメントテンソル対角成分のうち一つが<span class="math notranslate nohighlight">\(0\)</span>に十分近くなるときに起こりうる（いつでもとは限りません）ようです．<code class="docutils literal notranslate"><span class="pre">strike</span></code>, <code class="docutils literal notranslate"><span class="pre">dip</span></code>, <code class="docutils literal notranslate"><span class="pre">rake</span></code> の角度が整数値では，（90度とか270度などのキリの良い数字で）そういうことが発生しがちであるため，上記のアニメーションではこれらの角度値に対して描画結果に影響が出ないくらい小さな値（0.0001度）を加えて描画しています．</p>
@@ -852,8 +850,8 @@ By <a href="https://tktmyd.github.io">Takuto Maeda</a>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
