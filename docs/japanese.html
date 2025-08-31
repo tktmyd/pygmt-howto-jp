@@ -359,6 +359,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cidfmap">3. <code class="docutils literal notranslate"><span class="pre">cidfmap</span></code> ファイルの確認</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#psl-custom-fonts-txt">4. <code class="docutils literal notranslate"><span class="pre">PSL_custom_fonts.txt</span></code> の作成</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">5. フォント設定状況の確認</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gs-path">6. <code class="docutils literal notranslate"><span class="pre">gs_path</span></code> の明示指定</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#macos">macOSの場合</a><ul class="nav section-nav flex-column">
@@ -560,10 +561,10 @@ document.write(`
 <section id="cidfmap">
 <h3>3. <code class="docutils literal notranslate"><span class="pre">cidfmap</span></code> ファイルの確認<a class="headerlink" href="#cidfmap" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">/var/lib/ghostscript/fonts/cidfmap</span></code> を閲覧し，以下の行があることを確認してください．</p>
-<div class="highlight-txt notranslate"><div class="highlight"><pre><span></span>/Japanese-Mincho-Regular &lt;&lt; /FileType /TrueType /Path (/usr/share/fonts/truetype/fonts-japanese-mincho.ttf) /SubfontID 0 /CSI [(Japan1) 4] &gt;&gt; ;
-/Japanese-Gothic-Regular &lt;&lt; /FileType /TrueType /Path (/usr/share/fonts/truetype/fonts-japanese-gothic.ttf) /SubfontID 0 /CSI [(Japan1) 4] &gt;&gt; ;
-/Ryumin-Light /Japanese-Mincho-Regular ;
-/GothicBBB-Medium /Japanese-Gothic-Regular ;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Japanese</span><span class="o">-</span><span class="n">Mincho</span><span class="o">-</span><span class="n">Regular</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">FileType</span> <span class="o">/</span><span class="n">TrueType</span> <span class="o">/</span><span class="n">Path</span> <span class="p">(</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">fonts</span><span class="o">/</span><span class="n">truetype</span><span class="o">/</span><span class="n">fonts</span><span class="o">-</span><span class="n">japanese</span><span class="o">-</span><span class="n">mincho</span><span class="o">.</span><span class="n">ttf</span><span class="p">)</span> <span class="o">/</span><span class="n">SubfontID</span> <span class="mi">0</span> <span class="o">/</span><span class="n">CSI</span> <span class="p">[(</span><span class="n">Japan1</span><span class="p">)</span> <span class="mi">4</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="p">;</span>
+<span class="o">/</span><span class="n">Japanese</span><span class="o">-</span><span class="n">Gothic</span><span class="o">-</span><span class="n">Regular</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">FileType</span> <span class="o">/</span><span class="n">TrueType</span> <span class="o">/</span><span class="n">Path</span> <span class="p">(</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">fonts</span><span class="o">/</span><span class="n">truetype</span><span class="o">/</span><span class="n">fonts</span><span class="o">-</span><span class="n">japanese</span><span class="o">-</span><span class="n">gothic</span><span class="o">.</span><span class="n">ttf</span><span class="p">)</span> <span class="o">/</span><span class="n">SubfontID</span> <span class="mi">0</span> <span class="o">/</span><span class="n">CSI</span> <span class="p">[(</span><span class="n">Japan1</span><span class="p">)</span> <span class="mi">4</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="p">;</span>
+<span class="o">/</span><span class="n">Ryumin</span><span class="o">-</span><span class="n">Light</span> <span class="o">/</span><span class="n">Japanese</span><span class="o">-</span><span class="n">Mincho</span><span class="o">-</span><span class="n">Regular</span> <span class="p">;</span>
+<span class="o">/</span><span class="n">GothicBBB</span><span class="o">-</span><span class="n">Medium</span> <span class="o">/</span><span class="n">Japanese</span><span class="o">-</span><span class="n">Gothic</span><span class="o">-</span><span class="n">Regular</span> <span class="p">;</span>
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -579,8 +580,8 @@ document.write(`
 <section id="psl-custom-fonts-txt">
 <h3>4. <code class="docutils literal notranslate"><span class="pre">PSL_custom_fonts.txt</span></code> の作成<a class="headerlink" href="#psl-custom-fonts-txt" title="Link to this heading">#</a></h3>
 <p>ユーザーのホームディレクトリ直下の <code class="docutils literal notranslate"><span class="pre">.gmt/PSL_custom_fonts.txt</span></code> ファイルを編集し（なければ作る）．以下の2行を追加します．</p>
-<div class="highlight-txt notranslate"><div class="highlight"><pre><span></span>Ryumin-Light-UniJIS-UTF8-H 0.700 1
-GothicBBB-Medium-UniJIS-UTF8-H 0.700 1
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ryumin</span><span class="o">-</span><span class="n">Light</span><span class="o">-</span><span class="n">UniJIS</span><span class="o">-</span><span class="n">UTF8</span><span class="o">-</span><span class="n">H</span> <span class="mf">0.700</span> <span class="mi">1</span>
+<span class="n">GothicBBB</span><span class="o">-</span><span class="n">Medium</span><span class="o">-</span><span class="n">UniJIS</span><span class="o">-</span><span class="n">UTF8</span><span class="o">-</span><span class="n">H</span> <span class="mf">0.700</span> <span class="mi">1</span>
 </pre></div>
 </div>
 <p>第1列の <code class="docutils literal notranslate"><span class="pre">Ryumin-Light</span></code> と <code class="docutils literal notranslate"><span class="pre">GothicBBB-Medium</span></code> が <code class="docutils literal notranslate"><span class="pre">cidfmap</span></code> の記述の第1列に存在することが重要です．</p>
@@ -608,6 +609,11 @@ gmt<span class="w"> </span>text<span class="w"> </span><span class="o">[</span>c
 </pre></div>
 </div>
 <p>この場合は39-40番に今回追加したフォントが表示されるはずです．ここまでで設定完了です．</p>
+</section>
+<section id="gs-path">
+<h3>6. <code class="docutils literal notranslate"><span class="pre">gs_path</span></code> の明示指定<a class="headerlink" href="#gs-path" title="Link to this heading">#</a></h3>
+<p>PyGMTで作られた画像オブジェクト <code class="docutils literal notranslate"><span class="pre">fig</span></code> は，内部的にはPostScript形式の画像を持っており，<code class="docutils literal notranslate"><span class="pre">fig.show()</span></code> や. <code class="docutils literal notranslate"><span class="pre">fig.savefig()</span></code>, <code class="docutils literal notranslate"><span class="pre">fig.ps2raster()</span></code> などの表示や画像保存のメソッドを呼び出した際に，外部ツールとして <code class="docutils literal notranslate"><span class="pre">Ghostscript</span></code> を呼び出して png や pdfといった画像に変換しているようです．ここで行った設定を利用するには，PyGMTの依存関係として自動的にconda環境にインストールされたghostscriptではなく，手順2で手動インストールしたほうのghostscriptを使う必要があります．</p>
+<p>そこで，<code class="docutils literal notranslate"><span class="pre">gs_path=&quot;/usr/bin/gs&quot;</span></code> というオプションを <code class="docutils literal notranslate"><span class="pre">.show()</span></code>, <code class="docutils literal notranslate"><span class="pre">.savefig()</span></code>, <code class="docutils literal notranslate"><span class="pre">.ps2raster()</span></code> に指定します．これで利用するghostscriptを指定し，日本語フォントを正しく読み込むことができるようになります．</p>
 </section>
 </section>
 <section id="macos">
@@ -644,13 +650,13 @@ gmt<span class="w"> </span>text<span class="w"> </span><span class="o">[</span>c
 <section id="id6">
 <h4>3. <code class="docutils literal notranslate"><span class="pre">cidfmap</span></code> ファイルの編集<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">/opt/homebrew/share/ghostscript/Resource/Init/cidfmap</span></code> を適当なテキストエディタで編集し，以下の行を追記します．ただし，「ユーザー名」はご自身のmacOSのユーザー名に変更してください．</p>
-<div class="highlight-txt notranslate"><div class="highlight"><pre><span></span>/Japanese-Mincho-Regular &lt;&lt; /FileType /TrueType /Path (/Users/ユーザー名/Library/Fonts/BIZUDMincho-Regular.ttf) /SubfontID 0 /CSI [(Japan1) 2] &gt;&gt; ;
-/Japanese-Gothic-Regular &lt;&lt; /FileType /TrueType /Path (/Users/ユーザー名/Library/Fonts/BIZUDGothic-Regular.ttf) /SubfontID 0 /CSI [(Japan1) 2] &gt;&gt; ;
-/Ryumin-Light /Japanese-Mincho-Regular ;
-/GothicBBB-Medium /Japanese-Gothic-Regular ;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Japanese</span><span class="o">-</span><span class="n">Mincho</span><span class="o">-</span><span class="n">Regular</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">FileType</span> <span class="o">/</span><span class="n">TrueType</span> <span class="o">/</span><span class="n">Path</span> <span class="p">(</span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">ユーザー名</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Fonts</span><span class="o">/</span><span class="n">BIZUDMincho</span><span class="o">-</span><span class="n">Regular</span><span class="o">.</span><span class="n">ttf</span><span class="p">)</span> <span class="o">/</span><span class="n">SubfontID</span> <span class="mi">0</span> <span class="o">/</span><span class="n">CSI</span> <span class="p">[(</span><span class="n">Japan1</span><span class="p">)</span> <span class="mi">2</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="p">;</span>
+<span class="o">/</span><span class="n">Japanese</span><span class="o">-</span><span class="n">Gothic</span><span class="o">-</span><span class="n">Regular</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">FileType</span> <span class="o">/</span><span class="n">TrueType</span> <span class="o">/</span><span class="n">Path</span> <span class="p">(</span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">ユーザー名</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Fonts</span><span class="o">/</span><span class="n">BIZUDGothic</span><span class="o">-</span><span class="n">Regular</span><span class="o">.</span><span class="n">ttf</span><span class="p">)</span> <span class="o">/</span><span class="n">SubfontID</span> <span class="mi">0</span> <span class="o">/</span><span class="n">CSI</span> <span class="p">[(</span><span class="n">Japan1</span><span class="p">)</span> <span class="mi">2</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="p">;</span>
+<span class="o">/</span><span class="n">Ryumin</span><span class="o">-</span><span class="n">Light</span> <span class="o">/</span><span class="n">Japanese</span><span class="o">-</span><span class="n">Mincho</span><span class="o">-</span><span class="n">Regular</span> <span class="p">;</span>
+<span class="o">/</span><span class="n">GothicBBB</span><span class="o">-</span><span class="n">Medium</span> <span class="o">/</span><span class="n">Japanese</span><span class="o">-</span><span class="n">Gothic</span><span class="o">-</span><span class="n">Regular</span> <span class="p">;</span>
 </pre></div>
 </div>
-<p>以下，手順 4・手順 5はUbuntuの場合と同じです．</p>
+<p>以下，手順 4・手順 5はUbuntuの場合と同じです．<code class="docutils literal notranslate"><span class="pre">.show()</span></code>, <code class="docutils literal notranslate"><span class="pre">.savefig()</span></code>, <code class="docutils literal notranslate"><span class="pre">.ps2raster()</span></code> に指定すべき <code class="docutils literal notranslate"><span class="pre">gs_path</span></code> オプションの値はLinuxと異なり，<code class="docutils literal notranslate"><span class="pre">gs_path=&quot;/opt/homebrew/bin/gs&quot;</span></code> です．</p>
 </section>
 </section>
 </section>
@@ -662,11 +668,7 @@ gmt<span class="w"> </span>text<span class="w"> </span><span class="o">[</span>c
 <li><p>40: GothicBBB-Medium-UniJIS-UTF8-H</p></li>
 </ul>
 <p>のフォントをそれぞれ使えます．名前が長いので番号で使うのが簡単でしょう．39番が明朝体，40番がゴシック体です．</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>日本語フォントを使った場合，<code class="docutils literal notranslate"><span class="pre">fig.show()</span></code>, <code class="docutils literal notranslate"><span class="pre">fig.savefig()</span></code>, <code class="docutils literal notranslate"><span class="pre">fig.psconvert()</span></code> メソッドには，すべて <code class="docutils literal notranslate"><span class="pre">gs_path=</span></code> オプションにシステムのGhostScriptのバイナリをフルパスで指定してください．Ubuntuの場合は <code class="docutils literal notranslate"><span class="pre">gs_path=&quot;/usr/bin/gs&quot;</span></code>, macOSの場合には <code class="docutils literal notranslate"><span class="pre">gs_path=&quot;/opt/homebrew/bin/gs&quot;</span></code> です．</p>
-</div>
-<p>以下は実際に日本語を用いた地図の例です．</p>
+<p>以下はmacOS環境で実際に日本語を用いた地図の例です．</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
@@ -792,6 +794,7 @@ gmt<span class="w"> </span>text<span class="w"> </span><span class="o">[</span>c
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cidfmap">3. <code class="docutils literal notranslate"><span class="pre">cidfmap</span></code> ファイルの確認</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#psl-custom-fonts-txt">4. <code class="docutils literal notranslate"><span class="pre">PSL_custom_fonts.txt</span></code> の作成</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">5. フォント設定状況の確認</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gs-path">6. <code class="docutils literal notranslate"><span class="pre">gs_path</span></code> の明示指定</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#macos">macOSの場合</a><ul class="nav section-nav flex-column">
@@ -827,7 +830,7 @@ By <a href="https://tktmyd.github.io">Takuto Maeda</a>
 
   <p class="copyright">
     
-      © Copyright 2021-2024. All Rights Reserved.
+      © Copyright 2021-2025. All Rights Reserved.
       <br/>
     
   </p>
