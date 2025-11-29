@@ -1,4 +1,4 @@
-import{b as e}from"pygmt-howto-jp//build/_shared/chunk-ZHBLEF4E.js";var l=e(()=>`
+import{b as e}from"/pygmt-howto-jp/build/_shared/chunk-ZHBLEF4E.js";var l=e(()=>`
   /* Font Awesome icon styling - consolidated */
   .label-icon {
     display: inline-block;
