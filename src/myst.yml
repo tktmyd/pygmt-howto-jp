@@ -5,31 +5,40 @@ project:
       id: CC-BY-4.0
     code:
       id: MIT    
-  title: 
+  title: PyGMT-HOWTO
   copyright: 2021-2025. All Rights Reserved
   github: tktmyd/pygmt-howto-jp
+  settings:
+    output_stderr: remove-warn
   toc:
     - file: pygmt.md
-    - file: install.md
-    - file: basic_map.ipynb
-    - file: savefig.ipynb    
-    - file: topo_map.ipynb
-    - file: xy.ipynb
-    - file: frame.ipynb
-    - file: inf_on_map.ipynb
-    - file: mesh.ipynb
-    - file: config.ipynb
-    - file: timeseries.ipynb
-    - file: obspy.ipynb
-    - file: mech.ipynb
-    - file: animation.ipynb
-    - file: japanese.ipynb
+    - title: 基本編
+      children:
+        - file: install.md
+        - file: basic_map.ipynb
+        - file: savefig.ipynb    
+        - file: topo_map.ipynb
+        - file: xy.ipynb
+        - file: frame.ipynb
+        - file: inf_on_map.ipynb
+        - file: mesh.ipynb
+        - file: timeseries.ipynb
+    - title: 応用編
+      children: 
+        - file: config.ipynb
+        - file: obspy.ipynb
+        - file: mech.ipynb
+        - file: animation.ipynb
+        - file: japanese.ipynb
     - file: license.md
 site:
   options:
     folders: true
-    logo_text: "PyGMT-HOWTO"
+    hide_toc: false
+    hide_myst_branding: true
+    hide_outline: false
+    logo: logo.svg
+    logo_dark: logo2.svg
   template: book-theme
-  nav: []
   parts:
     footer: footer.md  
