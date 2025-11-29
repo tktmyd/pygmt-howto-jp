@@ -1,0 +1,1 @@
+import{a}from"/pygmt-howto-jp/build/_shared/chunk-I2P5JYEV.js";import"/pygmt-howto-jp/build/_shared/chunk-OZE3FFNP.js";export default a();
