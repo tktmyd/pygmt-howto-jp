@@ -4,7 +4,7 @@
 
 手軽にPyGMTを試すためには，[Google Colab](https://colab.research.google.com/)を利用するのがよいでしょう．Google ColabはGoogleが機械学習の教育及び研究用に提供しているもので，Googleアカウントさえあればクラウド上でJupyter Notebookを実行できます．大量の計算リソースを使うためには有料のサービスもありますが，本Webページで示しているくらいの可視化を行う程度の基本的な利用は無料です．
 
-Google Colabには，機械学習等で使われる標準的なパッケージはあらかじめ含まれているのですが，残念ながらPyGMTは含まれていません．すでに多くの関連Webでも紹介されていますが（例えば[PyGMT開発メンバーの@seisman 氏のGMT Forum](https://forum.generic-mapping-tools.org/t/colab-example-on-github-try-pygmt-online-not-working-any-more/1790/10), [@after-a-rain 氏のQiita記事](https://qiita.com/after-a-rain/items/ee980a1c39a772a26b00)や[@mim 氏のnote記事](https://note.com/mim_2020/n/n646cfd0288d7)など），比較的容易にインストールすることができます．
+Google Colabには，機械学習等で使われる標準的なパッケージはあらかじめ含まれているのですが，残念ながらPyGMTは含まれていません．すでに多くの関連Webでも紹介されていますが（例えば[PyGMT開発メンバーのseisman 氏のGMT Forum](https://forum.generic-mapping-tools.org/t/colab-example-on-github-try-pygmt-online-not-working-any-more/1790/10), [after-a-rain 氏のQiita記事](https://qiita.com/after-a-rain/items/ee980a1c39a772a26b00)や[mim 氏のnote記事](https://note.com/mim_2020/n/n646cfd0288d7)など），比較的容易にインストールすることができます．
 
 ```python
 import sys

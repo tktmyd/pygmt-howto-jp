@@ -1,0 +1,35 @@
+version: 1
+project:
+  license:
+    content:
+      id: CC-BY-4.0
+    code:
+      id: MIT    
+  title: 
+  copyright: 2021-2025. All Rights Reserved
+  github: tktmyd/pygmt-howto-jp
+  toc:
+    - file: pygmt.md
+    - file: install.md
+    - file: basic_map.ipynb
+    - file: savefig.ipynb    
+    - file: topo_map.ipynb
+    - file: xy.ipynb
+    - file: frame.ipynb
+    - file: inf_on_map.ipynb
+    - file: mesh.ipynb
+    - file: config.ipynb
+    - file: timeseries.ipynb
+    - file: obspy.ipynb
+    - file: mech.ipynb
+    - file: animation.ipynb
+    - file: japanese.ipynb
+    - file: license.md
+site:
+  options:
+    folders: true
+    logo_text: "PyGMT-HOWTO"
+  template: book-theme
+  nav: []
+  parts:
+    footer: footer.md  
