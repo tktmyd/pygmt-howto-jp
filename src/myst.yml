@@ -4,7 +4,7 @@ project:
     content:
       id: CC-BY-4.0
     code:
-      id: MIT    
+      id: MIT
   title: PyGMT-HOWTO
   copyright: 2021-2025. All Rights Reserved
   github: tktmyd/pygmt-howto-jp
@@ -16,7 +16,7 @@ project:
       children:
         - file: install.md
         - file: basic_map.ipynb
-        - file: savefig.ipynb    
+        - file: savefig.ipynb
         - file: topo_map.ipynb
         - file: xy.ipynb
         - file: frame.ipynb
@@ -24,7 +24,7 @@ project:
         - file: mesh.ipynb
         - file: timeseries.ipynb
     - title: 応用編
-      children: 
+      children:
         - file: config.ipynb
         - file: obspy.ipynb
         - file: mech.ipynb
@@ -39,6 +39,7 @@ site:
     hide_outline: false
     logo: logo.svg
     logo_dark: logo2.svg
+    analytics_google: G-W1JTZPGBRZ
   template: book-theme
   parts:
-    footer: footer.md  
+    footer: footer.md
