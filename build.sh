@@ -6,4 +6,12 @@ export BASE_URL="/pygmt-howto-jp"
 myst build --html
 cd ..
 touch src/_build/html/.nojekyll
-rsync -av --delete src/_build/html/ ./docs/ 
+rsync -a --delete src/_build/html/ ./docs/ 
+
+PUBLIC_URL='https://tktmyd.github.io/pygmt-howto-jp'   # 例: https://<user>.github.io/<repo>
+
+sed -E -i.bak \
+  "s|https?://localhost:[0-9]+|${PUBLIC_URL}|g" \
+  docs/sitemap.xml
+
+rm -f docs/sitemap.xml.bak

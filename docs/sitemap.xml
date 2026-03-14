@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="http://localhost:3000/sitemap_style.xsl" ?>
+<?xml-stylesheet type="text/xsl" href="https://tktmyd.github.io/pygmt-howto-jp/sitemap_style.xsl" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://localhost:3000</loc>
+    <loc>https://tktmyd.github.io/pygmt-howto-jp</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/install</loc>
+    <loc>https://tktmyd.github.io/pygmt-howto-jp/install</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/basic-map</loc>
+    <loc>https://tktmyd.github.io/pygmt-howto-jp/basic-map</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/savefig</loc>
+    <loc>https://tktmyd.github.io/pygmt-howto-jp/savefig</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/topo-map</loc>
+    <loc>https://tktmyd.github.io/pygmt-howto-jp/topo-map</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/xy</loc>
+    <loc>https://tktmyd.github.io/pygmt-howto-jp/xy</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/frame</loc>
+    <loc>https://tktmyd.github.io/pygmt-howto-jp/frame</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/inf-on-map</loc>
+    <loc>https://tktmyd.github.io/pygmt-howto-jp/inf-on-map</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/mesh</loc>
+    <loc>https://tktmyd.github.io/pygmt-howto-jp/mesh</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/timeseries</loc>
+    <loc>https://tktmyd.github.io/pygmt-howto-jp/timeseries</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/config</loc>
+    <loc>https://tktmyd.github.io/pygmt-howto-jp/config</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/obspy</loc>
+    <loc>https://tktmyd.github.io/pygmt-howto-jp/obspy</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/mech</loc>
+    <loc>https://tktmyd.github.io/pygmt-howto-jp/mech</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/animation</loc>
+    <loc>https://tktmyd.github.io/pygmt-howto-jp/animation</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/japanese</loc>
+    <loc>https://tktmyd.github.io/pygmt-howto-jp/japanese</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/license</loc>
+    <loc>https://tktmyd.github.io/pygmt-howto-jp/license</loc>
   </url>
 </urlset>
