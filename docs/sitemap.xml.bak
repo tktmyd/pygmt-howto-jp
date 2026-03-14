@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="http://localhost:3009/sitemap_style.xsl" ?>
+<?xml-stylesheet type="text/xsl" href="http://localhost:3010/sitemap_style.xsl" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://localhost:3009</loc>
+    <loc>http://localhost:3010</loc>
   </url>
   <url>
-    <loc>http://localhost:3009/install</loc>
+    <loc>http://localhost:3010/install</loc>
   </url>
   <url>
-    <loc>http://localhost:3009/basic-map</loc>
+    <loc>http://localhost:3010/basic-map</loc>
   </url>
   <url>
-    <loc>http://localhost:3009/savefig</loc>
+    <loc>http://localhost:3010/savefig</loc>
   </url>
   <url>
-    <loc>http://localhost:3009/topo-map</loc>
+    <loc>http://localhost:3010/topo-map</loc>
   </url>
   <url>
-    <loc>http://localhost:3009/xy</loc>
+    <loc>http://localhost:3010/xy</loc>
   </url>
   <url>
-    <loc>http://localhost:3009/frame</loc>
+    <loc>http://localhost:3010/frame</loc>
   </url>
   <url>
-    <loc>http://localhost:3009/inf-on-map</loc>
+    <loc>http://localhost:3010/inf-on-map</loc>
   </url>
   <url>
-    <loc>http://localhost:3009/mesh</loc>
+    <loc>http://localhost:3010/mesh</loc>
   </url>
   <url>
-    <loc>http://localhost:3009/timeseries</loc>
+    <loc>http://localhost:3010/timeseries</loc>
   </url>
   <url>
-    <loc>http://localhost:3009/config</loc>
+    <loc>http://localhost:3010/config</loc>
   </url>
   <url>
-    <loc>http://localhost:3009/obspy</loc>
+    <loc>http://localhost:3010/obspy</loc>
   </url>
   <url>
-    <loc>http://localhost:3009/mech</loc>
+    <loc>http://localhost:3010/mech</loc>
   </url>
   <url>
-    <loc>http://localhost:3009/animation</loc>
+    <loc>http://localhost:3010/animation</loc>
   </url>
   <url>
-    <loc>http://localhost:3009/japanese</loc>
+    <loc>http://localhost:3010/japanese</loc>
   </url>
   <url>
-    <loc>http://localhost:3009/license</loc>
+    <loc>http://localhost:3010/license</loc>
   </url>
 </urlset>
