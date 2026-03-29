@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>アニメーション動画の作成 – PyGMT-HOWTO</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-22725e40e9620e47f104bab991c95b9d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-W1JTZPGBRZ"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-W1JTZPGBRZ', { 'anonymize_ip': true});
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&amp;display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../nextsteps/01config.html">応用編</a></li><li class="breadcrumb-item"><a href="../nextsteps/04animation.html">アニメーション動画の作成</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../logo.svg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../logo.svg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">基本編</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/00install.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyGMTの環境構築</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/01basic_map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyGMTの基本</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/02savefig.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">画像の保存</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/03topo_map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">地形段彩図の描画</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/04xy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">xyグラフの描画</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/05frame.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">軸の設定</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/06inf_on_map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">地図上への情報描画</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/07mesh.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">メッシュデータの扱い</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/08timeseries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">時系列データの可視化</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">応用編</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../nextsteps/01config.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GMTの微調整</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../nextsteps/02obspy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Obspyとの連携</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../nextsteps/03mech.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">震源メカニズム解の表現</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../nextsteps/04animation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">アニメーション動画の作成</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../nextsteps/05japanese.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">日本語フォントの利用</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../license.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">License</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#連番画像の作成" id="toc-連番画像の作成" class="nav-link active" data-scroll-target="#連番画像の作成">連番画像の作成</a></li>
+  <li><a href="#動画への変換" id="toc-動画への変換" class="nav-link" data-scroll-target="#動画への変換">動画への変換</a>
+  <ul class="collapse">
+  <li><a href="#gifアニメーション" id="toc-gifアニメーション" class="nav-link" data-scroll-target="#gifアニメーション">gifアニメーション</a></li>
+  <li><a href="#mpeg-4-movie" id="toc-mpeg-4-movie" class="nav-link" data-scroll-target="#mpeg-4-movie">Mpeg-4 Movie</a></li>
+  </ul></li>
+  <li><a href="#大量の画像の効率的な生成" id="toc-大量の画像の効率的な生成" class="nav-link" data-scroll-target="#大量の画像の効率的な生成">大量の画像の効率的な生成</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../nextsteps/01config.html">応用編</a></li><li class="breadcrumb-item"><a href="../nextsteps/04animation.html">アニメーション動画の作成</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">アニメーション動画の作成</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="連番画像の作成" class="level2">
+<h2 class="anchored" data-anchor-id="連番画像の作成">連番画像の作成</h2>
+<p>連番の画像を作ることで，それらを結合した動画を作成することができます．本家GMTではシェルスクリプトによるループを自力で作成するほか，<code>gmt movie</code> という<a href="https://docs.generic-mapping-tools.org/latest/movie.html">モジュール</a> があります．PyGMTへの<code>gmt movie</code>モジュールの移植はv0.18.0時点でまだ実現していないようでが，Pythonのループを使えば，簡単に連番画像を作成することができます．</p>
+<p>ここでは，1枚の画像を作る関数を <code>for</code> ループでパラメタを変えながら実行して画像保存する方法を一例として紹介します．</p>
+<div id="cell-4" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pygmt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tempfile</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>まず，画像の作成です．ここでは簡単な三角関数のグラフを，波が伝播しているかのように横に平行移動させていくことにしましょう．</p>
+<div id="cell-6" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_fig(phi):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" 初期位相 `phi` の sin カーブを描画する．"""</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">201</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> np.sin(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>x <span class="op">+</span> phi)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    fig.plot(region <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">5</span>, <span class="op">-</span><span class="fl">1.1</span>, <span class="fl">1.1</span>], projection <span class="op">=</span> <span class="st">'X10c/4c'</span>, </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>             x <span class="op">=</span> x, y <span class="op">=</span> y, </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>             pen <span class="op">=</span> <span class="st">'thick,200/110/30'</span>, frame <span class="op">=</span> [<span class="st">'WS'</span>, <span class="st">'xaf'</span>, <span class="st">'yaf'</span>])</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fig</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>これを単独で実行すると，以下のようになります．<code>plot_fig()</code>関数はPyGMTの<code>fig</code>オブジェクトを返すため，<code>.show()</code>メソッドにより画像を表示させています．</p>
+<div id="cell-8" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plot_fig(<span class="fl">0.0</span>).show(width<span class="op">=</span><span class="st">"80%"</span>) <span class="co">#  0.0の場合</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04animation_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-9" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plot_fig(np.pi<span class="op">/</span><span class="dv">2</span>).show(width<span class="op">=</span><span class="st">"80%"</span>) <span class="co"># π/2の場合</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04animation_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>たしかに引数の初期位相を変えるとグラフが平行移動している様子がわかります． それでは，これをループにして少しずつ初期位相を変えつつ，連番のファイルにしていきます．</p>
+<p>動画化には <code>ffmpeg</code> というツールを使います．このツールで連番ファイルから動画を作る際には，連番の桁数を揃えなければなりません．</p>
+<div id="cell-11" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 初期位相のリスト</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>phi0 <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>np.pi, <span class="dv">2</span><span class="op">*</span>np.pi<span class="op">/</span><span class="dv">200</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 画像保存先の一時ディレクトリ作成</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>tmpdir <span class="op">=</span> tempfile.mkdtemp()</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># enumerateを使って，初期位相の値＋0からの連番を取り出す．</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, phi <span class="kw">in</span> <span class="bu">enumerate</span>(phi0):</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> plot_fig(phi) <span class="co">#画像プロット</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># f文字列を使って連番を3桁整数の文字列に</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    figname <span class="op">=</span> <span class="ss">f'plot_</span><span class="sc">{</span>i<span class="sc">:03d}</span><span class="ss">.png'</span> </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    f.savefig(os.path.join(tmpdir, figname))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>説明はほぼコメントに書いてあるとおりですが，まず画像を動かすパラメタである初期位相のリストを作り，また同時に画像保存先の一時ディレクトリを作成しておきます．手動でディレクトリ名を指定してもよいのですが，ここでは<code>tmpfile.mkdtemp()</code>関数を使いました．この関数は，乱数を使った名前の適当なディレクトリを作成し，そのディレクトリ名を返します．確認してみましょう．</p>
+<div id="cell-13" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tmpdir)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>/var/folders/qw/cvrqp2fd6171t6js_gytd9_h0009rj/T/tmpq5671dt9</code></pre>
+</div>
+</div>
+<div id="cell-14" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> ls $tmpdir</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>plot_000.png plot_034.png plot_068.png plot_102.png plot_136.png plot_170.png
+plot_001.png plot_035.png plot_069.png plot_103.png plot_137.png plot_171.png
+plot_002.png plot_036.png plot_070.png plot_104.png plot_138.png plot_172.png
+plot_003.png plot_037.png plot_071.png plot_105.png plot_139.png plot_173.png
+plot_004.png plot_038.png plot_072.png plot_106.png plot_140.png plot_174.png
+plot_005.png plot_039.png plot_073.png plot_107.png plot_141.png plot_175.png
+plot_006.png plot_040.png plot_074.png plot_108.png plot_142.png plot_176.png
+plot_007.png plot_041.png plot_075.png plot_109.png plot_143.png plot_177.png
+plot_008.png plot_042.png plot_076.png plot_110.png plot_144.png plot_178.png
+plot_009.png plot_043.png plot_077.png plot_111.png plot_145.png plot_179.png
+plot_010.png plot_044.png plot_078.png plot_112.png plot_146.png plot_180.png
+plot_011.png plot_045.png plot_079.png plot_113.png plot_147.png plot_181.png
+plot_012.png plot_046.png plot_080.png plot_114.png plot_148.png plot_182.png
+plot_013.png plot_047.png plot_081.png plot_115.png plot_149.png plot_183.png
+plot_014.png plot_048.png plot_082.png plot_116.png plot_150.png plot_184.png
+plot_015.png plot_049.png plot_083.png plot_117.png plot_151.png plot_185.png
+plot_016.png plot_050.png plot_084.png plot_118.png plot_152.png plot_186.png
+plot_017.png plot_051.png plot_085.png plot_119.png plot_153.png plot_187.png
+plot_018.png plot_052.png plot_086.png plot_120.png plot_154.png plot_188.png
+plot_019.png plot_053.png plot_087.png plot_121.png plot_155.png plot_189.png
+plot_020.png plot_054.png plot_088.png plot_122.png plot_156.png plot_190.png
+plot_021.png plot_055.png plot_089.png plot_123.png plot_157.png plot_191.png
+plot_022.png plot_056.png plot_090.png plot_124.png plot_158.png plot_192.png
+plot_023.png plot_057.png plot_091.png plot_125.png plot_159.png plot_193.png
+plot_024.png plot_058.png plot_092.png plot_126.png plot_160.png plot_194.png
+plot_025.png plot_059.png plot_093.png plot_127.png plot_161.png plot_195.png
+plot_026.png plot_060.png plot_094.png plot_128.png plot_162.png plot_196.png
+plot_027.png plot_061.png plot_095.png plot_129.png plot_163.png plot_197.png
+plot_028.png plot_062.png plot_096.png plot_130.png plot_164.png plot_198.png
+plot_029.png plot_063.png plot_097.png plot_131.png plot_165.png plot_199.png
+plot_030.png plot_064.png plot_098.png plot_132.png plot_166.png
+plot_031.png plot_065.png plot_099.png plot_133.png plot_167.png
+plot_032.png plot_066.png plot_100.png plot_134.png plot_168.png
+plot_033.png plot_067.png plot_101.png plot_135.png plot_169.png</code></pre>
+</div>
+</div>
+<p>たしかにディレクトリが作られ，その中に画像が200枚作られています．</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>mkdtemp()</code>が返すディレクトリの場所は，Pythonやそれを動かすOSによって異なります．自分で設定することもできます．</p>
+</div>
+</div>
+</section>
+<section id="動画への変換" class="level2">
+<h2 class="anchored" data-anchor-id="動画への変換">動画への変換</h2>
+<p>作成された画像から動画を作成するには，コマンドラインから <code>ffmpeg</code>を使います．ここでは <code>gif</code> アニメーションと<code>mp4</code> 形式の動画を作成してみましょう．</p>
+<section id="gifアニメーション" class="level3">
+<h3 class="anchored" data-anchor-id="gifアニメーション">gifアニメーション</h3>
+<div id="cell-19" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash <span class="op">-</span>s <span class="st">"$tmpdir"</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ffmpeg <span class="op">-</span>i <span class="st">"$1/plot_</span><span class="sc">%3d</span><span class="st">.png"</span> <span class="op">\</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>vf <span class="st">"scale=800:-1,split [a][b];[a] palettegen [p];[b][p] paletteuse"</span> <span class="op">\</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>y out.gif <span class="op">\</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">&gt;</span> <span class="op">/</span>dev<span class="op">/</span>null <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>ここでは，いくつかのテクニックを使っています．</p>
+<p>まず，Jupyter Notebookの cell magic で，<code>%%bash</code>を Pythonセルの最初に記載しておくと，そのセル内は bashのコマンドとして実行される，という機能を使っています．そこに <code>-s</code> オプションで，Pythonの <code>tmpdir</code> 変数を <code>"$tmpdir"</code> として与えました．すると，あたかもこの変数の中身（一時ディレクトリの名前）が，シェルスクリプトの実行時第一引数のように扱われます．つまり，<code>$1</code> というシェル変数で利用できるのです．</p>
+<pre class="{note}"><code>そんな面倒なことをするくらいならUnixコマンドラインで直接ffmpegを実行する，というやりかたもあるでしょう．</code></pre>
+<p>ffmpeg は <code>-i</code> オプションで入力ファイルを，コマンドラインの最後に出力ファイル名を書きます．動画形式は出力ファイル名の拡張子からある程度判断されます．その直前にある<code>-y</code>は，出力ファイルがすでにあるときに確認をせずに上書きするためのオプションです．Jupyter Notebook上でbashコマンドを扱うときには，対話的な実行は難しいようなので，このオプションを使っています．</p>
+<p>入力と出力の間にある <code>-vf</code> からなる行は，出力される画像サイズを指定（<code>scale=800:-1</code> で横幅を800pxにしつつ縦横比を維持）するほか，256色しか使えないgifアニメーションを綺麗に出力するためのカラーパレットという機能を用いています．</p>
+<p>最終行は<code>ffmpeg</code>からの標準エラー出力が大量に出てくるため，それらを捨てるリダイレクションです．</p>
+<p>この結果，以下のような動画が作成できました．ちょうどループするように調整して作成したので，延々と波が動いているように見えます．</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="out.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</section>
+<section id="mpeg-4-movie" class="level3">
+<h3 class="anchored" data-anchor-id="mpeg-4-movie">Mpeg-4 Movie</h3>
+<p>一方，<code>mp4</code>形式の動画を作成するには，たとえば以下のようにします．</p>
+<div id="cell-24" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash <span class="op">-</span>s <span class="st">"$tmpdir"</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ffmpeg <span class="op">-</span>i <span class="st">"$1/plot_</span><span class="sc">%3d</span><span class="st">.png"</span> <span class="op">\</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>vf scale<span class="op">=</span><span class="dv">800</span>:<span class="dv">328</span> <span class="op">\</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>qscale:v <span class="dv">1</span> <span class="op">\</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>pix_fmt yuv420p <span class="op">\</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span>y out.mp4 <span class="op">\</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">&gt;</span> <span class="op">/</span>dev<span class="op">/</span>null <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>すると，以下のような動画が作成されるはずです．mp4の場合には<code>-qscale:v 1</code> オプションを付けておくと，クオリティを劣化させずに動画にできます（昔の <code>-qscale 0</code> オプションに相当します）．</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><video src="./out.mp4" class="img-fluid quarto-figure quarto-figure-center" style="width:80.0%" controls=""><a href="./out.mp4">Video</a></video></p>
+</figure>
+</div>
+<pre class="{tip}"><code>ここでは，`tempdir`は作成しっぱなしで，その中身のファイルは削除されません．実際には，このようにシステムの一時ディレクトリ置き場に作られたものは，OSのシステムによって一定期間経つと自動的に削除されるようです．</code></pre>
+</section>
+</section>
+<section id="大量の画像の効率的な生成" class="level2">
+<h2 class="anchored" data-anchor-id="大量の画像の効率的な生成">大量の画像の効率的な生成</h2>
+<p>アニメーションを作成するためには，すこしずつ違ったパラメタを用いた大量の画像を作る必要があります．これまでの例ではJupyter Notebookで対話的に実行できる例を紹介してきましたが，図を1枚ずつ作成するのにはどうしても時間がかかります．たとえば，前述の200枚の連番画像を生成するのに，筆者の環境では約140秒かかりました．凝った図のアニメーションを作成しようとすると，図の生成にかかる時間は飛躍的に伸びてしまいます．</p>
+<p>そこで，異なる番号の画像を作成するPyGMTプロセスを複数個並列に実行することで，より高速に大量の画像を生成する方法を考えます．</p>
+<p>Pytnonには，マルチスレッドで複数の関数を並列に実行する<code>concurrent</code>や<code>threading</code>といったモジュールもあります．しかし，筆者の環境で試したところ，単一のPythonカーネル内でこれらのライブラリを用いてPyGMTの互いに異なる画像を並列に生成することはできない（文法的に問題なさそうでも実行時エラーが生じる）ようでした．そこで，1枚の画像を生成するPythonスクリプトを，シェル（<code>bash</code>など）コマンドを組み合わせることにより複数並列に実行する方針を採ることにします．</p>
+<p>まずは，そのためのPythonスクリプトを作成します．作成済みの <code>plot_fig()</code> 関数をそのまま使って，以下のようなスクリプトファイル <code>exe_plot_fig.py</code> にします．</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pygmt</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_fig(phi):</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" 初期位相 `phi` の sin カーブを描画する．"""</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">201</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> np.sin(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>x <span class="op">+</span> phi)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    fig.plot(region <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">5</span>, <span class="op">-</span><span class="fl">1.1</span>, <span class="fl">1.1</span>], projection <span class="op">=</span> <span class="st">'X10c/4c'</span>, </span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>             x <span class="op">=</span> x, y <span class="op">=</span> y, </span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>             pen <span class="op">=</span> <span class="st">'thick,200/110/30'</span>, frame <span class="op">=</span> [<span class="st">'WS'</span>, <span class="st">'xaf'</span>, <span class="st">'yaf'</span>])</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fig</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>: <span class="co"># スクリプトとして実行したときにはこの行以下が実行される</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># コマンドライン引数</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>    dir_out <span class="op">=</span> sys.argv[<span class="dv">1</span>]</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="bu">int</span>(sys.argv[<span class="dv">2</span>])</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 引数 i -&gt; 角度 phi</span></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    nmax <span class="op">=</span> <span class="dv">200</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>    phi <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> i <span class="op">/</span> nmax</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 画像生成</span></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> plot_fig(phi)</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 画像保存</span></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>    figname <span class="op">=</span> <span class="ss">f'plot_</span><span class="sc">{</span>i<span class="sc">:03d}</span><span class="ss">.png'</span> </span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>    f.savefig(os.path.join(dir_out, figname))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>これは，Jupyter上で画像を作成して保存したこととほとんど同じことを実行するスクリプトです．違いとしては，<code>sys.argv[]</code> リストを用いて，スクリプト実行時の引数（スクリプト名のあとに空白区切りで記載）で保存先のディレクトリと画像の番号を取得し，その番号1枚の画像だけを作成します．たとえば，</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ./exe_plot_fig.py . 3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>というコマンドをシェルで実行するか，あるいはJupyter上でなら</p>
+<pre><code>%%bash
+python ./exe_plot_fig.py . 3</code></pre>
+<p>とすることで，カレントディレクトリ（<code>.</code>）に<code>plot_003.png</code>が作成されます．これを踏まえて，以下のように <code>xargs</code> コマンドを用いてスクリプトを並列実行します．</p>
+<div id="cell-32" class="cell" data-user_expressions="[]" data-execution_count="25">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>tmpdir<span class="op">=</span>$(mktemp <span class="op">-</span>d)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>echo ${tmpdir}</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>seq <span class="dv">0</span> <span class="dv">199</span> <span class="op">|</span> xargs <span class="op">-</span>P10 <span class="op">-</span>n1 python .<span class="op">/</span>exe_plot_fig.py ${tmpdir}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>/var/folders/wt/2gls824s1d3dfj1rwm2l_b8w0000gn/T/tmp.SwKIm29Sve</code></pre>
+</div>
+</div>
+<p>最初の2行は画像作成用の一時ディレクトリの作成とその表示です．最終行は2つのコマンドに分かれていて，まず <code>seq</code> コマンドにより <code>0 1 2 ... 199</code> の連番を生成し，それをパイプ <code>|</code> を通じて <code>xargs</code> に渡します．<code>xargs</code>コマンドは，標準入力から受け取ったものを，それ以降にかかれているコマンドに「適当な数ずつ」渡す，というものです．ここでは，オプション <code>-n1</code> を指定することで，デフォルトでは自動で判断される受け渡しの数を1つに限定しています．すなわち，<code>seq</code>で生成した連番が1つずつ <code>exe_plot_fig.py</code> に渡されるという仕組みです．さらに，<code>xargs</code>のオプション<code>-P10</code>で，<code>xargs</code>で指定されたコマンドを複数（この場合は10個）ずつ並列に実行させています．自動生成した<code>${tmpdir}</code>を見ていると，10枚ずつほぼ同時に画像が生成されていくことが確認できるでしょう．ここでは省略していますが，同じセルのなかで<code>ffmpeg</code>まで実行して動画を作ってしまうとよりよいでしょう．</p>
+<p>類似の方法としては，以下のような<code>bash</code>のシェルスクリプトを用いてpythonスクリプトを並列に実行する方法もあります．</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="va">tmpdir</span><span class="op">=</span><span class="va">$(</span><span class="fu">mktemp</span> <span class="at">-d</span><span class="va">)</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="kw">((</span> <span class="va">j</span> <span class="op">=</span> <span class="dv">0</span> <span class="kw">))</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="va">$(</span><span class="fu">seq</span> 0 199<span class="va">)</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">./exe_plot_fig.py</span> <span class="va">${tmpdir}</span> <span class="va">${i}</span> <span class="kw">&amp;</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">((</span> <span class="va">j</span> <span class="op">++</span> <span class="kw">))</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">((</span> <span class="va">j</span> <span class="op">==</span> <span class="dv">10</span> <span class="kw">));</span> <span class="cf">then</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">((</span> <span class="va">j</span> <span class="op">=</span> <span class="dv">0</span> <span class="kw">))</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>        <span class="bu">wait</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>一つ一つの可視化スクリプトをバックグラウンド（<code>&amp;</code>）で実行させつつ，別の変数 <code>$j</code> をカウンタとして利用して，一定個数のスクリプトがバックグラウンドで実行されたら <code>wait</code> によりすべてのスクリプトの実行が終了するのを待つ，という方針です．</p>
+<p>比較すると，<code>xargs</code>のほうが圧倒的に簡単で，並列数の制御もしやすいと思います．ただし，<code>xargs</code>はそれに続くコマンドの<strong>最後の引数</strong>に標準入力を与えること，<code>seq</code>コマンドと組み合わせるなら，可視化スクリプトが整数値を受け取って，それをパラメタとして画像を生成するように書く必要があることには注意が必要です．</p>
+<p>ほかには，ここでは扱いませんが，データファイル1つに対して画像ファイル1枚が対応している場合には，<code>makefile</code>を書くことによって並列にスクリプトを実行することもできます．PyGMTの例ではありませんが，詳しい解説がたとえば<a href="https://qiita.com/kaityo256/items/c147679157d9d3fe036e">ここ</a>にあります．</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

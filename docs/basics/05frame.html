@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>軸の設定 – PyGMT-HOWTO</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-22725e40e9620e47f104bab991c95b9d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-W1JTZPGBRZ"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-W1JTZPGBRZ', { 'anonymize_ip': true});
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&amp;display=swap" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../basics/00install.html">基本編</a></li><li class="breadcrumb-item"><a href="../basics/05frame.html">軸の設定</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../logo.svg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../logo.svg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">基本編</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/00install.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyGMTの環境構築</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/01basic_map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyGMTの基本</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/02savefig.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">画像の保存</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/03topo_map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">地形段彩図の描画</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/04xy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">xyグラフの描画</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/05frame.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">軸の設定</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/06inf_on_map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">地図上への情報描画</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/07mesh.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">メッシュデータの扱い</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/08timeseries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">時系列データの可視化</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">応用編</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../nextsteps/01config.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GMTの微調整</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../nextsteps/02obspy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Obspyとの連携</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../nextsteps/03mech.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">震源メカニズム解の表現</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../nextsteps/04animation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">アニメーション動画の作成</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../nextsteps/05japanese.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">日本語フォントの利用</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../license.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">License</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#frame-設定の基本" id="toc-frame-設定の基本" class="nav-link active" data-scroll-target="#frame-設定の基本">frame 設定の基本</a>
+  <ul class="collapse">
+  <li><a href="#軸のオプション" id="toc-軸のオプション" class="nav-link" data-scroll-target="#軸のオプション">軸のオプション</a></li>
+  <li><a href="#対数グラフの場合" id="toc-対数グラフの場合" class="nav-link" data-scroll-target="#対数グラフの場合">対数グラフの場合</a></li>
+  </ul></li>
+  <li><a href="#primary-and-secondary-axes" id="toc-primary-and-secondary-axes" class="nav-link" data-scroll-target="#primary-and-secondary-axes">Primary and secondary axes</a></li>
+  <li><a href="#時間軸の扱い" id="toc-時間軸の扱い" class="nav-link" data-scroll-target="#時間軸の扱い">時間軸の扱い</a></li>
+  <li><a href="#sec-custom-axis" id="toc-sec-custom-axis" class="nav-link" data-scroll-target="#sec-custom-axis">カスタム軸</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../basics/00install.html">基本編</a></li><li class="breadcrumb-item"><a href="../basics/05frame.html">軸の設定</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">軸の設定</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+<div>
+  <div class="abstract">
+    <div class="block-title">Abstract</div>
+    PyGMTの<code>frame</code> オプションは柔軟性が高く，さまざまな表現ができます．ここではそれを実例をもとに紹介します．
+  </div>
+</div>
+
+
+</header>
+
+
+<section id="frame-設定の基本" class="level2">
+<h2 class="anchored" data-anchor-id="frame-設定の基本">frame 設定の基本</h2>
+<p><code>frame</code> オプションは3つの要素を取るリストあるいはタプルとして，</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> [ <span class="st">'(direction)'</span>, <span class="st">'x(option-for-axis)'</span>, <span class="st">'y(option-for-axis)'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>という形式で指定します．</p>
+<p><code>(direction)</code> は東西南北（左右上下）の軸を描画するかどうかの設定です．大文字 <code>WSEN</code> であれば軸名（ラベル）・annotation（数値等）・ティックマークを表示し，小文字 <code>wsen</code> であれば軸とティックマークのみを表示します．また，<code>(direction)</code> に <code>+t(title)</code> とするとグラフ上部にタイトル文字 <code>(title)</code> を表示します．</p>
+<p>x軸とy軸のオプション <code>(option-for-axis)</code> には，以下の3つの主要要素があります． - <code>a</code>: 軸の数値を表示する間隔を指定します．Major tickmark （ティックマークのうち長いほう）も数値と同時に表示されます． - <code>f</code>: Minor tickmark （ティックマークのうち短い方）の間隔を指定します． - <code>g</code>: グラフ内にグリッドを引く間隔を指定します．</p>
+<p>これらの記号の後には間隔の数値が入ります．たとえば x軸に20ごとに数値を打ち，10ごとにminor tickmark, 10ごとにグリッドラインを引きたいのであれば， <code>'xa20f10g10'</code> と指定します． ただし，数値は省略できます．省略された場合にはGMTが <code>region</code> の上下限から適当に判断します．</p>
+<p>いくつかの例を示しておきます．</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">WSEN</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">WSen</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">wsEN</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">WS</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pygmt</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>fig.basemap(projection<span class="op">=</span><span class="st">'X12c/12c'</span>, region<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">20</span>], </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>            frame <span class="op">=</span> [<span class="st">'WS'</span>, <span class="st">'xafg'</span>, <span class="st">'yafg'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig/WSEN1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pygmt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>fig.basemap(projection<span class="op">=</span><span class="st">'X12c/12c'</span>, region<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">20</span>], </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>            frame <span class="op">=</span> [<span class="st">'WSen'</span>, <span class="st">'xafg'</span>, <span class="st">'yafg'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig/WSEN2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pygmt</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>fig.basemap(projection<span class="op">=</span><span class="st">'X12c/12c'</span>, region<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">20</span>], </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>            frame <span class="op">=</span> [<span class="st">'wsEN'</span>, <span class="st">'xafg'</span>, <span class="st">'yafg'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig/WSEN3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pygmt</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>fig.basemap(projection<span class="op">=</span><span class="st">'X12c/12c'</span>, region<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">20</span>], </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>            frame <span class="op">=</span> [<span class="st">'WS'</span>, <span class="st">'xafg'</span>, <span class="st">'yafg'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig/WSEN4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">afg</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">af</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">a</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false" href="">(none)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pygmt</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fig.basemap(projection<span class="op">=</span><span class="st">'X12c/12c'</span>, region<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">20</span>], </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>            frame <span class="op">=</span> [<span class="st">'WS'</span>, <span class="st">'xafg'</span>, <span class="st">'yafg'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig/WSEN4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pygmt</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>fig.basemap(projection<span class="op">=</span><span class="st">'X12c/12c'</span>, region<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">20</span>], </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>            frame <span class="op">=</span> [<span class="st">'WS'</span>, <span class="st">'xaf'</span>, <span class="st">'yaf'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig/afg1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pygmt</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>fig.basemap(projection<span class="op">=</span><span class="st">'X12c/12c'</span>, region<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">20</span>], </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>            frame <span class="op">=</span> [<span class="st">'WS'</span>, <span class="st">'xa'</span>, <span class="st">'ya'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig/afg2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pygmt</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>fig.basemap(projection<span class="op">=</span><span class="st">'X12c/12c'</span>, region<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">20</span>], </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>            frame <span class="op">=</span> [<span class="st">'WS'</span>, <span class="st">'x'</span>, <span class="st">'y'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig/afg3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<section id="軸のオプション" class="level3">
+<h3 class="anchored" data-anchor-id="軸のオプション">軸のオプション</h3>
+<p><code>a</code>, <code>f</code>, <code>g</code> の設定の後に <code>+</code> 記号と以下のフラグを追加することで，軸をカスタマイズすることができます．</p>
+<ul>
+<li><code>+l&lt;label&gt;</code> 軸ラベルの追加．<code>a</code> が表示される軸方向に文字列 <code>&lt;label&gt;</code> が表示されます．</li>
+<li><code>+p&lt;prefix&gt;</code> <code>a</code> の前に文字列がつきます．</li>
+<li><code>+u&lt;unit&gt;</code> 単位文字列の追加．<code>a</code> の数値に単位がつきます．</li>
+<li><code>+a&lt;angle&gt;</code> 軸の文字列を <code>&lt;angle&gt;</code> だけ回転させます</li>
+</ul>
+<p>すべてのオプションを有効にした例を示します．</p>
+<div id="a3843e3e-8b33-4b91-8de8-12ee1d607100" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>fig.basemap(projection<span class="op">=</span><span class="st">'X12c/12c'</span>, region <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">20</span>], </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>            frame <span class="op">=</span> [<span class="st">'S'</span>, <span class="st">'xa20f10+lSpeed+pc=+u km/s+a-30'</span>])</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>fig.show(crop<span class="op">=</span><span class="fl">0.5</span>, width<span class="op">=</span><span class="st">"80%"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05frame_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="{tip}">
+<p>機能の例ということで紹介しましたが，実際にこのようにグラフを描くことは（すくなくとも筆者の専門の地震学界隈では）あまりない，と思います．数値に変数名や単位をつけるかわりにラベルに単位を付けるほうが一般的でしょう．</p>
+</div>
+</section>
+<section id="対数グラフの場合" class="level3">
+<h3 class="anchored" data-anchor-id="対数グラフの場合">対数グラフの場合</h3>
+<p>対数軸の場合，<code>a</code>, <code>f</code>, <code>g</code> はそれぞれ 1, 2, 3 の数値をとります．実例を見てみましょう．</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">a1f1g1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">a2f2g2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">a3f3g3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false" href="">a1f3g3p</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fig.basemap(projection<span class="op">=</span><span class="st">'X12cl/0.5c'</span>, region<span class="op">=</span>[<span class="dv">1</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>], </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>            frame <span class="op">=</span> [<span class="st">'S'</span>, <span class="st">'xa1f1g1'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig/a1f1g1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+<p><code>1</code> の場合は軸の数値が <span class="math inline">\(\times 10\)</span> 倍ごとに軸情報が表示されます．</p>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>fig.basemap(projection<span class="op">=</span><span class="st">'X12cl/0.5c'</span>, region<span class="op">=</span>[<span class="dv">1</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>], </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>            frame <span class="op">=</span> [<span class="st">'S'</span>, <span class="st">'xa2f2g2'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig/a2f2g2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+<p><code>2</code> の場合は各桁の <span class="math inline">\(\times 1, \times 2, \times 5\)</span> 倍ごとに軸情報が表示されます．</p>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>fig.basemap(projection<span class="op">=</span><span class="st">'X12cl/0.5c'</span>, region<span class="op">=</span>[<span class="dv">1</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>], </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>            frame <span class="op">=</span> [<span class="st">'S'</span>, <span class="st">'xa3f3g3'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig/a3f3g3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+<p><code>3</code> の場合は <span class="math inline">\(\times 1 \sim\times 9\)</span> まですべてに軸情報が表示されます．</p>
+</div>
+<div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>fig.basemap(projection<span class="op">=</span><span class="st">'X12cl/0.5c'</span>, region<span class="op">=</span>[<span class="dv">1</span>, <span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>], </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>            frame <span class="op">=</span> [<span class="st">'S'</span>, <span class="st">'xa1f3g3p'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig/a1f3g3p.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+<p>軸情報の最後に <code>p</code> が付与されると，annotationが <span class="math inline">\(10^X\)</span> の形式で表示されます．ただし，<code>a1</code> 以外では正しく動作しません．</p>
+</div>
+</div>
+</div>
+<p>表示したい桁数の範囲が非常に広い場合でも，10倍より広い間隔でannotationを表示することはできません．たとえば以下の例では範囲が広すぎ，annotation同士が非常に近接して読みづらくなってしまっています．</p>
+<div id="63813c33-eed4-40c4-a6d6-29696aa5b539" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>fig.basemap(projection<span class="op">=</span><span class="st">'X12cl/0.5c'</span>, region<span class="op">=</span>[<span class="dv">1</span>, <span class="fl">1e25</span>, <span class="dv">0</span>, <span class="dv">1</span>], </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>            frame <span class="op">=</span> [<span class="st">'S'</span>, <span class="st">'xa1f1g1p+lsome value with vast dynamic range'</span>])</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>fig.show(crop<span class="op">=</span><span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05frame_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>このような場合は，後述のカスタム軸を用いるのがよいでしょう．</p>
+</section>
+</section>
+<section id="primary-and-secondary-axes" class="level2">
+<h2 class="anchored" data-anchor-id="primary-and-secondary-axes">Primary and secondary axes</h2>
+<p>軸オプションの <code>x</code>, <code>y</code> 軸名の前に <code>p</code> あるいは <code>s</code> を付すことで，軸を <strong>p</strong>rimary と <strong>s</strong>econdary の2つに分けて描画することができます．primaryのほうが座標軸に近い部分に小さなフォントで，secondaryのほうが離れて大きなフォントで，それぞれ表示されます．ラベルはsecondaryのものしか表示されません．</p>
+<p>以下の例は，primaryを20ごとに，secondaryを100ごとに表示したものです．<code>+l</code> オプションはあえて両方につけていますが，primaryのほうは表示されていないことが確認できるでしょう．</p>
+<div id="355cd05d-b3fa-41a5-a9af-a4f8e556ab24" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>fig.basemap(projection<span class="op">=</span><span class="st">'X12c/12c'</span>, region <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">200</span>, <span class="dv">0</span>, <span class="dv">20</span>], </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>            frame <span class="op">=</span> [<span class="st">'S'</span>, <span class="st">'pxa20f10+lPrimary'</span>, <span class="st">'sxa100f50+lSecondary'</span>])</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>fig.show(crop<span class="op">=</span><span class="fl">0.5</span>, width<span class="op">=</span><span class="st">"80%"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05frame_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>あえてprimaryとsecondaryの役割を逆転させてみると以下のような軸になります．あまり有用ではなさそうです．</p>
+<div id="360e5793-4468-48a9-a7db-eee9481b3947" class="cell" data-editable="true" data-quarto-private-1="{&quot;key&quot;:&quot;slideshow&quot;,&quot;value&quot;:{&quot;slide_type&quot;:&quot;&quot;}}" data-tags="[]" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>fig.basemap(projection<span class="op">=</span><span class="st">'X12c/12c'</span>, region <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">200</span>, <span class="dv">0</span>, <span class="dv">20</span>], </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>            frame <span class="op">=</span> [<span class="st">'S'</span>, <span class="st">'sxa20f10+lSecondary'</span>, <span class="st">'pxa100f50+lPecondary'</span>])</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>fig.show(crop<span class="op">=</span><span class="fl">0.5</span>, width<span class="op">=</span><span class="st">"80%"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05frame_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="時間軸の扱い" class="level2">
+<h2 class="anchored" data-anchor-id="時間軸の扱い">時間軸の扱い</h2>
+<p>（執筆中です．次回更新までお待ちください）</p>
+<p>時間軸設定の記号．<a href="https://docs.generic-mapping-tools.org/latest/gmt.html#axes-settings">GMT公式マニュアル</a> に基づく．（編集・検証中）</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 29%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>flag</th>
+<th>単位</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Y</code></td>
+<td>年</td>
+<td>4桁</td>
+</tr>
+<tr class="even">
+<td><code>O</code></td>
+<td>月</td>
+<td><code>FORMAT_DATE_MAP</code> 次第</td>
+</tr>
+<tr class="odd">
+<td><code>U</code></td>
+<td>週番号</td>
+<td><code>FORMAT_DATE_MAP</code> 次第</td>
+</tr>
+<tr class="even">
+<td><code>K</code></td>
+<td>曜日</td>
+<td>言語設定次第</td>
+</tr>
+<tr class="odd">
+<td><code>H</code></td>
+<td>時</td>
+<td><code>FORMAT_CLOCK_MAP</code> 次第</td>
+</tr>
+<tr class="even">
+<td><code>D</code></td>
+<td>日</td>
+<td><code>FORMAT_DATE_MAP</code> 次第</td>
+</tr>
+<tr class="odd">
+<td><code>M</code></td>
+<td>分</td>
+<td><code>FORMAT_CLOCK_MAP</code> 次第</td>
+</tr>
+<tr class="even">
+<td><code>S</code></td>
+<td>秒</td>
+<td><code>FORMAT_CLOCK_MAP</code> 次第</td>
+</tr>
+<tr class="odd">
+<td><code>y</code></td>
+<td>年</td>
+<td>2桁</td>
+</tr>
+<tr class="even">
+<td><code>o</code></td>
+<td>月</td>
+<td>1-12 の2桁数値</td>
+</tr>
+<tr class="odd">
+<td><code>u</code></td>
+<td>週番号</td>
+<td>1-53 の2桁数値</td>
+</tr>
+<tr class="even">
+<td><code>k</code></td>
+<td>曜日</td>
+<td>1-7 の数値 (<code>TIME_WEEK_START</code> で月曜=1に設定されているが，変更もできる）</td>
+</tr>
+<tr class="odd">
+<td><code>d</code></td>
+<td>日</td>
+<td><code>FORMAT_DATE_MAP</code>の設定により，1-31 の数値もしくは1-366の数値</td>
+</tr>
+<tr class="even">
+<td><code>R</code></td>
+<td>週, 日</td>
+<td><code>d</code> と同じだが週番号も記載</td>
+</tr>
+<tr class="odd">
+<td><code>h</code></td>
+<td>時</td>
+<td>0-24 の2桁数値</td>
+</tr>
+<tr class="even">
+<td><code>m</code></td>
+<td>分</td>
+<td>0-60 の2桁数値</td>
+</tr>
+<tr class="odd">
+<td><code>s</code></td>
+<td>秒</td>
+<td>0-60 の2桁数値</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sec-custom-axis" class="level2">
+<h2 class="anchored" data-anchor-id="sec-custom-axis">カスタム軸</h2>
+<p>PyGMTのマニュアルには直接は書かれていませんが，本家GMTには <a href="https://docs.generic-mapping-tools.org/6.6/reference/options.html#custom-axes">custom axes</a>（カスタム軸）というより柔軟に軸情報を設定できる機能が解説されていて，それがそのままPyGMTでも使えます．</p>
+<p>カスタム軸は，任意の位置にtickや数値を配置でき，それらは等間隔である必要もありません．x軸，y軸それぞれに対して軸情報を記載したファイルを作成し，それを <code>frame</code> の軸情報に <code>c</code> オプションで呼び出します．少々煩雑なので，具体例から紹介します．</p>
+<div id="8d691b2e-946b-4e2f-82a7-f8b04c2601ba" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>np.pi, <span class="dv">201</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.sin(x)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>fn_x <span class="op">=</span> <span class="st">'xannots.txt'</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>fn_y <span class="op">=</span> <span class="st">'yannots.txt'</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(fn_x, <span class="st">'w'</span>) <span class="im">as</span> f: </span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"0         a  0"</span>, <span class="bu">file</span><span class="op">=</span>f)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>  np<span class="sc">.</span>pi<span class="op">/</span><span class="dv">4</span><span class="sc">:8.6f}</span><span class="ss">  f         "</span>, <span class="bu">file</span><span class="op">=</span>f)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>  np<span class="sc">.</span>pi<span class="op">/</span><span class="dv">2</span><span class="sc">:8.6f}</span><span class="ss"> ag  @~p@~/2"</span>, <span class="bu">file</span><span class="op">=</span>f)</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="dv">3</span><span class="op">*</span>np<span class="sc">.</span>pi<span class="op">/</span><span class="dv">4</span><span class="sc">:8.6f}</span><span class="ss">  f         "</span>, <span class="bu">file</span><span class="op">=</span>f)</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>  np<span class="sc">.</span>pi  <span class="sc">:8.6f}</span><span class="ss"> ag  @~p@~  "</span>, <span class="bu">file</span><span class="op">=</span>f)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="dv">5</span><span class="op">*</span>np<span class="sc">.</span>pi<span class="op">/</span><span class="dv">4</span><span class="sc">:8.6f}</span><span class="ss">  f         "</span>, <span class="bu">file</span><span class="op">=</span>f)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="dv">3</span><span class="op">*</span>np<span class="sc">.</span>pi<span class="op">/</span><span class="dv">2</span><span class="sc">:8.6f}</span><span class="ss"> ag 3@~p@~/2"</span>, <span class="bu">file</span><span class="op">=</span>f)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="dv">7</span><span class="op">*</span>np<span class="sc">.</span>pi<span class="op">/</span><span class="dv">4</span><span class="sc">:8.6f}</span><span class="ss">  f         "</span>, <span class="bu">file</span><span class="op">=</span>f)</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="dv">2</span><span class="op">*</span>np<span class="sc">.</span>pi  <span class="sc">:8.6f}</span><span class="ss"> ag 2@~p@~  "</span>, <span class="bu">file</span><span class="op">=</span>f)</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(fn_y, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-1 ig Negative"</span>, <span class="bu">file</span><span class="op">=</span>f)</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" 0 ig Positive"</span>, <span class="bu">file</span><span class="op">=</span>f)</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" 1 ig"</span>, <span class="bu">file</span><span class="op">=</span>f)</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>fig.plot(projection<span class="op">=</span><span class="st">'X12c/6c'</span>, </span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>         region <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>np.pi, <span class="op">-</span><span class="fl">1.1</span>, <span class="fl">1.1</span>], </span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>         x <span class="op">=</span> x, y <span class="op">=</span> y, </span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>         pen <span class="op">=</span> <span class="st">'thickest,200/100/100@40'</span>, </span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>         frame <span class="op">=</span> [<span class="st">'WSen'</span>, <span class="ss">f'xc</span><span class="sc">{</span>fn_x<span class="sc">}</span><span class="ss">'</span>, </span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'pya1f0.5g1'</span>, <span class="ss">f'syc</span><span class="sc">{</span>fn_y<span class="sc">}</span><span class="ss">'</span>])</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>fig.show(crop<span class="op">=</span><span class="fl">0.5</span>, width<span class="op">=</span><span class="st">"80%"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05frame_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>このグラフでは，x 軸では <span class="math inline">\(\pi / 2\)</span> ごとに annotation （しかも数値ではなく <span class="math inline">\(\pi\)</span> を用いて）を表示しています．y軸はsecondary axisにの数値ではなく範囲の中央（ここでは -1から0と0から1の間）に Positive, Negativeの文字列を配置しました．これらはラベルではなくてannotation (軸情報の <code>afg</code>の<code>a</code>に相当）で実現されています．</p>
+<p>このような軸を実現しているのが，スクリプト中盤で作成しているファイル <code>xannots.txt</code> <code>yannots.txt</code> です．これらのファイルが軸情報で <code>'xc(x軸ファイル名)'</code>, <code>'yc(y軸ファイル名)'</code> の形式で呼び出されています．</p>
+<p>まずは<code>xannots.txt</code>から見てみましょう．</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>xannots.txt</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" data-filename="xannots.txt"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>0         a  0</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>0.785398  f         </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>1.570796 ag  @~p@~/2</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>2.356194  f         </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>3.141593 ag  @~p@~  </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>3.926991  f         </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>4.712389 ag 3@~p@~/2</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>5.497787  f         </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>6.283185 ag 2@~p@~  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>このファイルは1列目に軸情報をプロットする位置，2列目に <code>a</code>, <code>f</code>, <code>g</code> の組み合わせ，そして2列目に <code>a</code> が含まれる場合には3列めに annotationとして表示する文字列，がそれぞれ書かれています．文字列部分では，ギリシャ文字を表示するGMT記号 <code>@~</code> を用いて，アルファベット <code>p</code> に相当する <span class="math inline">\(\pi\)</span> を表示させています．</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>yannots.txt</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" data-filename="yannots.txt"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>-1 ig Negative</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a> 0 ig Positive</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a> 1 ig</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>一方，<code>yannots.txt</code> では2列目にグリッド線を表す <code>g</code> のほかに <code>i</code> が使われています．これは <strong>i</strong>nterval annotation という記法で，指定された数値の位置の真下ではなく，次の行の値との中間に3列目の文字列を描画する，というものです．時間軸の月名や年の表示にしばしば使われている記法と同じです．interval annotaionでは，「次」の値がないと中間の位置が定まりませんから，3行目には3列目の文字列がない行を付与しています．1列目の数値（<code>1</code>）があってはじめて2行目に指定された <code>Positive</code> の表示される位置が定まる，というわけです．</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>カスタム軸は情報をファイルで渡す必要があり，そのままですとあとで不要なファイルが残されてしまいます．そこで以下のように <code>tempfile</code> モジュールで一時ディレクトリを作成し，それを <code>with</code> ブロックで表記すれば，ブロックから抜けた時点でディレクトリごとファイルが削除されます．これなら必要な図だけが残り，スマートです．</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tempfile</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 一時ディレクトリを作成</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> tempfile.TemporaryDirectory() <span class="im">as</span> tmpdir: </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 軸情報ファイルは一時ディレクトリの下に作成する</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(os.path.join(tmpdir, <span class="st">"xannots.txt"</span>), <span class="st">"w"</span>) <span class="im">as</span> fpx: </span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"0         a  0"</span>, <span class="bu">file</span><span class="op">=</span>fpx)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>  np<span class="sc">.</span>pi<span class="op">/</span><span class="dv">4</span><span class="sc">:8.6f}</span><span class="ss">  f         "</span>, <span class="bu">file</span><span class="op">=</span>fpx)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>  np<span class="sc">.</span>pi<span class="op">/</span><span class="dv">2</span><span class="sc">:8.6f}</span><span class="ss"> ag  @~p@~/2"</span>, <span class="bu">file</span><span class="op">=</span>fpx)</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="dv">3</span><span class="op">*</span>np<span class="sc">.</span>pi<span class="op">/</span><span class="dv">4</span><span class="sc">:8.6f}</span><span class="ss">  f         "</span>, <span class="bu">file</span><span class="op">=</span>fpx)</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>  np<span class="sc">.</span>pi  <span class="sc">:8.6f}</span><span class="ss"> ag  @~p@~  "</span>, <span class="bu">file</span><span class="op">=</span>fpx)</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="dv">5</span><span class="op">*</span>np<span class="sc">.</span>pi<span class="op">/</span><span class="dv">4</span><span class="sc">:8.6f}</span><span class="ss">  f         "</span>, <span class="bu">file</span><span class="op">=</span>fpx)</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="dv">3</span><span class="op">*</span>np<span class="sc">.</span>pi<span class="op">/</span><span class="dv">2</span><span class="sc">:8.6f}</span><span class="ss"> ag 3@~p@~/2"</span>, <span class="bu">file</span><span class="op">=</span>fpx)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="dv">7</span><span class="op">*</span>np<span class="sc">.</span>pi<span class="op">/</span><span class="dv">4</span><span class="sc">:8.6f}</span><span class="ss">  f         "</span>, <span class="bu">file</span><span class="op">=</span>fpx)</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="dv">2</span><span class="op">*</span>np<span class="sc">.</span>pi  <span class="sc">:8.6f}</span><span class="ss"> ag 2@~p@~  "</span>, <span class="bu">file</span><span class="op">=</span>fpx)</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(os.path.join(tmpdir, <span class="st">"yaanots.txt"</span>), <span class="st">"w"</span>) <span class="im">as</span> fpy:</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"-1 ig Negative"</span>, <span class="bu">file</span><span class="op">=</span>fpy)</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"0 ig Positive"</span>,  <span class="bu">file</span><span class="op">=</span>fpy)</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"1 ig"</span>,           <span class="bu">file</span><span class="op">=</span>fpy)</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ファイル名はファイルオブジェクト fp に対して fp.name で参照できる．</span></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ファイルを閉じたあとでも（変数を上書きしていない限り）大丈夫．</span></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>    fig.plot(projection<span class="op">=</span><span class="st">'X12c/6c'</span>, </span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>             region <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>np.pi, <span class="op">-</span><span class="fl">1.1</span>, <span class="fl">1.1</span>], </span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>             x <span class="op">=</span> x, y <span class="op">=</span> y, </span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>             pen <span class="op">=</span> <span class="st">'thickest,200/100/100@40'</span>, </span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>             frame <span class="op">=</span> [<span class="st">'WSen'</span>, <span class="ss">f'xc</span><span class="sc">{</span>fpx<span class="sc">.</span>name<span class="sc">}</span><span class="ss">'</span>, </span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>                      <span class="st">'pya1f0.5g1'</span>, <span class="ss">f'syc</span><span class="sc">{</span>fpy<span class="sc">.</span>name<span class="sc">}</span><span class="ss">'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>軸ラベルにおけるRadianの利用
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>上記の例を執筆してからGMTのマニュアルを見直していたところ，実はカスタム軸を使わなくても radian=<span class="math inline">\(\pi\)</span> は軸上の数値の代わりに表示できる，ということがわかりました．</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>fig.basemap(projection<span class="op">=</span><span class="st">'X12c/12c'</span>, region <span class="op">=</span> [<span class="op">-</span>np.pi, <span class="dv">2</span><span class="op">*</span>np.pi, <span class="dv">0</span>, <span class="dv">1</span>],  </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>            frame <span class="op">=</span> [<span class="st">'S'</span>, <span class="st">'xapi2fpi4+langle [rad.]'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig/radian.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+<p>軸情報において，<code>pi</code> で <span class="math inline">\(\pi\)</span>，<code>pi2</code>や<code>pi4</code> で<span class="math inline">\(\pi/2\)</span>, <span class="math inline">\(\pi/4\)</span> を表すようです．</p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

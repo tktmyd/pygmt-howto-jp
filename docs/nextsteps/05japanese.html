@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>日本語フォントの利用 – PyGMT-HOWTO</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-22725e40e9620e47f104bab991c95b9d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-W1JTZPGBRZ"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-W1JTZPGBRZ', { 'anonymize_ip': true});
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&amp;display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../nextsteps/01config.html">応用編</a></li><li class="breadcrumb-item"><a href="../nextsteps/05japanese.html">日本語フォントの利用</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../logo.svg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../logo.svg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">基本編</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/00install.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyGMTの環境構築</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/01basic_map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PyGMTの基本</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/02savefig.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">画像の保存</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/03topo_map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">地形段彩図の描画</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/04xy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">xyグラフの描画</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/05frame.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">軸の設定</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/06inf_on_map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">地図上への情報描画</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/07mesh.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">メッシュデータの扱い</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../basics/08timeseries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">時系列データの可視化</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">応用編</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../nextsteps/01config.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GMTの微調整</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../nextsteps/02obspy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Obspyとの連携</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../nextsteps/03mech.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">震源メカニズム解の表現</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../nextsteps/04animation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">アニメーション動画の作成</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../nextsteps/05japanese.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">日本語フォントの利用</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../license.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">License</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#pygmtにおけるフォント指定" id="toc-pygmtにおけるフォント指定" class="nav-link active" data-scroll-target="#pygmtにおけるフォント指定">PyGMTにおけるフォント指定</a></li>
+  <li><a href="#ubuntu-linuxにおける設定" id="toc-ubuntu-linuxにおける設定" class="nav-link" data-scroll-target="#ubuntu-linuxにおける設定">Ubuntu Linuxにおける設定</a>
+  <ul class="collapse">
+  <li><a href="#フォントのインストール" id="toc-フォントのインストール" class="nav-link" data-scroll-target="#フォントのインストール">1. フォントのインストール</a></li>
+  <li><a href="#システムに-ghostscript-を導入" id="toc-システムに-ghostscript-を導入" class="nav-link" data-scroll-target="#システムに-ghostscript-を導入">2. システムに <code>ghostscript</code> を導入</a></li>
+  <li><a href="#cidfmap-ファイルの確認" id="toc-cidfmap-ファイルの確認" class="nav-link" data-scroll-target="#cidfmap-ファイルの確認">3. <code>cidfmap</code> ファイルの確認</a></li>
+  <li><a href="#psl_custom_fonts.txt-の作成" id="toc-psl_custom_fonts.txt-の作成" class="nav-link" data-scroll-target="#psl_custom_fonts.txt-の作成">4. <code>PSL_custom_fonts.txt</code> の作成</a></li>
+  <li><a href="#フォント設定状況の確認" id="toc-フォント設定状況の確認" class="nav-link" data-scroll-target="#フォント設定状況の確認">5. フォント設定状況の確認</a></li>
+  <li><a href="#gs_path-の明示指定" id="toc-gs_path-の明示指定" class="nav-link" data-scroll-target="#gs_path-の明示指定">6. <code>gs_path</code> の明示指定</a></li>
+  </ul></li>
+  <li><a href="#macosの場合" id="toc-macosの場合" class="nav-link" data-scroll-target="#macosの場合">macOSの場合</a>
+  <ul class="collapse">
+  <li><a href="#フォントのインストール-1" id="toc-フォントのインストール-1" class="nav-link" data-scroll-target="#フォントのインストール-1">1. フォントのインストール</a></li>
+  <li><a href="#システムに-ghostscript-を導入-1" id="toc-システムに-ghostscript-を導入-1" class="nav-link" data-scroll-target="#システムに-ghostscript-を導入-1">2. システムに <code>ghostscript</code> を導入</a></li>
+  </ul></li>
+  <li><a href="#日本語フォントの指定" id="toc-日本語フォントの指定" class="nav-link" data-scroll-target="#日本語フォントの指定">日本語フォントの指定</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../nextsteps/01config.html">応用編</a></li><li class="breadcrumb-item"><a href="../nextsteps/05japanese.html">日本語フォントの利用</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">日本語フォントの利用</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+<div>
+  <div class="abstract">
+    <div class="block-title">Abstract</div>
+    GMTはPostscript形式への出力をベースとしているため，フォントの扱いが厄介です．ここでは著者が試行錯誤的に実現した日本語フォントの利用方法を紹介します．
+  </div>
+</div>
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>本ページで解説している内容の再現性はOSやソフトウェアのインストール状況に依存する可能性があります．また，これが最良の方法とは限りません．より良い方法をご存知のかたはぜひ <a href="https://github.com/tktmyd/pygmt-howto-jp/issues">Issues</a> でお知らせください．</p>
+</div>
+</div>
+<section id="pygmtにおけるフォント指定" class="level2">
+<h2 class="anchored" data-anchor-id="pygmtにおけるフォント指定">PyGMTにおけるフォント指定</h2>
+<p>GMTではあらかじめ40種弱のフォントが指定されており，コマンドラインの <code>gmt text -L</code> によりその一覧を出力することができます．以下はその一部です．</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>フォント番号</th>
+<th>名前</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>Helvetica</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>Helvetica-Bold</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>Helvetica-Oblique</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>Helvetica-BoldOblique</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>Times-Roman</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>Times-Bold</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>Times-Italic</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>Times-BoldItalic</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>Courier</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>Courier-Bold</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>Courier-Oblique</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>Courier-BoldOblique</td>
+</tr>
+<tr class="odd">
+<td>.</td>
+<td>（中略）</td>
+</tr>
+<tr class="even">
+<td>35</td>
+<td>Ryumin-Light-EUC-H</td>
+</tr>
+<tr class="odd">
+<td>36</td>
+<td>Ryumin-Light-EUC-V</td>
+</tr>
+<tr class="even">
+<td>37</td>
+<td>GothicBBB-Medium-EUC-H</td>
+</tr>
+<tr class="odd">
+<td>38</td>
+<td>GothicBBB-Medium-EUC-V</td>
+</tr>
+</tbody>
+</table>
+<p>これらのフォントは，たとえば <code>fig.text()</code> モジュールの <code>font</code> オプションに名前あるいは番号で，</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>font <span class="op">=</span> <span class="st">'12p,Times-Italic,Black'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>や</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>font <span class="op">=</span> <span class="st">'10p,8,Black'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>のように指定することができます．</p>
+<p>また，軸ラベルなどの任意の文字列に対して， <code>@%(フォント番号)%</code> と <code>@%%</code> で囲まれた文字列を指定のフォント番号で表示できます．次の図はアルファベットを表示可能なすべてのフォントを使った例です．ただし<code>12 Symbol</code>だけはギリシャ文字のアルファベットになります．</p>
+<div id="f6a44a49" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pygmt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>fig.basemap(projection<span class="op">=</span><span class="st">'X16c/10c'</span>, region<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">16</span>, <span class="dv">0</span>, <span class="dv">10</span>], </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>            frame <span class="op">=</span> [<span class="st">'WSen+t@</span><span class="sc">%0%</span><span class="st">0 Helvetica@</span><span class="sc">%%</span><span class="st">'</span>, </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'xaf+l@</span><span class="sc">%1%</span><span class="st">1 Helvetica-Bold@</span><span class="sc">%%</span><span class="st">'</span>, </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'yaf+l@</span><span class="sc">%2%</span><span class="st">2 Helvetica-Oblique@</span><span class="sc">%%</span><span class="st">'</span>])</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">9.5</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,4,Black'</span>,  text<span class="op">=</span><span class="st">'3 Helvetica-BoldOblique'</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">9.0</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,4,Black'</span>,  text<span class="op">=</span><span class="st">'4 Times-Roman'</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">8.5</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,5,Black'</span>,  text<span class="op">=</span><span class="st">'5 Times-Bold'</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">8.0</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,6,Black'</span>,  text<span class="op">=</span><span class="st">'6 Times-Italic'</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">7.5</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,7,Black'</span>,  text<span class="op">=</span><span class="st">'7 Times-BoldItalic'</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">7.0</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,8,Black'</span>,  text<span class="op">=</span><span class="st">'8 Courier'</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">6.5</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,9,Black'</span>,  text<span class="op">=</span><span class="st">'9 Courier-Bold'</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">6.0</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,10,Black'</span>, text<span class="op">=</span><span class="st">'10 Courier-Oblique'</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">5.5</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,11,Black'</span>, text<span class="op">=</span><span class="st">'11 Courier-BoldOblique'</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">5.0</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,12,Black'</span>, text<span class="op">=</span><span class="st">'12 Symbol'</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">4.5</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,13,Black'</span>, text<span class="op">=</span><span class="st">'13 AvantGarde-Book'</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">4.0</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,14,Black'</span>, text<span class="op">=</span><span class="st">'14 AvantGarde-BookOblique'</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">3.5</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,15,Black'</span>, text<span class="op">=</span><span class="st">'15 AvantGarde-Demi'</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">3.0</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,16,Black'</span>, text<span class="op">=</span><span class="st">'16 AvantGarde-DemiOblique'</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">2.5</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,17,Black'</span>, text<span class="op">=</span><span class="st">'17 Bookman-Demi'</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">2.0</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,18,Black'</span>, text<span class="op">=</span><span class="st">'18 Bookman-DemiItalic'</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">1.5</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,19,Black'</span>, text<span class="op">=</span><span class="st">'19 Bookman-Light'</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">1.0</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,20,Black'</span>, text<span class="op">=</span><span class="st">'20 Bookman-LightItalic'</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">0.5</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,21,Black'</span>, text<span class="op">=</span><span class="st">'21 Helvetica-Narrow'</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">8.5</span>, y<span class="op">=</span><span class="fl">9.5</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,22,Black'</span>, text<span class="op">=</span><span class="st">'22 Helvetica-Narrow-Bold'</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">8.5</span>, y<span class="op">=</span><span class="fl">9.0</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,23,Black'</span>, text<span class="op">=</span><span class="st">'23 Helvetica-Narrow-Oblique'</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">8.5</span>, y<span class="op">=</span><span class="fl">8.5</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,24,Black'</span>, text<span class="op">=</span><span class="st">'24 Helvetica-Narrow-BoldOblique'</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">8.5</span>, y<span class="op">=</span><span class="fl">8.0</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,25,Black'</span>, text<span class="op">=</span><span class="st">'25 NewCenturySchlbk-Roman'</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">8.5</span>, y<span class="op">=</span><span class="fl">7.5</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,26,Black'</span>, text<span class="op">=</span><span class="st">'26 NewCenturySchlbk-Italic'</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">8.5</span>, y<span class="op">=</span><span class="fl">7.0</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,27,Black'</span>, text<span class="op">=</span><span class="st">'27 NewCenturySchlbk-Bold'</span>)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">8.5</span>, y<span class="op">=</span><span class="fl">6.5</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,28,Black'</span>, text<span class="op">=</span><span class="st">'28 NewCenturySchlbk-BoldItalic'</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">8.5</span>, y<span class="op">=</span><span class="fl">6.0</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,29,Black'</span>, text<span class="op">=</span><span class="st">'29 Palatino-Roman'</span>)</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">8.5</span>, y<span class="op">=</span><span class="fl">5.5</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,30,Black'</span>, text<span class="op">=</span><span class="st">'30 Palatino-Italic'</span>)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">8.5</span>, y<span class="op">=</span><span class="fl">5.0</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,31,Black'</span>, text<span class="op">=</span><span class="st">'31 Palatino-Bold'</span>)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">8.5</span>, y<span class="op">=</span><span class="fl">4.5</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,32,Black'</span>, text<span class="op">=</span><span class="st">'32 Palatino-BoldItalic'</span>)</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>fig.text(x<span class="op">=</span><span class="fl">8.5</span>, y<span class="op">=</span><span class="fl">4.0</span>, justify<span class="op">=</span><span class="st">'LM'</span>, font<span class="op">=</span><span class="st">'12p,33,Black'</span>, text<span class="op">=</span><span class="st">'33 ZapfChancery-MediumItalic'</span>)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>fig.show(crop<span class="op">=</span><span class="fl">0.5</span>, width<span class="op">=</span><span class="dv">800</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05japanese_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img" width="800"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>GMTのデフォルトで設定される一連のフォントのなかに，</p>
+<pre><code> 35: Ryumin-Light-EUC-H
+ 36: Ryumin-Light-EUC-V
+ 37: GothicBBB-Medium-EUC-H
+ 38: GothicBBB-Medium-EUC-V</code></pre>
+<p>という4つのフォントがあります．35と36はリュウミン（明朝体），37と38はゴシック体なのですが，文字コードがEUCのため，UTF-8コードが標準のPythonではそのまま使うことができません．</p>
+<pre class="{note}"><code>UTF-8が普及した現在はあまり使われなくなりましたが，昔は日本語を表す文字コードにWindows系でよく用いられるShift-JISと，Unix系で用いられたEUCが混在していて，互いに変換が必要でした．</code></pre>
+<p>また，PyGMTのバックエンドであるGMTが画像として最初に生成するPostScript形式のファイルをPNGやPDF形式に変換する（<code>fig.show()</code>コマンドでも内部でそのような変換が走っています）際に用いられる ghostscript というプログラムがあるのですが，日中韓のフォント（CJKフォント）を用いるためには＋アルファの手当が必要で，condaでPyGMTと一緒にインストールされたghostscriptでは（筆者が試した限り）うまくいかないようでした．</p>
+<p>そこで，PyGMTで日本語を扱うためには，</p>
+<ol type="1">
+<li>日本語フォントの準備</li>
+<li>ghostscriptを別途導入</li>
+<li>日本語フォント利用のための設定</li>
+</ol>
+<p>が必要です．ところが，フォントのインストール先や扱いがOSによって異なるため，あらゆる環境で統一的にうまくいく方法はなさそうです．以下では筆者環境（Ubuntu 22.04.4 LTS）で動作した方法を標準として紹介し，macOSについて後から補足します．Ubuntuの派生Linux（Linux Mintなど）はほとんど同じように動くと思われますが，RedHat系ではファイルの置き場が大きく異なる可能性があります．</p>
+</section>
+<section id="ubuntu-linuxにおける設定" class="level2">
+<h2 class="anchored" data-anchor-id="ubuntu-linuxにおける設定">Ubuntu Linuxにおける設定</h2>
+<section id="フォントのインストール" class="level3">
+<h3 class="anchored" data-anchor-id="フォントのインストール">1. フォントのインストール</h3>
+<p>デスクトップ版のOSを導入していたらおそらくインストール済みですが，デフォルトの Takao フォントを用います．</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo apt install fonts-takao</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>このフォントは</p>
+<ul>
+<li><code>/usr/share/fonts/truetype/takao-gothic/TakaoPGothic.ttf</code></li>
+<li><code>/usr/share/fonts/truetype/takao-mincho/TakaoPMincho.ttf</code></li>
+</ul>
+<p>にインストールされます．</p>
+</section>
+<section id="システムに-ghostscript-を導入" class="level3">
+<h3 class="anchored" data-anchor-id="システムに-ghostscript-を導入">2. システムに <code>ghostscript</code> を導入</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sudo apt install ghostscript poppler-data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>poppler-data</code> は旧 <code>gs-cjk-resource</code> に代わるもので，日中韓のフォント利用に関するファイルがインストールされるようです．</p>
+</div>
+</div>
+<p>Ghostscriptのバイナリは <code>/usr/bin/gs</code> に配置されます．</p>
+</section>
+<section id="cidfmap-ファイルの確認" class="level3">
+<h3 class="anchored" data-anchor-id="cidfmap-ファイルの確認">3. <code>cidfmap</code> ファイルの確認</h3>
+<p><code>/var/lib/ghostscript/fonts/cidfmap</code> を閲覧し，以下の行があることを確認してください．</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>/Japanese-Mincho-Regular &lt;&lt; /FileType /TrueType /Path (/usr/share/fonts/truetype/fonts-japanese-mincho.ttf) /SubfontID 0 /CSI [(Japan1) 4] &gt;&gt; ;</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>/Japanese-Gothic-Regular &lt;&lt; /FileType /TrueType /Path (/usr/share/fonts/truetype/fonts-japanese-gothic.ttf) /SubfontID 0 /CSI [(Japan1) 4] &gt;&gt; ;</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>/Ryumin-Light /Japanese-Mincho-Regular ;</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>/GothicBBB-Medium /Japanese-Gothic-Regular ;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>書式を真似て，第1列のフォント名と <code>/Path ()</code> を変えることで新たなフォントを追加することもできます（IPAexフォントで動作確認済）．ただし，拡張子が <code>.ttc</code> のTrueType Collection形式は読めないようです．</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ubuntuでは <code>/usr/share/fonts/truetype/fonts-japanese-mincho.ttf</code> は <code>/etc/alternatives/fonts-japanese-mincho.ttf</code> を介して Takao明朝 <code>/usr/share/fonts/truetype/takao-mincho/TakaoPMincho.ttf</code> に紐づけられています．ゴシックも同様です．</p>
+</div>
+</div>
+<p><code>cidfmap</code> ファイルの先頭列の名前がPyGMTにおけるフォント名の基本部分になります．</p>
+</section>
+<section id="psl_custom_fonts.txt-の作成" class="level3">
+<h3 class="anchored" data-anchor-id="psl_custom_fonts.txt-の作成">4. <code>PSL_custom_fonts.txt</code> の作成</h3>
+<p>ユーザーのホームディレクトリ直下の <code>.gmt/PSL_custom_fonts.txt</code> ファイルを編集し（なければ作る）．以下の2行を追加します．</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Ryumin-Light-UniJIS-UTF8-H 0.700 1</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>GothicBBB-Medium-UniJIS-UTF8-H 0.700 1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>第1列の <code>Ryumin-Light</code> と <code>GothicBBB-Medium</code> が <code>cidfmap</code> の記述の第1列に存在することが重要です．</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>上記設定ファイルはユーザーごとに設定する必要がありますが，PyGMTを仮想環境ごとシステムにインストールしている場合など複数ユーザーに同時に効かせたいときには， <code>(condaインストール先)/envs/(conda仮想環境名)/share/gmt/PSL_custom_fonts.txt</code> に設定を書いても有効となります．</p>
+</div>
+</div>
+</section>
+<section id="フォント設定状況の確認" class="level3">
+<h3 class="anchored" data-anchor-id="フォント設定状況の確認">5. フォント設定状況の確認</h3>
+<p>GMTのインストールされている環境のターミナルから，コマンドラインで <code>gmt text -L</code> を実行して，フォント一覧を確認します．</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmt text <span class="at">-L</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmt</span> text <span class="pp">[</span><span class="ss">core</span><span class="pp">]</span> 6.6.0 <span class="pp">[</span><span class="ss">64</span><span class="pp">-</span><span class="ss">bit</span><span class="pp">]</span> <span class="pp">[</span><span class="ss">MP</span><span class="pp">]</span> <span class="at">-</span> Plot or typeset text</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">（中略）</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>     <span class="ex">35:</span> Ryumin-Light-EUC-H</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>     <span class="ex">36:</span> Ryumin-Light-EUC-V</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>     <span class="ex">37:</span> GothicBBB-Medium-EUC-H</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>     <span class="ex">38:</span> GothicBBB-Medium-EUC-V</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>     <span class="ex">39:</span> Ryumin-Light-UniJIS-UTF8-H</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>     <span class="ex">40:</span> GothicBBB-Medium-UniJIS-UTF8-H</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>     <span class="ex">------------------------------------</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>     <span class="ex">For</span> additional fonts, see <span class="st">"Using non-default fonts with GMT"</span> in the documentation.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>この場合は39-40番に今回追加したフォントが表示されるはずです．ここまでで設定完了です．</p>
+</section>
+<section id="gs_path-の明示指定" class="level3">
+<h3 class="anchored" data-anchor-id="gs_path-の明示指定">6. <code>gs_path</code> の明示指定</h3>
+<p>PyGMTで作られた画像オブジェクト <code>fig</code> は，内部的にはPostScript形式の画像を持っており，<code>fig.show()</code> や. <code>fig.savefig()</code>, <code>fig.ps2raster()</code> などの表示や画像保存のメソッドを呼び出した際に，外部ツールとして <code>Ghostscript</code> を呼び出して png や pdfといった画像に変換しているようです．ここで行った設定を利用するには，PyGMTの依存関係として自動的にconda環境にインストールされたghostscriptではなく，手順2で手動インストールしたほうのghostscriptを使う必要があります．</p>
+<p>そこで，<code>gs_path="/usr/bin/gs"</code> というオプションを <code>.show()</code>, <code>.savefig()</code>, <code>.ps2raster()</code> に指定します．これで利用するghostscriptを指定し，日本語フォントを正しく読み込むことができるようになります．</p>
+</section>
+</section>
+<section id="macosの場合" class="level2">
+<h2 class="anchored" data-anchor-id="macosの場合">macOSの場合</h2>
+<p>Ubuntuと同様に，<code>conda</code> 外で <code>ghostscript</code> をインストールして使うのですが，</p>
+<ul>
+<li><code>cidfmap</code> の場所が異なる</li>
+<li>macOSのデフォルトのフォントが（筆者の試した限り）うまく読み込めない</li>
+</ul>
+<p>という問題があります．そこで，ユーザー領域に追加フォントを導入して，それを利用する方向で対策してみます．</p>
+<section id="フォントのインストール-1" class="level3">
+<h3 class="anchored" data-anchor-id="フォントのインストール-1">1. フォントのインストール</h3>
+<p>モリサワのユニバーサルデザインフォント <a href="https://fonts.google.com/specimen/BIZ+UDMincho">BIZ UD明朝</a> と<a href="https://fonts.google.com/specimen/BIZ+UDGothic">BIZ UDゴシック</a> がGoogle Fontsからダウンロードできるので，まずはこれらをインストールします．ダウンロードしたフォントファイルをダブルクリックしてインストールボタンを押すと，<code>/Users/ユーザー名/Library/Fonts</code> 以下にファイルが配置されるはずです．</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>後述の Homebrew をつかって</p>
+<pre><code>$ brew install font-biz-udgothic font-biz-udmincho</code></pre>
+<p>としてもOKです．</p>
+</div>
+</div>
+</section>
+<section id="システムに-ghostscript-を導入-1" class="level3">
+<h3 class="anchored" data-anchor-id="システムに-ghostscript-を導入-1">2. システムに <code>ghostscript</code> を導入</h3>
+<p>macOSのパッケージ管理システム <a href="https://brew.sh">Homebrew</a> を用いてインストールします．もしHomebrewをインストールしていなかったら https://brew.sh の解説の通りにインストールし，ターミナルから</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> brew install ghostscript</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>によりインストールします．GhostscriptのバイナリはHomebrewのデフォルト設定なら <code>/opt/homebrew/bin/gs</code> に配置されるはずです．</p>
+<section id="cidfmap-ファイルの編集" class="level4">
+<h4 class="anchored" data-anchor-id="cidfmap-ファイルの編集">3. <code>cidfmap</code> ファイルの編集</h4>
+<p><code>/opt/homebrew/share/ghostscript/Resource/Init/cidfmap</code> を適当なテキストエディタで編集し，以下の行を追記します．ただし，「ユーザー名」はご自身のmacOSのユーザー名に変更してください．</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>/Japanese-Mincho-Regular &lt;&lt; /FileType /TrueType /Path (/Users/ユーザー名/Library/Fonts/BIZUDMincho-Regular.ttf) /SubfontID 0 /CSI [(Japan1) 2] &gt;&gt; ;</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>/Japanese-Gothic-Regular &lt;&lt; /FileType /TrueType /Path (/Users/ユーザー名/Library/Fonts/BIZUDGothic-Regular.ttf) /SubfontID 0 /CSI [(Japan1) 2] &gt;&gt; ;</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>/Ryumin-Light /Japanese-Mincho-Regular ;</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>/GothicBBB-Medium /Japanese-Gothic-Regular ;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>以下，手順 4・手順 5はUbuntuの場合と同じです．<code>.show()</code>, <code>.savefig()</code>, <code>.ps2raster()</code> に指定すべき <code>gs_path</code> オプションの値はLinuxと異なり，<code>gs_path="/opt/homebrew/bin/gs"</code> です．</p>
+</section>
+</section>
+</section>
+<section id="日本語フォントの指定" class="level2">
+<h2 class="anchored" data-anchor-id="日本語フォントの指定">日本語フォントの指定</h2>
+<p>ここまでの設定ができていれば，本ページ冒頭で説明したものと同じ要領で，</p>
+<ul>
+<li>39: Ryumin-Light-UniJIS-UTF8-H</li>
+<li>40: GothicBBB-Medium-UniJIS-UTF8-H</li>
+</ul>
+<p>のフォントをそれぞれ使えます．名前が長いので番号で使うのが簡単でしょう．39番が明朝体，40番がゴシック体です．</p>
+<p>以下はmacOS環境で実際に日本語を用いた地図の例です．</p>
+<div id="e5942616" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pygmt</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> pygmt.Figure()</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> pygmt.config(</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    FONT_ANNOT_PRIMARY   <span class="op">=</span> <span class="st">'12p,Helvetica,black'</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    FONT_ANNOT_SECONDARY <span class="op">=</span> <span class="st">'11p,Helvetica,black'</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    FONT_LABEL           <span class="op">=</span> <span class="st">'14p,Helvetica,black'</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    FONT_TITLE           <span class="op">=</span> <span class="st">'14p'</span>, </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    MAP_GRID_PEN_PRIMARY <span class="op">=</span> <span class="st">'0.25p,30/30/30,.'</span>,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    MAP_FRAME_TYPE       <span class="op">=</span> <span class="st">'plain'</span>,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    FORMAT_GEO_MAP       <span class="op">=</span> <span class="st">'DF'</span>,</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    FORMAT_FLOAT_OUT     <span class="op">=</span> <span class="st">'</span><span class="sc">%.1f</span><span class="st">'</span>,</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    PS_IMAGE_COMPRESS    <span class="op">=</span> <span class="st">'none'</span>,</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    PS_LINE_CAP          <span class="op">=</span> <span class="st">'round'</span>,</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    PS_LINE_JOIN         <span class="op">=</span> <span class="st">'round'</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    fig.coast(projection<span class="op">=</span><span class="st">'M12c'</span>, region<span class="op">=</span>[<span class="fl">139.7</span>, <span class="fl">141.8</span>, <span class="fl">40.3</span>, <span class="fl">41.6</span>], </span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>              resolution<span class="op">=</span><span class="st">'full'</span>, area_thresh <span class="op">=</span> <span class="dv">50</span>, </span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>              shorelines <span class="op">=</span> <span class="st">'thinnest,black'</span>, water <span class="op">=</span> <span class="st">'250'</span>, </span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>              frame <span class="op">=</span> [<span class="st">'WSen+t@</span><span class="sc">%40%</span><span class="st">青森県の県庁・市庁所在地@</span><span class="sc">%%</span><span class="st">'</span>, <span class="co">#&lt;-- @%40% .. @%% でフォント指定</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>                       <span class="st">'xaf'</span>, <span class="st">'yaf'</span>]) </span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    fig.plot(x <span class="op">=</span> [<span class="fl">140.740005</span>, <span class="fl">140.464008</span>, <span class="fl">141.488404</span>, <span class="fl">140.594547</span>, <span class="fl">140.446118</span>, </span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>                  <span class="fl">141.205910</span>, <span class="fl">141.369093</span>, <span class="fl">141.183174</span>, <span class="fl">140.380195</span>, <span class="fl">140.567123</span>], </span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>             y <span class="op">=</span> [<span class="fl">40.824440</span>, <span class="fl">40.602965</span>, <span class="fl">40.512278</span>, <span class="fl">40.642608</span>, <span class="fl">40.807835</span>, </span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>                  <span class="fl">40.612703</span>, <span class="fl">40.683078</span>, <span class="fl">41.292835</span>, <span class="fl">40.808836</span>, <span class="fl">40.583742</span>], </span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>             style <span class="op">=</span> <span class="st">'c0.2c'</span>, fill<span class="op">=</span><span class="st">'150/100/250'</span>, pen<span class="op">=</span><span class="st">'thin,black'</span>)</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>    fig.text(x <span class="op">=</span> [<span class="fl">140.740005</span>, <span class="fl">140.464008</span>, <span class="fl">141.488404</span>, <span class="fl">140.594547</span>, <span class="fl">140.446118</span>, </span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>                  <span class="fl">141.205910</span>, <span class="fl">141.369093</span>, <span class="fl">141.183174</span>, <span class="fl">140.380195</span>, <span class="fl">140.567123</span>], </span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>             y <span class="op">=</span> [<span class="fl">40.824440</span>, <span class="fl">40.602965</span>, <span class="fl">40.512278</span>, <span class="fl">40.642608</span>, <span class="fl">40.807835</span>, </span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>                  <span class="fl">40.612703</span>, <span class="fl">40.683078</span>, <span class="fl">41.292835</span>, <span class="fl">40.808836</span>, <span class="fl">40.583742</span>], </span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>             offset <span class="op">=</span> <span class="st">'0c/-0.2c'</span>, </span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>             font<span class="op">=</span><span class="st">'8p,40,Black'</span>,  <span class="co">#&lt;-- 日本語フォントを指定</span></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>             text <span class="op">=</span> [<span class="st">'青森'</span>, <span class="st">'弘前'</span>, <span class="st">'八戸'</span>, <span class="st">'黒石'</span>, <span class="st">'五所川原'</span>, </span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'十和田'</span>, <span class="st">'三沢'</span>, <span class="st">'むつ'</span>, <span class="st">'つがる'</span>, <span class="st">'平川'</span>], </span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>             justify<span class="op">=</span>[<span class="st">'CT'</span>,<span class="st">'RT'</span>,<span class="st">'CT'</span>,<span class="st">'LT'</span>,<span class="st">'LT'</span>,<span class="st">'CT'</span>,<span class="st">'CT'</span>,<span class="st">'CT'</span>,<span class="st">'RT'</span>, <span class="st">'CT'</span>], </span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>             fill<span class="op">=</span><span class="st">'white@20%'</span>, clearance<span class="op">=</span><span class="st">'0.05'</span>)</span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>             </span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>fig.show(gs_path<span class="op">=</span><span class="st">'/opt/homebrew/bin/gs'</span>, dpi<span class="op">=</span><span class="dv">600</span>, width<span class="op">=</span><span class="st">"80%"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05japanese_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>PyGMTの <code>fig.show()</code> メソッドは，PostScript形式で作成されていた図をラスター画像にしてJupyter Notebookに表示します．その際 <code>dpi=150</code> の解像度が仮定されているようです．多くの場合には困りませんが，日本語で細かい字を表示するとガタツキが気になる場合があります．そのようなときには，上記の例のように <code>dpi=300</code>から<code>dpi=600</code> 程度を指定すると滑らかになります．当然ですが埋め込まれる画像のファイルサイズは大きくなります．</p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

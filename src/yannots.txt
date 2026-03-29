@@ -1,3 +1,0 @@
--1 ig Negative
- 0 ig Positive
- 1 ig

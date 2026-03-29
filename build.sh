@@ -1,15 +1,8 @@
 #!/bin/bash
 
-rm -rif src/_build/html
+cd $(dirname $0)
 cd src
-export BASE_URL="/pygmt-howto-jp" 
-myst build --html --execute --execute-parallel 1
+quarto render
 cd ..
-touch src/_build/html/.nojekyll
-rsync -a --delete src/_build/html/ ./docs/ 
-
-PUBLIC_URL='https://tktmyd.github.io/pygmt-howto-jp'   # 例: https://<user>.github.io/<repo>
-
-sed -E -i.bak \
-  "s|https?://localhost:[0-9]+|${PUBLIC_URL}|g" \
-  docs/sitemap.xml
+rsync -av --delete src/_site/ ./docs/
+touch docs/.nojekyll

@@ -1,0 +1,52 @@
+project:
+  type: website
+
+website:
+  title: "PyGMT-HOWTO"
+
+
+  sidebar:
+    logo: logo.svg
+    href: pygmt.md
+    title: false
+#    style: "docked"
+    search: true
+    contents:
+
+      - text: "Home"
+        href: index.md
+
+      - section: "基本編"
+        contents:
+          - auto: "basics/*"
+
+      - section: "応用編"
+        contents:
+          - auto: "nextsteps/*"
+
+      - text: "License"
+        href: license.md
+
+  google-analytics: "G-W1JTZPGBRZ"
+
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    include-in-header: font.html
+    mainfont: 'Helvetica Neue, Arial, Hiragino Kaku Gothic ProN, Hiragino Sans, BIZ UDPGothic, Meiryo,  sans-serif'
+    toc: true
+#    code-fold: false
+#    code-summary: "Show the code"
+
+    execute:
+      echo: true
+      eval: false
+
+#  ipynb:
+#    fig-width: 1200
+#    echo: false
+#    warning: false
+#    cache: true
+#    output: asis
